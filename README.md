@@ -10,8 +10,11 @@ here is new factors that hold up out-of-sample in the 2017–2025 window.
 1. **Data** (done — see [docs/STEP1_DATA_AUDIT.md](docs/STEP1_DATA_AUDIT.md)):
    audit the local tushare dataset, fill the gaps (tradability, flows,
    benchmark), clean it into a mining base with point-in-time labels.
-2. **Mining**: ML / NN factor mining on the base panel, evaluated with
-   AlphasEval (IC/ICIR, quantile spreads, turnover, decay).
+2. **Mining** (in progress — see
+   [docs/STEP2_MINING_SYSTEM.md](docs/STEP2_MINING_SYSTEM.md)): round-based
+   Retrieve → Generate → Evaluate → Distill loop (`code/mining/`), LLM-driven
+   formula generation over an operator set, gated by a 4-stage AlphasEval
+   pipeline (IC/ICIR, set correlation, dedup, OOS/multi-universe coverage).
 3. **Validation**: strict 2017–2021 train / 2022–2025 OOS discipline,
    tradability-aware backtests, comparison against the gtja191 baseline.
 

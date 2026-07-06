@@ -47,6 +47,11 @@ share_float / stk_holdertrade / stk_holdernumber` all licensed;
 Fetcher: [`code/step1_fetch_missing.py`](../code/step1_fetch_missing.py)
 (resumable, per-day parquet into `tushare-data/data/raw/<endpoint>/YYYY/`).
 
+Fetch completed 2026-07-06: 5 × 2,430 trade days, 0 failed calls. Post-fetch
+0-row rescan: 3 transient-empty `margin_detail` days requeried and recovered;
+the 189 empty `hk_hold` days are genuine (northbound data starts 2016-06-29,
+and Stock Connect is closed on HK holidays).
+
 ## 3. Cleaned mining base
 
 [`code/step1_build_base.py`](../code/step1_build_base.py) →

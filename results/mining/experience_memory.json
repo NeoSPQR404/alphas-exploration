@@ -1,0 +1,114 @@
+{
+  "rounds": [
+    {
+      "round": 1,
+      "date": "2026-07-06",
+      "candidates": 20,
+      "s1_pass": 18,
+      "s2_pass": 18,
+      "s3_pass": 13,
+      "accepted": [
+        "alpha_0001",
+        "alpha_0002",
+        "alpha_0003",
+        "alpha_0004",
+        "alpha_0005",
+        "alpha_0006",
+        "alpha_0007",
+        "alpha_0008",
+        "alpha_0009",
+        "alpha_0010",
+        "alpha_0011",
+        "alpha_0012",
+        "alpha_0013"
+      ],
+      "alpha_set_size": 13,
+      "diversity_entropy": 0.8998402038766563,
+      "candidates_file": "rounds/round01_candidates.py"
+    }
+  ],
+  "successful_patterns": [
+    {
+      "pattern": "Turnover/attention level and its transforms (level, spike-vs-baseline, CV) are the strongest, most robust axis on full-A",
+      "evidence": "R1: turn_low IS ic 0.0895/ICIR 0.59 -> OOS 0.0797; turn_spike, turn_cv also accepted with 3/3 universes, 7/7 years; ivol was even subsumed by turn_low (corr>=0.7). But 3 accepted factors already sit near the 0.7 corr ceiling -> family is close to saturated.",
+      "rounds": [
+        1
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Tail/lottery measures (TsMax of returns, negative skew) beat plain volatility — vol factors collapse into them at dedup",
+      "evidence": "R1: max_eff IS 0.0832/ICIR 0.74, OOS 0.0909 (stronger OOS than IS); skew accepted; lowvol and amp_low both rejected as duplicates of max_eff. Prefer tail shape over dispersion.",
+      "rounds": [
+        1
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Price-volume agreement correlations (fade volume-confirmed rallies) give the highest ICIR signals",
+      "evidence": "R1: pv_corr ICIR 0.97 (best of round), OOS 0.0387; ts-rank variant and smart_flow (TsCorr(TURN,RET)) also accepted. Interaction of price and volume >> either alone.",
+      "rounds": [
+        1
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Decompose close-to-close returns into intraday and overnight legs: intraday leg carries the reversal, overnight leg is MOMENTUM (sign flip vs intuition)",
+      "evidence": "R1: intraday_rev IS 0.0662 OOS 0.0714 and it subsumed both plain rev20 variants at dedup; overnight expr -TsSum(gap) came out with NEGATIVE IC (-0.0279) i.e. cumulative overnight gaps positively predict returns. Leg decomposition is a productive generator pattern; test leg-based variants of other signals.",
+      "rounds": [
+        1
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Within-industry earnings yield (EP) is the one value signal that clears the bar",
+      "evidence": "R1: ep_ind IS 0.0410/ICIR 0.34, OOS 0.0176 (weakest accept, decays ~57%) but 3/3 universes and 7/7 years. Value works but thin at 10d horizon.",
+      "rounds": [
+        1
+      ],
+      "strength": 1
+    }
+  ],
+  "forbidden_patterns": [
+    {
+      "pattern": "Sign-counting / path-only reversal (discarding magnitude)",
+      "evidence": "R1: rev_path (-TsSum(Sign(RET),20)) ICIR 0.21 < 0.30, rejected S1. Magnitude information matters.",
+      "rounds": [
+        1
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Book-to-price on full-A at 10d horizon",
+      "evidence": "R1: bp_ind ICIR 0.24, rejected S1 (EP passed instead). Stale book values don't cross-sectionally discriminate at short horizons.",
+      "rounds": [
+        1
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Plain volatility/amplitude/idio-vol variants as standalone candidates",
+      "evidence": "R1: lowvol, amp_low, ivol all passed S1 but died at dedup (dup of max_eff / turn_low). They burn candidate slots without adding orthogonal signal — only propose vol-family ideas that are structurally different (e.g. vol-of-vol, up/down asymmetry).",
+      "rounds": [
+        1
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Plain close-to-close 1-month reversal (incl. industry-neutralized)",
+      "evidence": "R1: rev20 and rev20_ind died at dedup vs intraday_rev. The intraday leg is the purer carrier; don't re-propose whole-return reversal.",
+      "rounds": [
+        1
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Over-saturating one family in a single round",
+      "evidence": "R1: 3 turnover factors + 3 volume-price factors accepted, several pairs near the 0.7 corr ceiling; marginal diversity per slot fell (set diversity 0.90). Cap ~2 candidates per family per round; the prompt explicitly lists over-saturation as a forbidden pattern.",
+      "rounds": [
+        1
+      ],
+      "strength": 1
+    }
+  ]
+}

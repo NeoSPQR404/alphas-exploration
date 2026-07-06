@@ -244,4 +244,5 @@ def yearly_ic(factor, panel, mask, horizon) -> dict:
     label = panel.label(horizon)
     ic = daily_ic(factor, label, mask)
     years = ic.index.str[:4]
-    return {y: float(v) for y, v in ic.groupby(years).mean().items()}
+    return {y: float(v) for y, v in ic.groupby(years).mean().items()
+            if np.isfinite(v)}  # drop years with no evaluable dates

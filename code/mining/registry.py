@@ -34,7 +34,16 @@ class Registry:
         return next((a for a in self.active() if a["name"] == name), None)
 
     def values(self, name: str) -> pd.DataFrame:
-        return pd.read_parquet(VALUES_DIR / f"{name}.parquet")
+        # retry: reads can hit transient ETIMEDOUT under disk pressure /
+        # cloud-sync eviction on this machine
+        import time
+        for attempt in range(3):
+            try:
+                return pd.read_parquet(VALUES_DIR / f"{name}.parquet")
+            except (TimeoutError, OSError):
+                if attempt == 2:
+                    raise
+                time.sleep(5 * (attempt + 1))
 
     # ------------------------------------------------------------ mutation
     def add(self, expr: str, family: str, rationale: str, direction: int,
@@ -54,7 +63,9 @@ class Registry:
             "accepted_date": date.today().isoformat(),
         }
         self.state["alphas"].append(entry)
-        values.to_parquet(VALUES_DIR / f"{name}.parquet")
+        # float32 halves the on-disk footprint; rank-based metrics are
+        # insensitive to the precision loss
+        values.astype("float32").to_parquet(VALUES_DIR / f"{name}.parquet")
         return entry
 
     def retire(self, name: str, reason: str, round_id: int):

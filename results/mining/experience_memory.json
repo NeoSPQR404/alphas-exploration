@@ -489,6 +489,14 @@
         9
       ],
       "strength": 1
+    },
+    {
+      "pattern": "What survives the 0.03 standard: median/robust, tails, vol shapes/terms, strong couplings + their bands, attention levels/clocks, band reversals",
+      "evidence": "69 survivors incl. hl_med60 0.094, max_eff 0.091, gap_vol 0.085, aggr_max 0.083, turn_low 0.080, vol_clock 0.076, intr_mom60 0.072, semivol60 0.070, med_band60 0.070. Target these classes; probes below ~0.04 IS IC will die at the OOS bar half the time.",
+      "rounds": [
+        10
+      ],
+      "strength": 1
     }
   ],
   "forbidden_patterns": [
@@ -714,6 +722,22 @@
       "evidence": "R9: ix_retvr_medband, ix_mfret_gapvol, ix_lagchase_ampself all S1 (corr parents); doji_freq (freq rescue of dead body-share) -0.45 but |IC| 0.018 under, vwap_gap -0.02 (vwap-anchored gap adds nothing over close-anchored).",
       "rounds": [
         9
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Under the 0.03 IC standard (2026-07-07): demeaned-rank interactions rarely clear the bar — deprioritize",
+      "evidence": "Purge removed 13 of 15 interactions (their |IC| clusters 0.02-0.045 with OOS mostly <0.03). Only spend interaction slots when BOTH parents have |IS IC| >= 0.05, and expect most to fail.",
+      "rounds": [
+        10
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Under the 0.03 standard: event-recency (HighDay-of-quantity) constructs decay below the bar OOS",
+      "evidence": "Purged: amp_burst_rec (OOS 0.022), vr_burst_rec (0.015), gap_burst_rec (0.016), aggr_burst_rec (0.018), vol_peak_rec (0.015). Burst FREQUENCY holds; burst RECENCY doesn't.",
+      "rounds": [
+        10
       ],
       "strength": 1
     }

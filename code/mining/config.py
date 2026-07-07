@@ -12,7 +12,9 @@ HOLDOUT_START, HOLDOUT_END = "20240101", "20251231"
 # never fed back into experience memory, so repeated rounds don't burn it.
 
 # stage 1: quick IC screen (in-sample, full-A)
-S1_MIN_ABS_IC = 0.02
+# 2026-07-07: user raised the IC standard to 0.03 (both IS and OOS);
+# 34 factors purged from the set at the same time.
+S1_MIN_ABS_IC = 0.03
 S1_MIN_ABS_ICIR = 0.30
 S1_MIN_COVERAGE = 0.60
 
@@ -25,7 +27,7 @@ S3_MAX_ABS_CORR = 0.70
 
 # stage 4: coverage / robustness (OOS 2022-2023 + sub-universes + years)
 S4_MIN_OOS_IC_RATIO = 0.40   # |OOS IC| >= 0.4 * |IS IC|, same sign
-S4_MIN_OOS_ABS_IC = 0.01
+S4_MIN_OOS_ABS_IC = 0.03     # raised from 0.01 with the 0.03 standard
 S4_UNIVERSES = ("hs300", "csi500", "csi1000")
 S4_MIN_UNIVERSES_PASS = 2    # sub-universes with same-sign full-period IC
 S4_UNIVERSE_MIN_ABS_IC = 0.005

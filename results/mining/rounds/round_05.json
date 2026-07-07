@@ -1,0 +1,1452 @@
+{
+  "round": 5,
+  "diversity": 0.842278184845128,
+  "results": [
+    {
+      "name": "ret_on_hivol",
+      "expr": "-TsSum(RET * (TURN_F > TsMean(TURN_F, 20)), 20)",
+      "family": "conditional",
+      "rationale": "Returns earned on high-attention days revert (noise-driven); the 'smart money' split of the reversal.",
+      "logic_score": 80,
+      "s1": {
+        "ic_mean": 0.07104526322085607,
+        "ic_std": 0.10472838598421906,
+        "icir": 0.6783763786024687,
+        "t_stat": 23.529003310554767,
+        "n_days": 1203,
+        "pos_rate": 0.7547797173732336,
+        "coverage": 0.9837631636275714,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.7228553996812435,
+        "against": "alpha_0016",
+        "replace": null,
+        "pass": false
+      }
+    },
+    {
+      "name": "ret_on_lovol",
+      "expr": "TsSum(RET * (TURN_F < TsMean(TURN_F, 20)), 20)",
+      "family": "conditional",
+      "rationale": "Returns earned quietly persist (informed trading, underreaction) \u2014 the complementary leg.",
+      "logic_score": 80,
+      "s1": {
+        "ic_mean": 0.01674136915135161,
+        "ic_std": 0.09388214364768324,
+        "icir": 0.1783232519080293,
+        "t_stat": 6.185015452832639,
+        "n_days": 1203,
+        "pos_rate": 0.6142975893599335,
+        "coverage": 0.9837631636275714,
+        "pass": false
+      }
+    },
+    {
+      "name": "intr_on_downday",
+      "expr": "-TsSum((CLOSE / OPEN - 1) * (RET < 0), 20)",
+      "family": "conditional",
+      "rationale": "Intraday action on down days: who fights the tape; conditional split of the accepted intraday reversal.",
+      "logic_score": 70,
+      "s1": {
+        "ic_mean": -0.025284236321700026,
+        "ic_std": 0.1499504302538463,
+        "icir": -0.16861729758892421,
+        "t_stat": -5.848371314696833,
+        "n_days": 1203,
+        "pos_rate": 0.39900249376558605,
+        "coverage": 0.9841758773158289,
+        "pass": false
+      }
+    },
+    {
+      "name": "gap_x_vr",
+      "expr": "-TsSum((OPEN / Delay(CLOSE, 1) - 1) * (VR > 1), 20)",
+      "family": "conditional",
+      "rationale": "Overnight gaps that arrive WITH volume: sentiment gaps vs quiet drift gaps.",
+      "logic_score": 72,
+      "s1": {
+        "ic_mean": -0.0033218780134986856,
+        "ic_std": 0.05381933224203087,
+        "icir": -0.06172276531711451,
+        "t_stat": -2.1399203512249456,
+        "n_days": 1202,
+        "pos_rate": 0.4550748752079867,
+        "coverage": 0.9813788084448307,
+        "pass": false
+      }
+    },
+    {
+      "name": "ret_on_mkt_tail",
+      "expr": "-TsSum(RET * (Abs(BENCH_RET) > TsStd(BENCH_RET, 60)), 60)",
+      "family": "conditional",
+      "rationale": "Performance on market-extreme days: realized tail beta as a conditional sum (semibeta slope failed; the realized version may not).",
+      "logic_score": 73,
+      "s1": {
+        "ic_mean": 0.02706491801355149,
+        "ic_std": 0.10262496242091622,
+        "icir": 0.26372645967503255,
+        "t_stat": 9.032390614332856,
+        "n_days": 1173,
+        "pos_rate": 0.59846547314578,
+        "coverage": 0.9602552409132368,
+        "pass": false
+      }
+    },
+    {
+      "name": "post_limit_ret",
+      "expr": "-TsSum(RET * Delay(limit_up_touch > 0.5, 1), 60)",
+      "family": "conditional",
+      "rationale": "Returns on days AFTER limit-up touches: post-mania follow-through quality.",
+      "logic_score": 71,
+      "s1": {
+        "ic_mean": 0.021428830875723694,
+        "ic_std": 0.0471587260213656,
+        "icir": 0.45439800188866863,
+        "t_stat": 15.556081823811734,
+        "n_days": 1172,
+        "pos_rate": 0.6715017064846417,
+        "coverage": 0.959635212808488,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.1554514474059235,
+        "against": "alpha_0021",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.023675297366470893,
+          "ic_std": 0.03166520708464143,
+          "icir": 0.7476754313713022,
+          "t_stat": 16.448859490168648,
+          "n_days": 484,
+          "pos_rate": 0.7747933884297521
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.015061917830456158,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.009398111871863882,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.014945413734233687,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.01283042652881774,
+          "2018": 0.023333220617518764,
+          "2019": 0.024310138393268562,
+          "2020": 0.023119300283082476,
+          "2021": 0.021982298602097983,
+          "2022": 0.021442688841439832,
+          "2023": 0.02590790589150195
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0037"
+    },
+    {
+      "name": "vol_share_up",
+      "expr": "-(TsSum(TURN_F * (RET > 0), 20) / TsSum(TURN_F, 20))",
+      "family": "conditional",
+      "rationale": "Share of turnover spent on up days: buying-crowd concentration (aggregation form of smart_flow).",
+      "logic_score": 71,
+      "s1": {
+        "ic_mean": 0.03705095479235203,
+        "ic_std": 0.10011933153734585,
+        "icir": 0.3700679401613017,
+        "t_stat": 12.835543901342092,
+        "n_days": 1203,
+        "pos_rate": 0.6442227763923525,
+        "coverage": 0.9816852316008455,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6020612812043565,
+        "against": "alpha_0011",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": false,
+        "duplicate_of": "signed_attn"
+      }
+    },
+    {
+      "name": "upper_shadow",
+      "expr": "-TsMean((HIGH - (OPEN + CLOSE + Abs(OPEN - CLOSE)) / 2) / (HIGH - LOW), 20)",
+      "family": "candle",
+      "rationale": "Average upper-shadow share: selling into strength; untested price structure (not position-vs-anchor).",
+      "logic_score": 72,
+      "s1": {
+        "ic_mean": 0.005106985629989726,
+        "ic_std": 0.054210109803360676,
+        "icir": 0.09420725485549793,
+        "t_stat": 3.267511784445882,
+        "n_days": 1203,
+        "pos_rate": 0.5519534497090607,
+        "coverage": 0.9824546409941516,
+        "pass": false
+      }
+    },
+    {
+      "name": "lower_shadow",
+      "expr": "TsMean(((OPEN + CLOSE - Abs(OPEN - CLOSE)) / 2 - LOW) / (HIGH - LOW), 20)",
+      "family": "candle",
+      "rationale": "Average lower-shadow share: support buying / dip absorption.",
+      "logic_score": 72,
+      "s1": {
+        "ic_mean": 0.022210910282810924,
+        "ic_std": 0.08389402809425109,
+        "icir": 0.26474959883745225,
+        "t_stat": 9.182651967256739,
+        "n_days": 1203,
+        "pos_rate": 0.6442227763923525,
+        "coverage": 0.9824546409941516,
+        "pass": false
+      }
+    },
+    {
+      "name": "shadow_asym",
+      "expr": "-(TsMean((HIGH - (OPEN + CLOSE + Abs(OPEN - CLOSE)) / 2) / (HIGH - LOW), 20) - TsMean(((OPEN + CLOSE - Abs(OPEN - CLOSE)) / 2 - LOW) / (HIGH - LOW), 20))",
+      "family": "candle",
+      "rationale": "Shadow asymmetry: net rejection direction within the daily bar.",
+      "logic_score": 73,
+      "s1": {
+        "ic_mean": 0.01673659403575679,
+        "ic_std": 0.07619644711682584,
+        "icir": 0.21965058305272325,
+        "t_stat": 7.618424607383584,
+        "n_days": 1203,
+        "pos_rate": 0.6325852036575229,
+        "coverage": 0.9824546409941516,
+        "pass": false
+      }
+    },
+    {
+      "name": "body_share",
+      "expr": "-TsMean(Abs(CLOSE - OPEN) / (HIGH - LOW), 20)",
+      "family": "candle",
+      "rationale": "Body share of range: conviction vs indecision days (doji frequency inverse).",
+      "logic_score": 68,
+      "s1": {
+        "ic_mean": 0.01275433247245048,
+        "ic_std": 0.05922213662796356,
+        "icir": 0.2153642742168159,
+        "t_stat": 7.469757027008967,
+        "n_days": 1203,
+        "pos_rate": 0.5968412302576891,
+        "coverage": 0.9824546409941516,
+        "pass": false
+      }
+    },
+    {
+      "name": "limit_down_cnt",
+      "expr": "-TsCount(limit_down_close > 0.5, 60)",
+      "family": "limit_board",
+      "rationale": "Limit-down close count: crash-lottery marker, mirror of the R4 limit-up winner.",
+      "logic_score": 74,
+      "s1": {
+        "ic_mean": 0.027940200071254893,
+        "ic_std": 0.09474258546084159,
+        "icir": 0.2949064555854132,
+        "t_stat": 10.100277024983068,
+        "n_days": 1173,
+        "pos_rate": 0.6649616368286445,
+        "coverage": 0.9719694630173584,
+        "pass": false
+      }
+    },
+    {
+      "name": "one_word_cnt",
+      "expr": "-TsCount(one_word_board > 0.5, 120)",
+      "family": "limit_board",
+      "rationale": "One-word-board day count: hardest mania/manipulation marker in A-shares.",
+      "logic_score": 73,
+      "s1": {
+        "ic_mean": 0.03224025761136658,
+        "ic_std": 0.07907603750228881,
+        "icir": 0.40771210381442546,
+        "t_stat": 13.693300990819317,
+        "n_days": 1128,
+        "pos_rate": 0.6799645390070922,
+        "coverage": 0.9427848119447576,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.34573174964702047,
+        "against": "alpha_0031",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.020783418966655788,
+          "ic_std": 0.05446064714245291,
+          "icir": 0.38162269560059625,
+          "t_stat": 8.395699303213117,
+          "n_days": 484,
+          "pos_rate": 0.6611570247933884
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.014648619219263295,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.027708029832437527,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03063564301267315,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.037081448460902694,
+          "2018": 0.03558830977800336,
+          "2019": 0.047947169338592055,
+          "2020": 0.038135269212346,
+          "2021": 0.004137642225968022,
+          "2022": 0.0157110902653855,
+          "2023": 0.02585574766792607
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0038"
+    },
+    {
+      "name": "limit_recency",
+      "expr": "CsRank(HighDay(limit_up_touch, 120))",
+      "family": "limit_board",
+      "rationale": "Days since the last limit-up touch: mania freshness (event recency, not count).",
+      "logic_score": 71,
+      "s1": {
+        "ic_mean": 0.03995174512808088,
+        "ic_std": 0.07085341030000374,
+        "icir": 0.5638648155243245,
+        "t_stat": 18.684271357067583,
+        "n_days": 1098,
+        "pos_rate": 0.7577413479052824,
+        "coverage": 0.9228246948336577,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5331765735653816,
+        "against": "alpha_0031",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.03515438274294024,
+          "ic_std": 0.06265425619043502,
+          "icir": 0.5610853097687402,
+          "t_stat": 12.343876814912283,
+          "n_days": 484,
+          "pos_rate": 0.7479338842975206
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.03575114234654489,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03611162015391695,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03378348560058699,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.07603301053773656,
+          "2018": 0.04515181110043914,
+          "2019": 0.028803306732696477,
+          "2020": 0.029192342326992828,
+          "2021": 0.03814507698671534,
+          "2022": 0.025246311836759724,
+          "2023": 0.04506245364912076
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0039"
+    },
+    {
+      "name": "amp_burst_freq",
+      "expr": "-TsCount(AMP > 2 * TsMean(AMP, 60), 60)",
+      "family": "event_freq",
+      "rationale": "Extreme-range-day frequency: the frequency trick on amplitude instead of returns.",
+      "logic_score": 71,
+      "s1": {
+        "ic_mean": 0.04438228783274504,
+        "ic_std": 0.0827168246367183,
+        "icir": 0.5365569583656815,
+        "t_stat": 18.376586258234987,
+        "n_days": 1173,
+        "pos_rate": 0.7271952259164536,
+        "coverage": 0.9719694630173584,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5645464766145954,
+        "against": "alpha_0021",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.033089402407824986,
+          "ic_std": 0.09973442038852787,
+          "icir": 0.33177515123586315,
+          "t_stat": 7.2990533271889895,
+          "n_days": 484,
+          "pos_rate": 0.6735537190082644
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.021349903514130728,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.034912955747525204,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03828435200198308,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.05548090453680119,
+          "2018": 0.006852759292761395,
+          "2019": 0.05645980094783804,
+          "2020": 0.06758129823328621,
+          "2021": 0.037450927203076724,
+          "2022": 0.02621936894036926,
+          "2023": 0.03995943587528072
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0040"
+    },
+    {
+      "name": "gapdn_freq",
+      "expr": "-TsCount((OPEN / Delay(CLOSE, 1) - 1) < -2 * TsStd(OPEN / Delay(CLOSE, 1) - 1, 60), 60)",
+      "family": "event_freq",
+      "rationale": "Extreme gap-down frequency: overnight crash habit.",
+      "logic_score": 70,
+      "s1": {
+        "ic_mean": 0.026331396117596596,
+        "ic_std": 0.05528323087854776,
+        "icir": 0.47629987790410233,
+        "t_stat": 16.305881281500685,
+        "n_days": 1172,
+        "pos_rate": 0.71160409556314,
+        "coverage": 0.9719694630173584,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.34623772853525264,
+        "against": "alpha_0014",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.02484444044640772,
+          "ic_std": 0.05700202494497399,
+          "icir": 0.43585189246155565,
+          "t_stat": 9.588741634154225,
+          "n_days": 484,
+          "pos_rate": 0.6818181818181818
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.0009912685104683015,
+            "pass": false
+          },
+          "csi500": {
+            "ic_mean": 0.021874629420521916,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.024862268331015683,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.02836935124011809,
+          "2018": 0.019432045299684206,
+          "2019": 0.014059969257326194,
+          "2020": 0.04263394724053646,
+          "2021": 0.027581179699499987,
+          "2022": 0.018517519106248482,
+          "2023": 0.03117136178656696
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0041"
+    },
+    {
+      "name": "turn_trough_rec",
+      "expr": "CsRank(LowDay(TURN_F, 60))",
+      "family": "event_freq",
+      "rationale": "Days since the attention trough: early-attention-cycle stocks (LowDay untested on volume).",
+      "logic_score": 69,
+      "s1": {
+        "ic_mean": -0.017125341610016998,
+        "ic_std": 0.07369261566317388,
+        "icir": -0.23238884189281095,
+        "t_stat": -7.908052636548041,
+        "n_days": 1158,
+        "pos_rate": 0.3955094991364421,
+        "coverage": 0.960600924536116,
+        "pass": false
+      }
+    },
+    {
+      "name": "aggr_attn_corr",
+      "expr": "-TsCorr(CLOSE / VWAP - 1, TURN_F, 20)",
+      "family": "cross_corr",
+      "rationale": "Late-day aggression arriving with attention: coordinated chasing vs quiet aggression.",
+      "logic_score": 71,
+      "s1": {
+        "ic_mean": 0.02248813176463475,
+        "ic_std": 0.057157318636963626,
+        "icir": 0.39344273490974574,
+        "t_stat": 13.646282070251674,
+        "n_days": 1203,
+        "pos_rate": 0.657522859517872,
+        "coverage": 0.9816340014794493,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.597946883421031,
+        "against": "alpha_0006",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.033300931404235276,
+          "ic_std": 0.06222674845226731,
+          "icir": 0.5351546116824607,
+          "t_stat": 11.773401457014135,
+          "n_days": 484,
+          "pos_rate": 0.6942148760330579
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.011575899042863698,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.019004426531034645,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.02258966970301685,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.019602697681781297,
+          "2018": 0.03128843899273367,
+          "2019": 0.017264417581399197,
+          "2020": 0.016100048419779005,
+          "2021": 0.028052188127341258,
+          "2022": 0.03671129340562196,
+          "2023": 0.029890569402848583
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0042"
+    },
+    {
+      "name": "overnight_contin",
+      "expr": "-TsCorr(OPEN / Delay(CLOSE, 1) - 1, Delay(CLOSE / OPEN - 1, 1), 20)",
+      "family": "cross_corr",
+      "rationale": "Does the overnight market continue yesterday's intraday move? Agreement = crowded consensus.",
+      "logic_score": 70,
+      "s1": {
+        "ic_mean": -0.0007789208019115686,
+        "ic_std": 0.04134360805974924,
+        "icir": -0.018840174780727473,
+        "t_stat": -0.6531864414495818,
+        "n_days": 1202,
+        "pos_rate": 0.49417637271214643,
+        "coverage": 0.9813191995652621,
+        "pass": false
+      }
+    },
+    {
+      "name": "ret_amp_corr",
+      "expr": "-TsCorr(RET, AMP, 20)",
+      "family": "cross_corr",
+      "rationale": "Do moves come with range expansion (impulsive) or drift quietly (absorbed)?",
+      "logic_score": 69,
+      "s1": {
+        "ic_mean": 0.05252817292973379,
+        "ic_std": 0.08460911533458347,
+        "icir": 0.6208334967457485,
+        "t_stat": 21.533169286240902,
+        "n_days": 1203,
+        "pos_rate": 0.744804655029094,
+        "coverage": 0.9837174395472598,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.7582342615687214,
+        "against": "alpha_0006",
+        "replace": "alpha_0006",
+        "pass": false
+      }
+    },
+    {
+      "name": "attn_risk_corr",
+      "expr": "-TsCorr(TURN_F, TsStd(RET, 5), 20)",
+      "family": "cross_corr",
+      "rationale": "Attention coupling with short-run risk: vol-chasing crowd detection.",
+      "logic_score": 70,
+      "s1": {
+        "ic_mean": 0.03488853906293456,
+        "ic_std": 0.05683427263451511,
+        "icir": 0.6138644420998001,
+        "t_stat": 21.264888053535543,
+        "n_days": 1200,
+        "pos_rate": 0.7691666666666667,
+        "coverage": 0.975137830571934,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.40671372918671883,
+        "against": "alpha_0007",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.032797604010107076,
+          "ic_std": 0.053582621031912976,
+          "icir": 0.6120940592020188,
+          "t_stat": 13.466069302444414,
+          "n_days": 484,
+          "pos_rate": 0.7582644628099173
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.013751426523944928,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.022459143285688,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.02964026060932002,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.04318711394350237,
+          "2018": 0.03215204854912779,
+          "2019": 0.034986206339777705,
+          "2020": 0.02799068621141959,
+          "2021": 0.03667264657048418,
+          "2022": 0.03315072474266282,
+          "2023": 0.03244448327755134
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0043"
+    },
+    {
+      "name": "pvcorr_selfrank",
+      "expr": "-TsRank(TsCorr(CsRank(CLOSE), CsRank(VOLUME), 10), 120)",
+      "family": "cross_corr",
+      "rationale": "TS self-rank of the R1 price-volume-agreement winner (the framing trick works ACROSS constructs).",
+      "logic_score": 70,
+      "s1": {
+        "ic_mean": 0.04230311404017757,
+        "ic_std": 0.052473788911063676,
+        "icir": 0.8061760913029534,
+        "t_stat": 26.99185426941464,
+        "n_days": 1121,
+        "pos_rate": 0.8073148974130241,
+        "coverage": 0.9086236573040029,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.8893110426739222,
+        "against": "alpha_0004",
+        "replace": null,
+        "pass": false
+      }
+    },
+    {
+      "name": "rsq_turn",
+      "expr": "-TsRSquare(Log(TURN_F), 20)",
+      "family": "volume_path",
+      "rationale": "Trendiness of attention (path-shape is forbidden on PRICE; volume path is untested).",
+      "logic_score": 67,
+      "s1": {
+        "ic_mean": 0.01872609631824387,
+        "ic_std": 0.05598019840504329,
+        "icir": 0.334512860828961,
+        "t_stat": 11.57820483338635,
+        "n_days": 1198,
+        "pos_rate": 0.6285475792988314,
+        "coverage": 0.9666721727077513,
+        "pass": false
+      }
+    },
+    {
+      "name": "vol_clock",
+      "expr": "-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))",
+      "family": "volume_path",
+      "rationale": "Share of the year's volume traded in the last month: long-band attention concentration.",
+      "logic_score": 71,
+      "s1": {
+        "ic_mean": 0.055680692660340335,
+        "ic_std": 0.10363236123242633,
+        "icir": 0.5372905914539557,
+        "t_stat": 17.24359634922164,
+        "n_days": 1030,
+        "pos_rate": 0.7252427184466019,
+        "coverage": 0.8147181266054299,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6092674917655209,
+        "against": "alpha_0035",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.07639879772013355,
+          "ic_std": 0.12243127985749228,
+          "icir": 0.6240137145430509,
+          "t_stat": 13.728301719947119,
+          "n_days": 484,
+          "pos_rate": 0.768595041322314
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.029376994013544697,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.0384082929645583,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.05781123504243047,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.010542802197819275,
+          "2018": 0.06117045922710454,
+          "2019": 0.048717268559074385,
+          "2020": 0.043559413204111296,
+          "2021": 0.07989218594928084,
+          "2022": 0.09474067957299817,
+          "2023": 0.05805691586726896
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0044"
+    },
+    {
+      "name": "amt_selfrank",
+      "expr": "-TsRank(Log(AMOUNT), 120)",
+      "family": "volume_path",
+      "rationale": "Dollar-volume self-rank: the framing trick on raw money traded rather than turnover rate.",
+      "logic_score": 69,
+      "s1": {
+        "ic_mean": 0.05570910569724596,
+        "ic_std": 0.10673118546942723,
+        "icir": 0.5219571529373075,
+        "t_stat": 17.530302222116124,
+        "n_days": 1128,
+        "pos_rate": 0.723404255319149,
+        "coverage": 0.9208025413970502,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.9602149771204995,
+        "against": "alpha_0022",
+        "replace": null,
+        "pass": false
+      }
+    },
+    {
+      "name": "turn_medmean",
+      "expr": "-(TsMed(TURN_F, 20) / TsMean(TURN_F, 20))",
+      "family": "volume_path",
+      "rationale": "Median/mean turnover: inverse right-tail share of attention (robust shape, not level).",
+      "logic_score": 68,
+      "s1": {
+        "ic_mean": -0.03074417317408028,
+        "ic_std": 0.055311576654426285,
+        "icir": -0.5558361383578457,
+        "t_stat": -19.278782033198787,
+        "n_days": 1203,
+        "pos_rate": 0.257689110556941,
+        "coverage": 0.9816852316008455,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": -0.7473737963143429,
+        "against": "alpha_0003",
+        "replace": null,
+        "pass": false
+      }
+    },
+    {
+      "name": "attn_rank_mom",
+      "expr": "-Delta(TsRank(TURN_F, 120), 10)",
+      "family": "volume_path",
+      "rationale": "Momentum OF the attention self-rank: attention regime shifts (change of an accepted factor \u2014 corr gate will arbitrate the R4 lesson).",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": 0.01296410578941489,
+        "ic_std": 0.07654616812658273,
+        "icir": 0.1693632236165817,
+        "t_stat": 5.662914611084004,
+        "n_days": 1118,
+        "pos_rate": 0.6037567084078712,
+        "coverage": 0.9039035437359207,
+        "pass": false
+      }
+    },
+    {
+      "name": "intr_mom60",
+      "expr": "-TsSum(CLOSE / OPEN - 1, 60)",
+      "family": "reversal_band",
+      "rationale": "Quarterly-band intraday reversal: R3 showed weekly/monthly bands separable; test the next octave.",
+      "logic_score": 70,
+      "s1": {
+        "ic_mean": 0.07180422916490735,
+        "ic_std": 0.12067082626268498,
+        "icir": 0.5950421604688337,
+        "t_stat": 20.379651067146476,
+        "n_days": 1173,
+        "pos_rate": 0.7374254049445865,
+        "coverage": 0.9608570751430973,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5399144369979328,
+        "against": "alpha_0011",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.07148848801420292,
+          "ic_std": 0.1341118841121815,
+          "icir": 0.533051104959531,
+          "t_stat": 11.727124309109682,
+          "n_days": 484,
+          "pos_rate": 0.7231404958677686
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.024116494706031614,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.04629909356820413,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.0678535920518379,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.04686024016148971,
+          "2018": 0.07822259902814839,
+          "2019": 0.08874966351949436,
+          "2020": 0.05498531534269545,
+          "2021": 0.085719636573114,
+          "2022": 0.07075692048609909,
+          "2023": 0.07222005554230675
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0045"
+    },
+    {
+      "name": "rev_1y",
+      "expr": "-(CLOSE / Delay(CLOSE, 250) - 1)",
+      "family": "reversal_band",
+      "rationale": "12-month whole-return band: far from the forbidden 1-month band; classic long-run reversal vs A-share momentum test.",
+      "logic_score": 68,
+      "s1": {
+        "ic_mean": 0.026134650970415025,
+        "ic_std": 0.1694242541555855,
+        "icir": 0.15425566487319506,
+        "t_stat": 4.796830350415877,
+        "n_days": 967,
+        "pos_rate": 0.5418821096173733,
+        "coverage": 0.7636783227162498,
+        "pass": false
+      }
+    },
+    {
+      "name": "annual_echo",
+      "expr": "Delay(TsSum(CLOSE / OPEN - 1, 20), 240)",
+      "family": "seasonality",
+      "rationale": "Same-month-last-year intraday return echo (Heston-Sadka seasonality probe).",
+      "logic_score": 64,
+      "s1": {
+        "ic_mean": -0.006535130663381003,
+        "ic_std": 0.06960251881820717,
+        "icir": -0.09389215755898035,
+        "t_stat": -2.913684089394459,
+        "n_days": 963,
+        "pos_rate": 0.48598130841121495,
+        "coverage": 0.757032291733996,
+        "pass": false
+      }
+    },
+    {
+      "name": "down_elasticity",
+      "expr": "-RegBeta(TURN_F, Abs((RET - Abs(RET)) / 2), 20)",
+      "family": "elasticity",
+      "rationale": "Turnover response to down-moves only: panic elasticity (R4 said up/down splits of the SAME regression correlate \u2014 this drops the up leg entirely, borderline test).",
+      "logic_score": 68,
+      "s1": {
+        "ic_mean": -0.01707201632861002,
+        "ic_std": 0.07074481336393587,
+        "icir": -0.24131827503432152,
+        "t_stat": -8.369953128198816,
+        "n_days": 1203,
+        "pos_rate": 0.38237738985868663,
+        "coverage": 0.9812694058024097,
+        "pass": false
+      }
+    },
+    {
+      "name": "lag_chase2",
+      "expr": "-TsCorr(TURN_F, Delay(RET, 2), 20)",
+      "family": "elasticity",
+      "rationale": "Two-day-lagged chase: slower reaction crowd, decorrelates further from same-day elasticity.",
+      "logic_score": 67,
+      "s1": {
+        "ic_mean": 0.033510424723723176,
+        "ic_std": 0.06581411297922109,
+        "icir": 0.5091677636725596,
+        "t_stat": 17.645436398330926,
+        "n_days": 1201,
+        "pos_rate": 0.7160699417152373,
+        "coverage": 0.9768420699841761,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.3811505004697838,
+        "against": "alpha_0027",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.03379150851822493,
+          "ic_std": 0.07468139825191265,
+          "icir": 0.4524755736929377,
+          "t_stat": 9.95446262124463,
+          "n_days": 484,
+          "pos_rate": 0.6673553719008265
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.027111017102422613,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.02363442364829207,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.034056001836886333,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.053374236637805716,
+          "2018": 0.02276114465576415,
+          "2019": 0.03854123662411668,
+          "2020": 0.03391899904776393,
+          "2021": 0.02016196495279849,
+          "2022": 0.0418752944712009,
+          "2023": 0.025707722565248975
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0046"
+    },
+    {
+      "name": "signed_attn",
+      "expr": "-TsMean(Sign(RET) * VR, 20)",
+      "family": "probe",
+      "rationale": "Direction-weighted attention: volume_ratio signed by the day's direction.",
+      "logic_score": 67,
+      "s1": {
+        "ic_mean": 0.04926149290445941,
+        "ic_std": 0.1032142065912817,
+        "icir": 0.477274345570762,
+        "t_stat": 16.55392199845157,
+        "n_days": 1203,
+        "pos_rate": 0.6949293433083957,
+        "coverage": 0.9811913636548621,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6346778036357079,
+        "against": "alpha_0011",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.03897251957209397,
+          "ic_std": 0.11100105945583777,
+          "icir": 0.35110042879905434,
+          "t_stat": 7.724209433579196,
+          "n_days": 484,
+          "pos_rate": 0.6074380165289256
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.02736467008054917,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.030663051580791197,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04716429954798109,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.06705600627337263,
+          "2018": 0.054469628982127094,
+          "2019": 0.07061243820810835,
+          "2020": 0.03339967499798844,
+          "2021": 0.021633821939269347,
+          "2022": 0.052044870112508745,
+          "2023": 0.025900169031679188
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0047"
+    },
+    {
+      "name": "mean_med_gap",
+      "expr": "-(TsMean(RET, 20) - TsMed(RET, 20))",
+      "family": "probe",
+      "rationale": "Mean-median return gap: robust within-window skew (corr vs TsSkew arbitrates).",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": 0.03255541131450683,
+        "ic_std": 0.06547971925034879,
+        "icir": 0.4971831230680394,
+        "t_stat": 17.244443818517837,
+        "n_days": 1203,
+        "pos_rate": 0.7090606816292602,
+        "coverage": 0.9837631636275714,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6713148915902468,
+        "against": "alpha_0016",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.04091298699979772,
+          "ic_std": 0.06481340314403644,
+          "icir": 0.6312426907884434,
+          "t_stat": 13.887339197345755,
+          "n_days": 484,
+          "pos_rate": 0.7272727272727273
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.01455109576033753,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.021809817221387185,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03471059774560531,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.033741214597597304,
+          "2018": 0.048319441284750665,
+          "2019": 0.03330939554145562,
+          "2020": 0.00831635103359428,
+          "2021": 0.03915098933510842,
+          "2022": 0.04215986125979751,
+          "2023": 0.03966611273979794
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0048"
+    },
+    {
+      "name": "cv_dispersion",
+      "expr": "-TsStd(CLOSE / VWAP - 1, 20)",
+      "family": "probe",
+      "rationale": "Dispersion of close-vs-vwap: intraday battle intensity around the average price.",
+      "logic_score": 67,
+      "s1": {
+        "ic_mean": 0.08125493821972385,
+        "ic_std": 0.1497946171360523,
+        "icir": 0.5424423104998715,
+        "t_stat": 18.814226618311686,
+        "n_days": 1203,
+        "pos_rate": 0.7190357439733999,
+        "coverage": 0.9841758773158289,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.7141209316941322,
+        "against": "alpha_0001",
+        "replace": null,
+        "pass": false
+      }
+    },
+    {
+      "name": "lowday_close",
+      "expr": "CsRank(LowDay(CLOSE, 60))",
+      "family": "probe",
+      "rationale": "Days since the 60d price low: mirror of the accepted HighDay factor.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.025617856816286897,
+        "ic_std": 0.10835875958086112,
+        "icir": -0.2364170364756709,
+        "t_stat": -8.04512967747674,
+        "n_days": 1158,
+        "pos_rate": 0.42918825561312607,
+        "coverage": 0.9623001366934547,
+        "pass": false
+      }
+    },
+    {
+      "name": "young_stock",
+      "expr": "-Log(DAYS_ON)",
+      "family": "probe",
+      "rationale": "Listing age: young-stock speculation premium/discount \u2014 closes out the untested field.",
+      "logic_score": 63,
+      "s1": {
+        "ic_mean": -0.004896822653291694,
+        "ic_std": 0.1371243623452816,
+        "icir": -0.035710814398986275,
+        "t_stat": -1.24579058294413,
+        "n_days": 1217,
+        "pos_rate": 0.5028759244042728,
+        "coverage": 1.0,
+        "pass": false
+      }
+    },
+    {
+      "name": "attn_peak_ratio",
+      "expr": "-(TsMax(TURN_F, 60) / TsMean(TURN_F, 250))",
+      "family": "probe",
+      "rationale": "Attention peak vs long baseline: how violent was the recent mania relative to normal.",
+      "logic_score": 68,
+      "s1": {
+        "ic_mean": 0.046226231841160176,
+        "ic_std": 0.0825104936241056,
+        "icir": 0.5602467008833297,
+        "t_stat": 17.980340842881006,
+        "n_days": 1030,
+        "pos_rate": 0.7087378640776699,
+        "coverage": 0.8136592909655441,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.48711013220843374,
+        "against": "alpha_0031",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.03823650390803628,
+          "ic_std": 0.0969140833455041,
+          "icir": 0.39454022148381696,
+          "t_stat": 8.679884872643973,
+          "n_days": 484,
+          "pos_rate": 0.7045454545454546
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.020640183418490835,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03204011710182324,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.044089616580947594,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.059146464143682125,
+          "2018": 0.04505611002820232,
+          "2019": 0.05041589287504076,
+          "2020": 0.053764712757051344,
+          "2021": 0.03262029852624903,
+          "2022": 0.053105603187558005,
+          "2023": 0.02336740462851455
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0049"
+    },
+    {
+      "name": "ix_limit_gapvol",
+      "expr": "(CsRank(-TsCount(limit_up_touch > 0.5, 60)) - 0.5) * (CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5)",
+      "family": "interaction",
+      "rationale": "Lottery mania x overnight risk: both parents accepted, mutual corr moderate.",
+      "logic_score": 69,
+      "s1": {
+        "ic_mean": -0.03977528262377743,
+        "ic_std": 0.053661749472945226,
+        "icir": -0.7412222488912895,
+        "t_stat": -25.386185717845905,
+        "n_days": 1173,
+        "pos_rate": 0.23529411764705882,
+        "coverage": 0.9632823665443367,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": -0.2906223852610713,
+        "against": "alpha_0031",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.026226883339806623,
+          "ic_std": 0.061690766205270905,
+          "icir": -0.42513466687281604,
+          "t_stat": -9.352962671201952,
+          "n_days": 484,
+          "pos_rate": 0.3615702479338843
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.012732081168014255,
+            "pass": false
+          },
+          "csi500": {
+            "ic_mean": -0.0076177044209046404,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.02681253643492211,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.03801581684002033,
+          "2018": -0.03654175128590217,
+          "2019": -0.059257120304155766,
+          "2020": -0.03891522931164917,
+          "2021": -0.025754977408509783,
+          "2022": -0.024601580509027283,
+          "2023": -0.027852186170585963
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0050"
+    },
+    {
+      "name": "ix_medrev_vr",
+      "expr": "(CsRank(-(CLOSE / TsMed(CLOSE, 20) - 1)) - 0.5) * (CsRank(-TsMean(VR, 20)) - 0.5)",
+      "family": "interaction",
+      "rationale": "Median reversal x volume-ratio attention: R2 lesson \u2014 does reversal-signal agreement with quiet attention flip sign again?",
+      "logic_score": 69,
+      "s1": {
+        "ic_mean": -0.04222068336367448,
+        "ic_std": 0.0485521584550224,
+        "icir": -0.8695943642296923,
+        "t_stat": -30.16126345223209,
+        "n_days": 1203,
+        "pos_rate": 0.1970074812967581,
+        "coverage": 0.9816033591638478,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.2319986171659489,
+        "against": "alpha_0019",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.03637566891737517,
+          "ic_std": 0.04755171526024865,
+          "icir": -0.7649707001796376,
+          "t_stat": -16.82935540395203,
+          "n_days": 484,
+          "pos_rate": 0.21694214876033058
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.014492261347237504,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.019567886191489827,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.033555568023240834,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.03440238513602054,
+          "2018": -0.05535687234001137,
+          "2019": -0.04842964616316391,
+          "2020": -0.04773923411738094,
+          "2021": -0.024731464906408852,
+          "2022": -0.03923834989152315,
+          "2023": -0.03351298794322717
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0051"
+    }
+  ]
+}

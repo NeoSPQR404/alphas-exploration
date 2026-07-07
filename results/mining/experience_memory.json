@@ -87,6 +87,34 @@
       "alpha_set_size": 36,
       "diversity_entropy": 0.8478150687954378,
       "candidates_file": "rounds/round04_candidates.py"
+    },
+    {
+      "round": 5,
+      "date": "2026-07-07",
+      "candidates": 40,
+      "s1_pass": 22,
+      "s2_pass": 16,
+      "s3_pass": 15,
+      "accepted": [
+        "alpha_0037",
+        "alpha_0038",
+        "alpha_0039",
+        "alpha_0040",
+        "alpha_0041",
+        "alpha_0042",
+        "alpha_0043",
+        "alpha_0044",
+        "alpha_0045",
+        "alpha_0046",
+        "alpha_0047",
+        "alpha_0048",
+        "alpha_0049",
+        "alpha_0050",
+        "alpha_0051"
+      ],
+      "alpha_set_size": 51,
+      "diversity_entropy": 0.842278184845128,
+      "candidates_file": "rounds/round05_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -234,6 +262,38 @@
         4
       ],
       "strength": 1
+    },
+    {
+      "pattern": "Long-band structures survive where short bands are taken: quarterly intraday reversal and yearly volume clock",
+      "evidence": "R5: intr_mom60 (alpha_0045) IS 0.072 -> OOS 0.072, corr vs the 20d version only 0.54 (bands separable, 3rd confirmation); vol_clock (20d/250d volume share, alpha_0044) IS 0.056 -> OOS 0.076, strongest OOS of the whole set so far.",
+      "rounds": [
+        5
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "The limit-board field family generalizes: recency, one-word boards, post-event returns, and gap/amplitude extreme frequencies all clear",
+      "evidence": "R5: limit_recency 0.040/0.56, one_word_cnt, post_limit_ret (OOS ICIR 0.75!), amp_burst_freq, gapdn_freq all accepted. Event count/recency/aftermath on non-return series is a productive class.",
+      "rounds": [
+        5
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Cross-quantity correlations still mint factors: attention-risk coupling, aggression-attention, 2-day-lag chase",
+      "evidence": "R5: attn_risk_corr (TsCorr(TURN, TsStd(RET,5),20)) 0.035/0.61; aggr_attn_corr (close-vs-vwap x turnover); lag_chase2 decorrelated further (0.38 max corr). signed_attn and mean_med_gap also in.",
+      "rounds": [
+        5
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Interaction template is now 4-for-6 (behavioral pairs)",
+      "evidence": "R5: ix_medrev_vr OOS ICIR -0.76 (best interaction yet), ix_limit_gapvol accepted (2/3 universes). Always negative sign: agreement between bullish behavioral signals is consistently bearish.",
+      "rounds": [
+        5
+      ],
+      "strength": 1
     }
   ],
   "forbidden_patterns": [
@@ -355,6 +415,30 @@
       "evidence": "R4: hi52 ICIR 0.04 (cov 0.82 also thin), dd_depth 0.09, vwap_pos 0.02, open_pos -0.26 (under IC bar), gap_fade 0.08 — the whole where-is-price-relative-to-anchor family is dead, matching R2's close_pos.",
       "rounds": [
         4
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Candle anatomy (shadows, body share) — the whole family is dead",
+      "evidence": "R5: upper_shadow 0.09, lower_shadow 0.26, shadow_asym 0.22, body_share 0.22 ICIR — all S1 rejects, like every other within-bar position construct (R2 close_pos, R4 vwap/open_pos).",
+      "rounds": [
+        5
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Self-rank WITHIN the same construct and monotone shape variants (2nd confirmation wave)",
+      "evidence": "R5 S2: amt_selfrank~turn_selfrank 0.96, pvcorr_selfrank~pv_corr 0.89, turn_medmean~turn_cv 0.75, cv_dispersion~turn_low 0.71, ret_on_hivol~semivol_asym 0.72 (the smart-money split is just semivol asymmetry in disguise), vol_share_up dup of signed_attn. Self-rank only works when applied to a DIFFERENT quantity than an accepted factor.",
+      "rounds": [
+        5
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Seasonality echo, 1y whole-return band, listing age, days-since-low, overnight continuation, conditional splits by market state",
+      "evidence": "R5 S1: annual_echo -0.09, rev_1y 0.15 (cov 0.76 too), young_stock -0.04, lowday_close -0.24 under bar, overnight_contin -0.02, ret_on_mkt_tail 0.26, gap_x_vr -0.06, intr_on_downday -0.17, ret_on_lovol 0.18, down_elasticity -0.24, turn_trough_rec -0.23, rsq_turn 0.33 but IC 0.019, attn_rank_mom 0.17, limit_down_cnt 0.29.",
+      "rounds": [
+        5
       ],
       "strength": 1
     }

@@ -53,6 +53,23 @@ _RAW_NUMERIC = {
     "n_cashflow_act_ttm", "total_hldr_eqy_exc_min_int",
 }
 
+# Step-2 base extension: flow fields built from raw tushare endpoint dirs
+# (tushare-data/data/raw/<ep>/YYYY/*.parquet), pivoted and 0-filled where
+# absence is economically a zero (no northbound access / no margin
+# eligibility / no flow), NaN on non-traded cells. Cached in _wide_cache.
+EXT_FIELDS = {
+    # moneyflow: order-size-bucketed flows, normalized by total two-sided amount
+    "MF_LG_NET",   # (buy_lg+buy_elg - sell_lg - sell_elg) / total  [institutional direction]
+    "MF_SM_NET",   # (buy_sm - sell_sm) / total                     [retail direction]
+    "MF_NET",      # net_mf_amount / total
+    # hk_hold: northbound (Stock Connect) holdings
+    "HK_RATIO",    # holding as % of shares (0 where not connect-eligible)
+    # margin_detail: margin financing / securities lending
+    "RZ_MV",       # financing balance rzye / circ mv
+    "RQ_MV",       # short balance rqye / circ mv
+    "RZ_NET",      # daily net financing buys (rzmre - rzche) / circ mv
+}
+
 
 class Panel:
     def __init__(self, years=range(2017, 2026)):
@@ -97,6 +114,8 @@ class Panel:
             out = self._industry()
         elif name in ("EP", "BP", "SP", "CFP"):
             out = self._yield_field(name)
+        elif name in EXT_FIELDS:
+            out = self._ext_field(name)
         elif name in FIELD_MAP:
             out = self._pivot(FIELD_MAP[name])
         else:
@@ -124,6 +143,80 @@ class Panel:
         num = self._pivot(num_col)
         mv = self._pivot("total_mv") * 1e4
         return num / mv.where(mv > 0)
+
+    # ------------------------------------------------------------ extension
+    def _read_endpoint(self, ep: str, columns: list[str]) -> pd.DataFrame:
+        """Threaded read of a raw tushare endpoint dir (per-date parquets)."""
+        from concurrent.futures import ThreadPoolExecutor
+
+        files = sorted(
+            f for y in self.years
+            for f in (RAW / ep / str(y)).glob("*.parquet")
+        )
+        cols = sorted(set(columns) | {"ts_code", "trade_date"})
+
+        def _read(f):
+            try:
+                return pd.read_parquet(f, columns=cols)
+            except Exception:
+                df = pd.read_parquet(f)
+                keep = [c for c in cols if c in df.columns]
+                return df[keep]
+
+        with ThreadPoolExecutor(16) as pool:
+            frames = list(pool.map(_read, files))
+        out = pd.concat(frames, ignore_index=True)
+        return out.drop_duplicates(subset=["ts_code", "trade_date"], keep="last")
+
+    def _ext_pivot(self, name, ep, columns, builder, fill_zero) -> pd.DataFrame:
+        """Build one extension wide frame; NaN -> 0 where absence means zero
+        exposure (non-eligible stock), but only on traded cells."""
+        cache = WIDE_CACHE / f"EXT_{name}.parquet"
+        if cache.exists():
+            return pd.read_parquet(cache)
+        df = self._read_endpoint(ep, columns)
+        series = builder(df)
+        df = df.assign(_v=series)
+        wide = df.pivot(index="trade_date", columns="ts_code", values="_v")
+        wide = wide.astype(float)
+        wide = wide.reindex(index=self.wide("CLOSE").index,
+                            columns=self.wide("CLOSE").columns)
+        if fill_zero:
+            traded = self.wide("CLOSE").notna()
+            wide = wide.where(~(traded & wide.isna()), 0.0).where(traded)
+        wide.to_parquet(cache)
+        return wide
+
+    def _ext_field(self, name: str) -> pd.DataFrame:
+        mf_amt = ["buy_sm_amount", "sell_sm_amount", "buy_md_amount",
+                  "sell_md_amount", "buy_lg_amount", "sell_lg_amount",
+                  "buy_elg_amount", "sell_elg_amount", "net_mf_amount"]
+
+        def _mf_total(df):
+            return sum(df[c] for c in mf_amt[:8]).replace(0, np.nan)
+
+        spec = {
+            "MF_LG_NET": ("moneyflow", mf_amt, lambda d: (
+                d["buy_lg_amount"] + d["buy_elg_amount"]
+                - d["sell_lg_amount"] - d["sell_elg_amount"]) / _mf_total(d),
+                False),
+            "MF_SM_NET": ("moneyflow", mf_amt, lambda d: (
+                d["buy_sm_amount"] - d["sell_sm_amount"]) / _mf_total(d),
+                False),
+            "MF_NET": ("moneyflow", mf_amt,
+                       lambda d: d["net_mf_amount"] / _mf_total(d), False),
+            "HK_RATIO": ("hk_hold", ["ratio"], lambda d: d["ratio"], True),
+            "RZ_MV": ("margin_detail", ["rzye"], lambda d: d["rzye"], True),
+            "RQ_MV": ("margin_detail", ["rqye"], lambda d: d["rqye"], True),
+            "RZ_NET": ("margin_detail", ["rzmre", "rzche"],
+                       lambda d: d["rzmre"] - d["rzche"], True),
+        }
+        ep, cols, builder, fill_zero = spec[name]
+        wide = self._ext_pivot(name, ep, cols, builder, fill_zero)
+        if name in ("RZ_MV", "RQ_MV", "RZ_NET"):
+            cmv = self.wide("CMV") * 1e4   # circ_mv 万元 -> CNY
+            wide = wide / cmv.where(cmv > 0)
+        return wide
 
     def _industry(self) -> pd.DataFrame:
         df = self.long(["sw_l1_code"])

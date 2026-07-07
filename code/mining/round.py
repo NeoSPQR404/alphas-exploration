@@ -79,7 +79,7 @@ def run(candidates_path: str):
             r["factor"], abs(r["s1"]["ic_mean"]), reg, panel, mask_all)
         s2 = r["s2"]
         tag = "PASS" if s2["pass"] else f"reject (|corr|={s2['max_corr']:.2f} vs {s2['against']})"
-        if s2.get("replace"):
+        if s2["pass"] and s2.get("replace"):
             tag = f"PASS, replaces {s2['replace']}"
         print(f"[{r['name']}] S2 max_corr={_fmt(s2['max_corr'], 2)} -> {tag}")
 

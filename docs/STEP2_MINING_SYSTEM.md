@@ -55,6 +55,29 @@ Retrieve → Generate → Evaluate → Distill cycle over the Step-1 base panel
 4. **Distill** — the agent writes successes/failures back into memory
    (patterns, not per-factor OOS tuning) and commits.
 
+## Base extension: flow fields (added after Round 5)
+
+`data.py` exposes seven expression-visible fields built lazily from the
+raw tushare endpoint dirs (threaded reads, cached as `EXT_*.parquet` in
+`_wide_cache/`):
+
+| field | source | definition |
+|---|---|---|
+| `MF_LG_NET` | moneyflow | (buy_lg+buy_elg − sell_lg − sell_elg) / total two-sided amount |
+| `MF_SM_NET` | moneyflow | (buy_sm − sell_sm) / total (retail direction) |
+| `MF_NET` | moneyflow | net_mf_amount / total |
+| `HK_RATIO` | hk_hold | northbound holding % of shares |
+| `RZ_MV` | margin_detail | financing balance / circulating MV |
+| `RQ_MV` | margin_detail | short balance / circulating MV |
+| `RZ_NET` | margin_detail | daily net financing buys / circulating MV |
+
+Validation (full-A tradable cells): MF_* coverage 0.98, fully nonzero;
+HK_RATIO / RZ_* are 0-filled where a stock is not connect/margin eligible
+(economically a true zero), so coverage is 1.00 with 38–49% nonzero.
+Timing: moneyflow derives from day-T trades (known at T close); northbound
+holdings and margin balances for day T are published before T+1 open —
+compatible with labels entering at T+1 vwap.
+
 ## Known caveats
 
 - Stage-4 reuses 2022–2023 every round, so that window degrades as a true

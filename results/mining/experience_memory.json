@@ -25,6 +25,26 @@
       "alpha_set_size": 13,
       "diversity_entropy": 0.8998402038766563,
       "candidates_file": "rounds/round01_candidates.py"
+    },
+    {
+      "round": 2,
+      "date": "2026-07-07",
+      "candidates": 19,
+      "s1_pass": 9,
+      "s2_pass": 7,
+      "s3_pass": 7,
+      "accepted": [
+        "alpha_0014",
+        "alpha_0015",
+        "alpha_0016",
+        "alpha_0017",
+        "alpha_0018",
+        "alpha_0019",
+        "alpha_0020"
+      ],
+      "alpha_set_size": 20,
+      "diversity_entropy": 0.8791568648982322,
+      "candidates_file": "rounds/round02_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -54,17 +74,50 @@
     },
     {
       "pattern": "Decompose close-to-close returns into intraday and overnight legs: intraday leg carries the reversal, overnight leg is MOMENTUM (sign flip vs intuition)",
-      "evidence": "R1: intraday_rev IS 0.0662 OOS 0.0714 and it subsumed both plain rev20 variants at dedup; overnight expr -TsSum(gap) came out with NEGATIVE IC (-0.0279) i.e. cumulative overnight gaps positively predict returns. Leg decomposition is a productive generator pattern; test leg-based variants of other signals.",
+      "evidence": "R1: intraday_rev subsumed rev20; overnight gaps positively predict. R2: leg idea kept paying — gap_vol (overnight-leg vol, alpha_0015) IS 0.070 -> OOS 0.085 (stronger OOS), overnight_mom60 accepted (0.042/0.035). But do NOT leg-decompose MAX: max_intraday hit corr 0.90 vs whole-return max_eff.",
       "rounds": [
-        1
+        1,
+        2
       ],
-      "strength": 1
+      "strength": 2
     },
     {
       "pattern": "Within-industry earnings yield (EP) is the one value signal that clears the bar",
       "evidence": "R1: ep_ind IS 0.0410/ICIR 0.34, OOS 0.0176 (weakest accept, decays ~57%) but 3/3 universes and 7/7 years. Value works but thin at 10d horizon.",
       "rounds": [
         1
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Demeaned-rank interaction terms ((CsRank(A)-0.5)*(CsRank(B)-0.5)) mine conditional structure with near-zero correlation to both parents",
+      "evidence": "R2: rev_x_lowturn (alpha_0018) ICIR -0.65 IS / -0.90 OOS, max corr vs set only 0.17; max_x_spike (alpha_0019) ICIR -0.83 IS. Note the SIGN: both came out negative — names where the two bullish signals AGREE underperform; disagreement (hedged/mixed profiles) outperforms. Template is productive; try other parent pairs.",
+      "rounds": [
+        2
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Up/down semivol asymmetry is the one orthogonal vol construct",
+      "evidence": "R2: alpha_0016 accepted (IS 0.062/0.58, OOS 0.067/0.74, PFS 0.98) while vol_of_vol and max_intraday died at the corr gate. Downside-dominated vol earns, upside-dominated vol fades.",
+      "rounds": [
+        2
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Attention DURATION (days since turnover peak) adds liquidity info orthogonal to turnover level",
+      "evidence": "R2: turn_dur (alpha_0017) accepted with max set-corr only 0.47 despite 3 turnover factors already in the set; IS 0.041/0.60, OOS 0.032.",
+      "rounds": [
+        2
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Cash-flow yield (CFP) joins EP as the second value survivor and holds OOS better",
+      "evidence": "R2: cfp_ind (alpha_0020) IS 0.033 -> OOS 0.030 vs ep_ind's 0.041 -> 0.018. Cash-based value decays less than earnings-based.",
+      "rounds": [
+        2
       ],
       "strength": 1
     }
@@ -88,11 +141,12 @@
     },
     {
       "pattern": "Plain volatility/amplitude/idio-vol variants as standalone candidates",
-      "evidence": "R1: lowvol, amp_low, ivol all passed S1 but died at dedup (dup of max_eff / turn_low). They burn candidate slots without adding orthogonal signal — only propose vol-family ideas that are structurally different (e.g. vol-of-vol, up/down asymmetry).",
+      "evidence": "R1: lowvol/amp_low/ivol died at dedup vs max_eff/turn_low. R2: vol_of_vol also died (corr 0.72 vs max_eff). The only vol construct that survived is the up/down SEMIVOL ASYMMETRY (alpha_0016, IS 0.062 -> OOS 0.067) — vol ideas must change the shape, not the scale.",
       "rounds": [
-        1
+        1,
+        2
       ],
-      "strength": 1
+      "strength": 2
     },
     {
       "pattern": "Plain close-to-close 1-month reversal (incl. industry-neutralized)",
@@ -107,6 +161,30 @@
       "evidence": "R1: 3 turnover factors + 3 volume-price factors accepted, several pairs near the 0.7 corr ceiling; marginal diversity per slot fell (set diversity 0.90). Cap ~2 candidates per family per round; the prompt explicitly lists over-saturation as a forbidden pattern.",
       "rounds": [
         1
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Classic slow risk premia (beta, size shape, Amihud illiquidity) at the 10d horizon",
+      "evidence": "R2: low_beta ICIR 0.08, size_nl -0.26, amihud ICIR 0.18 (IC 0.027 but unstable) — all S1 rejects. These axes need the 20d+ label or portfolio-level treatment, not 10d cross-sections.",
+      "rounds": [
+        2
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Price-path shape descriptors (trend residual, R-squared trendiness, return autocorrelation, close position in range)",
+      "evidence": "R2: resi_trend 0.08, rsq_choppy -0.08, ret_autocorr -0.09, close_pos 0.12 ICIR — the whole path-shape family is dead at 10d on full-A.",
+      "rounds": [
+        2
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Higher tail moments beyond MAX/skew (kurtosis) and TTM earnings momentum via PctChange",
+      "evidence": "R2: kurt ICIR -0.12 (max_eff+skew already span the tail); sue_ttm IC 0.018/cov 0.86 — TTM-delta earnings momentum too weak/slow; needs announcement-dated surprise, not rolling TTM drift.",
+      "rounds": [
+        2
       ],
       "strength": 1
     }

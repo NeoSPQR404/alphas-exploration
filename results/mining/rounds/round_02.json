@@ -1,0 +1,677 @@
+{
+  "round": 2,
+  "diversity": 0.8791568648982322,
+  "results": [
+    {
+      "name": "overnight_mom60",
+      "expr": "TsSum(OPEN / Delay(CLOSE, 1) - 1, 60)",
+      "family": "overnight",
+      "rationale": "R1 found overnight gaps are momentum (sign flip); express it directly at quarterly scale, longer than the accepted 20d version to reduce overlap.",
+      "logic_score": 78,
+      "s1": {
+        "ic_mean": 0.041679979730626406,
+        "ic_std": 0.08047468537050911,
+        "icir": 0.5179265944157455,
+        "t_stat": 17.73095050588163,
+        "n_days": 1172,
+        "pos_rate": 0.7201365187713311,
+        "coverage": 0.9595492706889494,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": -0.6216777345384238,
+        "against": "alpha_0010",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.034867258235199323,
+          "ic_std": 0.07383149579129422,
+          "icir": 0.4722545285248124,
+          "t_stat": 10.389599627545874,
+          "n_days": 484,
+          "pos_rate": 0.6652892561983471
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.019213606347432903,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.032645181407981894,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.035375844622091805,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.06551145262045802,
+          "2018": 0.04799507991612812,
+          "2019": 0.042079473275305646,
+          "2020": 0.03630629356583452,
+          "2021": 0.020821119084491798,
+          "2022": 0.021335532722217377,
+          "2023": 0.04839898374818129
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0014"
+    },
+    {
+      "name": "gap_vol",
+      "expr": "-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)",
+      "family": "overnight",
+      "rationale": "Leg-decomposed volatility: overnight-gap vol isolates news/sentiment risk; calm-overnight names should carry the low-vol premium more purely than whole-day vol.",
+      "logic_score": 74,
+      "s1": {
+        "ic_mean": 0.07017900253208131,
+        "ic_std": 0.12897651659481318,
+        "icir": 0.5441223285053706,
+        "t_stat": 18.8646512893953,
+        "n_days": 1202,
+        "pos_rate": 0.7246256239600666,
+        "coverage": 0.9813788084448307,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5978229931826158,
+        "against": "alpha_0007",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.08472749100708722,
+          "ic_std": 0.12543854754939054,
+          "icir": 0.6754501918457432,
+          "t_stat": 14.85990422060635,
+          "n_days": 484,
+          "pos_rate": 0.7458677685950413
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.04051232880814461,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.05499237620713085,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.07065349453638473,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.09888862160094299,
+          "2018": 0.062332676135714735,
+          "2019": 0.05754718919227906,
+          "2020": 0.05882750341142656,
+          "2021": 0.07500505721841302,
+          "2022": 0.09489663283184457,
+          "2023": 0.07455834918232988
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0015"
+    },
+    {
+      "name": "max_intraday",
+      "expr": "-TsMax(CLOSE / OPEN - 1, 20)",
+      "family": "lottery",
+      "rationale": "Leg-decomposed MAX effect: the lottery chase happens intraday in A-shares; strip the overnight component from the best-day signal.",
+      "logic_score": 80,
+      "s1": {
+        "ic_mean": 0.08488908634535464,
+        "ic_std": 0.11309994775431859,
+        "icir": 0.7505669810719541,
+        "t_stat": 26.032883130183386,
+        "n_days": 1203,
+        "pos_rate": 0.7747298420615129,
+        "coverage": 0.9841758773158289,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.8969507627657688,
+        "against": "alpha_0007",
+        "replace": null,
+        "pass": false
+      }
+    },
+    {
+      "name": "kurt",
+      "expr": "-TsKurt(RET, 60)",
+      "family": "lottery",
+      "rationale": "Tail thickness: fat-tailed return distributions are lottery-like; memory says tail shape beats dispersion.",
+      "logic_score": 72,
+      "s1": {
+        "ic_mean": -0.011047933721953916,
+        "ic_std": 0.09051644641822867,
+        "icir": -0.12205443495767887,
+        "t_stat": -4.1802530322815725,
+        "n_days": 1173,
+        "pos_rate": 0.5413469735720375,
+        "coverage": 0.9602552409132368,
+        "pass": false
+      }
+    },
+    {
+      "name": "vol_of_vol",
+      "expr": "-TsStd(TsStd(RET, 5), 20)",
+      "family": "volatility",
+      "rationale": "Vol-of-vol: uncertainty about risk itself; structurally different from level vol per memory guidance.",
+      "logic_score": 73,
+      "s1": {
+        "ic_mean": 0.06570069878061342,
+        "ic_std": 0.11029775983730196,
+        "icir": 0.5956666651936288,
+        "t_stat": 20.634498569809697,
+        "n_days": 1200,
+        "pos_rate": 0.7416666666666667,
+        "coverage": 0.9782437165298535,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.7170939649717869,
+        "against": "alpha_0007",
+        "replace": null,
+        "pass": false
+      }
+    },
+    {
+      "name": "updown_asym",
+      "expr": "-(TsStd((RET + Abs(RET)) / 2, 20) - TsStd((RET - Abs(RET)) / 2, 20))",
+      "family": "volatility",
+      "rationale": "Up/down semivol asymmetry: upside-dominated vol = lottery payoffs (fade), downside-dominated vol = distress premium (hold).",
+      "logic_score": 76,
+      "s1": {
+        "ic_mean": 0.061724027479284,
+        "ic_std": 0.10585127656300945,
+        "icir": 0.5831202937126782,
+        "t_stat": 20.22511360062758,
+        "n_days": 1203,
+        "pos_rate": 0.7173732335827099,
+        "coverage": 0.9837631636275714,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6436417615506851,
+        "against": "alpha_0007",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.06735336392726868,
+          "ic_std": 0.09075644956409004,
+          "icir": 0.7421330853153895,
+          "t_stat": 16.32692787693857,
+          "n_days": 484,
+          "pos_rate": 0.78099173553719
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.02495384716656665,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.038829115447710165,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.05889114896770133,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.05806792045970635,
+          "2018": 0.07788481617078558,
+          "2019": 0.07969864769265211,
+          "2020": 0.03349951376956672,
+          "2021": 0.0591996754705081,
+          "2022": 0.08018754381233087,
+          "2023": 0.05451918404220647
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0016"
+    },
+    {
+      "name": "turn_amp_corr",
+      "expr": "-TsCorr(TURN_F, AMP, 20)",
+      "family": "volume_price",
+      "rationale": "Speculation co-movement: turnover chasing intraday range marks retail frenzy; memory says price-volume interactions carry the best ICIR.",
+      "logic_score": 74,
+      "s1": {
+        "ic_mean": 0.01729114594315158,
+        "ic_std": 0.05599015666576578,
+        "icir": 0.30882474657771325,
+        "t_stat": 10.711367190552425,
+        "n_days": 1203,
+        "pos_rate": 0.6616791354945969,
+        "coverage": 0.9816340014794493,
+        "pass": false
+      }
+    },
+    {
+      "name": "ret_autocorr",
+      "expr": "-TsCorr(RET, Delay(RET, 1), 20)",
+      "family": "volume_price",
+      "rationale": "Return autocorrelation as a characteristic: positively autocorrelated (trending) names are crowded momentum chasing; anti-intuitive probe.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": -0.005714404832747073,
+        "ic_std": 0.06488571377849009,
+        "icir": -0.08806876737543765,
+        "t_stat": -3.0533328609912145,
+        "n_days": 1202,
+        "pos_rate": 0.5008319467554077,
+        "coverage": 0.9809751916940174,
+        "pass": false
+      }
+    },
+    {
+      "name": "amihud",
+      "expr": "Log(TsMean(Abs(RET) / AMOUNT, 20))",
+      "family": "liquidity",
+      "rationale": "Amihud illiquidity: price impact per unit traded; illiquid names earn a premium. Distinct construct from the (near-saturated) turnover family \u2014 let the corr gate arbitrate.",
+      "logic_score": 84,
+      "s1": {
+        "ic_mean": 0.026807217969041633,
+        "ic_std": 0.14590233052935256,
+        "icir": 0.18373399432196574,
+        "t_stat": 6.372683213954188,
+        "n_days": 1203,
+        "pos_rate": 0.5577722360764755,
+        "coverage": 0.9837631636275714,
+        "pass": false
+      }
+    },
+    {
+      "name": "turn_dur",
+      "expr": "CsRank(HighDay(TURN_F, 60))",
+      "family": "liquidity",
+      "rationale": "Days since the turnover peak: fresh attention spikes mark tops; long-faded attention marks neglect premium.",
+      "logic_score": 70,
+      "s1": {
+        "ic_mean": 0.04072477574270402,
+        "ic_std": 0.06816004853595742,
+        "icir": 0.5974874815592291,
+        "t_stat": 20.33213993995587,
+        "n_days": 1158,
+        "pos_rate": 0.7582037996545768,
+        "coverage": 0.960600924536116,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.4662284175872809,
+        "against": "alpha_0002",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.03154695613471038,
+          "ic_std": 0.07850929599113374,
+          "icir": 0.4018244685097299,
+          "t_stat": 8.840138307214058,
+          "n_days": 484,
+          "pos_rate": 0.6590909090909091
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.02122108906052615,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.02474206969684621,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.037468908400674746,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.053211089550119564,
+          "2018": 0.035391593425750156,
+          "2019": 0.051075689853275354,
+          "2020": 0.0273501123995047,
+          "2021": 0.03953306956190543,
+          "2022": 0.03579685353760136,
+          "2023": 0.027297058731819403
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0017"
+    },
+    {
+      "name": "rev_x_lowturn",
+      "expr": "(CsRank(-TsSum(CLOSE / OPEN - 1, 20)) - 0.5) * (CsRank(-TsMean(TURN_F, 20)) - 0.5)",
+      "family": "interaction",
+      "rationale": "Demeaned-rank interaction (low corr with both parents by construction): is intraday reversal stronger among low-turnover neglected names?",
+      "logic_score": 71,
+      "s1": {
+        "ic_mean": -0.034543598949500424,
+        "ic_std": 0.0529389103536863,
+        "icir": -0.6525181330464436,
+        "t_stat": -22.632128412660677,
+        "n_days": 1203,
+        "pos_rate": 0.24522028262676643,
+        "coverage": 0.9816852316008455,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": -0.17455662402039335,
+        "against": "alpha_0011",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.04797642564517459,
+          "ic_std": 0.053339986737743546,
+          "icir": -0.8994457737880598,
+          "t_stat": -19.787807023337315,
+          "n_days": 484,
+          "pos_rate": 0.1859504132231405
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.0025172809071015603,
+            "pass": false
+          },
+          "csi500": {
+            "ic_mean": -0.009935006220408571,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.03280353809325411,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.04739608453874115,
+          "2018": -0.03743196462322744,
+          "2019": -0.03505971848386012,
+          "2020": -0.02438861393165836,
+          "2021": -0.029127070754894773,
+          "2022": -0.04960427676260068,
+          "2023": -0.046348574527748494
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0018"
+    },
+    {
+      "name": "max_x_spike",
+      "expr": "(CsRank(-TsMax(RET, 20)) - 0.5) * (CsRank(-(TsMean(TURN_F, 5) / TsMean(TURN_F, 60))) - 0.5)",
+      "family": "interaction",
+      "rationale": "Lottery conditioned on attention: MAX effect should be strongest where turnover just spiked (retail arrived).",
+      "logic_score": 71,
+      "s1": {
+        "ic_mean": -0.036643894556761536,
+        "ic_std": 0.04430623369963699,
+        "icir": -0.8270595692059867,
+        "t_stat": -28.326035618858146,
+        "n_days": 1173,
+        "pos_rate": 0.19863597612958228,
+        "coverage": 0.954395137447543,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": -0.1608458142469086,
+        "against": "alpha_0008",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.028269194453396363,
+          "ic_std": 0.044216160352012764,
+          "icir": -0.6393407801206674,
+          "t_stat": -14.065497162654683,
+          "n_days": 484,
+          "pos_rate": 0.2706611570247934
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.016222257594933984,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.020931068594573624,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.0327943436939205,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.03866435812803455,
+          "2018": -0.04549748916100063,
+          "2019": -0.046907000659814915,
+          "2020": -0.02905545990120981,
+          "2021": -0.023410460520009863,
+          "2022": -0.026273094905711173,
+          "2023": -0.030265294001081546
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0019"
+    },
+    {
+      "name": "sue_ttm",
+      "expr": "CsIndNeutralize(CsRank(PctChange(n_income_attr_p_ttm, 120)), IND)",
+      "family": "fundamental_momentum",
+      "rationale": "TTM earnings momentum (~2 quarters), PIT column, industry-neutral: post-earnings drift at the pace fundamentals actually update.",
+      "logic_score": 82,
+      "s1": {
+        "ic_mean": 0.018273204224782458,
+        "ic_std": 0.07836954088678438,
+        "icir": 0.23316717206727833,
+        "t_stat": 7.722727649765167,
+        "n_days": 1097,
+        "pos_rate": 0.6308113035551504,
+        "coverage": 0.8581780270657828,
+        "pass": false
+      }
+    },
+    {
+      "name": "cfp_ind",
+      "expr": "CsIndNeutralize(CsRank(CFP), IND)",
+      "family": "value",
+      "rationale": "Operating-cash-flow yield, industry-neutral: harder to manage than earnings; memory says EP survived where BP died, so test the cash version of E.",
+      "logic_score": 80,
+      "s1": {
+        "ic_mean": 0.03285160567410247,
+        "ic_std": 0.09156688250205212,
+        "icir": 0.3587716953601235,
+        "t_stat": 12.51593969582586,
+        "n_days": 1217,
+        "pos_rate": 0.6425636811832375,
+        "coverage": 0.9744356906370968,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.3519249797106901,
+        "against": "alpha_0009",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.029929557472679974,
+          "ic_std": 0.10676461500236029,
+          "icir": 0.2803321818939572,
+          "t_stat": 6.167308001667059,
+          "n_days": 484,
+          "pos_rate": 0.6177685950413223
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.03097917938718257,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03160841343871583,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03196243751397672,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.059856520892637925,
+          "2018": 0.025624854193773007,
+          "2019": 0.024336226038198003,
+          "2020": 0.0326070949975874,
+          "2021": 0.021757243624519185,
+          "2022": 0.02308199297009292,
+          "2023": 0.03677712197526704
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "pass": true
+      },
+      "accepted_name": "alpha_0020"
+    },
+    {
+      "name": "low_beta",
+      "expr": "-RegBeta(RET, BENCH_RET, 60)",
+      "family": "beta",
+      "rationale": "Betting-against-beta: leverage-constrained investors overpay for high-beta names; untested axis in the set.",
+      "logic_score": 79,
+      "s1": {
+        "ic_mean": 0.00958520667078158,
+        "ic_std": 0.12470990430738477,
+        "icir": 0.07686002746947812,
+        "t_stat": 2.632385812133221,
+        "n_days": 1173,
+        "pos_rate": 0.5302642796248934,
+        "coverage": 0.9602552409132368,
+        "pass": false
+      }
+    },
+    {
+      "name": "resi_trend",
+      "expr": "-TsResi(Log(CLOSE), 20)",
+      "family": "trend_structure",
+      "rationale": "Deviation from own 20d log-price trend: stretch above trend reverts \u2014 reversal measured against trend, not against level (whole-return reversal is forbidden).",
+      "logic_score": 73,
+      "s1": {
+        "ic_mean": 0.007973549305920067,
+        "ic_std": 0.10433823171565051,
+        "icir": 0.07642020738524795,
+        "t_stat": 2.645066656999698,
+        "n_days": 1198,
+        "pos_rate": 0.5191986644407346,
+        "coverage": 0.9692971179465818,
+        "pass": false
+      }
+    },
+    {
+      "name": "rsq_choppy",
+      "expr": "-TsRSquare(Log(CLOSE), 20)",
+      "family": "trend_structure",
+      "rationale": "Trendiness penalty: high R\u00b2 price paths are momentum crowding; choppy paths are underpriced. Anti-intuitive probe of path shape.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.007270357585647458,
+        "ic_std": 0.0869454397830767,
+        "icir": -0.08361976894689974,
+        "t_stat": -2.894258865229925,
+        "n_days": 1198,
+        "pos_rate": 0.48497495826377296,
+        "coverage": 0.9692971179465818,
+        "pass": false
+      }
+    },
+    {
+      "name": "size_nl",
+      "expr": "-Abs(CsZscore(Log(CMV)))",
+      "family": "size",
+      "rationale": "Nonlinear size: mid-caps over both extremes (mega-cap drag, micro-cap shell risk post-2017 delisting reform).",
+      "logic_score": 68,
+      "s1": {
+        "ic_mean": -0.022412130312429876,
+        "ic_std": 0.08526682326878963,
+        "icir": -0.2628470189604616,
+        "t_stat": -9.169556799163216,
+        "n_days": 1217,
+        "pos_rate": 0.3853738701725555,
+        "coverage": 0.9976944051440787,
+        "pass": false
+      }
+    },
+    {
+      "name": "close_pos",
+      "expr": "-TsMean((CLOSE - LOW) / (HIGH - LOW), 10)",
+      "family": "anti_intuitive",
+      "rationale": "Average close position within the daily range: persistent strong closes = late-day aggression that fades (cousin of the accepted close/vwap premium \u2014 corr gate arbitrates).",
+      "logic_score": 67,
+      "s1": {
+        "ic_mean": 0.0123973444024348,
+        "ic_std": 0.09989989083054582,
+        "icir": 0.12409767717828311,
+        "t_stat": 4.3167444344163926,
+        "n_days": 1210,
+        "pos_rate": 0.5504132231404959,
+        "coverage": 0.9884313288949854,
+        "pass": false
+      }
+    }
+  ]
+}

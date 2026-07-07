@@ -115,6 +115,25 @@
       "alpha_set_size": 51,
       "diversity_entropy": 0.842278184845128,
       "candidates_file": "rounds/round05_candidates.py"
+    },
+    {
+      "round": 6,
+      "date": "2026-07-07",
+      "candidates": 40,
+      "s1_pass": 10,
+      "s2_pass": 7,
+      "s3_pass": 7,
+      "accepted": [
+        "alpha_0052",
+        "alpha_0053",
+        "alpha_0054",
+        "alpha_0055",
+        "alpha_0056",
+        "alpha_0057"
+      ],
+      "alpha_set_size": 56,
+      "diversity_entropy": 0.8412843634682947,
+      "candidates_file": "rounds/round06_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -294,6 +313,22 @@
         5
       ],
       "strength": 1
+    },
+    {
+      "pattern": "Flow data pays through COUPLING structure, not levels: flow-return correlations mint factors",
+      "evidence": "R6: mf_ret_corr (-TsCorr(MF_LG_NET, RET, 20), alpha_0052) IS 0.053 -> OOS 0.070/ICIR 0.75, best of round; ret_vr_corr (alpha_0055) replaced alpha_0006 at 1.58x (first replacement executed, registry clean). The R5 cross-quantity-correlation lesson extends to the new flow fields.",
+      "rounds": [
+        6
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Event recency/frequency and conditional aggression keep minting on fresh quantities",
+      "evidence": "R6: amp_burst_rec (HighDay on AMP), vr_burst_freq (VR>2 count), aggr_hi_vr (close-vs-vwap on high-VR days), amp_selfrank all accepted. The trick portfolio: {count, recency, self-rank, conditional-mean} x {any new quantity}.",
+      "rounds": [
+        6
+      ],
+      "strength": 1
     }
   ],
   "forbidden_patterns": [
@@ -439,6 +474,30 @@
       "evidence": "R5 S1: annual_echo -0.09, rev_1y 0.15 (cov 0.76 too), young_stock -0.04, lowday_close -0.24 under bar, overnight_contin -0.02, ret_on_mkt_tail 0.26, gap_x_vr -0.06, intr_on_downday -0.17, ret_on_lovol 0.18, down_elasticity -0.24, turn_trough_rec -0.23, rsq_turn 0.33 but IC 0.019, attn_rank_mom 0.17, limit_down_cnt 0.29.",
       "rounds": [
         5
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Flow LEVELS and accumulation at the 10d horizon: moneyflow direction means, northbound deltas, margin balances",
+      "evidence": "R6 S1 slaughter: all 11 moneyflow level/mean/divergence/consistency constructs ICIR<=0.24 except the corr; all 7 northbound (hk_level 0.21, deltas 0.24-0.29 — close but under); all margin levels (rz_level -0.14, rz_net20 0.29). Institutional positioning is priced or too slow at 10d; only its interaction with price moves carries signal.",
+      "rounds": [
+        6
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "TsCorr/TsStd on 0-filled eligibility fields (HK/RZ) — zero variance makes NaN and craters coverage",
+      "evidence": "R6: hk_ret_corr cov 0.42, rz_ret_corr cov 0.37 (S1 coverage fail regardless of signal). Eligible-subset signals need subset-level evaluation or level-safe operators; don't spend full-A slots on them.",
+      "rounds": [
+        6
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "More than one representative per event TYPE (limit-board variants collapse together)",
+      "evidence": "R6 S2: limit_close_cnt 0.87 and touch_no_close 0.73 vs alpha_0031 (limit_touch count) despite limit_close_cnt's stellar standalone IS 0.075/0.76; vr_std 0.80 vs turn_cv. One factor per event family.",
+      "rounds": [
+        6
       ],
       "strength": 1
     }

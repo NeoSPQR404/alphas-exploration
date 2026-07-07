@@ -62,6 +62,31 @@
       "alpha_set_size": 24,
       "diversity_entropy": 0.8664260515365331,
       "candidates_file": "rounds/round03_candidates.py"
+    },
+    {
+      "round": 4,
+      "date": "2026-07-07",
+      "candidates": 40,
+      "s1_pass": 24,
+      "s2_pass": 14,
+      "s3_pass": 14,
+      "accepted": [
+        "alpha_0025",
+        "alpha_0026",
+        "alpha_0027",
+        "alpha_0028",
+        "alpha_0029",
+        "alpha_0030",
+        "alpha_0031",
+        "alpha_0032",
+        "alpha_0033",
+        "alpha_0034",
+        "alpha_0035",
+        "alpha_0036"
+      ],
+      "alpha_set_size": 36,
+      "diversity_entropy": 0.8478150687954378,
+      "candidates_file": "rounds/round04_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -169,6 +194,46 @@
         3
       ],
       "strength": 1
+    },
+    {
+      "pattern": "Untested one-off data fields are the highest-yield candidate slots",
+      "evidence": "R4: limit_up_touch count (alpha_0031) IS 0.077/0.72 OOS 0.057 — best new factor; volume_ratio mean (alpha_0034) accepted. New fields > new transforms of old fields.",
+      "rounds": [
+        4
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Self-relative (time-series) framing dodges saturated cross-sectional families",
+      "evidence": "R2-R4 running: turn_selfrank, gapvol_selfrank, and amihud_selfrank (alpha_0035 — RESCUED a failed level factor, OOS 0.049 > IS) all accepted. But semivol_selfrank died at corr 0.83 vs its own level version — the trick works across constructs, not within tight ones.",
+      "rounds": [
+        4
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "The MAX effect has a MIN mirror: crash days continue (momentum), lottery days revert",
+      "evidence": "R4: min_eff (-TsMin(RET,20), alpha_0030, direction -1: deep worst-day -> low forward return) IS -0.048 OOS -0.053, corr vs max_eff only 0.58.",
+      "rounds": [
+        4
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Systematic-share (R^2 vs bench) works with the ANTI-intuitive sign: index-coupled names outperform idiosyncratic stories",
+      "evidence": "R4: rsq_bench (alpha_0036, direction -1 on -corr^2 i.e. +corr^2 predicts positively) IS 0.051 OOS 0.050, max set-corr only 0.30. Plain beta and semibeta asymmetry are both dead — it's the R^2, not the slope.",
+      "rounds": [
+        4
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Lagged elasticity decorrelates from same-day elasticity; fragility (reverse regression) is separate too",
+      "evidence": "R4: lag_chase (TsCorr(TURN, Delay(RET,1))) corr 0.41 vs set, accepted; fragility (RegBeta(|RET|,TURN)) corr 0.64, accepted. Same-day asymmetric elasticity (volresp_asym) died at 0.74 vs volresp — direction/lag changes decorrelate, up/down splits of the same regression don't.",
+      "rounds": [
+        4
+      ],
+      "strength": 1
     }
   ],
   "forbidden_patterns": [
@@ -258,6 +323,38 @@
       "evidence": "R3: gap_asym ICIR -0.04 (asymmetry does not transfer to the overnight leg); turn_skew 0.01; accruals 0.20; price_nominal 0.07; exp_growth 0.21 (express coverage 0.70 is usable but the signal is weak). leg_vol_ratio -0.31 also sub-gate.",
       "rounds": [
         3
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Fundamental LEVELS beyond EP/CFP at the 10d horizon (quality is dead too)",
+      "evidence": "R4: roe_ind 0.20, opmargin_ind 0.17, cash_ratio 0.09, low_leverage 0.00, sp_ind 0.25, fcfp_ind 0.24 ICIR — ALL S1 rejects. Revises the R2 'levels survive' lesson: only direct price yields (EP, CFP) clear the bar, and value timing (ep_tsrank) died at stage 4 (2/3 universes, OOS 0.010).",
+      "rounds": [
+        4
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Management guidance (forecast midpoint) — regime-dead OOS like all earnings-linked signals",
+      "evidence": "R4: fc_mid passed IS (0.027/0.34, coverage 0.88 fine) but stage-4 OOS -0.011, year rate 0.57. The fundamentals-that-move family (momentum, revisions, guidance) is uniformly dead post-2021.",
+      "rounds": [
+        4
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Monotone transforms / reaggregations of an accepted factor's core quantity (assume corr>0.7)",
+      "evidence": "R4 S2 killed 9: outlier_habit~max_eff 0.78, ampresp_beta~turn_low 0.78, turn_conc~turn_cv 0.91, rev_skip~intraday_rev 0.89 (skip-window does NOT decorrelate), intraday_skew~skew 0.74 (leg lesson generalizes), upmove_share~intraday_rev 0.79, amp_spike~turn_spike 0.75, turn_trend~turn_spike 0.70, volresp_asym~volresp 0.74. Spend slots on new quantities, not new dressings.",
+      "rounds": [
+        4
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Anchor/position constructs: 52w-high proximity, drawdown depth, open/vwap position in range, gap-fill tendency",
+      "evidence": "R4: hi52 ICIR 0.04 (cov 0.82 also thin), dd_depth 0.09, vwap_pos 0.02, open_pos -0.26 (under IC bar), gap_fade 0.08 — the whole where-is-price-relative-to-anchor family is dead, matching R2's close_pos.",
+      "rounds": [
+        4
       ],
       "strength": 1
     }

@@ -222,6 +222,31 @@
       "alpha_set_size": 103,
       "diversity_entropy": 0.8268857247164878,
       "candidates_file": "rounds/round09_candidates.py"
+    },
+    {
+      "round": 10,
+      "date": "2026-07-07",
+      "candidates": 40,
+      "s1_pass": 25,
+      "s2_pass": 13,
+      "s3_pass": 13,
+      "accepted": [
+        "alpha_0107",
+        "alpha_0108",
+        "alpha_0109",
+        "alpha_0110",
+        "alpha_0111",
+        "alpha_0112",
+        "alpha_0113",
+        "alpha_0114",
+        "alpha_0115",
+        "alpha_0116",
+        "alpha_0117",
+        "alpha_0118"
+      ],
+      "alpha_set_size": 81,
+      "diversity_entropy": 0.7932689105797133,
+      "candidates_file": "rounds/round10_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -497,6 +522,22 @@
         10
       ],
       "strength": 1
+    },
+    {
+      "pattern": "Under the 0.03 standard: quarterly conditional aggregations and masked-std asymmetries are the fresh veins",
+      "evidence": "R10: ret_on_hivol60 OOS 0.082, aggr_hi_vr60 0.048, turn_updown_asym (std of turnover on up-days minus down-days) 0.068 — a NEW construct class; quarterly tails max_eff60 0.080 / aggr_max60 0.077 / min_eff60 0.058 cleared despite 20d siblings in the set (60d tails decorrelate enough, ~0.65).",
+      "rounds": [
+        10
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Semi-annual (120d) coupling bands still clear; 20d median drifts decorrelate from 60d",
+      "evidence": "R10: lag_chase120 0.041, ret_vr_corr120 0.037, attn_risk_corr120 0.031 (thin), gap_med20/id_med20 both in.",
+      "rounds": [
+        10
+      ],
+      "strength": 1
     }
   ],
   "forbidden_patterns": [
@@ -736,6 +777,14 @@
     {
       "pattern": "Under the 0.03 standard: event-recency (HighDay-of-quantity) constructs decay below the bar OOS",
       "evidence": "Purged: amp_burst_rec (OOS 0.022), vr_burst_rec (0.015), gap_burst_rec (0.016), aggr_burst_rec (0.018), vol_peak_rec (0.015). Burst FREQUENCY holds; burst RECENCY doesn't.",
+      "rounds": [
+        10
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Shape/term variants of resident quantities die at S2 (12 kills); strong-parent interactions die at S1; 250d event counts die at the OOS bar",
+      "evidence": "R10: medvol~hl_med60 0.89, upvol_share~semivol 0.95, idvol60~turn_low 0.72, vol_clock60~vol_clock 0.78, intraday_skew~semivol60 0.75 (retry failed against the replacement), hl_max~max_eff 0.71, gap_min~gap_vol 0.79; all 4 champion-parent interactions S1 (|IC| 0.007-0.027); limit_touch250 OOS 0.026 < 0.03.",
       "rounds": [
         10
       ],

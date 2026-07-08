@@ -46,6 +46,40 @@
       "alpha_set_size": 34,
       "diversity_entropy": 0.7810192562094045,
       "candidates_file": "rounds/canonical_round01_candidates.py"
+    },
+    {
+      "round": 2,
+      "date": "2026-07-08",
+      "candidates": 32,
+      "s1_pass": 27,
+      "s2_pass": 24,
+      "s3_pass": 21,
+      "accepted": [
+        "calpha_0035",
+        "calpha_0036",
+        "calpha_0037",
+        "calpha_0038",
+        "calpha_0039",
+        "calpha_0040",
+        "calpha_0041",
+        "calpha_0042",
+        "calpha_0043",
+        "calpha_0044",
+        "calpha_0045",
+        "calpha_0046",
+        "calpha_0047",
+        "calpha_0048",
+        "calpha_0049",
+        "calpha_0050",
+        "calpha_0051",
+        "calpha_0052",
+        "calpha_0053",
+        "calpha_0054",
+        "calpha_0055"
+      ],
+      "alpha_set_size": 55,
+      "diversity_entropy": 0.7747423420429618,
+      "candidates_file": "rounds/canonical_round02_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -56,6 +90,14 @@
         1
       ],
       "strength": 1
+    },
+    {
+      "pattern": "Novel canonical-only constructs mint beyond transfer: nvol conditionals/asymmetries, 120d tiers, robust medians",
+      "evidence": "cR2: id_on_hivol120 OOS 0.081, hl_updown60 0.070, attn_up_cnt120 0.065, ret_hl_corr120 0.063, aggr_min60 0.063, gapmed120, signed_nvol both bands, nvol_burst both bands. The volume-normalized (nvol) framing supports the whole conditional/asym/event portfolio even though RegBeta on it is dead.",
+      "rounds": [
+        2
+      ],
+      "strength": 1
     }
   ],
   "forbidden_patterns": [
@@ -64,6 +106,14 @@
       "evidence": "cR1: c_elasticity ICIR 0.03, c_fragility -0.07 (as turnover versions: 0.83 and 0.65). Correlation-style couplings survive self-normalization; regression betas do not. Also c_ret_nvol_corr deduped into c_vol_updown (0.7+), c_ovnshare OOS 0.018, c_vwapdev 2/3 universes, c_volterm IC 0.027 under the modern bar.",
       "rounds": [
         1
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "nvol couplings with RANGE/GAP/AGGRESSION partners die at S1 (unlike TURN versions in the main set); candle event-framing doesn't rescue the family",
+      "evidence": "cR2: hl_nvol_corr 0.34/IC 0.019, gap_nvol_corr 0.41/0.022, aggr_nvol_corr 0.42/0.024 — all ICIR-viable but IC under 0.03 (turnover carried more cross-sectional information than self-normalized volume for these); reject_freq 0.08; gap_hl_corr -0.09. S2/S3: hlmed20~hlmed60 0.85, ret_namt~ret_nvol-family 0.76, ret_on_hivol120 dup of id_on_hivol120.",
+      "rounds": [
+        2
       ],
       "strength": 1
     }

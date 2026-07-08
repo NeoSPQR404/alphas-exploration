@@ -80,6 +80,35 @@
       "alpha_set_size": 55,
       "diversity_entropy": 0.7747423420429618,
       "candidates_file": "rounds/canonical_round02_candidates.py"
+    },
+    {
+      "round": 3,
+      "date": "2026-07-08",
+      "candidates": 34,
+      "s1_pass": 27,
+      "s2_pass": 18,
+      "s3_pass": 18,
+      "accepted": [
+        "calpha_0056",
+        "calpha_0057",
+        "calpha_0058",
+        "calpha_0059",
+        "calpha_0060",
+        "calpha_0061",
+        "calpha_0062",
+        "calpha_0063",
+        "calpha_0064",
+        "calpha_0065",
+        "calpha_0066",
+        "calpha_0067",
+        "calpha_0068",
+        "calpha_0069",
+        "calpha_0070",
+        "calpha_0071"
+      ],
+      "alpha_set_size": 70,
+      "diversity_entropy": 0.7626582851553452,
+      "candidates_file": "rounds/canonical_round03_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -98,6 +127,14 @@
         2
       ],
       "strength": 1
+    },
+    {
+      "pattern": "Main-set band-coexistence patterns replicate: semivol60, min60, aggrmax60, aggr_updown 20/60, hl bursts, gapmed20 all clear next to siblings; gap-crash magnitude is new",
+      "evidence": "cR3: min_gap60 (quarterly deepest gap-down) OOS -0.064 — a construct the main set never accepted (20d version died there); nvol_spike 0.052 (turn_spike analog), lag2 both bands in.",
+      "rounds": [
+        3
+      ],
+      "strength": 1
     }
   ],
   "forbidden_patterns": [
@@ -114,6 +151,14 @@
       "evidence": "cR2: hl_nvol_corr 0.34/IC 0.019, gap_nvol_corr 0.41/0.022, aggr_nvol_corr 0.42/0.024 — all ICIR-viable but IC under 0.03 (turnover carried more cross-sectional information than self-normalized volume for these); reject_freq 0.08; gap_hl_corr -0.09. S2/S3: hlmed20~hlmed60 0.85, ret_namt~ret_nvol-family 0.76, ret_on_hivol120 dup of id_on_hivol120.",
       "rounds": [
         2
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Longer-band rescues that DON'T work: meanmed 60/120 (IC<0.03), idmed120, hlterm_slow, hl_nvol_corr even at 120d, ret_on_lovol120, upday-share ratios; 250d-adjacent and max120/rev120/gapvol60 die at S2 vs their siblings",
+      "evidence": "cR3 S1: meanmed60 0.027, meanmed120 0.025, hl_nvol_corr120 IC 0.015 (the range-attention coupling is dead at every band in canonical vocab). S2: max120~max60-family 0.72, rev120~rev-family 0.70, gapvol60~gapvol 0.74, nvolmax~volcv 0.70, illiq_term~zeroret -0.87. S4: pvcorr60 OOS 0.019, gap_on_hivol120 0.013 (gap conditionals dead at all tiers).",
+      "rounds": [
+        3
       ],
       "strength": 1
     }

@@ -158,6 +158,24 @@
       "alpha_set_size": 79,
       "diversity_entropy": 0.7542404831366347,
       "candidates_file": "rounds/canonical_round06_candidates.py"
+    },
+    {
+      "round": 7,
+      "date": "2026-07-08",
+      "candidates": 26,
+      "s1_pass": 8,
+      "s2_pass": 8,
+      "s3_pass": 8,
+      "accepted": [
+        "calpha_0082",
+        "calpha_0083",
+        "calpha_0084",
+        "calpha_0085",
+        "calpha_0086"
+      ],
+      "alpha_set_size": 84,
+      "diversity_entropy": 0.7609715988293855,
+      "candidates_file": "rounds/canonical_round07_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -198,6 +216,14 @@
       "evidence": "cR5: ret_on_hiHL120 OOS 0.0921 (set-wide best); aggr_updown120 0.052. The condition variable matters: RANGE-conditioned returns beat VOLUME-conditioned (0.092 vs 0.081).",
       "rounds": [
         5
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Composition works at saturation: event-count x stretch/state pairs and 3-WAY products clear the gates and RAISE set diversity",
+      "evidence": "cR7 (5/26, diversity 0.754->0.761): hlburst x rev20 -0.043, nvolburst x med60 -0.044, aggrmax x med60 -0.039, maxfreq x amtself -0.032, and the 3-way med60 x volclock x maxfreq at +0.053 OOS (best of round; note the POSITIVE sign vs pairwise negative). Pattern: one excitement-count parent + one stretch/state parent.",
+      "rounds": [
+        7
       ],
       "strength": 1
     }
@@ -248,6 +274,14 @@
       "evidence": "cR6: 1/18 accepted (ret_on_hiHL250 OOS 0.082). S2 kills at 0.71-0.94 include structurally distinct ideas (tail_ratio~aggr_min 0.75, vol_on_down120~signed 0.94); S4 near-misses persist (att_autocorr60 0.021, nvol_burst250 0.020, hl_cv120 0.015). Rounds 5-6 yielded 2 then 1 -> saturation rule triggered, escalated to user.",
       "rounds": [
         6
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Composition parent types that fail: zeroret/flatopen (void parents, 4/4 dead), conditional parents (rethiHL 2/2), volclock in PAIRS (5/5 S1, though it works inside 3-ways), most champion x champion pairs",
+      "evidence": "cR7 S1: hlmed_max -0.007, all zeroret pairs 0.020-0.027, volclock pairs -0.013 to -0.029 with strong ICIR but IC under bar. S4: gapvol_maxfreq -0.028 (near), aggrmax_zeroret -0.003, aggrmin_nvolburst 2/3 universes.",
+      "rounds": [
+        7
       ],
       "strength": 1
     }

@@ -247,6 +247,33 @@
       "alpha_set_size": 81,
       "diversity_entropy": 0.7932689105797133,
       "candidates_file": "rounds/round10_candidates.py"
+    },
+    {
+      "round": 11,
+      "date": "2026-07-08",
+      "candidates": 40,
+      "s1_pass": 25,
+      "s2_pass": 14,
+      "s3_pass": 14,
+      "accepted": [
+        "alpha_0119",
+        "alpha_0120",
+        "alpha_0121",
+        "alpha_0122",
+        "alpha_0123",
+        "alpha_0124",
+        "alpha_0125",
+        "alpha_0126",
+        "alpha_0127",
+        "alpha_0128",
+        "alpha_0129",
+        "alpha_0130",
+        "alpha_0131",
+        "alpha_0132"
+      ],
+      "alpha_set_size": 95,
+      "diversity_entropy": 0.7810729902715289,
+      "candidates_file": "rounds/round11_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -538,6 +565,22 @@
         10
       ],
       "strength": 1
+    },
+    {
+      "pattern": "The 120d band tier is a full vein: conditionals, asymmetries, couplings, semivol, medians, event counts all clear there",
+      "evidence": "R11: ret_on_hivol120 OOS 0.083, semivol120 0.079, mf_ret_corr120 0.056 (rescued a construct whose 60d died at corr), gap_med120, signed_vr120, maxfreq120, amp_burst120 all in. 120d decorrelates from both 20d and 60d siblings.",
+      "rounds": [
+        11
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Masked-std asymmetry generalizes across quantities (amp, turnover) and bands; idiosyncratic residual reversal works",
+      "evidence": "R11: amp_updown_asym OOS 0.076, turn_updown_60 0.059, attn_up_cnt 0.044, idio_rev (-TsSum(RegResi(RET,BENCH,60),20)) 0.043, aggr_min60 0.063, hl_term (median-range term ratio) 0.035. But idio_max died 0.91 vs max_eff and idio_med died S1 — only the REVERSAL transfers to residuals.",
+      "rounds": [
+        11
+      ],
+      "strength": 1
     }
   ],
   "forbidden_patterns": [
@@ -787,6 +830,14 @@
       "evidence": "R10: medvol~hl_med60 0.89, upvol_share~semivol 0.95, idvol60~turn_low 0.72, vol_clock60~vol_clock 0.78, intraday_skew~semivol60 0.75 (retry failed against the replacement), hl_max~max_eff 0.71, gap_min~gap_vol 0.79; all 4 champion-parent interactions S1 (|IC| 0.007-0.027); limit_touch250 OOS 0.026 < 0.03.",
       "rounds": [
         10
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Midrange-median tails, conditional means on down-days/flows, gap-direction couplings; 60d conditional sums collide with intr_mom60",
+      "evidence": "R11 S1: midrange_med/gap_midrange/aggr_midrange, mf_on_down60, aggr_on_down60, gap_on_hivr60, gap_after_down, mf_updown_asym, idio_med, gapabs_turn_corr60, gap_vr_corr60, turn_gap_corr, aggr_attn_corr120, gapdn_freq120, hl_med250. S2: ret_on_hivr60/ret_on_hiamp60/id_on_hivol60 all ~0.7 vs intr_mom60 (60d conditional RETURN sums are intr_mom60 in disguise — the 120d tier escapes).",
+      "rounds": [
+        11
       ],
       "strength": 1
     }

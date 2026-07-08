@@ -109,6 +109,26 @@
       "alpha_set_size": 70,
       "diversity_entropy": 0.7626582851553452,
       "candidates_file": "rounds/canonical_round03_candidates.py"
+    },
+    {
+      "round": 4,
+      "date": "2026-07-08",
+      "candidates": 28,
+      "s1_pass": 16,
+      "s2_pass": 10,
+      "s3_pass": 10,
+      "accepted": [
+        "calpha_0072",
+        "calpha_0073",
+        "calpha_0074",
+        "calpha_0075",
+        "calpha_0076",
+        "calpha_0077",
+        "calpha_0078"
+      ],
+      "alpha_set_size": 76,
+      "diversity_entropy": 0.7575254482337268,
+      "candidates_file": "rounds/canonical_round04_candidates.py"
     }
   ],
   "successful_patterns": [

@@ -7,3 +7,5 @@ qlib_data*/
 *.zip
 data/
 .DS_Store
+data
+data_icloud_backup/

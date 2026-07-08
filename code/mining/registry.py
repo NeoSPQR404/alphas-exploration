@@ -18,11 +18,21 @@ VALUES_DIR = ROOT / "data" / "mining" / "alpha_values"
 
 
 class Registry:
-    def __init__(self):
-        SET_PATH.parent.mkdir(parents=True, exist_ok=True)
-        VALUES_DIR.mkdir(parents=True, exist_ok=True)
-        if SET_PATH.exists():
-            self.state = json.loads(SET_PATH.read_text())
+    def __init__(self, set_name: str = "main"):
+        self.set_name = set_name
+        if set_name == "main":
+            self.set_path = SET_PATH
+            self.values_dir = VALUES_DIR
+            self.prefix = "alpha"
+        else:
+            self.set_path = (ROOT / "results" / "mining" / "sets"
+                             / set_name / "alpha_set.json")
+            self.values_dir = ROOT / "data" / "mining" / f"alpha_values_{set_name}"
+            self.prefix = f"{set_name[0]}alpha"
+        self.set_path.parent.mkdir(parents=True, exist_ok=True)
+        self.values_dir.mkdir(parents=True, exist_ok=True)
+        if self.set_path.exists():
+            self.state = json.loads(self.set_path.read_text())
         else:
             self.state = {"next_id": 1, "alphas": [], "retired": []}
 
@@ -39,7 +49,7 @@ class Registry:
         import time
         for attempt in range(3):
             try:
-                return pd.read_parquet(VALUES_DIR / f"{name}.parquet")
+                return pd.read_parquet(self.values_dir / f"{name}.parquet")
             except (TimeoutError, OSError):
                 if attempt == 2:
                     raise
@@ -49,7 +59,7 @@ class Registry:
     def add(self, expr: str, family: str, rationale: str, direction: int,
             metrics: dict, round_id: int, values: pd.DataFrame,
             logic_score: float) -> dict:
-        name = f"alpha_{self.state['next_id']:04d}"
+        name = f"{self.prefix}_{self.state['next_id']:04d}"
         self.state["next_id"] += 1
         entry = {
             "name": name,
@@ -65,7 +75,7 @@ class Registry:
         self.state["alphas"].append(entry)
         # float32 halves the on-disk footprint; rank-based metrics are
         # insensitive to the precision loss
-        values.astype("float32").to_parquet(VALUES_DIR / f"{name}.parquet")
+        values.astype("float32").to_parquet(self.values_dir / f"{name}.parquet")
         return entry
 
     def retire(self, name: str, reason: str, round_id: int):
@@ -78,12 +88,12 @@ class Registry:
         self.state["retired"].append(entry)
 
     def save(self):
-        SET_PATH.write_text(json.dumps(self.state, indent=2,
-                                       ensure_ascii=False))
+        self.set_path.write_text(json.dumps(self.state, indent=2,
+                                            ensure_ascii=False))
 
     # ------------------------------------------------------------ export
     def export_csv(self, path: Path | None = None) -> Path:
-        path = path or SET_PATH.with_suffix(".csv")
+        path = path or self.set_path.with_suffix(".csv")
         rows = []
         for a in self.active():
             row = {k: a[k] for k in ("name", "expression", "family",

@@ -23,11 +23,26 @@ from .data import Panel
 
 # ------------------------------------------------------------ expression eval
 
-def compute_factor(expr: str, panel: Panel) -> pd.DataFrame:
-    """Evaluate a candidate expression in a sandboxed operator namespace."""
+def compute_factor(expr: str, panel: Panel,
+                   field_whitelist: list[str] | None = None) -> pd.DataFrame:
+    """Evaluate a candidate expression in a sandboxed operator namespace.
+
+    If `field_whitelist` is given, every non-operator name in the
+    expression must be in it (AST-enforced) — used by restricted sets
+    like the canonical-OHLCV set.
+    """
+    if field_whitelist is not None:
+        import ast
+        names = {n.id for n in ast.walk(ast.parse(expr, mode="eval"))
+                 if isinstance(n, ast.Name)}
+        allowed = set(ops.OPERATORS) | set(field_whitelist) | {"np"}
+        illegal = names - allowed
+        if illegal:
+            raise ValueError(f"fields outside whitelist: {sorted(illegal)}")
     ns = panel.namespace()          # lazy field lookup (OPEN, CLOSE, EP, ...)
     ns.update(ops.OPERATORS)
-    ns["IND"] = panel.wide("INDUSTRY")
+    if field_whitelist is None:
+        ns["IND"] = panel.wide("INDUSTRY")
     ns["np"] = np
     out = eval(expr, {"__builtins__": {}}, ns)  # noqa: S307 - curated ns
     if not isinstance(out, pd.DataFrame):

@@ -15,10 +15,15 @@ MEM_PATH = ROOT / "results" / "mining" / "experience_memory.json"
 
 
 class Memory:
-    def __init__(self):
-        MEM_PATH.parent.mkdir(parents=True, exist_ok=True)
-        if MEM_PATH.exists():
-            self.state = json.loads(MEM_PATH.read_text())
+    def __init__(self, set_name: str = "main"):
+        if set_name == "main":
+            self.mem_path = MEM_PATH
+        else:
+            self.mem_path = (ROOT / "results" / "mining" / "sets"
+                             / set_name / "experience_memory.json")
+        self.mem_path.parent.mkdir(parents=True, exist_ok=True)
+        if self.mem_path.exists():
+            self.state = json.loads(self.mem_path.read_text())
         else:
             self.state = {"rounds": [], "successful_patterns": [],
                           "forbidden_patterns": []}
@@ -58,5 +63,5 @@ class Memory:
             {"round": round_id, "date": date.today().isoformat(), **summary})
 
     def save(self):
-        MEM_PATH.write_text(json.dumps(self.state, indent=2,
-                                       ensure_ascii=False))
+        self.mem_path.write_text(json.dumps(self.state, indent=2,
+                                            ensure_ascii=False))

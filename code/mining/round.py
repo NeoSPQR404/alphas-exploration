@@ -43,21 +43,24 @@ def run(candidates_path: str):
     t0 = time.time()
     module = runpy.run_path(candidates_path)
     candidates = module["CANDIDATES"]
+    set_name = module.get("SET_NAME", "main")
+    whitelist = module.get("FIELD_WHITELIST")
 
     panel = Panel()
-    reg = Registry()
-    mem = Memory()
+    reg = Registry(set_name)
+    mem = Memory(set_name)
     round_id = mem.next_round_id()
     mask_all = panel.universe_mask("all")
     noise_var = ae.noise_variance(panel)
-    print(f"=== Round {round_id}: {len(candidates)} candidates, "
-          f"noise_var={noise_var:.5f} ===")
+    print(f"=== [{set_name}] Round {round_id}: {len(candidates)} candidates, "
+          f"noise_var={noise_var:.5f}, whitelist="
+          f"{'none' if whitelist is None else ','.join(whitelist)} ===")
 
     results = []
     for cand in candidates:
         rec = dict(cand)
         try:
-            factor = pl.compute_factor(cand["expr"], panel)
+            factor = pl.compute_factor(cand["expr"], panel, whitelist)
         except Exception as e:
             rec["error"] = f"{type(e).__name__}: {e}"
             rec["s1"] = {"pass": False}
@@ -132,9 +135,13 @@ def run(candidates_path: str):
     reg.export_csv()
 
     # ---- artifacts
-    ROUNDS_DIR.mkdir(parents=True, exist_ok=True)
-    HOLDOUT_DIR.mkdir(parents=True, exist_ok=True)
-    (HOLDOUT_DIR / f"round_{round_id:02d}.json").write_text(
+    rounds_dir = ROUNDS_DIR if set_name == "main" else \
+        ROOT / "results" / "mining" / "sets" / set_name / "rounds"
+    holdout_dir = HOLDOUT_DIR if set_name == "main" else \
+        ROOT / "results" / "mining" / "sets" / set_name / "holdout"
+    rounds_dir.mkdir(parents=True, exist_ok=True)
+    holdout_dir.mkdir(parents=True, exist_ok=True)
+    (holdout_dir / f"round_{round_id:02d}.json").write_text(
         json.dumps(holdout_report, indent=2))
 
     detail = []
@@ -149,7 +156,7 @@ def run(candidates_path: str):
         if "accepted_name" in r:
             d["accepted_name"] = r["accepted_name"]
         detail.append(d)
-    (ROUNDS_DIR / f"round_{round_id:02d}.json").write_text(
+    (rounds_dir / f"round_{round_id:02d}.json").write_text(
         json.dumps({"round": round_id, "diversity": None if not np.isfinite(div) else div,
                     "results": detail}, indent=2, default=float))
 

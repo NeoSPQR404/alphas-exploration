@@ -274,6 +274,30 @@
       "alpha_set_size": 95,
       "diversity_entropy": 0.7810729902715289,
       "candidates_file": "rounds/round11_candidates.py"
+    },
+    {
+      "round": 12,
+      "date": "2026-07-08",
+      "candidates": 39,
+      "s1_pass": 32,
+      "s2_pass": 15,
+      "s3_pass": 13,
+      "accepted": [
+        "alpha_0133",
+        "alpha_0134",
+        "alpha_0135",
+        "alpha_0136",
+        "alpha_0137",
+        "alpha_0138",
+        "alpha_0139",
+        "alpha_0140",
+        "alpha_0141",
+        "alpha_0142",
+        "alpha_0143"
+      ],
+      "alpha_set_size": 105,
+      "diversity_entropy": 0.7757308380038734,
+      "candidates_file": "rounds/round12_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -581,6 +605,14 @@
         11
       ],
       "strength": 1
+    },
+    {
+      "pattern": "Zero-return frequency (Lesmond illiquidity) accepted with the illiquidity-premium sign; asymmetry family completes across bands",
+      "evidence": "R12: zeroret_freq OOS |0.039| (more zero-return days -> higher forward returns, direction -1 on -count); aggr_updown_asym, turn_updown_120 in; amp_updown_60 REPLACED the 20d semivol asymmetry alpha_0078 at 0.83 corr / >=1.3x (4th replacement). ret_on_hivr120 OOS 0.085.",
+      "rounds": [
+        12
+      ],
+      "strength": 1
     }
   ],
   "forbidden_patterns": [
@@ -838,6 +870,14 @@
       "evidence": "R11 S1: midrange_med/gap_midrange/aggr_midrange, mf_on_down60, aggr_on_down60, gap_on_hivr60, gap_after_down, mf_updown_asym, idio_med, gapabs_turn_corr60, gap_vr_corr60, turn_gap_corr, aggr_attn_corr120, gapdn_freq120, hl_med250. S2: ret_on_hivr60/ret_on_hiamp60/id_on_hivol60 all ~0.7 vs intr_mom60 (60d conditional RETURN sums are intr_mom60 in disguise — the 120d tier escapes).",
       "rounds": [
         11
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "The S2 wall at 100+ factors: 18 corr-kills in one round — band extension is exhausted for most veins",
+      "evidence": "R12: amp_term_med corr 1.00 (!) vs hl_term, med_dev_vwap 0.99 vs med_band60, mf_ret_corr250 0.88 vs 120d, idio conditional/tail variants 0.85-0.86 vs residents. The annual (250d) tier also fails S4 (lag_chase250 OOS 0.022). The formulaic OHLCV+flow space against this set is effectively mined out; further growth needs new DATA, replacements, or a different label horizon.",
+      "rounds": [
+        12
       ],
       "strength": 1
     }

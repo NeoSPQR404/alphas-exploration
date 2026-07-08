@@ -144,6 +144,20 @@
       "alpha_set_size": 78,
       "diversity_entropy": 0.7550949767285071,
       "candidates_file": "rounds/canonical_round05_candidates.py"
+    },
+    {
+      "round": 6,
+      "date": "2026-07-08",
+      "candidates": 18,
+      "s1_pass": 11,
+      "s2_pass": 4,
+      "s3_pass": 4,
+      "accepted": [
+        "calpha_0081"
+      ],
+      "alpha_set_size": 79,
+      "diversity_entropy": 0.7542404831366347,
+      "candidates_file": "rounds/canonical_round06_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -226,6 +240,14 @@
       "evidence": "cR5: hl_on_down~hlmed60 0.76, max_on_hivol~max20 0.85, id_on_hiHL60~rev20 0.84, gapvol_on_hivol~gapvol 0.71; hl_on_lovol 0.08, nvol_min -0.10, travel_eff 0.06 at S1; wma_cross and ret_asym_cnt both at ICIR 0.30 borderline again; hl_cv OOS 0.023, att_autocorr 0.028 (S4 near-misses -> 120d/60d jitter retries).",
       "rounds": [
         5
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "SATURATION: the canonical vocabulary vs 79 residents at corr<0.70 is exhausted — jitter retries and novel forms alike die at S1 (weak) or S2 (0.71-0.94)",
+      "evidence": "cR6: 1/18 accepted (ret_on_hiHL250 OOS 0.082). S2 kills at 0.71-0.94 include structurally distinct ideas (tail_ratio~aggr_min 0.75, vol_on_down120~signed 0.94); S4 near-misses persist (att_autocorr60 0.021, nvol_burst250 0.020, hl_cv120 0.015). Rounds 5-6 yielded 2 then 1 -> saturation rule triggered, escalated to user.",
+      "rounds": [
+        6
       ],
       "strength": 1
     }

@@ -129,6 +129,21 @@
       "alpha_set_size": 76,
       "diversity_entropy": 0.7575254482337268,
       "candidates_file": "rounds/canonical_round04_candidates.py"
+    },
+    {
+      "round": 5,
+      "date": "2026-07-08",
+      "candidates": 16,
+      "s1_pass": 11,
+      "s2_pass": 4,
+      "s3_pass": 4,
+      "accepted": [
+        "calpha_0079",
+        "calpha_0080"
+      ],
+      "alpha_set_size": 78,
+      "diversity_entropy": 0.7550949767285071,
+      "candidates_file": "rounds/canonical_round05_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -155,6 +170,22 @@
         3
       ],
       "strength": 1
+    },
+    {
+      "pattern": "Conditional RANGE is a novel first-class construct: range on high-attention days",
+      "evidence": "cR4: hl_on_hivol 0.078 / hl_on_hivol60 0.081 OOS — passed despite hlmed60 resident (conditional masking decorrelates from the level); semivol250 and id_on_hivol250 extend the 250d tier.",
+      "rounds": [
+        4
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Conditional returns on wide-RANGE days is the set's best factor; aggression asymmetry completes to 120d",
+      "evidence": "cR5: ret_on_hiHL120 OOS 0.0921 (set-wide best); aggr_updown120 0.052. The condition variable matters: RANGE-conditioned returns beat VOLUME-conditioned (0.092 vs 0.081).",
+      "rounds": [
+        5
+      ],
+      "strength": 1
     }
   ],
   "forbidden_patterns": [
@@ -179,6 +210,22 @@
       "evidence": "cR3 S1: meanmed60 0.027, meanmed120 0.025, hl_nvol_corr120 IC 0.015 (the range-attention coupling is dead at every band in canonical vocab). S2: max120~max60-family 0.72, rev120~rev-family 0.70, gapvol60~gapvol 0.74, nvolmax~volcv 0.70, illiq_term~zeroret -0.87. S4: pvcorr60 OOS 0.019, gap_on_hivol120 0.013 (gap conditionals dead at all tiers).",
       "rounds": [
         3
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Robust-deviation class (X vs own median) under the bar; gap asymmetry dead at every band; candle constructs closed in all framings",
+      "evidence": "cR4 S1: hl_med_dev 0.026, nvol_med_dev 0.021, gap_updown60 0.010, close_pos_med 0.012, range_stud -0.021. Near-misses for jitter retries: ovnmom20 0.028, vwap_gap_med 0.032/0.29, aggr_sum60 0.028, updn_freq_hl 0.027/0.30.",
+      "rounds": [
+        4
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Conditional-on-attention variants mostly collide with residents now (6 S2 kills at 0.71-0.85); quiet-day complements and drought/efficiency probes dead",
+      "evidence": "cR5: hl_on_down~hlmed60 0.76, max_on_hivol~max20 0.85, id_on_hiHL60~rev20 0.84, gapvol_on_hivol~gapvol 0.71; hl_on_lovol 0.08, nvol_min -0.10, travel_eff 0.06 at S1; wma_cross and ret_asym_cnt both at ICIR 0.30 borderline again; hl_cv OOS 0.023, att_autocorr 0.028 (S4 near-misses -> 120d/60d jitter retries).",
+      "rounds": [
+        5
       ],
       "strength": 1
     }

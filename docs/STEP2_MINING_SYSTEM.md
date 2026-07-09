@@ -38,9 +38,13 @@ Retrieve → Generate → Evaluate → Distill cycle over the Step-1 base panel
 3. **Duplication removal** — same 0.70 rule pairwise within the round,
    greedy keep-best by |ICIR|.
 4. **Coverage test** — (a) OOS 2022–2023 full-A IC same sign and
-   |OOS IC| ≥ max(0.01, 0.4×|IS IC|); (b) ≥2 of {HS300, CSI500, CSI1000}
+   |OOS IC| ≥ max(0.03, 0.4×|IS IC|); (b) ≥2 of {HS300, CSI500, CSI1000}
    with same-sign IC ≥ 0.005 over 2017–2023; (c) ≥60% of 2017–2023 years
-   with same-sign yearly IC.
+   with same-sign yearly IC; (d) *rolling test* (added 2026-07-09):
+   ≥70% of 120-day windows (step 20) with positive mean oriented IC;
+   (e) *bootstrap test* (added 2026-07-09): moving-block bootstrap of the
+   mean daily oriented IC (B=1000, block=10 = label horizon, seed 11),
+   one-sided p ≤ 0.05 against H0 mean ≤ 0.
 
 ## One round
 

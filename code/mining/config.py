@@ -33,4 +33,15 @@ S4_MIN_UNIVERSES_PASS = 2    # sub-universes with same-sign full-period IC
 S4_UNIVERSE_MIN_ABS_IC = 0.005
 S4_MIN_YEAR_SIGN_RATE = 0.60  # share of 2017-2023 years with same-sign IC
 
+# stage 4 additions (2026-07-09): rolling-window + bootstrap tests,
+# both on the oriented daily rank-IC series over IS_START..OOS_END
+S4_ROLL_WINDOW = 120          # rolling window length (trading days)
+S4_ROLL_STEP = 20             # step between window starts
+S4_ROLL_MIN_SIGN_RATE = 0.70  # share of windows with same-sign mean IC
+S4_BOOT_B = 1000              # bootstrap resamples
+S4_BOOT_BLOCK = 10            # moving-block length (= label horizon,
+                              #   preserves overlap autocorrelation)
+S4_BOOT_MAX_P = 0.05          # one-sided p-value: H0 mean oriented IC <= 0
+S4_BOOT_SEED = 11
+
 QUANTILES = 10

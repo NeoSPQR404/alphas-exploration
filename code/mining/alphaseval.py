@@ -240,6 +240,53 @@ def evaluate_window(factor, panel, mask, horizon, start, end,
     return out
 
 
+def rolling_ic_consistency(ic: pd.Series, window: int, step: int) -> dict:
+    """Sign consistency of mean IC over rolling windows of the daily
+    (oriented) IC series. Returns rate of positive windows, median and
+    min window IC, and window count."""
+    ic = ic.dropna()
+    means = []
+    for start in range(0, max(1, len(ic) - window + 1), step):
+        w = ic.iloc[start:start + window]
+        if len(w) >= window // 2:
+            means.append(float(w.mean()))
+    if not means:
+        return {"n_windows": 0, "sign_rate": np.nan,
+                "median_window_ic": np.nan, "min_window_ic": np.nan}
+    means = np.array(means)
+    return {
+        "n_windows": int(len(means)),
+        "sign_rate": float((means > 0).mean()),
+        "median_window_ic": float(np.median(means)),
+        "min_window_ic": float(means.min()),
+    }
+
+
+def block_bootstrap_pvalue(ic: pd.Series, n_boot: int, block: int,
+                           seed: int) -> dict:
+    """Moving-block bootstrap of the mean of the (oriented) daily IC
+    series. One-sided test of H0: mean <= 0. Block length should match
+    the label horizon to preserve overlap autocorrelation."""
+    x = ic.dropna().to_numpy()
+    n = len(x)
+    if n < 5 * block:
+        return {"p_value": np.nan, "ci5": np.nan, "ci95": np.nan,
+                "boot_mean": np.nan, "n_obs": int(n)}
+    rng = np.random.default_rng(seed)
+    n_blocks = int(np.ceil(n / block))
+    starts = rng.integers(0, n - block + 1, size=(n_boot, n_blocks))
+    idx = (starts[:, :, None] + np.arange(block)[None, None, :])
+    samples = x[idx.reshape(n_boot, -1)[:, :n]]
+    means = samples.mean(axis=1)
+    return {
+        "p_value": float((means <= 0).mean()),
+        "ci5": float(np.percentile(means, 5)),
+        "ci95": float(np.percentile(means, 95)),
+        "boot_mean": float(means.mean()),
+        "n_obs": int(n),
+    }
+
+
 def yearly_ic(factor, panel, mask, horizon) -> dict:
     label = panel.label(horizon)
     ic = daily_ic(factor, label, mask)

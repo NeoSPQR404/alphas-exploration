@@ -149,6 +149,19 @@ def stage4_coverage(factor, panel, is_ic_mean) -> dict:
     yic = ae.yearly_ic(F_all, panel, m_all, cfg.HORIZON)
     year_sign_rate = float(np.mean([np.sign(v) == sign for v in yic.values()]))
 
+    # rolling-window + bootstrap tests on the oriented daily IC series
+    # over IS+OOS (added 2026-07-09)
+    l_all = ae.slice_dates(label, cfg.IS_START, cfg.OOS_END)
+    ic_all = ae.daily_ic(F_all, l_all, m_all) * sign
+    roll = ae.rolling_ic_consistency(ic_all, cfg.S4_ROLL_WINDOW,
+                                     cfg.S4_ROLL_STEP)
+    boot = ae.block_bootstrap_pvalue(ic_all, cfg.S4_BOOT_B,
+                                     cfg.S4_BOOT_BLOCK, cfg.S4_BOOT_SEED)
+    roll_ok = (np.isfinite(roll["sign_rate"])
+               and roll["sign_rate"] >= cfg.S4_ROLL_MIN_SIGN_RATE)
+    boot_ok = (np.isfinite(boot["p_value"])
+               and boot["p_value"] <= cfg.S4_BOOT_MAX_P)
+
     return {
         "oos": oos,
         "oos_pass": bool(oos_ok),
@@ -157,8 +170,13 @@ def stage4_coverage(factor, panel, is_ic_mean) -> dict:
         "yearly_ic": yic,
         "year_sign_rate": year_sign_rate,
         "year_pass": bool(year_sign_rate >= cfg.S4_MIN_YEAR_SIGN_RATE),
+        "rolling": roll,
+        "rolling_pass": bool(roll_ok),
+        "bootstrap": boot,
+        "bootstrap_pass": bool(boot_ok),
         "pass": bool(oos_ok and n_uni_pass >= cfg.S4_MIN_UNIVERSES_PASS
-                     and year_sign_rate >= cfg.S4_MIN_YEAR_SIGN_RATE),
+                     and year_sign_rate >= cfg.S4_MIN_YEAR_SIGN_RATE
+                     and roll_ok and boot_ok),
     }
 
 

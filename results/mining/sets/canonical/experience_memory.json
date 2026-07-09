@@ -190,6 +190,20 @@
       "alpha_set_size": 80,
       "diversity_entropy": 0.7529890597617025,
       "candidates_file": "rounds/canonical_round10_candidates.py"
+    },
+    {
+      "round": 11,
+      "date": "2026-07-09",
+      "candidates": 18,
+      "s1_pass": 4,
+      "s2_pass": 4,
+      "s3_pass": 3,
+      "accepted": [
+        "calpha_0109"
+      ],
+      "alpha_set_size": 81,
+      "diversity_entropy": 0.7532885756216152,
+      "candidates_file": "rounds/canonical_round11_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -238,6 +252,14 @@
       "evidence": "cR10: hl_med_dev_sm (10d-smoothed range/median deviation) accepted at IS 0.041/OOS 0.034 where the raw daily version was 0.026 — first factor gated by the upgraded stage 4 (rolling 1.00, bootstrap p=0.000). Set: 80 individual factors.",
       "rounds": [
         10
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "NOVEL VEIN (experiment run 1): joint-condition day-type counts — gap-direction x intraday-direction",
+      "evidence": "cR11: dipbuy_freq (count of gap-down-close-up days, 60d) IS -0.041/-0.55, OOS -0.064 (stronger OOS), 3/3 universes, max corr 0.63 — heavily dip-bought names underperform (dip-buying marks distribution). fade_freq passed S1-S3, OOS 0.024 just under; near-misses: aggr_on_gapdn 0.029, gap_sign_bal120 ICIR 0.52/IC 0.024.",
+      "rounds": [
+        11
       ],
       "strength": 1
     }
@@ -296,6 +318,14 @@
       "evidence": "cR10 (1/19): awvol/awmove IS 0.073-0.075 but 0.77-0.78 vs volterm resident; vwapgap_vol 0.073 but 0.88 vs gapvol; gap_abs_med 0.062 but 0.77 vs hlmed60; att_span 0.89 vs hl_on_hivol; asymmetric Amihud 0.10-0.13 ICIR, ovnshare_updown -0.08, hl_slope/persist under bar; band jitters (vwapgap_med40, zeroret180, ovnmom30, aggr_sum90, updn_freq_hl90, gapdn_freq120, idmed5) all S1/S2. Further growth needs new fields, a different label horizon, or relaxed corr thresholds — not more formulas.",
       "rounds": [
         10
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Cross-quantity elasticities, shape ratios, distribution shape on non-return quantities, duration measures — all dead",
+      "evidence": "cR11: range_att_beta 0.11, gap_att_beta 0.32/IC 0.019, vol/gap clustering -0.44/-0.45 but |IC| ~0.02, burst-amplitude ratios 0.18-0.37 with IC under bar (nvol_burst_amp passed S1 then died S4: OOS 0.011, year 0.71), hl_skew -0.14, nvol_kurt 0.05, above_med_dur 0.15, amihud_med 0.14.",
+      "rounds": [
+        11
       ],
       "strength": 1
     }

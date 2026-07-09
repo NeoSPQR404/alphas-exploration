@@ -176,6 +176,32 @@
       "alpha_set_size": 84,
       "diversity_entropy": 0.7609715988293855,
       "candidates_file": "rounds/canonical_round07_candidates.py"
+    },
+    {
+      "round": 8,
+      "date": "2026-07-09",
+      "candidates": 21,
+      "s1_pass": 20,
+      "s2_pass": 18,
+      "s3_pass": 17,
+      "accepted": [
+        "calpha_0087",
+        "calpha_0088",
+        "calpha_0089",
+        "calpha_0090",
+        "calpha_0091",
+        "calpha_0092",
+        "calpha_0093",
+        "calpha_0094",
+        "calpha_0095",
+        "calpha_0096",
+        "calpha_0097",
+        "calpha_0098",
+        "calpha_0099"
+      ],
+      "alpha_set_size": 97,
+      "diversity_entropy": 0.763311326909653,
+      "candidates_file": "rounds/canonical_round08_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -224,6 +250,14 @@
       "evidence": "cR7 (5/26, diversity 0.754->0.761): hlburst x rev20 -0.043, nvolburst x med60 -0.044, aggrmax x med60 -0.039, maxfreq x amtself -0.032, and the 3-way med60 x volclock x maxfreq at +0.053 OOS (best of round; note the POSITIVE sign vs pairwise negative). Pattern: one excitement-count parent + one stretch/state parent.",
       "rounds": [
         7
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "3-way products are the richest late-stage vein: 7/7 accepted in one round, all positive-signed, all 3/3 universes",
+      "evidence": "cR8: rev60xvolclockxamtself 0.058, aggrmaxxmedxvolclock 0.054, hlburstxnvolburstxmed 0.053, nvolburstxmedxamtself 0.051, gapvolxmaxfreqxmed 0.049, maxfreqxamtselfxmed 0.049, hlburstxvolclockxrev 0.042 OOS. Pairwise count x stretch also filled 6 more slots. Pair sign negative, 3-way sign positive — consistent double-flip.",
+      "rounds": [
+        8
       ],
       "strength": 1
     }
@@ -282,6 +316,14 @@
       "evidence": "cR7 S1: hlmed_max -0.007, all zeroret pairs 0.020-0.027, volclock pairs -0.013 to -0.029 with strong ICIR but IC under bar. S4: gapvol_maxfreq -0.028 (near), aggrmax_zeroret -0.003, aggrmin_nvolburst 2/3 universes.",
       "rounds": [
         7
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "count x count pairs (excitement agreement) fail the OOS bar; mingap pairs collapse OOS; volclock still dead in pairs",
+      "evidence": "cR8 S4: nvolburst x hlburst -0.027, maxfreq x aggrburst -0.023, mingap x maxfreq 0.018, mingap x nvolburst 0.014. S1: the mingap 3-way with volclock -0.030 just under.",
+      "rounds": [
+        8
       ],
       "strength": 1
     }

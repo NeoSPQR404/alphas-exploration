@@ -281,6 +281,26 @@
       "alpha_set_size": 93,
       "diversity_entropy": 0.7461511424835937,
       "candidates_file": "rounds/canonical_round16_candidates.py"
+    },
+    {
+      "round": 17,
+      "date": "2026-07-09",
+      "candidates": 40,
+      "s1_pass": 12,
+      "s2_pass": 7,
+      "s3_pass": 7,
+      "accepted": [
+        "calpha_0122",
+        "calpha_0123",
+        "calpha_0124",
+        "calpha_0125",
+        "calpha_0126",
+        "calpha_0127",
+        "calpha_0128"
+      ],
+      "alpha_set_size": 100,
+      "diversity_entropy": 0.7450071986644593,
+      "candidates_file": "rounds/canonical_round17_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -377,6 +397,14 @@
       "evidence": "cR16 (5/40): vwap_pin_freq (closes pinned to vwap = stalemate days) OOS -0.070 best; truegap_dn_freq 0.044 + island_up_freq 0.044 (range-breaking/unfilled gaps); vol_at_low -0.041 + vol_ext_asym 0.040 (Wyckoff volume-at-extremes). S1 pass 15/40 — richest since transfer.",
       "rounds": [
         16
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "R17 (7/40): set reaches 100 individual factors; near-miss THRESHOLD/WINDOW jitters revive dead classes",
+      "evidence": "cR17: pin_freq20 -0.061, aggr_at_high 0.053, nvol_truegap 0.048, ma_pin_tight -0.048 (MA-pin revived by tightening 0.01->0.005), vol_accel60 0.042 (acceleration revived at monthly ratio), truegap_dn250 0.040, vol_at_gapext 0.034. Lesson: when a class shows ICIR-viability with IC just under, jitter the THRESHOLD not just the window.",
+      "rounds": [
+        17
       ],
       "strength": 1
     }
@@ -483,6 +511,14 @@
       "evidence": "cR16: asynchrony ~0; occupancy 0.10-0.27; roundtrips -0.32/0.026; accel 0.33-0.34/IC ~0.028; capitrev/silent_crash/quiet_capit ~0.1. S2: week-runs 0.70-0.77 vs max_eff, truegap mags 0.73-0.84 vs gapmed/mingap, blowoff 0.75, heavy-dip variants 0.73-0.80.",
       "rounds": [
         16
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Pin family: only plain counts work (conditioned pins all dead); typed true-gap sub-events and at-extreme textures thin out fast",
+      "evidence": "cR17 S1: contested/wide/lazy/gap/after-run pins -0.10 to -0.31 with IC under; pin 120/250 ICIR 0.28-0.29 (long-window pins decay); island_dn, tg_up_faded ~0; hl/gap/id-at-extremes 0.09-0.13. S2: lazy_pin 0.82 vs pin20, truegap_dn120 0.80, island_mag 0.91 vs island count.",
+      "rounds": [
+        17
       ],
       "strength": 1
     }

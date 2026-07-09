@@ -31,8 +31,10 @@ from mining.memory import Memory               # noqa: E402
 from mining.registry import Registry           # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
-ROUNDS_DIR = ROOT / "results" / "mining" / "rounds"
-HOLDOUT_DIR = ROOT / "results" / "mining" / "holdout"
+# main-set round artifacts live under sets/behavioral_full/ (moved
+# 2026-07-09; main registry == behavioral_full membership)
+ROUNDS_DIR = ROOT / "results" / "mining" / "sets" / "behavioral_full" / "rounds"
+HOLDOUT_DIR = ROOT / "results" / "mining" / "sets" / "behavioral_full" / "holdout"
 
 
 def _fmt(v, nd=4):

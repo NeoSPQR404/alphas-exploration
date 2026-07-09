@@ -49,7 +49,8 @@ def window_stats(F, label, mask, start, end, horizon):
 
 def main(set_name: str = "main"):
     if set_name == "main":
-        out = ROOT / "results" / "mining" / "holdout" / "full_set_eval.json"
+        out = (ROOT / "results" / "mining" / "sets" / "behavioral_full"
+               / "holdout" / "full_set_eval.json")
     else:
         out = (ROOT / "results" / "mining" / "sets" / set_name
                / "holdout" / "full_set_eval.json")

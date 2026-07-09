@@ -1,0 +1,341 @@
+{
+  "round": 15,
+  "diversity": 0.7451297198875954,
+  "results": [
+    {
+      "name": "c_hl_dipbuy_norm",
+      "expr": "-(TsMean((HIGH / LOW - 1) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0), 60) / TsMed(HIGH / LOW - 1, 60))",
+      "family": "daytype",
+      "rationale": "Battle intensity on dip-bought days RELATIVE to own typical range \u2014 raw version hit 0.78 vs hlmed60; normalization strips the level.",
+      "logic_score": 69,
+      "s1": {
+        "ic_mean": 0.06311312034394848,
+        "ic_std": 0.06765430513350176,
+        "icir": 0.9328766324538815,
+        "t_stat": 31.95017348539713,
+        "n_days": 1173,
+        "pos_rate": 0.8312020460358056,
+        "coverage": 0.9608350509787587,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": -0.8527145738079281,
+        "against": "calpha_0109",
+        "replace": "calpha_0109",
+        "pass": false
+      }
+    },
+    {
+      "name": "c_hl_capit_norm",
+      "expr": "-(TsMean((HIGH / LOW - 1) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) < 0), 60) / TsMed(HIGH / LOW - 1, 60))",
+      "family": "daytype",
+      "rationale": "Capitulation-day range vs own typical range.",
+      "logic_score": 68,
+      "s1": {
+        "ic_mean": 0.016060489029125984,
+        "ic_std": 0.08880801466883843,
+        "icir": 0.18084504072087312,
+        "t_stat": 6.193777637892814,
+        "n_days": 1173,
+        "pos_rate": 0.6112531969309463,
+        "coverage": 0.9608350509787587,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_capit_rel_depth",
+      "expr": "TsSum((OPEN / Delay(CLOSE, 1) - 1) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) < 0), 60) / (TsStd(OPEN / Delay(CLOSE, 1) - 1, 60) + 0.001)",
+      "family": "daytype",
+      "rationale": "Capitulation depth in own-gap-vol units: scale-free damage.",
+      "logic_score": 68,
+      "s1": {
+        "ic_mean": 0.018966611793186736,
+        "ic_std": 0.07068463007926769,
+        "icir": 0.26832724132413305,
+        "t_stat": 9.18604506236052,
+        "n_days": 1172,
+        "pos_rate": 0.6040955631399317,
+        "coverage": 0.9595492706889494,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_recover_eff",
+      "expr": "-(TsSum((CLOSE / OPEN - 1) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0), 60) / (Abs(TsSum((OPEN / Delay(CLOSE, 1) - 1) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0), 60)) + 0.001))",
+      "family": "daytype",
+      "rationale": "Recovery efficiency: intraday recovery per unit of dip depth on bought days.",
+      "logic_score": 68,
+      "s1": {
+        "ic_mean": 0.011812633926312205,
+        "ic_std": 0.0652300100350463,
+        "icir": 0.18109201454921744,
+        "t_stat": 6.199591952996177,
+        "n_days": 1172,
+        "pos_rate": 0.5418088737201365,
+        "coverage": 0.9595492706889494,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_nvol_capit",
+      "expr": "-TsMean((VOLUME / TsMean(VOLUME, 60)) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) < 0), 60)",
+      "family": "daytype",
+      "rationale": "Crowd size at capitulations (dip version accepted at ICIR 0.78).",
+      "logic_score": 68,
+      "s1": {
+        "ic_mean": 0.0428259279411115,
+        "ic_std": 0.07844219016269284,
+        "icir": 0.5459552805994897,
+        "t_stat": 18.344422398645694,
+        "n_days": 1129,
+        "pos_rate": 0.7475642161204605,
+        "coverage": 0.9200975287451254,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5706311107790494,
+        "against": "calpha_0074",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.055108871731638934,
+          "ic_std": 0.10040662716285793,
+          "icir": 0.5488569160106657,
+          "t_stat": 12.074852152234644,
+          "n_days": 484,
+          "pos_rate": 0.7107438016528925
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.02022947126404579,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03710308140754878,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04323101175417687,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.06116381515051472,
+          "2018": 0.043829336517027785,
+          "2019": 0.014793489128212222,
+          "2020": 0.043374558799475445,
+          "2021": 0.05764921634913794,
+          "2022": 0.04369638985414575,
+          "2023": 0.06652135360913213
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04759524197746255,
+          "min_window_ic": 0.000896082715892491
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03711900654153414,
+          "ci95": 0.05559759075400038,
+          "boot_mean": 0.04618434614445843,
+          "n_obs": 1613
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "calpha_0116"
+    },
+    {
+      "name": "c_amihud_dipbuy",
+      "expr": "TsMean((Abs(RET) / AMOUNT) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0), 60)",
+      "family": "daytype",
+      "rationale": "Price impact during absorption days: thin vs deep dip-buying.",
+      "logic_score": 67,
+      "s1": {
+        "ic_mean": 0.005368205719331298,
+        "ic_std": 0.13140721953207837,
+        "icir": 0.04085168028398046,
+        "t_stat": 1.3991327757989254,
+        "n_days": 1173,
+        "pos_rate": 0.526001705029838,
+        "coverage": 0.9602552409132368,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_bigdip_vwap_mag",
+      "expr": "-TsSum((CLOSE / VWAP - 1) * ((OPEN / Delay(CLOSE, 1) - 1) < -TsStd(OPEN / Delay(CLOSE, 1) - 1, 60)), 60)",
+      "family": "daytype",
+      "rationale": "Closing aggression on LARGE gap-down days: conviction under stress.",
+      "logic_score": 67,
+      "s1": {
+        "ic_mean": 0.01356608700662984,
+        "ic_std": 0.0602602660072421,
+        "icir": 0.22512491074963828,
+        "t_stat": 7.707035501132599,
+        "n_days": 1172,
+        "pos_rate": 0.5750853242320819,
+        "coverage": 0.9608570751430973,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_dipbuy_rec",
+      "expr": "CsRank(HighDay(((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0), 120))",
+      "family": "daytype",
+      "rationale": "Days since the last dip-bought day: absorption recency (recency class weak historically \u2014 one vein slot).",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.004392060904438505,
+        "ic_std": 0.03528185600075845,
+        "icir": 0.12448497336262834,
+        "t_stat": 4.124944416015509,
+        "n_days": 1098,
+        "pos_rate": 0.5428051001821493,
+        "coverage": 0.9228246948336577,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_dollar_depth",
+      "expr": "-TsMed(AMOUNT / ((HIGH / LOW - 1) + 0.001), 60)",
+      "family": "liquidity",
+      "rationale": "Dollar depth: money traded per unit of range \u2014 how much flow it takes to move price (inverse-impact, robust median).",
+      "logic_score": 69,
+      "s1": {
+        "ic_mean": 0.023614749434417943,
+        "ic_std": 0.1381837955973683,
+        "icir": 0.17089376748070514,
+        "t_stat": 5.852955609166871,
+        "n_days": 1173,
+        "pos_rate": 0.5643648763853367,
+        "coverage": 0.9608570751430973,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_gap_kurt",
+      "expr": "-TsKurt(OPEN / Delay(CLOSE, 1) - 1, 60)",
+      "family": "overnight",
+      "rationale": "Gap tail-shape: episodic overnight shocks vs steady drift (return kurt dead; gap kurt untested).",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.002539960200115603,
+        "ic_std": 0.05626972716159387,
+        "icir": 0.04513901751862799,
+        "t_stat": 1.545311042407026,
+        "n_days": 1172,
+        "pos_rate": 0.5563139931740614,
+        "coverage": 0.9595492706889494,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_aggr_med_dev",
+      "expr": "-((CLOSE / VWAP - 1) - TsMed(CLOSE / VWAP - 1, 60))",
+      "family": "aggression",
+      "rationale": "Today's aggression vs own median stance: robust aggression surprise.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.017435595387925332,
+        "ic_std": 0.08736607410229713,
+        "icir": 0.1995694045666966,
+        "t_stat": 6.83507001511112,
+        "n_days": 1173,
+        "pos_rate": 0.5703324808184144,
+        "coverage": 0.9608570751430973,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_range_eff_med",
+      "expr": "-TsMed(Abs(RET) / ((HIGH / LOW - 1) + 0.001), 60)",
+      "family": "volatility",
+      "rationale": "Median movement efficiency: net move per unit range, robust form (mean form failed at S1; median may differ).",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.030945206302491726,
+        "ic_std": 0.07463556729612893,
+        "icir": 0.4146174193291988,
+        "t_stat": 14.200268306420941,
+        "n_days": 1173,
+        "pos_rate": 0.6871270247229326,
+        "coverage": 0.9602552409132368,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": -0.3586438404351487,
+        "against": "calpha_0111",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.01926037612879633,
+          "ic_std": 0.07735243186462337,
+          "icir": 0.2489950951057938,
+          "t_stat": 5.477892092327464,
+          "n_days": 484,
+          "pos_rate": 0.621900826446281
+        },
+        "oos_pass": false,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.010348187723922712,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.022251175955022986,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.02420365594634045,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.05570413264734331,
+          "2018": 0.012678197957096897,
+          "2019": 0.026469503704797975,
+          "2020": 0.04387745322855887,
+          "2021": 0.020396371692465342,
+          "2022": 0.017038132453329028,
+          "2023": 0.021482619804263633
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 0.8831168831168831,
+          "median_window_ic": 0.0243289639775777,
+          "min_window_ic": -0.008803891709301521
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.019358569082919896,
+          "ci95": 0.03441123770077372,
+          "boot_mean": 0.026745201447792792,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": false
+      }
+    }
+  ]
+}

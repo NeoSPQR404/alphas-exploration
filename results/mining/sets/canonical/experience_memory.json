@@ -249,6 +249,20 @@
       "alpha_set_size": 87,
       "diversity_entropy": 0.7455385026935205,
       "candidates_file": "rounds/canonical_round14_candidates.py"
+    },
+    {
+      "round": 15,
+      "date": "2026-07-09",
+      "candidates": 12,
+      "s1_pass": 3,
+      "s2_pass": 2,
+      "s3_pass": 2,
+      "accepted": [
+        "calpha_0116"
+      ],
+      "alpha_set_size": 88,
+      "diversity_entropy": 0.7451297198875954,
+      "candidates_file": "rounds/canonical_round15_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -329,6 +343,14 @@
       "evidence": "cR14: gap_capitmag OOS 0.078, nvol_dipbuy OOS 0.070/ICIR 0.78, dipbuy_freq20 -0.053. S1 pass 9/12 — but hl-on-type collides with hlmed60 (0.76-0.78) and capitulation magnitudes collide with each other (0.82-0.84). Normalizing typed textures by their own base level may unlock.",
       "rounds": [
         14
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "EXPERIMENT VERDICT (5 runs, 73 candidates): novelty IS still findable — 8 accepts, ALL from one vein (joint-condition day-types) that no prior round had touched",
+      "evidence": "cR11-15: dipbuy_freq 60/20, aggr_dipbuy, aggr_capit, gap_dipmag (OOS 0.082), gap_capitmag (0.078), nvol_dipbuy, nvol_capit (0.055). The generator pattern that worked: define day TYPES from joint gap/intraday conditions, then aggregate {count, magnitude, aggression, attention} OVER typed days. Everything outside the vein failed (0/30+): elasticities, shape ratios, bar patterns, durations, wildcards.",
+      "rounds": [
+        15
       ],
       "strength": 1
     }
@@ -419,6 +441,14 @@
       "evidence": "cR14 S1: gap_fademag 0.17, gapid_covmag 0.43 ICIR/0.027 IC, breakout_vol120 0.15. The fade/gap-up-failure side of the day-type grammar does not price at 10d.",
       "rounds": [
         14
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Vein saturation reached in run 5: normalization does NOT break S2 self-locks; typed liquidity/recency/efficiency dead",
+      "evidence": "cR15: hl_dipbuy_norm ICIR 0.93 (!) but 0.85 corr vs dipbuy_freq (normalizing by own median range does not decorrelate); capit_rel_depth 0.27, recover_eff 0.18, amihud_dipbuy 0.04, dipbuy_rec 0.12, dollar_depth 0.17, gap_kurt 0.05; range_eff_med passed S1-S3 then OOS 0.019. The day-type vein is ~fully harvested at corr<0.70.",
+      "rounds": [
+        15
       ],
       "strength": 1
     }

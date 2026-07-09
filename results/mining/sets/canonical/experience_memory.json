@@ -263,6 +263,24 @@
       "alpha_set_size": 88,
       "diversity_entropy": 0.7451297198875954,
       "candidates_file": "rounds/canonical_round15_candidates.py"
+    },
+    {
+      "round": 16,
+      "date": "2026-07-09",
+      "candidates": 40,
+      "s1_pass": 15,
+      "s2_pass": 7,
+      "s3_pass": 5,
+      "accepted": [
+        "calpha_0117",
+        "calpha_0118",
+        "calpha_0119",
+        "calpha_0120",
+        "calpha_0121"
+      ],
+      "alpha_set_size": 93,
+      "diversity_entropy": 0.7461511424835937,
+      "candidates_file": "rounds/canonical_round16_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -351,6 +369,14 @@
       "evidence": "cR11-15: dipbuy_freq 60/20, aggr_dipbuy, aggr_capit, gap_dipmag (OOS 0.082), gap_capitmag (0.078), nvol_dipbuy, nvol_capit (0.055). The generator pattern that worked: define day TYPES from joint gap/intraday conditions, then aggregate {count, magnitude, aggression, attention} OVER typed days. Everything outside the vein failed (0/30+): elasticities, shape ratios, bar patterns, durations, wildcards.",
       "rounds": [
         15
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Extended campaign R16 (40 cand): THREE new classes minted — true gaps, volume-at-extremes, vwap-pin stalemates",
+      "evidence": "cR16 (5/40): vwap_pin_freq (closes pinned to vwap = stalemate days) OOS -0.070 best; truegap_dn_freq 0.044 + island_up_freq 0.044 (range-breaking/unfilled gaps); vol_at_low -0.041 + vol_ext_asym 0.040 (Wyckoff volume-at-extremes). S1 pass 15/40 — richest since transfer.",
+      "rounds": [
+        16
       ],
       "strength": 1
     }
@@ -449,6 +475,14 @@
       "evidence": "cR15: hl_dipbuy_norm ICIR 0.93 (!) but 0.85 corr vs dipbuy_freq (normalizing by own median range does not decorrelate); capit_rel_depth 0.27, recover_eff 0.18, amihud_dipbuy 0.04, dipbuy_rec 0.12, dollar_depth 0.17, gap_kurt 0.05; range_eff_med passed S1-S3 then OOS 0.019. The day-type vein is ~fully harvested at corr<0.70.",
       "rounds": [
         15
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Dead classes (R16): zone occupancy, peak asynchrony, MA-duration, round trips, acceleration, triple-condition day-types; week-runs and truegap magnitudes corr-locked",
+      "evidence": "cR16: asynchrony ~0; occupancy 0.10-0.27; roundtrips -0.32/0.026; accel 0.33-0.34/IC ~0.028; capitrev/silent_crash/quiet_capit ~0.1. S2: week-runs 0.70-0.77 vs max_eff, truegap mags 0.73-0.84 vs gapmed/mingap, blowoff 0.75, heavy-dip variants 0.73-0.80.",
+      "rounds": [
+        16
       ],
       "strength": 1
     }

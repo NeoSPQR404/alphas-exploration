@@ -218,6 +218,21 @@
       "alpha_set_size": 82,
       "diversity_entropy": 0.7521878317853102,
       "candidates_file": "rounds/canonical_round12_candidates.py"
+    },
+    {
+      "round": 13,
+      "date": "2026-07-09",
+      "candidates": 15,
+      "s1_pass": 4,
+      "s2_pass": 2,
+      "s3_pass": 2,
+      "accepted": [
+        "calpha_0111",
+        "calpha_0112"
+      ],
+      "alpha_set_size": 84,
+      "diversity_entropy": 0.7493613577170276,
+      "candidates_file": "rounds/canonical_round13_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -282,6 +297,14 @@
       "evidence": "cR12: aggr_dipbuy (closing aggression on gap-down-close-up days) IS 0.070/0.68, OOS 0.068, corr 0.59. Strong raw signals corr-lock: dipbuy_mag IS 0.076 but 0.74 vs med_band60, dipbuy_hivol 0.71 vs hl_on_hivol; vwap_recover 0.76 vs the new dipbuy_freq. Fade side consistently JUST under OOS bar (fade_share -0.024 + 2/3 uni, fade_freq120 -0.021): real but weak.",
       "rounds": [
         12
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Day-type vein 4 accepts in 3 runs; MAGNITUDE-on-type beats COUNT-of-type",
+      "evidence": "cR13: gap_dipmag (depth of bought dips) IS 0.072/0.60 -> OOS 0.082, best of experiment; aggr_capit OOS -0.064. Counts increasingly corr-lock (accum_freq 0.74, aggr_dipbuy120 0.78 vs its own 60d) — the marginal space is in per-type magnitudes/textures.",
+      "rounds": [
+        13
       ],
       "strength": 1
     }
@@ -356,6 +379,14 @@
       "evidence": "cR12 S1: dipbuy_share 0.25, capit_share -0.18, daytype_bal 0.31/IC 0.020, capit_freq 0.25, post_dipbuy_ret 0.19, vwap_fail -0.29, aggr_on_gapdn60 0.23, gap_sign_bal 180/250 ICIR 0.43-0.44 but IC 0.021-0.022 (the construct never clears the IC bar at any window).",
       "rounds": [
         12
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Bar patterns (inside/outside days), churn days, quiet-drift, breakout-with-volume, fade-side anything",
+      "evidence": "cR13 S1: inside 0.17, outside 0.08, churn 0.38 ICIR but IC 0.019, quiet_up 0.13, breakout_vol 0.27/0.031 near-miss, aggr_fade -0.22, fade_mag -0.15, bigdip_buy120 0.40/0.019, dist_days120 0.29. The fade/capitulation-count side never clears; only aggression/magnitude ON those days does.",
+      "rounds": [
+        13
       ],
       "strength": 1
     }

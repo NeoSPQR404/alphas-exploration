@@ -233,6 +233,22 @@
       "alpha_set_size": 84,
       "diversity_entropy": 0.7493613577170276,
       "candidates_file": "rounds/canonical_round13_candidates.py"
+    },
+    {
+      "round": 14,
+      "date": "2026-07-09",
+      "candidates": 12,
+      "s1_pass": 9,
+      "s2_pass": 3,
+      "s3_pass": 3,
+      "accepted": [
+        "calpha_0113",
+        "calpha_0114",
+        "calpha_0115"
+      ],
+      "alpha_set_size": 87,
+      "diversity_entropy": 0.7455385026935205,
+      "candidates_file": "rounds/canonical_round14_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -305,6 +321,14 @@
       "evidence": "cR13: gap_dipmag (depth of bought dips) IS 0.072/0.60 -> OOS 0.082, best of experiment; aggr_capit OOS -0.064. Counts increasingly corr-lock (accum_freq 0.74, aggr_dipbuy120 0.78 vs its own 60d) — the marginal space is in per-type magnitudes/textures.",
       "rounds": [
         13
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Day-type magnitudes: 3 more accepts (7 total in 4 runs); the vein now self-locks at S2",
+      "evidence": "cR14: gap_capitmag OOS 0.078, nvol_dipbuy OOS 0.070/ICIR 0.78, dipbuy_freq20 -0.053. S1 pass 9/12 — but hl-on-type collides with hlmed60 (0.76-0.78) and capitulation magnitudes collide with each other (0.82-0.84). Normalizing typed textures by their own base level may unlock.",
+      "rounds": [
+        14
       ],
       "strength": 1
     }
@@ -387,6 +411,14 @@
       "evidence": "cR13 S1: inside 0.17, outside 0.08, churn 0.38 ICIR but IC 0.019, quiet_up 0.13, breakout_vol 0.27/0.031 near-miss, aggr_fade -0.22, fade_mag -0.15, bigdip_buy120 0.40/0.019, dist_days120 0.29. The fade/capitulation-count side never clears; only aggression/magnitude ON those days does.",
       "rounds": [
         13
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Fade-side magnitudes (4th consecutive failure), signed gap*id covariance sums, breakout counts at any band",
+      "evidence": "cR14 S1: gap_fademag 0.17, gapid_covmag 0.43 ICIR/0.027 IC, breakout_vol120 0.15. The fade/gap-up-failure side of the day-type grammar does not price at 10d.",
+      "rounds": [
+        14
       ],
       "strength": 1
     }

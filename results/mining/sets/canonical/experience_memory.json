@@ -223,6 +223,20 @@
       "alpha_set_size": 105,
       "diversity_entropy": 0.7643363278478723,
       "candidates_file": "rounds/canonical_round09_candidates.py"
+    },
+    {
+      "round": 10,
+      "date": "2026-07-09",
+      "candidates": 19,
+      "s1_pass": 7,
+      "s2_pass": 1,
+      "s3_pass": 1,
+      "accepted": [
+        "calpha_0108"
+      ],
+      "alpha_set_size": 80,
+      "diversity_entropy": 0.7529890597617025,
+      "candidates_file": "rounds/canonical_round10_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -289,6 +303,14 @@
         9
       ],
       "strength": 1
+    },
+    {
+      "pattern": "Smoothing rescues robust-deviation near-misses",
+      "evidence": "cR10: hl_med_dev_sm (10d-smoothed range/median deviation) accepted at IS 0.041/OOS 0.034 where the raw daily version was 0.026 — first factor gated by the upgraded stage 4 (rolling 1.00, bootstrap p=0.000). Set: 80 individual factors.",
+      "rounds": [
+        10
+      ],
+      "strength": 1
     }
   ],
   "forbidden_patterns": [
@@ -353,6 +375,14 @@
       "evidence": "cR8 S4: nvolburst x hlburst -0.027, maxfreq x aggrburst -0.023, mingap x maxfreq 0.018, mingap x nvolburst 0.014. S1: the mingap 3-way with volclock -0.030 just under.",
       "rounds": [
         8
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Individual-factor space in canonical vocabulary is EXHAUSTED: strong new constructs are corr-locked, novel asymmetries are dead",
+      "evidence": "cR10 (1/19): awvol/awmove IS 0.073-0.075 but 0.77-0.78 vs volterm resident; vwapgap_vol 0.073 but 0.88 vs gapvol; gap_abs_med 0.062 but 0.77 vs hlmed60; att_span 0.89 vs hl_on_hivol; asymmetric Amihud 0.10-0.13 ICIR, ovnshare_updown -0.08, hl_slope/persist under bar; band jitters (vwapgap_med40, zeroret180, ovnmom30, aggr_sum90, updn_freq_hl90, gapdn_freq120, idmed5) all S1/S2. Further growth needs new fields, a different label horizon, or relaxed corr thresholds — not more formulas.",
+      "rounds": [
+        10
       ],
       "strength": 1
     }

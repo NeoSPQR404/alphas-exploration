@@ -1,0 +1,428 @@
+{
+  "round": 10,
+  "diversity": 0.7529890597617025,
+  "results": [
+    {
+      "name": "c_amihud_updown",
+      "expr": "-(TsMean((Abs(RET) / AMOUNT) * (RET > 0), 20) - TsMean((Abs(RET) / AMOUNT) * (RET < 0), 20))",
+      "family": "liquidity",
+      "rationale": "Asymmetric price impact: up-day vs down-day Amihud \u2014 one-sided liquidity is a distress/mania marker.",
+      "logic_score": 73,
+      "s1": {
+        "ic_mean": 0.016498755686030486,
+        "ic_std": 0.12534259681663515,
+        "icir": 0.13162927931169854,
+        "t_stat": 4.565468147743113,
+        "n_days": 1203,
+        "pos_rate": 0.5361596009975063,
+        "coverage": 0.9837631636275714,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_amihud_updown60",
+      "expr": "-(TsMean((Abs(RET) / AMOUNT) * (RET > 0), 60) - TsMean((Abs(RET) / AMOUNT) * (RET < 0), 60))",
+      "family": "liquidity",
+      "rationale": "Quarterly band of asymmetric impact.",
+      "logic_score": 71,
+      "s1": {
+        "ic_mean": 0.013453706782310067,
+        "ic_std": 0.13371459085090187,
+        "icir": 0.10061509889606281,
+        "t_stat": 3.4459753338697965,
+        "n_days": 1173,
+        "pos_rate": 0.5370843989769821,
+        "coverage": 0.9602552409132368,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_ovnshare_updown",
+      "expr": "-(TsMean((Abs(OPEN / Delay(CLOSE, 1) - 1) / (HIGH / LOW - 1)) * (RET > 0), 20) - TsMean((Abs(OPEN / Delay(CLOSE, 1) - 1) / (HIGH / LOW - 1)) * (RET < 0), 20))",
+      "family": "overnight",
+      "rationale": "Overnight share of range on up vs down days: where price discovery happens by direction.",
+      "logic_score": 70,
+      "s1": {
+        "ic_mean": -0.005085142471222295,
+        "ic_std": 0.06492412976583344,
+        "icir": -0.07832438400889233,
+        "t_stat": -2.7154963403966605,
+        "n_days": 1202,
+        "pos_rate": 0.42845257903494177,
+        "coverage": 0.9801066735611876,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_hl_slope",
+      "expr": "-TsSlope(HIGH / LOW - 1, 20)",
+      "family": "volatility",
+      "rationale": "Range-regime trend: expanding vs contracting daily ranges (path test on range, never tried).",
+      "logic_score": 69,
+      "s1": {
+        "ic_mean": 0.02319861153090409,
+        "ic_std": 0.0865792368526918,
+        "icir": 0.26794659290396405,
+        "t_stat": 9.274204075030562,
+        "n_days": 1198,
+        "pos_rate": 0.6377295492487479,
+        "coverage": 0.9692971179465818,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_hl_persist",
+      "expr": "-TsCorr(HIGH / LOW - 1, Delay(HIGH / LOW - 1, 1), 20)",
+      "family": "volatility",
+      "rationale": "Range persistence: sticky vs episodic volatility regimes.",
+      "logic_score": 68,
+      "s1": {
+        "ic_mean": 0.02055341062046869,
+        "ic_std": 0.060490709811949143,
+        "icir": 0.33977797060679615,
+        "t_stat": 11.780058629320429,
+        "n_days": 1202,
+        "pos_rate": 0.6663893510815307,
+        "coverage": 0.9813249449994375,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_awvol",
+      "expr": "-TsStd(RET * (VOLUME / TsMean(VOLUME, 60)), 20)",
+      "family": "volatility",
+      "rationale": "Attention-weighted volatility: moves that happened while the crowd watched count more.",
+      "logic_score": 70,
+      "s1": {
+        "ic_mean": 0.07287715323730375,
+        "ic_std": 0.10048590328992472,
+        "icir": 0.725247530760972,
+        "t_stat": 24.690391528568238,
+        "n_days": 1159,
+        "pos_rate": 0.7566867989646247,
+        "coverage": 0.9456752441211042,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.7813635513042014,
+        "against": "calpha_0012",
+        "replace": null,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_awmove",
+      "expr": "-TsMean(Abs(RET) * (VOLUME / TsMean(VOLUME, 60)), 20)",
+      "family": "volatility",
+      "rationale": "Attention-weighted absolute movement.",
+      "logic_score": 68,
+      "s1": {
+        "ic_mean": 0.0748018038612566,
+        "ic_std": 0.11134840077742453,
+        "icir": 0.6717815733229855,
+        "t_stat": 22.870191711812527,
+        "n_days": 1159,
+        "pos_rate": 0.7489214840379638,
+        "coverage": 0.9456752441211042,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.7733441762633648,
+        "against": "calpha_0012",
+        "replace": null,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_att_span",
+      "expr": "-TsCount(VOLUME / TsMean(VOLUME, 60) > 1, 20)",
+      "family": "volume",
+      "rationale": "Breadth of attention: share of above-normal-volume days (span, not burst).",
+      "logic_score": 68,
+      "s1": {
+        "ic_mean": 0.03283707298108061,
+        "ic_std": 0.09800039598725199,
+        "icir": 0.3350708193602819,
+        "t_stat": 11.475869837466874,
+        "n_days": 1173,
+        "pos_rate": 0.6487638533674339,
+        "coverage": 0.9911230648061036,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.8858262010373561,
+        "against": "calpha_0073",
+        "replace": null,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_intr_share",
+      "expr": "-TsMean(Abs(CLOSE / OPEN - 1) / (HIGH / LOW - 1), 20)",
+      "family": "volatility",
+      "rationale": "Intraday displacement share of range: trend-within-day vs churn-within-day.",
+      "logic_score": 67,
+      "s1": {
+        "ic_mean": 0.010219006019567774,
+        "ic_std": 0.05586191406155956,
+        "icir": 0.18293333107609736,
+        "t_stat": 6.344912777428248,
+        "n_days": 1203,
+        "pos_rate": 0.5835411471321695,
+        "coverage": 0.9824546409941516,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_vwapgap_med40",
+      "expr": "TsMed(OPEN / Delay(VWAP, 1) - 1, 40)",
+      "family": "overnight",
+      "rationale": "VWAP-anchored median gap at 40d (60d was 0.032 IC / ICIR 0.29 \u2014 just under both bars).",
+      "logic_score": 68,
+      "s1": {
+        "ic_mean": 0.027254160999157118,
+        "ic_std": 0.10481802440222815,
+        "icir": 0.26001406871180993,
+        "t_stat": 8.958229959462912,
+        "n_days": 1187,
+        "pos_rate": 0.6444818871103623,
+        "coverage": 0.9688659709903453,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_zeroret180",
+      "expr": "-TsCount(Abs(RET) < 0.001, 180)",
+      "family": "liquidity",
+      "rationale": "Zero-return habit at 180d (250d was 0.035/0.30 with coverage 0.88; 180 keeps coverage).",
+      "logic_score": 68,
+      "s1": {
+        "ic_mean": -0.03286928421403275,
+        "ic_std": 0.10984302746911712,
+        "icir": -0.29923869517593277,
+        "t_stat": -9.847635849071297,
+        "n_days": 1083,
+        "pos_rate": 0.3739612188365651,
+        "coverage": 0.9127292488084209,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_ovnmom30",
+      "expr": "TsSum(OPEN / Delay(CLOSE, 1) - 1, 30)",
+      "family": "overnight",
+      "rationale": "Overnight momentum at 30d (20d IC 0.028 just under; 60d resident).",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": 0.03110567900061886,
+        "ic_std": 0.07222476624203393,
+        "icir": 0.4306788463167879,
+        "t_stat": 14.881808249864084,
+        "n_days": 1194,
+        "pos_rate": 0.7110552763819096,
+        "coverage": 0.9749999401517273,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.7442656229044159,
+        "against": "calpha_0009",
+        "replace": null,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_aggr_sum90",
+      "expr": "-TsSum(CLOSE / VWAP - 1, 90)",
+      "family": "aggression",
+      "rationale": "Cumulative aggression at 90d (60d was 0.028/0.24).",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": 0.024518572069309612,
+        "ic_std": 0.11713120570003406,
+        "icir": 0.20932570379323331,
+        "t_stat": 7.098579985378225,
+        "n_days": 1150,
+        "pos_rate": 0.5939130434782609,
+        "coverage": 0.9418356183403834,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_updn_freq_hl90",
+      "expr": "-(TsCount((HIGH / LOW - 1) > 2 * TsMean(HIGH / LOW - 1, 60), 90) - TsCount((HIGH / LOW - 1) < 0.5 * TsMean(HIGH / LOW - 1, 60), 90))",
+      "family": "event",
+      "rationale": "Burst-minus-collapse balance at 90d (60d was 0.027/0.30).",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": 0.02480510089701399,
+        "ic_std": 0.08446443654107824,
+        "icir": 0.2936750887451944,
+        "t_stat": 9.959006798467529,
+        "n_days": 1150,
+        "pos_rate": 0.6295652173913043,
+        "coverage": 0.9571321186527915,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_hl_med_dev_sm",
+      "expr": "-TsMean((HIGH / LOW - 1) / TsMed(HIGH / LOW - 1, 60) - 1, 10)",
+      "family": "volatility",
+      "rationale": "Smoothed robust range deviation (daily version was 0.026 \u2014 smoothing may lift IC above the bar).",
+      "logic_score": 67,
+      "s1": {
+        "ic_mean": 0.04050616480168269,
+        "ic_std": 0.09086470201500091,
+        "icir": 0.44578547998754786,
+        "t_stat": 15.222121842882856,
+        "n_days": 1166,
+        "pos_rate": 0.6963979416809606,
+        "coverage": 0.9522370087354539,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.687765738952223,
+        "against": "calpha_0063",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.03398306589019553,
+          "ic_std": 0.10539563157707116,
+          "icir": 0.32243334359968434,
+          "t_stat": 7.093533559193055,
+          "n_days": 484,
+          "pos_rate": 0.5950413223140496
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.012513192425044704,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.019155529174439814,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.032652238241051464,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.05165441835212939,
+          "2018": 0.025968274101811573,
+          "2019": 0.06225558580917337,
+          "2020": 0.02571590195103542,
+          "2021": 0.03914101933547707,
+          "2022": 0.042302705799867876,
+          "2023": 0.025663425980523187
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.041769880446909685,
+          "min_window_ic": 0.005919940657414036
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.027801119003811766,
+          "ci95": 0.04832348077722189,
+          "boot_mean": 0.03842337814484416,
+          "n_obs": 1650
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "calpha_0108"
+    },
+    {
+      "name": "c_gapdn_freq120",
+      "expr": "-TsCount((OPEN / Delay(CLOSE, 1) - 1) < -2 * TsStd(OPEN / Delay(CLOSE, 1) - 1, 60), 120)",
+      "family": "overnight",
+      "rationale": "Semi-annual gap-down habit (never tested in canonical; gapdn_freq60 accepted in main pre-0.03).",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": 0.022356823243895728,
+        "ic_std": 0.04848182145205661,
+        "icir": 0.4611382694440278,
+        "t_stat": 15.487656762715893,
+        "n_days": 1128,
+        "pos_rate": 0.7047872340425532,
+        "coverage": 0.9427848119447576,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_gap_abs_med",
+      "expr": "-TsMed(Abs(OPEN / Delay(CLOSE, 1) - 1), 60)",
+      "family": "overnight",
+      "rationale": "Median absolute gap: robust overnight risk (corr vs gapvol arbitrates).",
+      "logic_score": 67,
+      "s1": {
+        "ic_mean": 0.06213680445032196,
+        "ic_std": 0.1420659089726642,
+        "icir": 0.4373801209569433,
+        "t_stat": 14.973483425179985,
+        "n_days": 1172,
+        "pos_rate": 0.6706484641638225,
+        "coverage": 0.9595492706889494,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.7725506977323467,
+        "against": "calpha_0020",
+        "replace": null,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_vwapgap_vol",
+      "expr": "-TsStd(OPEN / Delay(VWAP, 1) - 1, 20)",
+      "family": "overnight",
+      "rationale": "VWAP-anchored gap volatility.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": 0.07292998234524545,
+        "ic_std": 0.14329854427280445,
+        "icir": 0.5089373567285169,
+        "t_stat": 17.64479283399834,
+        "n_days": 1202,
+        "pos_rate": 0.7146422628951747,
+        "coverage": 0.9813788084448307,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.8799128290993022,
+        "against": "calpha_0007",
+        "replace": null,
+        "pass": false
+      }
+    },
+    {
+      "name": "c_idmed5",
+      "expr": "TsMed(CLOSE / OPEN - 1, 5)",
+      "family": "reversal",
+      "rationale": "Weekly median intraday drift (20/60 resident; fastest robust band).",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.023261663505540434,
+        "ic_std": 0.08967018622868758,
+        "icir": -0.25941357416405686,
+        "t_stat": -9.038618179076531,
+        "n_days": 1214,
+        "pos_rate": 0.39373970345963755,
+        "coverage": 0.9959746051809453,
+        "pass": false
+      }
+    }
+  ]
+}

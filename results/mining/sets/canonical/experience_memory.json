@@ -204,6 +204,20 @@
       "alpha_set_size": 81,
       "diversity_entropy": 0.7532885756216152,
       "candidates_file": "rounds/canonical_round11_candidates.py"
+    },
+    {
+      "round": 12,
+      "date": "2026-07-09",
+      "candidates": 16,
+      "s1_pass": 6,
+      "s2_pass": 3,
+      "s3_pass": 3,
+      "accepted": [
+        "calpha_0110"
+      ],
+      "alpha_set_size": 82,
+      "diversity_entropy": 0.7521878317853102,
+      "candidates_file": "rounds/canonical_round12_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -260,6 +274,14 @@
       "evidence": "cR11: dipbuy_freq (count of gap-down-close-up days, 60d) IS -0.041/-0.55, OOS -0.064 (stronger OOS), 3/3 universes, max corr 0.63 — heavily dip-bought names underperform (dip-buying marks distribution). fade_freq passed S1-S3, OOS 0.024 just under; near-misses: aggr_on_gapdn 0.029, gap_sign_bal120 ICIR 0.52/IC 0.024.",
       "rounds": [
         11
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Day-type vein 2-for-2 (experiment run 2): aggression-on-day-type is its own mintable construct",
+      "evidence": "cR12: aggr_dipbuy (closing aggression on gap-down-close-up days) IS 0.070/0.68, OOS 0.068, corr 0.59. Strong raw signals corr-lock: dipbuy_mag IS 0.076 but 0.74 vs med_band60, dipbuy_hivol 0.71 vs hl_on_hivol; vwap_recover 0.76 vs the new dipbuy_freq. Fade side consistently JUST under OOS bar (fade_share -0.024 + 2/3 uni, fade_freq120 -0.021): real but weak.",
+      "rounds": [
+        12
       ],
       "strength": 1
     }
@@ -326,6 +348,14 @@
       "evidence": "cR11: range_att_beta 0.11, gap_att_beta 0.32/IC 0.019, vol/gap clustering -0.44/-0.45 but |IC| ~0.02, burst-amplitude ratios 0.18-0.37 with IC under bar (nvol_burst_amp passed S1 then died S4: OOS 0.011, year 0.71), hl_skew -0.14, nvol_kurt 0.05, above_med_dur 0.15, amihud_med 0.14.",
       "rounds": [
         11
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "Day-type ratios/balances/post-returns and gap one-sidedness at any window",
+      "evidence": "cR12 S1: dipbuy_share 0.25, capit_share -0.18, daytype_bal 0.31/IC 0.020, capit_freq 0.25, post_dipbuy_ret 0.19, vwap_fail -0.29, aggr_on_gapdn60 0.23, gap_sign_bal 180/250 ICIR 0.43-0.44 but IC 0.021-0.022 (the construct never clears the IC bar at any window).",
+      "rounds": [
+        12
       ],
       "strength": 1
     }

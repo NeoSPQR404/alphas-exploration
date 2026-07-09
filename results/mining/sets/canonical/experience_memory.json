@@ -202,6 +202,27 @@
       "alpha_set_size": 97,
       "diversity_entropy": 0.763311326909653,
       "candidates_file": "rounds/canonical_round08_candidates.py"
+    },
+    {
+      "round": 9,
+      "date": "2026-07-09",
+      "candidates": 10,
+      "s1_pass": 9,
+      "s2_pass": 8,
+      "s3_pass": 8,
+      "accepted": [
+        "calpha_0100",
+        "calpha_0101",
+        "calpha_0102",
+        "calpha_0103",
+        "calpha_0104",
+        "calpha_0105",
+        "calpha_0106",
+        "calpha_0107"
+      ],
+      "alpha_set_size": 105,
+      "diversity_entropy": 0.7643363278478723,
+      "candidates_file": "rounds/canonical_round09_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -258,6 +279,14 @@
       "evidence": "cR8: rev60xvolclockxamtself 0.058, aggrmaxxmedxvolclock 0.054, hlburstxnvolburstxmed 0.053, nvolburstxmedxamtself 0.051, gapvolxmaxfreqxmed 0.049, maxfreqxamtselfxmed 0.049, hlburstxvolclockxrev 0.042 OOS. Pairwise count x stretch also filled 6 more slots. Pair sign negative, 3-way sign positive — consistent double-flip.",
       "rounds": [
         8
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "3-way composition tier closed the campaign: 15/17 accepted across cR8-cR9, OOS 0.037-0.060, uniformly 3/3 universes and 7/7 years",
+      "evidence": "cR9 (8/10): max20xmedxvolclock 0.060, gapvolxmedxvolclock 0.055, semivolxvolclockxamtself 0.052, gapvolxrev60xamtself 0.051. Set reached 105 (target 100). The two fails: hlmedxvolclockxmaxfreq S1 0.029 (just under), nvolburstxrev20xvolclock S2 0.73 vs a cR8 3-way — even the 3-way space starts self-colliding at ~15 members.",
+      "rounds": [
+        9
       ],
       "strength": 1
     }

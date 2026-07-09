@@ -51,7 +51,7 @@ def main(set_name: str):
     t0 = time.time()
     panel = Panel()
     reg = Registry(set_name)
-    set_dir = (ROOT / "results" / "mining" if set_name == "main"
+    set_dir = (ROOT / "results" / "mining" / "sets" / "behavioral_full" if set_name == "main"
                else ROOT / "results" / "mining" / "sets" / set_name)
     actives = reg.active()
     print(f"stage-4 re-eval [{set_name}]: {len(actives)} factors")

@@ -11,7 +11,8 @@ from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-MEM_PATH = ROOT / "results" / "mining" / "experience_memory.json"
+MEM_PATH = (ROOT / "results" / "mining" / "sets"
+            / "behavioral_full" / "experience_memory.json")
 
 
 class Memory:

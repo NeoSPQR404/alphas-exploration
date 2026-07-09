@@ -66,7 +66,7 @@ def main(set_name: str):
     panel = Panel()
     reg = Registry(set_name)
     if set_name == "main":
-        set_dir = ROOT / "results" / "mining"
+        set_dir = ROOT / "results" / "mining" / "sets" / "behavioral_full"
     else:
         set_dir = ROOT / "results" / "mining" / "sets" / set_name
     mask = panel.universe_mask("all")

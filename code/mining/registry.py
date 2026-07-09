@@ -13,7 +13,8 @@ from pathlib import Path
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[2]
-SET_PATH = ROOT / "results" / "mining" / "alpha_set.json"
+SET_PATH = (ROOT / "results" / "mining" / "sets"
+            / "behavioral_full" / "alpha_set.json")
 VALUES_DIR = ROOT / "data" / "mining" / "alpha_values"
 
 

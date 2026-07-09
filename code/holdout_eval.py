@@ -25,7 +25,6 @@ from mining.data import Panel                # noqa: E402
 from mining.registry import Registry         # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "results" / "mining" / "holdout" / "full_set_eval.json"
 
 WINDOWS = {
     "is": (cfg.IS_START, cfg.IS_END),
@@ -48,10 +47,16 @@ def window_stats(F, label, mask, start, end, horizon):
     return st
 
 
-def main():
+def main(set_name: str = "main"):
+    if set_name == "main":
+        out = ROOT / "results" / "mining" / "holdout" / "full_set_eval.json"
+    else:
+        out = (ROOT / "results" / "mining" / "sets" / set_name
+               / "holdout" / "full_set_eval.json")
+    out.parent.mkdir(parents=True, exist_ok=True)
     t0 = time.time()
     panel = Panel()
-    reg = Registry()
+    reg = Registry(set_name)
     mask = panel.universe_mask("all")
     label = panel.label(cfg.HORIZON)
     actives = reg.active()
@@ -111,14 +116,14 @@ def main():
              if v["holdout_over_oos"] is not None])),
     }
 
-    OUT.write_text(json.dumps(
+    out.write_text(json.dumps(
         {"summary": summary, "composites": composites,
          "factors": per_factor}, indent=2, default=float))
     print(json.dumps(summary, indent=2))
     print("composites (holdout):",
           {k: round(v["holdout"]["ic_mean"], 4) for k, v in composites.items()})
-    print(f"done in {time.time()-t0:.0f}s -> {OUT}")
+    print(f"done in {time.time()-t0:.0f}s -> {out}")
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1] if len(sys.argv) > 1 else "main")

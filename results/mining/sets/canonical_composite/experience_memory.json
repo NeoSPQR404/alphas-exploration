@@ -109,5 +109,122 @@
       "strength": 1
     }
   ],
-  "note": "reset 2026-07-10 (prior composition lessons live in git history and in this note: pairs = excitement-count x stretch/state parents, sign negative; 3-way products sign positive and richest; void/conditional parents fail; volclock works only inside 3-ways; count x count fails)"
+  "note": "reset 2026-07-10 (prior composition lessons live in git history and in this note: pairs = excitement-count x stretch/state parents, sign negative; 3-way products sign positive and richest; void/conditional parents fail; volclock works only inside 3-ways; count x count fails)",
+  "schema": 2,
+  "patterns": {
+    "pair": {
+      "name": "pair",
+      "description": "factor family: pair",
+      "template": "(CsRank(A)-.5)*(CsRank(B)-.5)  demeaned-rank product",
+      "occurrence_count": 41,
+      "accept_count": 14,
+      "success_rate": 0.34146341463414637,
+      "classification": "undetermined",
+      "rounds": [
+        1,
+        2
+      ],
+      "curated": false,
+      "pinned": false
+    },
+    "threeway": {
+      "name": "threeway",
+      "description": "factor family: threeway",
+      "template": "(CsRank(A)-.5)*(CsRank(B)-.5)*(CsRank(C)-.5)",
+      "occurrence_count": 39,
+      "accept_count": 32,
+      "success_rate": 0.8205128205128205,
+      "classification": "success",
+      "rounds": [
+        1,
+        2
+      ],
+      "curated": false,
+      "pinned": false
+    },
+    "fresh-campaign-round-1-24-40-all": {
+      "name": "fresh-campaign-round-1-24-40-all",
+      "description": "Fresh campaign round 1 (24/40): all 18 prior-winner re-derivations re-passed (perfect replication); new-class parents mint 6 more",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "success",
+      "rounds": [
+        1
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "xR1: aggrhigh x med x volclock 0.053, gapdipmag x volclock x amtself 0.049, hlbest x rev60 x amtself 0.046, dipbuy x med 0.036, dipbuy 3-ways -0.034 (the absorption count's negative direction propagates through the product). Templates confirmed on the 105-parent pool: count/magnitude/texture parent x stretch/state parent; 3-ways with volclock strongest."
+    },
+    "3-way-products-are-the-productive-tier": {
+      "name": "3-way-products-are-the-productive-tier",
+      "description": "3-way products are the productive tier for NEW-class parents; legacy strong-parent pairs still work",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "success",
+      "rounds": [
+        2
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "xR2 (22/40): 16 new 3-ways all cleared (gapvol_med_amtself 0.059, hlmed_volclock_amtself 0.058, aggrmax_rev60_volclock 0.056, nvoldip_med_volclock 0.054); plus 3 legacy-strong pairs (semivol/aggrmax x amtself/rev60, OOS -0.031 to -0.036). Set 46, diversity 0.807 (rose)."
+    },
+    "weak-parents-don-t-compose-parents-below": {
+      "name": "weak-parents-don-t-compose-parents-below",
+      "description": "Weak parents don't compose (parents below ~0.05 IS IC fail); count x count still fails OOS; truegapdn pairs die at the OOS bar",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "forbidden",
+      "rounds": [
+        1
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "xR1 S1: all pin/doji/island combinations ICIR 0.16-0.53 with IC under bar, volaccel 3-way 0.028. S4: dipbuy x maxfreq control probe failed exactly as the template law predicted (OOS 0.021); truegapdn x med/amtself 0.014-0.018; dipbuy x gapvol/amtself just under 0.03."
+    },
+    "new-class-parent-pairs-fall-just-under": {
+      "name": "new-class-parent-pairs-fall-just-under",
+      "description": "New-class parent PAIRS fall just under the IC bar (strong ICIR, weak IC) — use them only in 3-ways; count x count still fails OOS",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "forbidden",
+      "rounds": [
+        2
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "xR2 S1: all new-class pairs (gapdipmag/gapcapmag/aggrhigh/hlbest/nvoldip x med/amtself) IC 0.010-0.027 with ICIR -0.42 to -0.68 — the composition dilutes the parent IC too far in a 2-product. S4: maxfreq x hlburst (count x count control) OOS -0.025, replicating the prohibition a 3rd time. S2: hlburst_med_amtself 0.71 vs its round-1 sibling."
+    }
+  },
+  "insights": {
+    "four-way-products": {
+      "name": "four-way-products",
+      "description": "Extend the composition tier to four-parent products",
+      "hypothesis": "3-ways are the richest tier; a 4th demeaned-rank factor may add orthogonal conditioning before the tier self-locks.",
+      "status": "proposed",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "rounds": [],
+      "spawned_pattern": null,
+      "created": "2026-07-13"
+    },
+    "sign-conditioned-composition": {
+      "name": "sign-conditioned-composition",
+      "description": "Gate a parent by the sign of another rather than multiply ranks",
+      "hypothesis": "Products blend two rankings symmetrically; a sign-gate (A where B>median) is a different, asymmetric interaction.",
+      "status": "proposed",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "rounds": [],
+      "spawned_pattern": null,
+      "created": "2026-07-13"
+    }
+  }
 }

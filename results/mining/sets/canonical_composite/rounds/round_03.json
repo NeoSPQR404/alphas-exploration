@@ -1,0 +1,2343 @@
+{
+  "round": 3,
+  "diversity": 0.7840593264429654,
+  "results": [
+    {
+      "name": "x3_max20_med_amtself",
+      "expr": "(CsRank(-TsMax(RET, 20)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Lottery mag x stretch x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.055079475085057616,
+        "ic_std": 0.07655990023313583,
+        "icir": 0.7194298179246936,
+        "t_stat": 24.16256212765546,
+        "n_days": 1128,
+        "pos_rate": 0.7774822695035462,
+        "coverage": 0.9172679024138005,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5281136695791889,
+        "against": "cxalpha_0036",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.06465159954012716,
+          "ic_std": 0.08557000983561666,
+          "icir": 0.7555404009456749,
+          "t_stat": 16.62188882080485,
+          "n_days": 484,
+          "pos_rate": 0.7975206611570248
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.02330563612427491,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.033572621842338474,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.05428823761309808,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.06215399095740183,
+          "2018": 0.05298387636878131,
+          "2019": 0.05711997545335005,
+          "2020": 0.041101663982495415,
+          "2021": 0.06459143613814833,
+          "2022": 0.07747912164582961,
+          "2023": 0.05182407743442471
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.05783944412500514,
+          "min_window_ic": 0.028471515987412613
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.049438289340856464,
+          "ci95": 0.06622827268000551,
+          "boot_mean": 0.057738428258259304,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0047"
+    },
+    {
+      "name": "x3_max20_volclock_amtself",
+      "expr": "(CsRank(-TsMax(RET, 20)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Lottery mag x clock x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.05111444027208637,
+        "ic_std": 0.07445485981326946,
+        "icir": 0.6865158352360053,
+        "t_stat": 22.032773583702163,
+        "n_days": 1030,
+        "pos_rate": 0.7699029126213592,
+        "coverage": 0.8123028897139971,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6601697398941354,
+        "against": "cxalpha_0035",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.06191997934423008,
+          "ic_std": 0.09300252498629653,
+          "icir": 0.6657881530996463,
+          "t_stat": 14.64733936819222,
+          "n_days": 484,
+          "pos_rate": 0.7665289256198347
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.0212431315460575,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03470482003861308,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.050393238901308195,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.028378302468410267,
+          "2018": 0.05044407961984519,
+          "2019": 0.05689521778833311,
+          "2020": 0.04290711834196034,
+          "2021": 0.05952072425710926,
+          "2022": 0.07637047596141758,
+          "2023": 0.04746948272704257
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.05513258535983798,
+          "min_window_ic": 0.026427630298125056
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.04590386786949431,
+          "ci95": 0.06291115958451776,
+          "boot_mean": 0.054234178077465785,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0048"
+    },
+    {
+      "name": "x3_hlonhivol_med_volclock",
+      "expr": "(CsRank(-TsMean((HIGH / LOW - 1) * (VOLUME / TsMean(VOLUME, 60) > 1), 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Conditional range x stretch x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.05023709382666923,
+        "ic_std": 0.09089347659546575,
+        "icir": 0.5527029629448162,
+        "t_stat": 17.73823503636758,
+        "n_days": 1030,
+        "pos_rate": 0.7155339805825243,
+        "coverage": 0.813495306698458,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6461922703874257,
+        "against": "cxalpha_0031",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05991919862776719,
+          "ic_std": 0.09571595900773117,
+          "icir": 0.6260105341777686,
+          "t_stat": 13.77223175191091,
+          "n_days": 484,
+          "pos_rate": 0.7582644628099173
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.027916317231407632,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03425659072432482,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.052598404197385186,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.015259383291427717,
+          "2018": 0.048041006208907985,
+          "2019": 0.05908328704068334,
+          "2020": 0.03501329205414774,
+          "2021": 0.0669790340658792,
+          "2022": 0.0648950807318717,
+          "2023": 0.054943316523662696
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.05690898410161899,
+          "min_window_ic": 0.0244280255030047
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.04388425555603861,
+          "ci95": 0.06381716815892886,
+          "boot_mean": 0.05302335843398694,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0049"
+    },
+    {
+      "name": "x3_hlonhivol_rev60_amtself",
+      "expr": "(CsRank(-TsMean((HIGH / LOW - 1) * (VOLUME / TsMean(VOLUME, 60) > 1), 60)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Conditional range x reversal x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.046779297758652805,
+        "ic_std": 0.077269687651566,
+        "icir": 0.6054029617616132,
+        "t_stat": 20.332889062102787,
+        "n_days": 1128,
+        "pos_rate": 0.7624113475177305,
+        "coverage": 0.9199572443940123,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6545809119725396,
+        "against": "cxalpha_0041",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05416350175914181,
+          "ic_std": 0.09422900612211382,
+          "icir": 0.5748071001507743,
+          "t_stat": 12.645756203317035,
+          "n_days": 484,
+          "pos_rate": 0.7541322314049587
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.02014047777094179,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.034891342368461996,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.045953951768176404,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.0465844490067822,
+          "2018": 0.04635206683481973,
+          "2019": 0.051856341623438044,
+          "2020": 0.03656094185573501,
+          "2021": 0.052451233776894784,
+          "2022": 0.05963181045137096,
+          "2023": 0.048695193066912675
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04618244184385187,
+          "min_window_ic": 0.026260205091513618
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.039674944412426735,
+          "ci95": 0.05735660355753168,
+          "boot_mean": 0.04869188212210419,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0050"
+    },
+    {
+      "name": "x3_retonhivol_med_volclock",
+      "expr": "(CsRank(-TsSum(RET * (VOLUME > TsMean(VOLUME, 60)), 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Returns-on-attention x stretch x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.042318213726734326,
+        "ic_std": 0.07752461763624202,
+        "icir": 0.545868074129668,
+        "t_stat": 17.518878759345693,
+        "n_days": 1030,
+        "pos_rate": 0.7223300970873786,
+        "coverage": 0.8133243800317436,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5531623461154683,
+        "against": "cxalpha_0023",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.0608823417136413,
+          "ic_std": 0.08378971491612404,
+          "icir": 0.7266087702361359,
+          "t_stat": 15.98539294519499,
+          "n_days": 484,
+          "pos_rate": 0.8078512396694215
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.025808495197777833,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.027699424674402333,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04501653406260333,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.0009691713893121958,
+          "2018": 0.0381025472925033,
+          "2019": 0.04698728769272178,
+          "2020": 0.03533379798568247,
+          "2021": 0.058529165719021795,
+          "2022": 0.06457923262494923,
+          "2023": 0.05718545080233336
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.049916275269815805,
+          "min_window_ic": 0.012114791874884265
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.039505544010770215,
+          "ci95": 0.05676468725602938,
+          "boot_mean": 0.047874721179709846,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0051"
+    },
+    {
+      "name": "x3_retonhivol_volclock_amtself",
+      "expr": "(CsRank(-TsSum(RET * (VOLUME > TsMean(VOLUME, 60)), 60)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Returns-on-attention x clock x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.042132455916258284,
+        "ic_std": 0.07338334358279837,
+        "icir": 0.5741419491021184,
+        "t_stat": 18.426289562750902,
+        "n_days": 1030,
+        "pos_rate": 0.7291262135922331,
+        "coverage": 0.811918185017344,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6096204814875408,
+        "against": "cxalpha_0012",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.061629204776159394,
+          "ic_std": 0.08696136268253825,
+          "icir": 0.7086964011953607,
+          "t_stat": 15.591320826297935,
+          "n_days": 484,
+          "pos_rate": 0.7954545454545454
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.026202690654552024,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.02960210120408697,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04384212547315614,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.006015937991620004,
+          "2018": 0.04035039222745462,
+          "2019": 0.0426686553519413,
+          "2020": 0.037175673805799024,
+          "2021": 0.0568046715072814,
+          "2022": 0.06601795148643792,
+          "2023": 0.05724045806588088
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04637806992160676,
+          "min_window_ic": 0.01681886084886962
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03961350112919461,
+          "ci95": 0.056624073585323745,
+          "boot_mean": 0.0478300741942075,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0052"
+    },
+    {
+      "name": "x3_idonhivol_med_amtself",
+      "expr": "(CsRank(-TsSum((CLOSE / OPEN - 1) * (VOLUME > TsMean(VOLUME, 120)), 120)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Intraday-on-attention x stretch x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04131782867245299,
+        "ic_std": 0.06619456803239525,
+        "icir": 0.6241876018018923,
+        "t_stat": 20.9637845583837,
+        "n_days": 1128,
+        "pos_rate": 0.75177304964539,
+        "coverage": 0.9199572443940123,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.38831841547239787,
+        "against": "cxalpha_0032",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.051097409244407865,
+          "ic_std": 0.06718620732744286,
+          "icir": 0.7605342119607431,
+          "t_stat": 16.731752663136348,
+          "n_days": 484,
+          "pos_rate": 0.7975206611570248
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.025636469364890748,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.02619297107262062,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04380694335667362,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.04407601829672571,
+          "2018": 0.03760282221070209,
+          "2019": 0.04394133032793863,
+          "2020": 0.03349894554004393,
+          "2021": 0.04845808124726821,
+          "2022": 0.057557659432995484,
+          "2023": 0.04463715905582023
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.045164165499793775,
+          "min_window_ic": 0.014241851462141105
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03710801663064147,
+          "ci95": 0.05101412979636076,
+          "boot_mean": 0.04408137969939621,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0053"
+    },
+    {
+      "name": "x3_idonhivol_rev60_volclock",
+      "expr": "(CsRank(-TsSum((CLOSE / OPEN - 1) * (VOLUME > TsMean(VOLUME, 120)), 120)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Intraday-on-attention x reversal x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04691431286892004,
+        "ic_std": 0.0691116977716131,
+        "icir": 0.6788187004746047,
+        "t_stat": 21.785744718908557,
+        "n_days": 1030,
+        "pos_rate": 0.7660194174757281,
+        "coverage": 0.8120589481546384,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.4063576955659437,
+        "against": "cxalpha_0038",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05892088477275441,
+          "ic_std": 0.08142422784677168,
+          "icir": 0.7236284129538787,
+          "t_stat": 15.919825084985332,
+          "n_days": 484,
+          "pos_rate": 0.8078512396694215
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.03055374086634673,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03174445243081542,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.045292513535019,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.014226076024113632,
+          "2018": 0.04378028751711785,
+          "2019": 0.041938134484864414,
+          "2020": 0.0439478758616484,
+          "2021": 0.06567904282414014,
+          "2022": 0.06725236928009225,
+          "2023": 0.050589400265416584
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.05064935458284914,
+          "min_window_ic": 0.014198371679901215
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.042002603820229745,
+          "ci95": 0.05869830764286045,
+          "boot_mean": 0.050284734911846485,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0054"
+    },
+    {
+      "name": "x3_mingap_med_amtself",
+      "expr": "(CsRank(-TsMin(OPEN / Delay(CLOSE, 1) - 1, 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Gap-crash depth x stretch x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": -0.032296161174320936,
+        "ic_std": 0.058899177020709216,
+        "icir": -0.5483295829917192,
+        "t_stat": -18.41603904281831,
+        "n_days": 1128,
+        "pos_rate": 0.25886524822695034,
+        "coverage": 0.9196240092118462,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": -0.584265810129881,
+        "against": "cxalpha_0032",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.042488416234016745,
+          "ic_std": 0.05705936856538676,
+          "icir": -0.7446352334819033,
+          "t_stat": -16.381975136601874,
+          "n_days": 484,
+          "pos_rate": 0.2190082644628099
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.010456809755995304,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.021250318825700554,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.03312261561550807,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.045968934441196194,
+          "2018": -0.03239640240155372,
+          "2019": -0.030972351845470127,
+          "2020": -0.023730095472776783,
+          "2021": -0.033369926471158766,
+          "2022": -0.04507710526971808,
+          "2023": -0.0398997271983154
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03530384933320511,
+          "min_window_ic": 0.0041414778101211075
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.02903532679559667,
+          "ci95": 0.040944771197436995,
+          "boot_mean": 0.03506086243143203,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0055"
+    },
+    {
+      "name": "x3_mingap_volclock_amtself",
+      "expr": "(CsRank(-TsMin(OPEN / Delay(CLOSE, 1) - 1, 60)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Gap-crash depth x clock x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": -0.03408225465911156,
+        "ic_std": 0.052853554407323096,
+        "icir": -0.644843190610267,
+        "t_stat": -20.695347851406655,
+        "n_days": 1030,
+        "pos_rate": 0.229126213592233,
+        "coverage": 0.8119136365486219,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": -0.5878552295770739,
+        "against": "cxalpha_0022",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.041994368908189965,
+          "ic_std": 0.06812090424452745,
+          "icir": -0.6164681660338297,
+          "t_stat": -13.562299652744253,
+          "n_days": 484,
+          "pos_rate": 0.25826446280991733
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.012552326030972033,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.01930174473923432,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.034672675316277636,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.061248597937600166,
+          "2018": -0.03109048400259957,
+          "2019": -0.04090683902108903,
+          "2020": -0.026919940351361124,
+          "2021": -0.031011318425035097,
+          "2022": -0.04670522594105471,
+          "2023": -0.03728351187532523
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.037208636556665745,
+          "min_window_ic": 0.00783139080873694
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.029468480062336655,
+          "ci95": 0.04235011523552717,
+          "boot_mean": 0.036079358583472214,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0056"
+    },
+    {
+      "name": "x3_semivol120_med_volclock",
+      "expr": "(CsRank(-(TsStd((RET + Abs(RET)) / 2, 120) - TsStd((RET - Abs(RET)) / 2, 120))) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Semiannual semivol x stretch x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.037834960720759404,
+        "ic_std": 0.06899414422395432,
+        "icir": 0.548379303002114,
+        "t_stat": 17.599473167112613,
+        "n_days": 1030,
+        "pos_rate": 0.7398058252427184,
+        "coverage": 0.811926803168607,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.4029328669913975,
+        "against": "cxalpha_0023",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.053967511224733214,
+          "ic_std": 0.06013720809710659,
+          "icir": 0.8974063301640001,
+          "t_stat": 19.742939263608,
+          "n_days": 484,
+          "pos_rate": 0.8223140495867769
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.024640275381052245,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.02113449840588348,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.041420688340654724,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.022803179965155476,
+          "2018": 0.03817392789681573,
+          "2019": 0.04594972202258376,
+          "2020": 0.0291563664504174,
+          "2021": 0.052250193829250856,
+          "2022": 0.06004741850074093,
+          "2023": 0.047887603948725474
+        },
+        "year_sign_rate": 0.8571428571428571,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04829694246184926,
+          "min_window_ic": 0.010934685639240427
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.036022102629657826,
+          "ci95": 0.050553467180994925,
+          "boot_mean": 0.04293524374023672,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0057"
+    },
+    {
+      "name": "x3_semivol120_rev60_amtself",
+      "expr": "(CsRank(-(TsStd((RET + Abs(RET)) / 2, 120) - TsStd((RET - Abs(RET)) / 2, 120))) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Semiannual semivol x reversal x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.03045849961005753,
+        "ic_std": 0.06184824190699837,
+        "icir": 0.49247155086248345,
+        "t_stat": 16.540007304872592,
+        "n_days": 1128,
+        "pos_rate": 0.7225177304964538,
+        "coverage": 0.9192203924610328,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.40028871091254564,
+        "against": "cxalpha_0029",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.047020031190225076,
+          "ic_std": 0.06537182740764311,
+          "icir": 0.7192705643215294,
+          "t_stat": 15.823952415073645,
+          "n_days": 484,
+          "pos_rate": 0.7727272727272727
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.01627057985939494,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.02469821674377857,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03359639619625772,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.02994745934378925,
+          "2018": 0.026546205036838803,
+          "2019": 0.03407903922555511,
+          "2020": 0.02066452222531024,
+          "2021": 0.04085530479884729,
+          "2022": 0.054923486441473386,
+          "2023": 0.03911657593897678
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03287525338448369,
+          "min_window_ic": 0.009717582516701113
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.028992644106849427,
+          "ci95": 0.04203780480971148,
+          "boot_mean": 0.03536046012094854,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0058"
+    },
+    {
+      "name": "x3_max20_hlmed_amtself",
+      "expr": "(CsRank(-TsMax(RET, 20)) - 0.5) * (CsRank(-TsMed(HIGH / LOW - 1, 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Lottery x median range x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.02922668020227255,
+        "ic_std": 0.06500707418955623,
+        "icir": 0.4495923030938068,
+        "t_stat": 15.099877270804097,
+        "n_days": 1128,
+        "pos_rate": 0.6719858156028369,
+        "coverage": 0.9172679024138005,
+        "pass": false
+      }
+    },
+    {
+      "name": "x3_gapcapmag_rev60_volclock",
+      "expr": "(CsRank(TsSum((OPEN / Delay(CLOSE, 1) - 1) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) < 0), 60)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Capitulation depth x reversal x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.0371383491587657,
+        "ic_std": 0.05693454003502627,
+        "icir": 0.65229909885841,
+        "t_stat": 20.93463488582112,
+        "n_days": 1030,
+        "pos_rate": 0.7640776699029126,
+        "coverage": 0.8133169588459338,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.3791157962423239,
+        "against": "cxalpha_0028",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.048039066360141984,
+          "ic_std": 0.07397727018244722,
+          "icir": 0.6493760345801505,
+          "t_stat": 14.28627276076331,
+          "n_days": 484,
+          "pos_rate": 0.7892561983471075
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.018179256801922606,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.022979001378151197,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.0392254135763358,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.056643303399353404,
+          "2018": 0.033691555569912525,
+          "2019": 0.030200703817465865,
+          "2020": 0.03406500160237607,
+          "2021": 0.046049449446245797,
+          "2022": 0.05308116675069013,
+          "2023": 0.042996965969593855
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.0379843837010432,
+          "min_window_ic": 0.014089540977887805
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.032735309024386046,
+          "ci95": 0.04772027213232995,
+          "boot_mean": 0.0401421847095791,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0059"
+    },
+    {
+      "name": "x3_gapdipmag_rev60_volclock",
+      "expr": "(CsRank(TsSum((OPEN / Delay(CLOSE, 1) - 1) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0), 60)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Dip depth x reversal x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.047018295738106425,
+        "ic_std": 0.06524657227016695,
+        "icir": 0.7206247639097029,
+        "t_stat": 23.12745234284815,
+        "n_days": 1030,
+        "pos_rate": 0.7737864077669903,
+        "coverage": 0.8133169588459338,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.4381345345667722,
+        "against": "cxalpha_0038",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05903591335978689,
+          "ic_std": 0.08266362711557726,
+          "icir": 0.7141703723845196,
+          "t_stat": 15.711748192459432,
+          "n_days": 484,
+          "pos_rate": 0.8223140495867769
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.019530805167179505,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.028441421606477512,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.048624404379438185,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.04689587702003724,
+          "2018": 0.042685773576063804,
+          "2019": 0.04184829959556614,
+          "2020": 0.04447933142528804,
+          "2021": 0.05910976956156733,
+          "2022": 0.06950133003231727,
+          "2023": 0.04857049668725651
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.048734678467621556,
+          "min_window_ic": 0.02602786278959019
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.04236733623665518,
+          "ci95": 0.05908542652441691,
+          "boot_mean": 0.05042962888893352,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0060"
+    },
+    {
+      "name": "x3_aggrhigh_hlmed_amtself",
+      "expr": "(CsRank(-TsMean((CLOSE / VWAP - 1) * (CLOSE >= TsMax(CLOSE, 20)), 60)) - 0.5) * (CsRank(-TsMed(HIGH / LOW - 1, 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Aggr-highs x median range x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.025773029408046176,
+        "ic_std": 0.059340992873347015,
+        "icir": 0.43432083219527867,
+        "t_stat": 14.586974058881633,
+        "n_days": 1128,
+        "pos_rate": 0.6657801418439716,
+        "coverage": 0.9199572443940123,
+        "pass": false
+      }
+    },
+    {
+      "name": "x3_hlbest_gapvol_volclock",
+      "expr": "(CsRank(-TsMean((HIGH / LOW - 1) * (RET >= TsMax(RET, 20)), 60)) - 0.5) * (CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Best-day x overnight risk x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.037409174208125236,
+        "ic_std": 0.061839446164388405,
+        "icir": 0.6049403176846064,
+        "t_stat": 19.4147204872788,
+        "n_days": 1030,
+        "pos_rate": 0.7398058252427184,
+        "coverage": 0.812484110283609,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.3154300627443126,
+        "against": "cxalpha_0034",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05420124000376319,
+          "ic_std": 0.08073437881791101,
+          "icir": 0.6713526603828726,
+          "t_stat": 14.769758528423196,
+          "n_days": 484,
+          "pos_rate": 0.7789256198347108
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.02065526153374156,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.021999619879826432,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04182286025406127,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.03671511567956976,
+          "2018": 0.032550917536092024,
+          "2019": 0.035254157429842864,
+          "2020": 0.030394018407241943,
+          "2021": 0.051609275693504944,
+          "2022": 0.05754929195878091,
+          "2023": 0.050853188048745473
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04141704001776947,
+          "min_window_ic": 0.013649105667231392
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.0343369370285906,
+          "ci95": 0.05045080758643633,
+          "boot_mean": 0.0422862994717273,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0061"
+    },
+    {
+      "name": "x3_nvoldip_gapvol_amtself",
+      "expr": "(CsRank(-TsMean((VOLUME / TsMean(VOLUME, 60)) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0), 60)) - 0.5) * (CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Crowd-absorption x overnight risk x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.037384960807038375,
+        "ic_std": 0.0553355464292615,
+        "icir": 0.6756048005205776,
+        "t_stat": 22.69066774770445,
+        "n_days": 1128,
+        "pos_rate": 0.7553191489361702,
+        "coverage": 0.914946028827716,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.4678562551149434,
+        "against": "cxalpha_0043",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.04959601124856175,
+          "ic_std": 0.07631624051899527,
+          "icir": 0.6498749271620265,
+          "t_stat": 14.297248397564584,
+          "n_days": 484,
+          "pos_rate": 0.7541322314049587
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.006125763802594951,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.026796479177524545,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04087197809280396,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.046945574260594515,
+          "2018": 0.0339580257463602,
+          "2019": 0.03535440104345332,
+          "2020": 0.035548157441063155,
+          "2021": 0.03858928152592861,
+          "2022": 0.06064541415171834,
+          "2023": 0.03854660834540515
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.0392727837060847,
+          "min_window_ic": 0.020283635542313754
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.034204785175137156,
+          "ci95": 0.04745069316890541,
+          "boot_mean": 0.04072578523148583,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0062"
+    },
+    {
+      "name": "x3_hlonhivol_maxfreq_amtself",
+      "expr": "(CsRank(-TsMean((HIGH / LOW - 1) * (VOLUME / TsMean(VOLUME, 60) > 1), 60)) - 0.5) * (CsRank(-TsCount(RET > 2 * TsStd(RET, 60), 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Conditional range x lottery x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.042008531113694465,
+        "ic_std": 0.06922535870057966,
+        "icir": 0.6068373194770127,
+        "t_stat": 20.381062986157808,
+        "n_days": 1128,
+        "pos_rate": 0.7313829787234043,
+        "coverage": 0.9199572443940123,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.49861127803290345,
+        "against": "cxalpha_0044",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05049699772872447,
+          "ic_std": 0.08726247592701007,
+          "icir": 0.5786794059219937,
+          "t_stat": 12.730946930283862,
+          "n_days": 484,
+          "pos_rate": 0.7272727272727273
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.01783069209681358,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03190316247979213,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04433328712727355,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.050245759582642456,
+          "2018": 0.0397715669580326,
+          "2019": 0.040555578326142254,
+          "2020": 0.029120787506234768,
+          "2021": 0.05333797166478229,
+          "2022": 0.05793564790954819,
+          "2023": 0.04305834754790074
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04257726619005769,
+          "min_window_ic": 0.021142495503059362
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.036124035004059786,
+          "ci95": 0.05201662043780348,
+          "boot_mean": 0.044312861336481414,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0063"
+    },
+    {
+      "name": "x3_retonhivol_rev60_amtself",
+      "expr": "(CsRank(-TsSum(RET * (VOLUME > TsMean(VOLUME, 60)), 60)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Returns-on-attention x reversal x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04285282509532395,
+        "ic_std": 0.0792237715253902,
+        "icir": 0.5409086726146352,
+        "t_stat": 18.16680248970004,
+        "n_days": 1128,
+        "pos_rate": 0.7269503546099291,
+        "coverage": 0.9196489060932723,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.579230146949221,
+        "against": "cxalpha_0029",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.056435216704928036,
+          "ic_std": 0.09203410595030352,
+          "icir": 0.6131989453496931,
+          "t_stat": 13.490376797693248,
+          "n_days": 484,
+          "pos_rate": 0.75
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.020791158431744394,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03211131821335143,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.046371135427644754,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.04196177195573276,
+          "2018": 0.034834521198182006,
+          "2019": 0.050856754997900974,
+          "2020": 0.034696333045314796,
+          "2021": 0.05155912038571715,
+          "2022": 0.06276612860913197,
+          "2023": 0.05010430480072411
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.045177546242927205,
+          "min_window_ic": 0.013693235513893539
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03783084110155506,
+          "ci95": 0.0551242951702235,
+          "boot_mean": 0.04670288277811506,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0064"
+    },
+    {
+      "name": "x3_max20_gapvol_amtself",
+      "expr": "(CsRank(-TsMax(RET, 20)) - 0.5) * (CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Lottery x overnight risk x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04396019500342967,
+        "ic_std": 0.06769731847298355,
+        "icir": 0.6493639038446283,
+        "t_stat": 21.809348569070707,
+        "n_days": 1128,
+        "pos_rate": 0.7402482269503546,
+        "coverage": 0.9164841294350562,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.43862917940352913,
+        "against": "cxalpha_0043",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05027532929951754,
+          "ic_std": 0.08458576705427237,
+          "icir": 0.5943710277789361,
+          "t_stat": 13.076162611136596,
+          "n_days": 484,
+          "pos_rate": 0.7252066115702479
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.012356458960998074,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.026456089881723235,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.044889887591967305,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.05914989680633483,
+          "2018": 0.04225470768148089,
+          "2019": 0.05182731676830453,
+          "2020": 0.029080688581946883,
+          "2021": 0.04295678755311735,
+          "2022": 0.06017338144954236,
+          "2023": 0.04037727714949275
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04524738596327969,
+          "min_window_ic": 0.01951173215825328
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.037918770790523214,
+          "ci95": 0.052713377154312915,
+          "boot_mean": 0.045428157172734816,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0065"
+    },
+    {
+      "name": "x3_hlmed_rev60_amtself",
+      "expr": "(CsRank(-TsMed(HIGH / LOW - 1, 60)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Median range x reversal x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.02511360659044279,
+        "ic_std": 0.06399433886062621,
+        "icir": 0.3924348159161065,
+        "t_stat": 13.180202410821552,
+        "n_days": 1128,
+        "pos_rate": 0.6578014184397163,
+        "coverage": 0.9199572443940123,
+        "pass": false
+      }
+    },
+    {
+      "name": "x3_hlmed_maxfreq_volclock",
+      "expr": "(CsRank(-TsMed(HIGH / LOW - 1, 60)) - 0.5) * (CsRank(-TsCount(RET > 2 * TsStd(RET, 60), 60)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Median range x lottery x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.02878548875906396,
+        "ic_std": 0.06520108957523062,
+        "icir": 0.44148784854048423,
+        "t_stat": 14.168940186943155,
+        "n_days": 1030,
+        "pos_rate": 0.6650485436893204,
+        "coverage": 0.813495306698458,
+        "pass": false
+      }
+    },
+    {
+      "name": "x3_semivol_gapvol_amtself",
+      "expr": "(CsRank(-(TsStd((RET + Abs(RET)) / 2, 20) - TsStd((RET - Abs(RET)) / 2, 20))) - 0.5) * (CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Vol-shape x overnight risk x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.03498213299089237,
+        "ic_std": 0.05452865438277,
+        "icir": 0.6415367000500575,
+        "t_stat": 21.54646636255097,
+        "n_days": 1128,
+        "pos_rate": 0.7677304964539007,
+        "coverage": 0.9164841294350562,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6111336965553407,
+        "against": "cxalpha_0036",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.04502511922012546,
+          "ic_std": 0.06465907461549697,
+          "icir": 0.6963464832720356,
+          "t_stat": 15.319622631984783,
+          "n_days": 484,
+          "pos_rate": 0.756198347107438
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.012411784743000386,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.020142094962605047,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03828247197864779,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.048572428671632854,
+          "2018": 0.03673543665596391,
+          "2019": 0.03257251782615785,
+          "2020": 0.023670663649695785,
+          "2021": 0.03829112282208097,
+          "2022": 0.054856985065503364,
+          "2023": 0.03519325337474755
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04083187318414272,
+          "min_window_ic": 0.008202538791701202
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03200155903807925,
+          "ci95": 0.04400806550393922,
+          "boot_mean": 0.03780694466336997,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0066"
+    },
+    {
+      "name": "x3_aggrmax_gapvol_amtself",
+      "expr": "(CsRank(-TsMax(CLOSE / VWAP - 1, 20)) - 0.5) * (CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Peak aggr x overnight risk x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.03968660208301153,
+        "ic_std": 0.06190849717888112,
+        "icir": 0.6410525839181547,
+        "t_stat": 21.53020697793463,
+        "n_days": 1128,
+        "pos_rate": 0.7455673758865248,
+        "coverage": 0.9164841294350562,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.4724851854416724,
+        "against": "cxalpha_0043",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.04492430651622075,
+          "ic_std": 0.08135369280527771,
+          "icir": 0.5522098010197067,
+          "t_stat": 12.148615622433548,
+          "n_days": 484,
+          "pos_rate": 0.7148760330578512
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.00966895992175768,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.021316419767449964,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04069632874027654,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.05258248891883221,
+          "2018": 0.03361651279032446,
+          "2019": 0.04703941015803145,
+          "2020": 0.030203267152883552,
+          "2021": 0.0396311883228757,
+          "2022": 0.05200672263283069,
+          "2023": 0.03784189039961082
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.039169526571556236,
+          "min_window_ic": 0.019873220046153897
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03385428477942647,
+          "ci95": 0.04791172305674928,
+          "boot_mean": 0.04087138643705191,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0067"
+    },
+    {
+      "name": "x3_hlburst_rev60_amtself",
+      "expr": "(CsRank(-TsCount((HIGH / LOW - 1) > 2 * TsMean(HIGH / LOW - 1, 60), 60)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Range-burst x reversal x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.037311983268882,
+        "ic_std": 0.05287319717996455,
+        "icir": 0.7056880472327628,
+        "t_stat": 23.701034985167006,
+        "n_days": 1128,
+        "pos_rate": 0.7606382978723404,
+        "coverage": 0.9199572443940123,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.37138283507109604,
+        "against": "cxalpha_0015",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.044462094544910645,
+          "ic_std": 0.07766936815094358,
+          "icir": 0.5724534086398447,
+          "t_stat": 12.593974990076584,
+          "n_days": 484,
+          "pos_rate": 0.731404958677686
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.018194574519507387,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.02793240161690275,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03425145446754332,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.026465502466976907,
+          "2018": 0.03496563329920002,
+          "2019": 0.04353487551813964,
+          "2020": 0.03630845569193946,
+          "2021": 0.04133189709318725,
+          "2022": 0.041582078070120466,
+          "2023": 0.04734211101970082
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03944298257866087,
+          "min_window_ic": 0.018715816586460817
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03291631606680691,
+          "ci95": 0.04550197710099639,
+          "boot_mean": 0.03917186146881801,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0068"
+    },
+    {
+      "name": "x3_nvolburst_rev60_amtself",
+      "expr": "(CsRank(-TsCount(VOLUME / TsMean(VOLUME, 60) > 2, 60)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Attn-burst x reversal x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.0430787603179358,
+        "ic_std": 0.06186352429108556,
+        "icir": 0.6963515385130328,
+        "t_stat": 23.387461699246447,
+        "n_days": 1128,
+        "pos_rate": 0.7695035460992907,
+        "coverage": 0.9199572443940123,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5474171361611088,
+        "against": "cxalpha_0015",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": false,
+        "duplicate_of": "x3_hlburst_rev60_amtself"
+      }
+    },
+    {
+      "name": "x3_idonhivol_gapvol_amtself",
+      "expr": "(CsRank(-TsSum((CLOSE / OPEN - 1) * (VOLUME > TsMean(VOLUME, 120)), 120)) - 0.5) * (CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Intraday-on-attention x overnight risk x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.03167051406297597,
+        "ic_std": 0.04735018069351471,
+        "icir": 0.6688573010517297,
+        "t_stat": 22.46404817890111,
+        "n_days": 1128,
+        "pos_rate": 0.7570921985815603,
+        "coverage": 0.9164841294350562,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.4153678244688815,
+        "against": "cxalpha_0043",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.040168462397259956,
+          "ic_std": 0.06311975404886964,
+          "icir": 0.6363849638285988,
+          "t_stat": 14.000469204229173,
+          "n_days": 484,
+          "pos_rate": 0.7520661157024794
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.012882742169042637,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.0172802419986239,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.033119367733094596,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.0351084195744105,
+          "2018": 0.02612470908027387,
+          "2019": 0.03707014864349641,
+          "2020": 0.027382486171071155,
+          "2021": 0.0338895889461453,
+          "2022": 0.04315885643775513,
+          "2023": 0.037178068356764786
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03211269592246825,
+          "min_window_ic": 0.015949570146874995
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.02882339519808865,
+          "ci95": 0.039190937817677615,
+          "boot_mean": 0.033976924541167824,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0069"
+    },
+    {
+      "name": "x_max20_amtself",
+      "expr": "(CsRank(-TsMax(RET, 20)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "pair",
+      "rationale": "Lottery mag x state pair.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": -0.03651327428692201,
+        "ic_std": 0.04443234676241753,
+        "icir": -0.8217723561206596,
+        "t_stat": -27.59980906384073,
+        "n_days": 1128,
+        "pos_rate": 0.21453900709219859,
+        "coverage": 0.9178053399022797,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6473939512961581,
+        "against": "cxalpha_0026",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.03395086742531627,
+          "ic_std": 0.04660189860518697,
+          "icir": -0.7285297046145971,
+          "t_stat": -16.027653501521137,
+          "n_days": 484,
+          "pos_rate": 0.25826446280991733
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.013368021357490425,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.020083597841707098,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.032809467524193905,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.034391387431727,
+          "2018": -0.04189096965216215,
+          "2019": -0.0454253646018891,
+          "2020": -0.033929788905722194,
+          "2021": -0.02612376564322434,
+          "2022": -0.03733787465385193,
+          "2023": -0.030563860196780614
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03627859352229726,
+          "min_window_ic": 0.012440106967034268
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03125235112121246,
+          "ci95": 0.03982575480696164,
+          "boot_mean": 0.03567803222620213,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0070"
+    },
+    {
+      "name": "x_hlmed_amtself",
+      "expr": "(CsRank(-TsMed(HIGH / LOW - 1, 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "pair",
+      "rationale": "Median range x state pair.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": -0.009865642802811506,
+        "ic_std": 0.046925304454580145,
+        "icir": -0.2102414234170956,
+        "t_stat": -7.061107739148555,
+        "n_days": 1128,
+        "pos_rate": 0.4397163120567376,
+        "coverage": 0.9199572443940123,
+        "pass": false
+      }
+    },
+    {
+      "name": "x_semivol120_amtself",
+      "expr": "(CsRank(-(TsStd((RET + Abs(RET)) / 2, 120) - TsStd((RET - Abs(RET)) / 2, 120))) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "pair",
+      "rationale": "Semiannual semivol x state pair.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": -0.020284420533676534,
+        "ic_std": 0.04119629696782609,
+        "icir": -0.4923845594549061,
+        "t_stat": -16.537085636576688,
+        "n_days": 1128,
+        "pos_rate": 0.30230496453900707,
+        "coverage": 0.9199809443099853,
+        "pass": false
+      }
+    },
+    {
+      "name": "x_retonhivol_amtself",
+      "expr": "(CsRank(-TsSum(RET * (VOLUME > TsMean(VOLUME, 60)), 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "pair",
+      "rationale": "Returns-on-attention x state pair.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": -0.024864157054078087,
+        "ic_std": 0.047031086313564105,
+        "icir": -0.5286749467852944,
+        "t_stat": -17.755924106514797,
+        "n_days": 1128,
+        "pos_rate": 0.2969858156028369,
+        "coverage": 0.9196489060932723,
+        "pass": false
+      }
+    },
+    {
+      "name": "x_hlonhivol_amtself",
+      "expr": "(CsRank(-TsMean((HIGH / LOW - 1) * (VOLUME / TsMean(VOLUME, 60) > 1), 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "pair",
+      "rationale": "Conditional range x state pair.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": -0.023112333938440182,
+        "ic_std": 0.046311763668572425,
+        "icir": -0.49905967960629444,
+        "t_stat": -16.761274294523542,
+        "n_days": 1128,
+        "pos_rate": 0.3129432624113475,
+        "coverage": 0.9199572443940123,
+        "pass": false
+      }
+    },
+    {
+      "name": "x_mingap_rev60",
+      "expr": "(CsRank(-TsMin(OPEN / Delay(CLOSE, 1) - 1, 60)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5)",
+      "family": "pair",
+      "rationale": "Gap-crash depth x reversal pair.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.022092114013996255,
+        "ic_std": 0.03730326680012406,
+        "icir": 0.5922300084968104,
+        "t_stat": 20.274689660607947,
+        "n_days": 1172,
+        "pos_rate": 0.7235494880546075,
+        "coverage": 0.9595492706889494,
+        "pass": false
+      }
+    },
+    {
+      "name": "x4_med_volclock_amtself_maxfreq",
+      "expr": "(CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5) * (CsRank(-TsCount(RET > 2 * TsStd(RET, 60), 60)) - 0.5)",
+      "family": "fourway",
+      "rationale": "4-way: stretch x clock x state x lottery (four-way-products insight).",
+      "logic_score": 63,
+      "s1": {
+        "ic_mean": -0.03458118654961644,
+        "ic_std": 0.05811667899159839,
+        "icir": -0.5950303277758809,
+        "t_stat": -19.096673105603095,
+        "n_days": 1030,
+        "pos_rate": 0.26019417475728157,
+        "coverage": 0.8120589481546384,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.530487881326546,
+        "against": "cxalpha_0005",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.030993939131721944,
+          "ic_std": 0.045326125739460696,
+          "icir": -0.683798551631753,
+          "t_stat": -15.043568135898566,
+          "n_days": 484,
+          "pos_rate": 0.24586776859504134
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.018869389583690332,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.026052122807555127,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.02734087407765577,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.002829078296103044,
+          "2018": -0.040494863557973916,
+          "2019": -0.04326848230052845,
+          "2020": -0.028948365474820315,
+          "2021": -0.03435253198635747,
+          "2022": -0.03280626632019937,
+          "2023": -0.029181611943244513
+        },
+        "year_sign_rate": 0.8571428571428571,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03522231207406437,
+          "min_window_ic": 0.011177517178376213
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.02752229830880017,
+          "ci95": 0.03912380341737284,
+          "boot_mean": 0.03315202875753248,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0071"
+    },
+    {
+      "name": "x4_gapvol_med_amtself_rev60",
+      "expr": "(CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5)",
+      "family": "fourway",
+      "rationale": "4-way: overnight risk x stretch x state x reversal.",
+      "logic_score": 63,
+      "s1": {
+        "ic_mean": -0.021121601498653417,
+        "ic_std": 0.03640279235410808,
+        "icir": -0.5802192670604246,
+        "t_stat": -19.48707676372364,
+        "n_days": 1128,
+        "pos_rate": 0.25620567375886527,
+        "coverage": 0.9159498040567553,
+        "pass": false
+      }
+    },
+    {
+      "name": "x4_aggrmax_med_volclock_amtself",
+      "expr": "(CsRank(-TsMax(CLOSE / VWAP - 1, 20)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "fourway",
+      "rationale": "4-way: peak aggr x stretch x clock x state.",
+      "logic_score": 63,
+      "s1": {
+        "ic_mean": -0.03152547838322503,
+        "ic_std": 0.03787376068283591,
+        "icir": -0.8323831015152432,
+        "t_stat": -26.71418118750376,
+        "n_days": 1030,
+        "pos_rate": 0.19902912621359223,
+        "coverage": 0.8120589481546384,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5150209336466686,
+        "against": "cxalpha_0003",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.02940685477949238,
+          "ic_std": 0.04186181928073608,
+          "icir": -0.7024743617156837,
+          "t_stat": -15.45443595774504,
+          "n_days": 484,
+          "pos_rate": 0.24380165289256198
+        },
+        "oos_pass": false,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.012565891013162994,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.019099504005480338,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.028325860021039744,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.03306525883199275,
+          "2018": -0.03814437875449532,
+          "2019": -0.02816572527282904,
+          "2020": -0.030977967754375148,
+          "2021": -0.028466484827458376,
+          "2022": -0.03199499974688531,
+          "2023": -0.026818709812099446
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03192999214972368,
+          "min_window_ic": 0.009166277519970335
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.026436876449708,
+          "ci95": 0.03468025738520347,
+          "boot_mean": 0.030660919504318526,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": false
+      }
+    },
+    {
+      "name": "xsg_med_by_volclock",
+      "expr": "(CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * Sign((CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5))",
+      "family": "signgate",
+      "rationale": "Median stretch gated by the SIDE of the volume clock (sign-conditioned insight).",
+      "logic_score": 63,
+      "s1": {
+        "ic_mean": -0.026489398971502837,
+        "ic_std": 0.05152264353682773,
+        "icir": -0.5141312082049624,
+        "t_stat": -16.50032806424779,
+        "n_days": 1030,
+        "pos_rate": 0.3106796116504854,
+        "coverage": 0.813495306698458,
+        "pass": false
+      }
+    },
+    {
+      "name": "xsg_max20_by_amtself",
+      "expr": "(CsRank(-TsMax(RET, 20)) - 0.5) * Sign((CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5))",
+      "family": "signgate",
+      "rationale": "Lottery magnitude gated by the side of dollar-attention state.",
+      "logic_score": 63,
+      "s1": {
+        "ic_mean": -0.03128499068337938,
+        "ic_std": 0.04008021191682511,
+        "icir": -0.7805595127167074,
+        "t_stat": -26.21564640558743,
+        "n_days": 1128,
+        "pos_rate": 0.21365248226950354,
+        "coverage": 0.9178053399022797,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6018356510910098,
+        "against": "cxalpha_0026",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": false,
+        "duplicate_of": "x_max20_amtself"
+      }
+    },
+    {
+      "name": "xsg_gapvol_by_med",
+      "expr": "(CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5) * Sign((CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5))",
+      "family": "signgate",
+      "rationale": "Overnight risk gated by the side of the stretch.",
+      "logic_score": 63,
+      "s1": {
+        "ic_mean": -0.020478973222536858,
+        "ic_std": 0.043996547728156185,
+        "icir": -0.4654677305381182,
+        "t_stat": -15.941845068439072,
+        "n_days": 1173,
+        "pos_rate": 0.32395566922421143,
+        "coverage": 0.9561024889699633,
+        "pass": false
+      }
+    }
+  ]
+}

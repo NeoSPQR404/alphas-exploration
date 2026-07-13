@@ -73,6 +73,44 @@
       "alpha_set_size": 46,
       "diversity_entropy": 0.8073607027396434,
       "candidates_file": "rounds/composite_round02_candidates.py"
+    },
+    {
+      "round": 3,
+      "date": "2026-07-13",
+      "candidates": 40,
+      "s1_pass": 28,
+      "s2_pass": 28,
+      "s3_pass": 26,
+      "accepted": [
+        "cxalpha_0047",
+        "cxalpha_0048",
+        "cxalpha_0049",
+        "cxalpha_0050",
+        "cxalpha_0051",
+        "cxalpha_0052",
+        "cxalpha_0053",
+        "cxalpha_0054",
+        "cxalpha_0055",
+        "cxalpha_0056",
+        "cxalpha_0057",
+        "cxalpha_0058",
+        "cxalpha_0059",
+        "cxalpha_0060",
+        "cxalpha_0061",
+        "cxalpha_0062",
+        "cxalpha_0063",
+        "cxalpha_0064",
+        "cxalpha_0065",
+        "cxalpha_0066",
+        "cxalpha_0067",
+        "cxalpha_0068",
+        "cxalpha_0069",
+        "cxalpha_0070",
+        "cxalpha_0071"
+      ],
+      "alpha_set_size": 71,
+      "diversity_entropy": 0.7840593264429654,
+      "candidates_file": "rounds/composite_round03_candidates.py"
     }
   ],
   "patterns": {
@@ -165,6 +203,36 @@
       "curated": true,
       "pinned": true,
       "evidence": "xR2 S1: all new-class pairs (gapdipmag/gapcapmag/aggrhigh/hlbest/nvoldip x med/amtself) IC 0.010-0.027 with ICIR -0.42 to -0.68 — the composition dilutes the parent IC too far in a 2-product. S4: maxfreq x hlburst (count x count control) OOS -0.025, replicating the prohibition a 3rd time. S2: hlburst_med_amtself 0.71 vs its round-1 sibling."
+    },
+    "three-way-products-from-fresh-parents-keep": {
+      "name": "three-way-products-from-fresh-parents-keep",
+      "description": "Three-way products from FRESH parents keep clearing at ~0.85; parity sign rule confirmed (3-way positive, 2-way & 4-way negative)",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "success",
+      "rounds": [
+        3
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "xR3 (25/40, memory-plan-driven): 23/25 exploit three-ways accepted (max20xmedxamtself 0.065, retonhivolxvolclockxamtself 0.062, max20xvolclockxamtself 0.062). Fresh parents (max20, retonhivol, idonhivol, hlonhivol, mingap, semivol120) all compose. Signs: odd #rank-factors -> positive, even -> negative."
+    },
+    "hlmed60-does-not-compose-despite-being-the": {
+      "name": "hlmed60-does-not-compose-despite-being-the",
+      "description": "hlmed60 does not compose despite being the strongest individual factor; its range signal overlaps med60/gapvol parents",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "forbidden",
+      "rounds": [
+        3
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "xR3 S1: all 4 hlmed-anchored triples 0.025-0.029 (just under); x_hlmed_amtself pair -0.21. Range-median parent collides with stretch/vol parents inside the product."
     }
   },
   "insights": {
@@ -172,10 +240,12 @@
       "name": "four-way-products",
       "description": "Extend the composition tier to four-parent products",
       "hypothesis": "3-ways are the richest tier; a 4th demeaned-rank factor may add orthogonal conditioning before the tier self-locks.",
-      "status": "proposed",
-      "occurrence_count": 0,
-      "accept_count": 0,
-      "rounds": [],
+      "status": "testing",
+      "occurrence_count": 3,
+      "accept_count": 1,
+      "rounds": [
+        3
+      ],
       "spawned_pattern": null,
       "created": "2026-07-13"
     },
@@ -183,10 +253,12 @@
       "name": "sign-conditioned-composition",
       "description": "Gate a parent by the sign of another rather than multiply ranks",
       "hypothesis": "Products blend two rankings symmetrically; a sign-gate (A where B>median) is a different, asymmetric interaction.",
-      "status": "proposed",
-      "occurrence_count": 0,
+      "status": "refuted",
+      "occurrence_count": 3,
       "accept_count": 0,
-      "rounds": [],
+      "rounds": [
+        3
+      ],
       "spawned_pattern": null,
       "created": "2026-07-13"
     }

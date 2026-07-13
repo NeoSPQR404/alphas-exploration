@@ -70,6 +70,24 @@ class Memory:
         self.state.setdefault("rounds", [])
         self.state.setdefault("patterns", {})
         self.state.setdefault("insights", {})
+        self._migrate_legacy()
+
+    def _migrate_legacy(self):
+        """Fold any v1 successful/forbidden lists into `patterns` and drop
+        the dead keys, so a file loaded once is clean v2 on next save."""
+        for bucket, cls in (("successful_patterns", "success"),
+                            ("forbidden_patterns", "forbidden")):
+            for p in self.state.pop(bucket, []):
+                if "pattern" not in p:
+                    continue
+                name = _slug(p["pattern"])
+                if name not in self.state["patterns"]:
+                    self.merge(name, description=p["pattern"],
+                               evidence=p.get("evidence", ""),
+                               classification=cls, curated=True)
+                for r in p.get("rounds", []):
+                    ent = self.state["patterns"][name]
+                    ent["rounds"] = sorted(set(ent["rounds"] + [r]))
 
     # ------------------------------------------------------------ rounds
     def next_round_id(self) -> int:
@@ -283,7 +301,14 @@ class Memory:
 
     # ------------------------------------------------------------ persist
     def save(self):
-        self.mem_path.write_text(json.dumps(self.state, indent=2,
+        # emit a clean, ordered v2 document (drops any stray legacy keys)
+        ordered = {"schema": self.state.get("schema", 2)}
+        if "note" in self.state:
+            ordered["note"] = self.state["note"]
+        ordered["rounds"] = self.state["rounds"]
+        ordered["patterns"] = self.state["patterns"]
+        ordered["insights"] = self.state["insights"]
+        self.mem_path.write_text(json.dumps(ordered, indent=2,
                                             ensure_ascii=False))
 
     # ------------------------------------------------------------ back-compat

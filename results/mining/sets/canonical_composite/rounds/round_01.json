@@ -1,0 +1,2632 @@
+{
+  "round": 1,
+  "diversity": 0.8060056713182578,
+  "results": [
+    {
+      "name": "x_nvolburst_med",
+      "expr": "(CsRank(-TsCount(VOLUME / TsMean(VOLUME, 60) > 2, 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5)",
+      "family": "pair",
+      "rationale": "Prior winner re-derived.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.04649624397461842,
+        "ic_std": 0.08827641268229337,
+        "icir": -0.526711978452934,
+        "t_stat": -18.03940467898894,
+        "n_days": 1173,
+        "pos_rate": 0.2753623188405797,
+        "coverage": 0.9608570751430973,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.04351117985781717,
+          "ic_std": 0.05712795174207385,
+          "icir": -0.7616443182536135,
+          "t_stat": -16.756175001579496,
+          "n_days": 484,
+          "pos_rate": 0.23553719008264462
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.012553153427727176,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.02828346670503835,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.04387719291722962,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.02470859935437727,
+          "2018": -0.060894618198971046,
+          "2019": -0.06947558354989346,
+          "2020": -0.033673011328185676,
+          "2021": -0.03977941543242332,
+          "2022": -0.04247357176442483,
+          "2023": -0.0445487879512095
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.043769264548724936,
+          "min_window_ic": 0.009188913986613645
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03689259126247549,
+          "ci95": 0.053972973206640865,
+          "boot_mean": 0.045502005138505254,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0001"
+    },
+    {
+      "name": "x_hlburst_rev20",
+      "expr": "(CsRank(-TsCount((HIGH / LOW - 1) > 2 * TsMean(HIGH / LOW - 1, 60), 60)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 20)) - 0.5)",
+      "family": "pair",
+      "rationale": "Prior winner re-derived.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.05167810610947911,
+        "ic_std": 0.08481822745378442,
+        "icir": -0.6092806659704999,
+        "t_stat": -20.867306889068356,
+        "n_days": 1173,
+        "pos_rate": 0.2549019607843137,
+        "coverage": 0.965383759093945,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.04285027219794657,
+          "ic_std": 0.04646675280049652,
+          "icir": -0.9221705760659198,
+          "t_stat": -20.287752673450235,
+          "n_days": 484,
+          "pos_rate": 0.20454545454545456
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.019746461758841243,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.03452633140115884,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.046741478289908385,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.04482277444605242,
+          "2018": -0.06776056612594572,
+          "2019": -0.07188213649970342,
+          "2020": -0.036964603140070704,
+          "2021": -0.03566422279686784,
+          "2022": -0.04667220963486024,
+          "2023": -0.03902833476103291
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04596399053171581,
+          "min_window_ic": 0.020970833852372868
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.0417462175332844,
+          "ci95": 0.05715416153683444,
+          "boot_mean": 0.049439274180432646,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0002"
+    },
+    {
+      "name": "x_aggrmax_med",
+      "expr": "(CsRank(-TsMax(CLOSE / VWAP - 1, 20)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5)",
+      "family": "pair",
+      "rationale": "Prior winner re-derived.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.03598801639831296,
+        "ic_std": 0.04587140686982174,
+        "icir": -0.7845413701926167,
+        "t_stat": -26.86982609714417,
+        "n_days": 1173,
+        "pos_rate": 0.21739130434782608,
+        "coverage": 0.9578950644326504,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.03936528869052939,
+          "ic_std": 0.04906152811320443,
+          "icir": -0.8023657273719244,
+          "t_stat": -17.652046002182335,
+          "n_days": 484,
+          "pos_rate": 0.21074380165289255
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.013201887865801419,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.0160297831337363,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.03473256860245761,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.030548674206370058,
+          "2018": -0.044708460786673114,
+          "2019": -0.037054654454283964,
+          "2020": -0.03186984959411459,
+          "2021": -0.034791536150495427,
+          "2022": -0.03879275992439582,
+          "2023": -0.03993781745666296
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03752685401139188,
+          "min_window_ic": 0.009431576868582458
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03235505092194984,
+          "ci95": 0.04149088740440457,
+          "boot_mean": 0.03672822632192792,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0003"
+    },
+    {
+      "name": "x_maxfreq_amtself",
+      "expr": "(CsRank(-TsCount(RET > 2 * TsStd(RET, 60), 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "pair",
+      "rationale": "Prior winner re-derived.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.045359669499370994,
+        "ic_std": 0.07122825185089698,
+        "icir": -0.636821321886756,
+        "t_stat": -21.38809703313559,
+        "n_days": 1128,
+        "pos_rate": 0.25354609929078015,
+        "coverage": 0.9208025413970502,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.03163627765310302,
+          "ic_std": 0.05236756487884,
+          "icir": -0.6041197013131728,
+          "t_stat": -13.290633428889802,
+          "n_days": 484,
+          "pos_rate": 0.2603305785123967
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.01867326316030516,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.02922464786190198,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.036057019584762595,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.041482682540099465,
+          "2018": -0.04354408549810561,
+          "2019": -0.06541161541399787,
+          "2020": -0.042298466195719725,
+          "2021": -0.03257496781465032,
+          "2022": -0.03734851281618684,
+          "2023": -0.025924042490019204
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03798355738374256,
+          "min_window_ic": 0.011906443329626235
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.033805286388615255,
+          "ci95": 0.04730523998934402,
+          "boot_mean": 0.041083365635105264,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0004"
+    },
+    {
+      "name": "x_maxfreq_med",
+      "expr": "(CsRank(-TsCount(RET > 2 * TsStd(RET, 60), 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5)",
+      "family": "pair",
+      "rationale": "Prior winner re-derived.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.040531753591435744,
+        "ic_std": 0.08836664479847439,
+        "icir": -0.4586770685236598,
+        "t_stat": -15.709271090385904,
+        "n_days": 1173,
+        "pos_rate": 0.32225063938618925,
+        "coverage": 0.9608570751430973,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.04198513062599753,
+          "ic_std": 0.048618341162176774,
+          "icir": -0.863565675471058,
+          "t_stat": -18.998444860363275,
+          "n_days": 484,
+          "pos_rate": 0.1962809917355372
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.013141169681289387,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.027515730176153056,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.035996261413339815,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.009579670890715606,
+          "2018": -0.05010594118226053,
+          "2019": -0.06302513886051898,
+          "2020": -0.029867850829503564,
+          "2021": -0.04451048330776008,
+          "2022": -0.0427279096564432,
+          "2023": -0.04124235159555185
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04276736127190296,
+          "min_window_ic": 0.005592009936467972
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03247545019542576,
+          "ci95": 0.04924553959029951,
+          "boot_mean": 0.040835370464615266,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0005"
+    },
+    {
+      "name": "x_hlburst_amtself",
+      "expr": "(CsRank(-TsCount((HIGH / LOW - 1) > 2 * TsMean(HIGH / LOW - 1, 60), 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "pair",
+      "rationale": "Prior winner re-derived.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.054834350058227774,
+        "ic_std": 0.07534008651381292,
+        "icir": -0.7278243574643943,
+        "t_stat": -24.444498708691516,
+        "n_days": 1128,
+        "pos_rate": 0.2198581560283688,
+        "coverage": 0.9208025413970502,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.04134732710911434,
+          "ic_std": 0.05366232353010678,
+          "icir": -0.7705094447860943,
+          "t_stat": -16.951207785294073,
+          "n_days": 484,
+          "pos_rate": 0.21694214876033058
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.021850942184643944,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.03449027096305867,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.0456452736329379,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.06479115746186237,
+          "2018": -0.051805510167027696,
+          "2019": -0.07537425513062097,
+          "2020": -0.04704732912464041,
+          "2021": -0.0386747294623267,
+          "2022": -0.04839390121391676,
+          "2023": -0.03430075300431192
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04679743428832766,
+          "min_window_ic": 0.02488118657193743
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.043092813969287755,
+          "ci95": 0.05764357392112345,
+          "boot_mean": 0.05068278991285098,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0006"
+    },
+    {
+      "name": "x_aggrburst_med",
+      "expr": "(CsRank(-TsCount((CLOSE / VWAP - 1) > 2 * TsStd(CLOSE / VWAP - 1, 60), 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5)",
+      "family": "pair",
+      "rationale": "Prior winner re-derived.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.04116361813331105,
+        "ic_std": 0.08784618008216012,
+        "icir": -0.46858745701647864,
+        "t_stat": -16.048692853819237,
+        "n_days": 1173,
+        "pos_rate": 0.3188405797101449,
+        "coverage": 0.9608570751430973,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.03677890505405499,
+          "ic_std": 0.04656603211089501,
+          "icir": -0.7898226107491316,
+          "t_stat": -17.376097436480897,
+          "n_days": 484,
+          "pos_rate": 0.21487603305785125
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.02243961789958349,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.030977636995026682,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.038141964850851855,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.011900456371915722,
+          "2018": -0.04434179002384225,
+          "2019": -0.061539965806453135,
+          "2020": -0.03725139116425694,
+          "2021": -0.04552237905558867,
+          "2022": -0.041365436017759674,
+          "2023": -0.0321923740903503
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03922190060148701,
+          "min_window_ic": 0.008585929265365892
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03189422374327852,
+          "ci95": 0.0480504315100104,
+          "boot_mean": 0.03988930353675443,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0007"
+    },
+    {
+      "name": "x_aggrburst_rev20",
+      "expr": "(CsRank(-TsCount((CLOSE / VWAP - 1) > 2 * TsStd(CLOSE / VWAP - 1, 60), 60)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 20)) - 0.5)",
+      "family": "pair",
+      "rationale": "Prior winner re-derived.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.04225421729026365,
+        "ic_std": 0.07483308435228293,
+        "icir": -0.5646462077033793,
+        "t_stat": -19.33861741883262,
+        "n_days": 1173,
+        "pos_rate": 0.2872975277067349,
+        "coverage": 0.965383759093945,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.03558671864578201,
+          "ic_std": 0.0431938972884262,
+          "icir": -0.8238830223666218,
+          "t_stat": -18.125426492065678,
+          "n_days": 484,
+          "pos_rate": 0.20041322314049587
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.016560594778258386,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.032602344676829195,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.03844012449345549,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.028335663372708292,
+          "2018": -0.05017803179296689,
+          "2019": -0.05968023704823924,
+          "2020": -0.0378335039696708,
+          "2021": -0.03270898426685708,
+          "2022": -0.03782980213630966,
+          "2023": -0.033343635155254354
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03975075700183258,
+          "min_window_ic": 0.016084862779396598
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.0336654403149327,
+          "ci95": 0.047422141406622195,
+          "boot_mean": 0.04061624364405987,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0008"
+    },
+    {
+      "name": "x_nvolburst_rev60",
+      "expr": "(CsRank(-TsCount(VOLUME / TsMean(VOLUME, 60) > 2, 60)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5)",
+      "family": "pair",
+      "rationale": "Prior winner re-derived.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.0491520485433614,
+        "ic_std": 0.07288820027505799,
+        "icir": -0.6743485002768138,
+        "t_stat": -23.095820844806852,
+        "n_days": 1173,
+        "pos_rate": 0.2216538789428815,
+        "coverage": 0.9608570751430973,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.032410999843474425,
+          "ic_std": 0.056714591379620594,
+          "icir": -0.5714755066563127,
+          "t_stat": -12.572461146438881,
+          "n_days": 484,
+          "pos_rate": 0.27479338842975204
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.0029987751966561883,
+            "pass": false
+          },
+          "csi500": {
+            "ic_mean": -0.02755398456027415,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.041067876004354464,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.036640630098141745,
+          "2018": -0.05385056621706015,
+          "2019": -0.064782293668911,
+          "2020": -0.05197224589476304,
+          "2021": -0.036236230137231505,
+          "2022": -0.0381529098670981,
+          "2023": -0.02666908981985074
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04456747593311983,
+          "min_window_ic": 0.014150057103933284
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.037022839077354,
+          "ci95": 0.050772403964779965,
+          "boot_mean": 0.04402050900656835,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0009"
+    },
+    {
+      "name": "x_maxfreq_rev60",
+      "expr": "(CsRank(-TsCount(RET > 2 * TsStd(RET, 60), 60)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5)",
+      "family": "pair",
+      "rationale": "Prior winner re-derived.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.04182663005740091,
+        "ic_std": 0.07448867012663232,
+        "icir": -0.5615166707405937,
+        "t_stat": -19.231433633312186,
+        "n_days": 1173,
+        "pos_rate": 0.27621483375959077,
+        "coverage": 0.9608570751430973,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.03395387484201847,
+          "ic_std": 0.047725294153067754,
+          "icir": -0.7114440140089935,
+          "t_stat": -15.651768308197857,
+          "n_days": 484,
+          "pos_rate": 0.20867768595041322
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.0048403726093454915,
+            "pass": false
+          },
+          "csi500": {
+            "ic_mean": -0.02969835420336992,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.035591542974080584,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.02223637312516673,
+          "2018": -0.04531945304650632,
+          "2019": -0.05152799299448491,
+          "2020": -0.04505246410516774,
+          "2021": -0.0414903550361597,
+          "2022": -0.03380029447538764,
+          "2023": -0.03410745520864929
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03896908027153042,
+          "min_window_ic": 0.009731535616950228
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03233317449747541,
+          "ci95": 0.04597552040506717,
+          "boot_mean": 0.03921083554363673,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0010"
+    },
+    {
+      "name": "x3_med_volclock_maxfreq",
+      "expr": "(CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5) * (CsRank(-TsCount(RET > 2 * TsStd(RET, 60), 60)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Prior 3-way re-derived.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04143264063784057,
+        "ic_std": 0.0716688527007029,
+        "icir": 0.5781122353230334,
+        "t_stat": 18.5537103925091,
+        "n_days": 1030,
+        "pos_rate": 0.7398058252427184,
+        "coverage": 0.813495306698458,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05325663271858785,
+          "ic_std": 0.08064348782854795,
+          "icir": 0.6603959495379724,
+          "t_stat": 14.528710889835393,
+          "n_days": 484,
+          "pos_rate": 0.7541322314049587
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.023770725843934533,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.02628803269885136,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.044402963154281966,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.005964051483596813,
+          "2018": 0.04359388841034473,
+          "2019": 0.04756685174123645,
+          "2020": 0.03196869811131536,
+          "2021": 0.05089567313903571,
+          "2022": 0.05624909667115386,
+          "2023": 0.05026416876602183
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.046186603887230074,
+          "min_window_ic": 0.012235917229266107
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.037261649732264326,
+          "ci95": 0.053482118435989205,
+          "boot_mean": 0.0450490313753088,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0011"
+    },
+    {
+      "name": "x3_rev60_volclock_amtself",
+      "expr": "(CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Prior 3-way re-derived.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04801691284053072,
+        "ic_std": 0.07927015845630747,
+        "icir": 0.6057375660097479,
+        "t_stat": 19.440307066548,
+        "n_days": 1030,
+        "pos_rate": 0.7631067961165049,
+        "coverage": 0.8120589481546384,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05803378515341448,
+          "ic_std": 0.09727432818389911,
+          "icir": 0.5965991874413198,
+          "t_stat": 13.125182123709035,
+          "n_days": 484,
+          "pos_rate": 0.75
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.018843798008704574,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03149714553017177,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04718212216279653,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.011365964683146044,
+          "2018": 0.0499907619507075,
+          "2019": 0.05146907012055239,
+          "2020": 0.03716863137094819,
+          "2021": 0.06202211749888972,
+          "2022": 0.0645226828786107,
+          "2023": 0.05154488742821825
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04928888732263271,
+          "min_window_ic": 0.02868519309427823
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.0419373783970633,
+          "ci95": 0.060219974020622395,
+          "boot_mean": 0.05080279239647112,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0012"
+    },
+    {
+      "name": "x3_aggrmax_med_volclock",
+      "expr": "(CsRank(-TsMax(CLOSE / VWAP - 1, 20)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Prior 3-way re-derived.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04674815789490528,
+        "ic_std": 0.07542212787441986,
+        "icir": 0.6198201935212221,
+        "t_stat": 19.89226946493501,
+        "n_days": 1030,
+        "pos_rate": 0.7398058252427184,
+        "coverage": 0.813495306698458,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05371932203052914,
+          "ic_std": 0.0782097158794027,
+          "icir": 0.6868625135189457,
+          "t_stat": 15.110975297416804,
+          "n_days": 484,
+          "pos_rate": 0.7789256198347108
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.021276117019810994,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03393948370992205,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.0442237071274148,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.0049300185613043975,
+          "2018": 0.04730090193510615,
+          "2019": 0.05196370708948355,
+          "2020": 0.03926780136800378,
+          "2021": 0.058247951198635364,
+          "2022": 0.05950871157197885,
+          "2023": 0.04792993248907944
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04991893253612811,
+          "min_window_ic": 0.013516968543200392
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.04068199570735494,
+          "ci95": 0.0570146658669949,
+          "boot_mean": 0.048746083567683965,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0013"
+    },
+    {
+      "name": "x3_hlburst_nvolburst_med",
+      "expr": "(CsRank(-TsCount((HIGH / LOW - 1) > 2 * TsMean(HIGH / LOW - 1, 60), 60)) - 0.5) * (CsRank(-TsCount(VOLUME / TsMean(VOLUME, 60) > 2, 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Prior 3-way re-derived.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.052434027323384494,
+        "ic_std": 0.09677719121909542,
+        "icir": 0.5418014995359626,
+        "t_stat": 18.556207008088073,
+        "n_days": 1173,
+        "pos_rate": 0.7169650468883205,
+        "coverage": 0.9608570751430973,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05256170086702362,
+          "ic_std": 0.09344482808144186,
+          "icir": 0.5624891387377101,
+          "t_stat": 12.374761052229623,
+          "n_days": 484,
+          "pos_rate": 0.7252066115702479
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.029160577511200377,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03506039722018838,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.05120547976199446,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.025579274047201252,
+          "2018": 0.06161033204820892,
+          "2019": 0.07388321318574702,
+          "2020": 0.036189484039448314,
+          "2021": 0.060067489359122594,
+          "2022": 0.05612926072788492,
+          "2023": 0.04899414100616234
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.05404252572700783,
+          "min_window_ic": 0.018260659147776272
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.042867942989865966,
+          "ci95": 0.06304566696982777,
+          "boot_mean": 0.05270772460144713,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0014"
+    },
+    {
+      "name": "x3_nvolburst_med_amtself",
+      "expr": "(CsRank(-TsCount(VOLUME / TsMean(VOLUME, 60) > 2, 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Prior 3-way re-derived.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.053339120116114844,
+        "ic_std": 0.0677080353754135,
+        "icir": 0.7877812407400558,
+        "t_stat": 26.458193277687542,
+        "n_days": 1128,
+        "pos_rate": 0.776595744680851,
+        "coverage": 0.9199572443940123,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.051020126434918836,
+          "ic_std": 0.08939598476838248,
+          "icir": 0.5707205593976924,
+          "t_stat": 12.555852306749232,
+          "n_days": 484,
+          "pos_rate": 0.7272727272727273
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.029313264582639213,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03648423232581422,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.0502571352966566,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.05806501183384944,
+          "2018": 0.05849405197693492,
+          "2019": 0.05321734933732727,
+          "2020": 0.05105916438942245,
+          "2021": 0.04757195819505424,
+          "2022": 0.05819404103041305,
+          "2023": 0.04384621183942463
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.05562426803712371,
+          "min_window_ic": 0.02619876818646553
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.04447137964672297,
+          "ci95": 0.05946784652246776,
+          "boot_mean": 0.05237633037000488,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0015"
+    },
+    {
+      "name": "x3_gapvol_maxfreq_med",
+      "expr": "(CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5) * (CsRank(-TsCount(RET > 2 * TsStd(RET, 60), 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Prior 3-way re-derived.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.03638704761474371,
+        "ic_std": 0.056968794432194006,
+        "icir": 0.6387189333636449,
+        "t_stat": 21.875540687192775,
+        "n_days": 1173,
+        "pos_rate": 0.7681159420289855,
+        "coverage": 0.9561024889699633,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.04920628575070465,
+          "ic_std": 0.0638791700706832,
+          "icir": 0.7703025210918865,
+          "t_stat": 16.946655464021504,
+          "n_days": 484,
+          "pos_rate": 0.7665289256198347
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.021877708003546072,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.019007340743573332,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03754760977184433,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.034299216541966146,
+          "2018": 0.03748676363701535,
+          "2019": 0.0421172965945834,
+          "2020": 0.021518258660931048,
+          "2021": 0.04612066977869064,
+          "2022": 0.056066325379128604,
+          "2023": 0.04234624612228069
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03885823556636691,
+          "min_window_ic": 0.0017670041606239492
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03365975241532985,
+          "ci95": 0.04598779894726809,
+          "boot_mean": 0.040022377308150725,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0016"
+    },
+    {
+      "name": "x3_maxfreq_amtself_med",
+      "expr": "(CsRank(-TsCount(RET > 2 * TsStd(RET, 60), 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Prior 3-way re-derived.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04807057644922912,
+        "ic_std": 0.07102851239473247,
+        "icir": 0.6767785897314397,
+        "t_stat": 22.730090293205887,
+        "n_days": 1128,
+        "pos_rate": 0.7597517730496454,
+        "coverage": 0.9199572443940123,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.048567777948931634,
+          "ic_std": 0.07962218664515146,
+          "icir": 0.6099779470435975,
+          "t_stat": 13.419514834959145,
+          "n_days": 484,
+          "pos_rate": 0.7458677685950413
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.020118495054176393,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.030629787258160922,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04521161983928419,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.047711001532109804,
+          "2018": 0.051512729151048854,
+          "2019": 0.052410053007560964,
+          "2020": 0.040155787742993394,
+          "2021": 0.04841523645331809,
+          "2022": 0.05207465693064829,
+          "2023": 0.045060898967214984
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04839655153353327,
+          "min_window_ic": 0.025851815212062763
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03979921773230782,
+          "ci95": 0.05554635481115998,
+          "boot_mean": 0.04798650400720777,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0017"
+    },
+    {
+      "name": "x3_hlburst_volclock_rev20",
+      "expr": "(CsRank(-TsCount((HIGH / LOW - 1) > 2 * TsMean(HIGH / LOW - 1, 60), 60)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 20)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Prior 3-way re-derived.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.03576299994930233,
+        "ic_std": 0.05040613647470194,
+        "icir": 0.7094969472070375,
+        "t_stat": 22.770320499259313,
+        "n_days": 1030,
+        "pos_rate": 0.7495145631067961,
+        "coverage": 0.8147181266054299,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.0419641083021104,
+          "ic_std": 0.0672000278734263,
+          "icir": 0.6244656383350217,
+          "t_stat": 13.738244043370477,
+          "n_days": 484,
+          "pos_rate": 0.7396694214876033
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.015981142396617447,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.02459553923641131,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03397721383917067,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.024057050217448354,
+          "2018": 0.032483202453760095,
+          "2019": 0.04594246663275883,
+          "2020": 0.033646241025789794,
+          "2021": 0.033684038936062005,
+          "2022": 0.03980879910651447,
+          "2023": 0.04411941749770633
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03741334010289311,
+          "min_window_ic": 0.015429890184997694
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.031194275739789563,
+          "ci95": 0.04352606206901993,
+          "boot_mean": 0.03751619577298093,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0018"
+    },
+    {
+      "name": "x_dipbuy_med",
+      "expr": "(CsRank(TsCount(((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0) > 0.5, 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5)",
+      "family": "pair",
+      "rationale": "Absorption count x stretch.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": 0.040340030128075556,
+        "ic_std": 0.11219892009824599,
+        "icir": 0.3595402709112723,
+        "t_stat": 12.313926226648979,
+        "n_days": 1173,
+        "pos_rate": 0.6837169650468883,
+        "coverage": 0.9608570751430973,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.03567573356121181,
+          "ic_std": 0.04367283608255665,
+          "icir": 0.8168861187254345,
+          "t_stat": 17.97149461195956,
+          "n_days": 484,
+          "pos_rate": 0.8099173553719008
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.01331263218990108,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.02188837160643719,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03592309994394562,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.017643023627837186,
+          "2018": 0.056838383039034344,
+          "2019": 0.06262829550047196,
+          "2020": 0.0230950320216434,
+          "2021": 0.03738735248068041,
+          "2022": 0.03552050254999466,
+          "2023": 0.035830964572428944
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.036733350389802334,
+          "min_window_ic": 0.012189089715285184
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.02875648651967385,
+          "ci95": 0.04944603979249143,
+          "boot_mean": 0.03918115615129038,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0019"
+    },
+    {
+      "name": "x_dipbuy_amtself",
+      "expr": "(CsRank(TsCount(((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0) > 0.5, 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "pair",
+      "rationale": "Absorption x dollar-attention state.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": 0.04102940687665485,
+        "ic_std": 0.07984541398594965,
+        "icir": 0.513860531600159,
+        "t_stat": 17.25837143580636,
+        "n_days": 1128,
+        "pos_rate": 0.7163120567375887,
+        "coverage": 0.9208025413970502,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.02777042741318006,
+          "ic_std": 0.04412773706295342,
+          "icir": 0.6293190918347403,
+          "t_stat": 13.845020020364288,
+          "n_days": 484,
+          "pos_rate": 0.7582644628099173
+        },
+        "oos_pass": false,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.014445918135665562,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.019825399190508044,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03281504221854164,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.05775793984657217,
+          "2018": 0.044553349334880143,
+          "2019": 0.05514339503668266,
+          "2020": 0.0260749152474434,
+          "2021": 0.027617422214785185,
+          "2022": 0.031006876055431204,
+          "2023": 0.024533978770928912
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.036451839732754975,
+          "min_window_ic": 0.013359246291072787
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.02940181856979741,
+          "ci95": 0.04399656132673288,
+          "boot_mean": 0.03708221750888752,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": false
+      }
+    },
+    {
+      "name": "x_dipbuy_gapvol",
+      "expr": "(CsRank(TsCount(((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0) > 0.5, 60)) - 0.5) * (CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5)",
+      "family": "pair",
+      "rationale": "Absorption x overnight risk.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": 0.047140485591861125,
+        "ic_std": 0.0907839851789387,
+        "icir": 0.5192599278269777,
+        "t_stat": 17.78417874445677,
+        "n_days": 1173,
+        "pos_rate": 0.7416879795396419,
+        "coverage": 0.9632823665443367,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.020168992197750774,
+          "ic_std": 0.03822523596382177,
+          "icir": 0.5276355185050968,
+          "t_stat": 11.60798140711213,
+          "n_days": 484,
+          "pos_rate": 0.71900826446281
+        },
+        "oos_pass": false,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.0023072664157871296,
+            "pass": false
+          },
+          "csi500": {
+            "ic_mean": 0.009913345089720712,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03460227452008354,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.08838803146745516,
+          "2018": 0.0432477382942585,
+          "2019": 0.044133342103605464,
+          "2020": 0.03473592308880364,
+          "2021": 0.03250871652838777,
+          "2022": 0.026148039671438576,
+          "2023": 0.014189944724062972
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.031220592688069072,
+          "min_window_ic": 0.00029149693214603986
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.031026604400099547,
+          "ci95": 0.04677202671308527,
+          "boot_mean": 0.03912181467831982,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": false
+      }
+    },
+    {
+      "name": "x_pin_med",
+      "expr": "(CsRank(-TsCount(Abs(CLOSE / VWAP - 1) < 0.002, 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5)",
+      "family": "pair",
+      "rationale": "Stalemates x stretch.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.023216462924421356,
+        "ic_std": 0.09837802062010675,
+        "icir": -0.2359923769362393,
+        "t_stat": -8.08252358568627,
+        "n_days": 1173,
+        "pos_rate": 0.4040920716112532,
+        "coverage": 0.9608570751430973,
+        "pass": false
+      }
+    },
+    {
+      "name": "x_pin_rev60",
+      "expr": "(CsRank(-TsCount(Abs(CLOSE / VWAP - 1) < 0.002, 60)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5)",
+      "family": "pair",
+      "rationale": "Stalemates x reversal.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.026546088013211754,
+        "ic_std": 0.07855163064718712,
+        "icir": -0.33794445506093834,
+        "t_stat": -11.57428923824905,
+        "n_days": 1173,
+        "pos_rate": 0.34271099744245526,
+        "coverage": 0.9608570751430973,
+        "pass": false
+      }
+    },
+    {
+      "name": "x_pin_amtself",
+      "expr": "(CsRank(-TsCount(Abs(CLOSE / VWAP - 1) < 0.002, 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "pair",
+      "rationale": "Stalemates x dollar state.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.027506463658401568,
+        "ic_std": 0.06348676642465075,
+        "icir": -0.4332629492328548,
+        "t_stat": -14.551444307172023,
+        "n_days": 1128,
+        "pos_rate": 0.3191489361702128,
+        "coverage": 0.9208025413970502,
+        "pass": false
+      }
+    },
+    {
+      "name": "x_truegapdn_med",
+      "expr": "(CsRank(-TsCount((OPEN < Delay(LOW, 1)) > 0.5, 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5)",
+      "family": "pair",
+      "rationale": "Range-breaks x stretch.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.04143220442018345,
+        "ic_std": 0.10252147666146463,
+        "icir": -0.40413195136660396,
+        "t_stat": -13.841150595862315,
+        "n_days": 1173,
+        "pos_rate": 0.3350383631713555,
+        "coverage": 0.9608570751430973,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.017777876249563056,
+          "ic_std": 0.038679943113110744,
+          "icir": -0.4596148499385244,
+          "t_stat": -10.111526698647538,
+          "n_days": 484,
+          "pos_rate": 0.34297520661157027
+        },
+        "oos_pass": false,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.013583074648602438,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.014650221063074157,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.03363771016560366,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.03001857313161949,
+          "2018": -0.05898074699841546,
+          "2019": -0.06549985984731002,
+          "2020": -0.0214066985137564,
+          "2021": -0.029136403688682658,
+          "2022": -0.023243550243135437,
+          "2023": -0.012312202255990681
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03256259169239906,
+          "min_window_ic": 0.0008606862252626873
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.025516746335505474,
+          "ci95": 0.04392791860581222,
+          "boot_mean": 0.03468524750270784,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": false
+      }
+    },
+    {
+      "name": "x_truegapdn_amtself",
+      "expr": "(CsRank(-TsCount((OPEN < Delay(LOW, 1)) > 0.5, 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "pair",
+      "rationale": "Range-breaks x dollar state.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.03893020574761276,
+        "ic_std": 0.07197482375651272,
+        "icir": -0.540886433835694,
+        "t_stat": -18.166055584492025,
+        "n_days": 1128,
+        "pos_rate": 0.26861702127659576,
+        "coverage": 0.9208025413970502,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.0139624225662741,
+          "ic_std": 0.035741055746073974,
+          "icir": -0.3906550121370665,
+          "t_stat": -8.594410267015462,
+          "n_days": 484,
+          "pos_rate": 0.34917355371900827
+        },
+        "oos_pass": false,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.01157171706252581,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.016776252382899304,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.02922721538314058,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.05950915886679935,
+          "2018": -0.04271876704463348,
+          "2019": -0.05507326054701187,
+          "2020": -0.022235709154957563,
+          "2021": -0.022500161189225373,
+          "2022": -0.01872212474893705,
+          "2023": -0.009202720383611142
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 0.9866666666666667,
+          "median_window_ic": 0.028966205125138634,
+          "min_window_ic": -0.0012962659689313319
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.024780244608380086,
+          "ci95": 0.03780791621917505,
+          "boot_mean": 0.0315190548793066,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": false
+      }
+    },
+    {
+      "name": "x_island_med",
+      "expr": "(CsRank(-TsCount(((OPEN > Delay(HIGH, 1)) * (LOW > Delay(HIGH, 1))) > 0.5, 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5)",
+      "family": "pair",
+      "rationale": "Islands x stretch.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.027279517463507402,
+        "ic_std": 0.05140628665368069,
+        "icir": -0.5306650069336255,
+        "t_stat": -18.17479229762677,
+        "n_days": 1173,
+        "pos_rate": 0.31202046035805625,
+        "coverage": 0.9608570751430973,
+        "pass": false
+      }
+    },
+    {
+      "name": "x_doji_med",
+      "expr": "(CsRank(-TsCount(Abs(CLOSE / OPEN - 1) < 0.002, 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5)",
+      "family": "pair",
+      "rationale": "Dojis x stretch.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.024038163938573186,
+        "ic_std": 0.09467977650891923,
+        "icir": -0.25388910731436604,
+        "t_stat": -8.695470271786046,
+        "n_days": 1173,
+        "pos_rate": 0.3998294970161978,
+        "coverage": 0.9608570751430973,
+        "pass": false
+      }
+    },
+    {
+      "name": "x_maxfreq_hlbest",
+      "expr": "(CsRank(-TsCount(RET > 2 * TsStd(RET, 60), 60)) - 0.5) * (CsRank(-TsMean((HIGH / LOW - 1) * (RET >= TsMax(RET, 20)), 60)) - 0.5)",
+      "family": "pair",
+      "rationale": "Lottery count x best-day texture state.",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": -0.03627518321780733,
+        "ic_std": 0.05047955616055361,
+        "icir": -0.718611374126026,
+        "t_stat": -24.611783887770617,
+        "n_days": 1173,
+        "pos_rate": 0.21994884910485935,
+        "coverage": 0.9608570751430973,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.021521503246402916,
+          "ic_std": 0.04404366422646504,
+          "icir": -0.4886401625383166,
+          "t_stat": -10.750083575842964,
+          "n_days": 484,
+          "pos_rate": 0.2871900826446281
+        },
+        "oos_pass": false,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.015723651925279608,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.020678133463413018,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.02489299743065464,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.043546453709214575,
+          "2018": -0.03361970875605925,
+          "2019": -0.042771426372728634,
+          "2020": -0.039241609520280926,
+          "2021": -0.023456669944644577,
+          "2022": -0.027566688380223008,
+          "2023": -0.015476318112582823
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03044420545057379,
+          "min_window_ic": 0.006004791108757624
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.02654396315353658,
+          "ci95": 0.0366156527224544,
+          "boot_mean": 0.03184444980036874,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": false
+      }
+    },
+    {
+      "name": "x_dipbuy_maxfreq",
+      "expr": "(CsRank(TsCount(((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0) > 0.5, 60)) - 0.5) * (CsRank(-TsCount(RET > 2 * TsStd(RET, 60), 60)) - 0.5)",
+      "family": "pair",
+      "rationale": "Absorption x lottery (two counts \u2014 failed template, one control probe).",
+      "logic_score": 66,
+      "s1": {
+        "ic_mean": 0.04163086591491052,
+        "ic_std": 0.07193529918258108,
+        "icir": 0.5787265276988145,
+        "t_stat": 19.820855531497855,
+        "n_days": 1173,
+        "pos_rate": 0.7144075021312873,
+        "coverage": 0.9719694630173584,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.021078582410798626,
+          "ic_std": 0.04165550207668723,
+          "icir": 0.5060215664186026,
+          "t_stat": 11.132474461209258,
+          "n_days": 484,
+          "pos_rate": 0.7417355371900827
+        },
+        "oos_pass": false,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.004784736120546639,
+            "pass": false
+          },
+          "csi500": {
+            "ic_mean": 0.02258557554439456,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03525055276315964,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.03971381352300499,
+          "2018": 0.04571106813006958,
+          "2019": 0.04287511510237914,
+          "2020": 0.04155928037266997,
+          "2021": 0.037950700586184424,
+          "2022": 0.02147805506046559,
+          "2023": 0.020679109761131666
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03653912961899223,
+          "min_window_ic": 0.006453540035644459
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.02871063827559519,
+          "ci95": 0.04261163096151514,
+          "boot_mean": 0.035793191108689046,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": false
+      }
+    },
+    {
+      "name": "x3_dipbuy_med_volclock",
+      "expr": "(CsRank(TsCount(((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0) > 0.5, 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Absorption x stretch x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": -0.0302763401466712,
+        "ic_std": 0.049794025008000044,
+        "icir": -0.6080315889668875,
+        "t_stat": -19.51393055171218,
+        "n_days": 1030,
+        "pos_rate": 0.26407766990291265,
+        "coverage": 0.813495306698458,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.03419873080566504,
+          "ic_std": 0.050101964099477286,
+          "icir": -0.6825826376339972,
+          "t_stat": -15.016818027947938,
+          "n_days": 484,
+          "pos_rate": 0.22933884297520662
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.022706467152791003,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.024916652321888194,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.030330522219951566,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.020531043983098338,
+          "2018": -0.034742795821080565,
+          "2019": -0.030715715014750594,
+          "2020": -0.025061262618051843,
+          "2021": -0.03286971267377124,
+          "2022": -0.03483220173663139,
+          "2023": -0.03356525987469868
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.0329566807559207,
+          "min_window_ic": 0.0063497880336543565
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.025708111455244646,
+          "ci95": 0.0366404956035644,
+          "boot_mean": 0.031133864373273135,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0020"
+    },
+    {
+      "name": "x3_dipbuy_maxfreq_med",
+      "expr": "(CsRank(TsCount(((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0) > 0.5, 60)) - 0.5) * (CsRank(-TsCount(RET > 2 * TsStd(RET, 60), 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Absorption x lottery x stretch.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": -0.03333842986076916,
+        "ic_std": 0.07102493374975877,
+        "icir": -0.4693905097923783,
+        "t_stat": -16.076196678671653,
+        "n_days": 1173,
+        "pos_rate": 0.3034953111679454,
+        "coverage": 0.9608570751430973,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": -0.03391268381799841,
+          "ic_std": 0.04343668231575066,
+          "icir": -0.7807383531614998,
+          "t_stat": -17.176243769552993,
+          "n_days": 484,
+          "pos_rate": 0.2190082644628099
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": -0.015608101927245419,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": -0.02114702584529021,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": -0.031208277657702066,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": -0.01663785234653932,
+          "2018": -0.04362272412133783,
+          "2019": -0.046694613972399955,
+          "2020": -0.024260606610552255,
+          "2021": -0.03246614230559457,
+          "2022": -0.03250394153446709,
+          "2023": -0.03532142610152974
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03271880467257275,
+          "min_window_ic": 0.010585585620584786
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.02674899859324906,
+          "ci95": 0.040163166072740945,
+          "boot_mean": 0.03353596628822088,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0021"
+    },
+    {
+      "name": "x3_pin_med_volclock",
+      "expr": "(CsRank(-TsCount(Abs(CLOSE / VWAP - 1) < 0.002, 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Stalemates x stretch x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": -0.007873365200590654,
+        "ic_std": 0.04946793880718375,
+        "icir": -0.15916097153915135,
+        "t_stat": -5.108050636703315,
+        "n_days": 1030,
+        "pos_rate": 0.4786407766990291,
+        "coverage": 0.813495306698458,
+        "pass": false
+      }
+    },
+    {
+      "name": "x3_pin_maxfreq_amtself",
+      "expr": "(CsRank(-TsCount(Abs(CLOSE / VWAP - 1) < 0.002, 60)) - 0.5) * (CsRank(-TsCount(RET > 2 * TsStd(RET, 60), 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Stalemates x lottery x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.009967443299403031,
+        "ic_std": 0.05086421055553427,
+        "icir": 0.19596182051268513,
+        "t_stat": 6.581517119272157,
+        "n_days": 1128,
+        "pos_rate": 0.5913120567375887,
+        "coverage": 0.9208025413970502,
+        "pass": false
+      }
+    },
+    {
+      "name": "x3_truegapdn_med_amtself",
+      "expr": "(CsRank(-TsCount((OPEN < Delay(LOW, 1)) > 0.5, 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Range-breaks x stretch x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.031002884317382108,
+        "ic_std": 0.056361225219288276,
+        "icir": 0.5500747046707586,
+        "t_stat": 18.474650195622267,
+        "n_days": 1128,
+        "pos_rate": 0.725177304964539,
+        "coverage": 0.9199572443940123,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.022979658920188214,
+          "ic_std": 0.051005373186370155,
+          "icir": 0.45053408071777273,
+          "t_stat": 9.911749775791,
+          "n_days": 484,
+          "pos_rate": 0.6673553719008265
+        },
+        "oos_pass": false,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.022238729345734273,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.022571170709998152,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.026739034282877876,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.04007869194228799,
+          "2018": 0.041923331954758974,
+          "2019": 0.028118640487082035,
+          "2020": 0.03142900397395266,
+          "2021": 0.01676333477130635,
+          "2022": 0.01847431280687389,
+          "2023": 0.027485005033502537
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.028297260211459604,
+          "min_window_ic": 0.004425092654787995
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.02287429495799359,
+          "ci95": 0.03393756652446509,
+          "boot_mean": 0.028360401589124264,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": false
+      }
+    },
+    {
+      "name": "x3_gapdipmag_volclock_amtself",
+      "expr": "(CsRank(TsSum((OPEN / Delay(CLOSE, 1) - 1) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0), 60)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Dip-depth magnitude x clock x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04026537305664599,
+        "ic_std": 0.05810498505651265,
+        "icir": 0.6929762225647949,
+        "t_stat": 22.24011075492605,
+        "n_days": 1030,
+        "pos_rate": 0.7669902912621359,
+        "coverage": 0.8119136365486219,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.04848606712941443,
+          "ic_std": 0.07535152450118526,
+          "icir": 0.6434649789819681,
+          "t_stat": 14.156229537603298,
+          "n_days": 484,
+          "pos_rate": 0.762396694214876
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.010061681931759861,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.026055742738349333,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.042665563873842315,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.0642027878617963,
+          "2018": 0.03647580555666614,
+          "2019": 0.04050888107223026,
+          "2020": 0.040796427934849874,
+          "2021": 0.03766442642041317,
+          "2022": 0.05433316921608974,
+          "2023": 0.042638965042739126
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04373830483802377,
+          "min_window_ic": 0.011589068388904649
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.035371756422474476,
+          "ci95": 0.04916963633122771,
+          "boot_mean": 0.042342264344965554,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0022"
+    },
+    {
+      "name": "x3_aggrhigh_med_volclock",
+      "expr": "(CsRank(-TsMean((CLOSE / VWAP - 1) * (CLOSE >= TsMax(CLOSE, 20)), 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Aggression-at-highs x stretch x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04322396678854382,
+        "ic_std": 0.07742706784840572,
+        "icir": 0.5582539542007703,
+        "t_stat": 17.916386401900905,
+        "n_days": 1030,
+        "pos_rate": 0.7262135922330097,
+        "coverage": 0.813495306698458,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05293254030481418,
+          "ic_std": 0.0808718363965113,
+          "icir": 0.6545237831040228,
+          "t_stat": 14.399523228288501,
+          "n_days": 484,
+          "pos_rate": 0.7727272727272727
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.023088721277035824,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03057060199405521,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04586347287956381,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.003164686985855095,
+          "2018": 0.03860677477459539,
+          "2019": 0.047823073402230604,
+          "2020": 0.03751663721570557,
+          "2021": 0.058327076585263364,
+          "2022": 0.059220090465088596,
+          "2023": 0.04664499014453977
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04669786991661154,
+          "min_window_ic": 0.021643603484965006
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.037966877042256285,
+          "ci95": 0.054844363937501354,
+          "boot_mean": 0.0460592906564428,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0023"
+    },
+    {
+      "name": "x3_hlbest_rev60_amtself",
+      "expr": "(CsRank(-TsMean((HIGH / LOW - 1) * (RET >= TsMax(RET, 20)), 60)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Best-day texture x reversal x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.03819725773042419,
+        "ic_std": 0.05512220974237012,
+        "icir": 0.6929558504448629,
+        "t_stat": 23.273415100302337,
+        "n_days": 1128,
+        "pos_rate": 0.776595744680851,
+        "coverage": 0.9199572443940123,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.0,
+        "against": null,
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.04551363398783434,
+          "ic_std": 0.07456064789370388,
+          "icir": 0.6104243360749773,
+          "t_stat": 13.429335393649499,
+          "n_days": 484,
+          "pos_rate": 0.7603305785123967
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.010910440080139635,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.025007728653954005,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03962698696382861,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.039101927127927726,
+          "2018": 0.03526793067770307,
+          "2019": 0.04473001060695663,
+          "2020": 0.03006998904356347,
+          "2021": 0.04211716434043005,
+          "2022": 0.04851169034980186,
+          "2023": 0.042515577625866836
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03792620237547483,
+          "min_window_ic": 0.023000090600008242
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.033719958833157024,
+          "ci95": 0.0461925264485445,
+          "boot_mean": 0.04001672499905787,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0024"
+    },
+    {
+      "name": "x3_volaccel_med_maxfreq",
+      "expr": "(CsRank(-(TsMean(VOLUME, 20) / (Delay(TsMean(VOLUME, 20), 20) + 1))) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsCount(RET > 2 * TsStd(RET, 60), 60)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Acceleration x stretch x lottery.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.027965596660419773,
+        "ic_std": 0.055003885924462405,
+        "icir": 0.50842947167088,
+        "t_stat": 17.413245503045115,
+        "n_days": 1173,
+        "pos_rate": 0.7229326513213982,
+        "coverage": 0.9539046210048285,
+        "pass": false
+      }
+    },
+    {
+      "name": "x3_doji_rev60_volclock",
+      "expr": "(CsRank(-TsCount(Abs(CLOSE / OPEN - 1) < 0.002, 60)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Dojis x reversal x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": -0.006335939631190199,
+        "ic_std": 0.035877285610084915,
+        "icir": -0.17660030639021362,
+        "t_stat": -5.667741901642209,
+        "n_days": 1030,
+        "pos_rate": 0.4446601941747573,
+        "coverage": 0.813495306698458,
+        "pass": false
+      }
+    }
+  ]
+}

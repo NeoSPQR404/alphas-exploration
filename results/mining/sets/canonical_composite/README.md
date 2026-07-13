@@ -1,22 +1,16 @@
-# canonical_composite — composition factors split from canonical
+# canonical_composite — compositions over the canonical individual set
 
-Created 2026-07-09 by splitting the canonical set: all factors with
-family `composition` (11 demeaned-rank pair products) or `composition3`
-(15 three-way products) — 26 total, accepted in canonical rounds 7–9.
-The parent individual factors remain in `sets/canonical/` (80 factors).
+**Reset 2026-07-10.** The original 26-factor version (composed from the
+79-factor parent pool of canonical rounds 7–9) was wiped — full record in
+git history. This campaign recomposes from the **current 105 individual
+canonical factors**, which include the classes the old compositions never
+saw: day-types (dip-buy/capitulation), vwap-pins, true gaps, at-extreme
+textures, acceleration.
 
-## Contents
-
-| file | what |
-|---|---|
-| `alpha_set.json` / `.csv` | 26 factors (names keep original `calpha_NNNN` ids; `next_id` = 1000 to avoid collisions) |
-| `experience_memory.json` | composition round logs 7–9 + the 5 composition patterns, split from canonical's memory (stubs left there to preserve round numbering) |
-| `rounds/round_07..09.{md,json}` | the composition rounds' full reports |
-| `holdout/round_07..09.json` | per-round holdout snapshots at acceptance |
-
-Values: `data/mining/alpha_values_canonical_composite/` (local).
-Round numbering follows the original canonical sequence (7–9).
-The pre-split canonical honest test (`sets/canonical/holdout/
-full_set_eval.json`) covered all 105 factors including these 26 —
-headline there: 3-way products were the STRONGER tier on 2024–25
-(median |IC| 0.058 vs 0.052 set-wide).
+- Names: `cxalpha_NNNN` (distinct prefix, no collision with canonical).
+- Values: `data/mining/alpha_values_canonical_composite/`.
+- Same gates as everywhere (0.03 dual-window standard, 5-test stage 4);
+  S2 correlation is checked against THIS set's residents (compositions
+  are near-orthogonal to their parents by construction).
+- Candidates are single expressions inlining parent formulas over raw
+  canonical fields (whitelist enforced).

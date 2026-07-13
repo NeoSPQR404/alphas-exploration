@@ -29,7 +29,10 @@ class Registry:
             self.set_path = (ROOT / "results" / "mining" / "sets"
                              / set_name / "alpha_set.json")
             self.values_dir = ROOT / "data" / "mining" / f"alpha_values_{set_name}"
-            self.prefix = f"{set_name[0]}alpha"
+            # canonical_composite gets a distinct prefix so its names never
+            # collide with canonical's calpha_* ids
+            self.prefix = ("cxalpha" if set_name == "canonical_composite"
+                           else f"{set_name[0]}alpha")
         self.set_path.parent.mkdir(parents=True, exist_ok=True)
         self.values_dir.mkdir(parents=True, exist_ok=True)
         if self.set_path.exists():

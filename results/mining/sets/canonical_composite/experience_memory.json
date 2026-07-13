@@ -36,6 +36,41 @@
       "alpha_set_size": 24,
       "diversity_entropy": 0.8060056713182578,
       "candidates_file": "rounds/composite_round01_candidates.py"
+    },
+    {
+      "round": 2,
+      "date": "2026-07-13",
+      "candidates": 40,
+      "s1_pass": 24,
+      "s2_pass": 23,
+      "s3_pass": 23,
+      "accepted": [
+        "cxalpha_0025",
+        "cxalpha_0026",
+        "cxalpha_0027",
+        "cxalpha_0028",
+        "cxalpha_0029",
+        "cxalpha_0030",
+        "cxalpha_0031",
+        "cxalpha_0032",
+        "cxalpha_0033",
+        "cxalpha_0034",
+        "cxalpha_0035",
+        "cxalpha_0036",
+        "cxalpha_0037",
+        "cxalpha_0038",
+        "cxalpha_0039",
+        "cxalpha_0040",
+        "cxalpha_0041",
+        "cxalpha_0042",
+        "cxalpha_0043",
+        "cxalpha_0044",
+        "cxalpha_0045",
+        "cxalpha_0046"
+      ],
+      "alpha_set_size": 46,
+      "diversity_entropy": 0.8073607027396434,
+      "candidates_file": "rounds/composite_round02_candidates.py"
     }
   ],
   "successful_patterns": [
@@ -46,6 +81,14 @@
         1
       ],
       "strength": 1
+    },
+    {
+      "pattern": "3-way products are the productive tier for NEW-class parents; legacy strong-parent pairs still work",
+      "evidence": "xR2 (22/40): 16 new 3-ways all cleared (gapvol_med_amtself 0.059, hlmed_volclock_amtself 0.058, aggrmax_rev60_volclock 0.056, nvoldip_med_volclock 0.054); plus 3 legacy-strong pairs (semivol/aggrmax x amtself/rev60, OOS -0.031 to -0.036). Set 46, diversity 0.807 (rose).",
+      "rounds": [
+        2
+      ],
+      "strength": 1
     }
   ],
   "forbidden_patterns": [
@@ -54,6 +97,14 @@
       "evidence": "xR1 S1: all pin/doji/island combinations ICIR 0.16-0.53 with IC under bar, volaccel 3-way 0.028. S4: dipbuy x maxfreq control probe failed exactly as the template law predicted (OOS 0.021); truegapdn x med/amtself 0.014-0.018; dipbuy x gapvol/amtself just under 0.03.",
       "rounds": [
         1
+      ],
+      "strength": 1
+    },
+    {
+      "pattern": "New-class parent PAIRS fall just under the IC bar (strong ICIR, weak IC) — use them only in 3-ways; count x count still fails OOS",
+      "evidence": "xR2 S1: all new-class pairs (gapdipmag/gapcapmag/aggrhigh/hlbest/nvoldip x med/amtself) IC 0.010-0.027 with ICIR -0.42 to -0.68 — the composition dilutes the parent IC too far in a 2-product. S4: maxfreq x hlburst (count x count control) OOS -0.025, replicating the prohibition a 3rd time. S2: hlburst_med_amtself 0.71 vs its round-1 sibling.",
+      "rounds": [
+        2
       ],
       "strength": 1
     }

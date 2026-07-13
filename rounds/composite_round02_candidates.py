@@ -97,6 +97,13 @@ CANDIDATES = [
     C("x_gapdipmag_gapcapmag", "gapdipmag", "gapcapmag", "Two day-type magnitudes: correlated parents probe."),
     C3("x3_pinfast_med_volclock", "pinfast", "med60", "volclock", "Weak pin parent inside a 3-way probe."),
     C("x_volat_amtself", "volat", "amtself", "Quarterly reversal x state (rev60 sibling check)."),
+    # ---- fill to 40: more new-class 3-ways (6)
+    C3("x3_nvoldip_rev60_amtself", "nvoldip", "rev60", "amtself", "Crowd-absorption x reversal x state."),
+    C3("x3_gapdipmag_volclock_maxfreq", "gapdipmag", "volclock", "maxfreq", "Dip-depth x clock x lottery."),
+    C3("x3_aggrhigh_gapvol_amtself", "aggrhigh", "gapvol", "amtself", "Aggr-highs x overnight risk x state."),
+    C3("x3_hlbest_maxfreq_amtself", "hlbest", "maxfreq", "amtself", "Best-day x lottery x state."),
+    C3("x3_semivol_rev60_volclock", "semivol", "rev60", "volclock", "Vol-shape x reversal x clock."),
+    C3("x3_hlmed_volclock_amtself", "hlmed60", "volclock", "amtself", "Median range x clock x state."),
 ]
 
 assert len(CANDIDATES) == 40, len(CANDIDATES)

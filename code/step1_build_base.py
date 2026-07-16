@@ -33,7 +33,10 @@ TS = ROOT / "tushare-data" / "data"
 OUT_DIR = Path(__file__).resolve().parents[1] / "data" / "base"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-YEARS = list(range(2017, 2026))
+YEARS = list(range(2017, 2027))  # load set for derived series (incl. 2026)
+# Optional CLI args restrict which years are WRITTEN (slim still loads all
+# of YEARS so cross-year boundary labels are correct). Default: write all.
+EMIT_YEARS = [int(a) for a in sys.argv[1:]] or YEARS
 LOOKBACK_YEARS = [2016]          # from panel_insample_full, for cross-year labels/returns
 MAX_GAP_FOR_RET = 10             # trading-day gap beyond which ret_1d is NaN
 LABEL_HORIZONS = [1, 5, 10, 20]
@@ -187,6 +190,8 @@ def main():
 
     # ---------------- per-year assembly --------------------------------------
     for y in YEARS:
+        if y not in EMIT_YEARS:
+            continue
         print(f"year {y} ...", flush=True)
         df = pd.read_parquet(TS / "panel" / f"year={y}")
         if "year" in df.columns:

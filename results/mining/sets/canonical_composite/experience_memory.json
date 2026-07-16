@@ -111,6 +111,36 @@
       "alpha_set_size": 71,
       "diversity_entropy": 0.7840593264429654,
       "candidates_file": "rounds/composite_round03_candidates.py"
+    },
+    {
+      "round": 4,
+      "date": "2026-07-16",
+      "candidates": 40,
+      "s1_pass": 19,
+      "s2_pass": 18,
+      "s3_pass": 18,
+      "accepted": [
+        "cxalpha_0072",
+        "cxalpha_0073",
+        "cxalpha_0074",
+        "cxalpha_0075",
+        "cxalpha_0076",
+        "cxalpha_0077",
+        "cxalpha_0078",
+        "cxalpha_0079",
+        "cxalpha_0080",
+        "cxalpha_0081",
+        "cxalpha_0082",
+        "cxalpha_0083",
+        "cxalpha_0084",
+        "cxalpha_0085",
+        "cxalpha_0086",
+        "cxalpha_0087",
+        "cxalpha_0088"
+      ],
+      "alpha_set_size": 88,
+      "diversity_entropy": 0.7773054428739461,
+      "candidates_file": "rounds/composite_round04_candidates.py"
     }
   ],
   "patterns": {
@@ -118,13 +148,14 @@
       "name": "pair",
       "description": "factor family: pair",
       "template": "(CsRank(A)-.5)*(CsRank(B)-.5)  demeaned-rank product",
-      "occurrence_count": 41,
+      "occurrence_count": 47,
       "accept_count": 14,
-      "success_rate": 0.34146341463414637,
+      "success_rate": 0.2978723404255319,
       "classification": "undetermined",
       "rounds": [
         1,
-        2
+        2,
+        4
       ],
       "curated": false,
       "pinned": false
@@ -133,13 +164,14 @@
       "name": "threeway",
       "description": "factor family: threeway",
       "template": "(CsRank(A)-.5)*(CsRank(B)-.5)*(CsRank(C)-.5)",
-      "occurrence_count": 39,
-      "accept_count": 32,
-      "success_rate": 0.8205128205128205,
+      "occurrence_count": 67,
+      "accept_count": 49,
+      "success_rate": 0.7313432835820896,
       "classification": "success",
       "rounds": [
         1,
-        2
+        2,
+        4
       ],
       "curated": false,
       "pinned": false
@@ -233,6 +265,50 @@
       "curated": true,
       "pinned": true,
       "evidence": "xR3 S1: all 4 hlmed-anchored triples 0.025-0.029 (just under); x_hlmed_amtself pair -0.21. Range-median parent collides with stretch/vol parents inside the product."
+    },
+    "fourway": {
+      "name": "fourway",
+      "description": "fourway",
+      "template": "",
+      "occurrence_count": 6,
+      "accept_count": 0,
+      "success_rate": 0.0,
+      "classification": "forbidden",
+      "rounds": [
+        4
+      ],
+      "curated": false,
+      "pinned": false
+    },
+    "three-ways-remain-the-only-productive-composite": {
+      "name": "three-ways-remain-the-only-productive-composite",
+      "description": "Three-ways remain the ONLY productive composite tier; strongest-parent triples carry it",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "success",
+      "rounds": [
+        4
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "xR4 (17/40): all 17 accepts were three-ways with strong parents (aggrmax60/semivol60/retonhiHL/max20/lottery x stretch/state/clock, OOS to 0.06). Pairs 0/6, four-ways 0/6."
+    },
+    "strong-parent-pairs-now-fail-across-the": {
+      "name": "strong-parent-pairs-now-fail-across-the",
+      "description": "Strong-parent PAIRS now fail across the board (strong ICIR, IC under 0.03); four-way products do not clear; weak-signal parents don't compose even in 3-ways",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "forbidden",
+      "rounds": [
+        4
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "xR4 S1: all 6 strong pairs (aggrmax60/semivol60/retonhiHL/aggrmin60 x amtself) ICIR -0.31 to -0.72 but IC 0.014-0.026; all 5 remaining four-ways S1 (ICIR -0.35 to -0.76, IC under) + 1 S4 (maxfreq_med_amtself_gapvol OOS -0.030); weak-parent 3-ways failed (min60/gapmed-drift/aggr-asymmetry/retvrcorr x stretch, IC 0.020-0.028)."
     }
   },
   "insights": {
@@ -240,11 +316,12 @@
       "name": "four-way-products",
       "description": "Extend the composition tier to four-parent products",
       "hypothesis": "3-ways are the richest tier; a 4th demeaned-rank factor may add orthogonal conditioning before the tier self-locks.",
-      "status": "testing",
-      "occurrence_count": 3,
+      "status": "refuted",
+      "occurrence_count": 9,
       "accept_count": 1,
       "rounds": [
-        3
+        3,
+        4
       ],
       "spawned_pattern": null,
       "created": "2026-07-13"

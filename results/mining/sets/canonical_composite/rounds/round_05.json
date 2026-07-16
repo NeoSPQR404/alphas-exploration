@@ -1,0 +1,2549 @@
+{
+  "round": 5,
+  "diversity": 0.7624613069191345,
+  "results": [
+    {
+      "name": "x3_max20_semivol_amtself",
+      "expr": "(CsRank(-TsMax(RET, 20)) - 0.5) * (CsRank(-(TsStd((RET + Abs(RET)) / 2, 20) - TsStd((RET - Abs(RET)) / 2, 20))) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Lottery x vol-shape x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.0508523568292758,
+        "ic_std": 0.07501947926084226,
+        "icir": 0.677855369436283,
+        "t_stat": 22.766254705449917,
+        "n_days": 1128,
+        "pos_rate": 0.7597517730496454,
+        "coverage": 0.9178053399022797,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6321223758193316,
+        "against": "cxalpha_0047",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.054514995932776186,
+          "ic_std": 0.08612686417829342,
+          "icir": 0.632961578862587,
+          "t_stat": 13.925154734976914,
+          "n_days": 484,
+          "pos_rate": 0.7293388429752066
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.016834850235647285,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.029659586506298588,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04802122373856062,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.059167016384793804,
+          "2018": 0.04987875454709481,
+          "2019": 0.05748094616141872,
+          "2020": 0.03955499160242964,
+          "2021": 0.051163867432343454,
+          "2022": 0.06731656903103247,
+          "2023": 0.0417134228345199
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.0486327681215037,
+          "min_window_ic": 0.02858962076323052
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.04348379987664914,
+          "ci95": 0.059796783883427435,
+          "boot_mean": 0.05176206438633267,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0089"
+    },
+    {
+      "name": "x3_max20_aggrmax_volclock",
+      "expr": "(CsRank(-TsMax(RET, 20)) - 0.5) * (CsRank(-TsMax(CLOSE / VWAP - 1, 20)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Lottery x peak-aggr x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.056168522779911564,
+        "ic_std": 0.08488440443774496,
+        "icir": 0.6617060360140254,
+        "t_stat": 21.236537487083826,
+        "n_days": 1030,
+        "pos_rate": 0.7533980582524272,
+        "coverage": 0.814571139247779,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.4654518268285673,
+        "against": "cxalpha_0013",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.06988690325954239,
+          "ic_std": 0.09776938978137892,
+          "icir": 0.7148137409450518,
+          "t_stat": 15.72590230079114,
+          "n_days": 484,
+          "pos_rate": 0.7954545454545454
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.023995419688829223,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03997516335058348,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.05579683886392625,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.023258778280393393,
+          "2018": 0.06323742580554423,
+          "2019": 0.048644763523639625,
+          "2020": 0.04980250716680359,
+          "2021": 0.07073992629332466,
+          "2022": 0.07949380696697536,
+          "2023": 0.060279999552109435
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.05914221534013254,
+          "min_window_ic": 0.016610281301440086
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.04990762113378391,
+          "ci95": 0.07073563991140054,
+          "boot_mean": 0.0601257168555128,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0090"
+    },
+    {
+      "name": "x3_semivol_aggrmax_amtself",
+      "expr": "(CsRank(-(TsStd((RET + Abs(RET)) / 2, 20) - TsStd((RET - Abs(RET)) / 2, 20))) - 0.5) * (CsRank(-TsMax(CLOSE / VWAP - 1, 20)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Vol-shape x peak-aggr x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04512962426956868,
+        "ic_std": 0.06093575798901215,
+        "icir": 0.7406098776633974,
+        "t_stat": 24.873909498244224,
+        "n_days": 1128,
+        "pos_rate": 0.7695035460992907,
+        "coverage": 0.9178053399022797,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.47534585242993294,
+        "against": "cxalpha_0066",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.04642746035404974,
+          "ic_std": 0.07162765447761893,
+          "icir": 0.648177867789272,
+          "t_stat": 14.259913091363984,
+          "n_days": 484,
+          "pos_rate": 0.7458677685950413
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.019441810057196106,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.027187584257220346,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.041941671045043566,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.04588966387447622,
+          "2018": 0.04488188164272353,
+          "2019": 0.04797960966478966,
+          "2020": 0.04151256337425634,
+          "2021": 0.04564791513660442,
+          "2022": 0.05471308856048273,
+          "2023": 0.03814183214761675
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.044641702355286896,
+          "min_window_ic": 0.023462350974470515
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.0385392888545314,
+          "ci95": 0.05184906592552707,
+          "boot_mean": 0.04528666801949465,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0091"
+    },
+    {
+      "name": "x3_hlbest_aggrhigh_volclock",
+      "expr": "(CsRank(-TsMean((HIGH / LOW - 1) * (RET >= TsMax(RET, 20)), 60)) - 0.5) * (CsRank(-TsMean((CLOSE / VWAP - 1) * (CLOSE >= TsMax(CLOSE, 20)), 60)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Best-day x aggr-at-highs x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.03919114779528748,
+        "ic_std": 0.06081386359669922,
+        "icir": 0.6444443006481608,
+        "t_stat": 20.68254603130461,
+        "n_days": 1030,
+        "pos_rate": 0.7368932038834951,
+        "coverage": 0.813495306698458,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.4243694541226495,
+        "against": "cxalpha_0030",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.04917850652750781,
+          "ic_std": 0.08337942448900638,
+          "icir": 0.5898158547975109,
+          "t_stat": 12.975948805545238,
+          "n_days": 484,
+          "pos_rate": 0.756198347107438
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.013611317360588248,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.02872635431960086,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04181687179690433,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.033441630546826286,
+          "2018": 0.029928941574276318,
+          "2019": 0.0363239443515555,
+          "2020": 0.03686561893832842,
+          "2021": 0.055006537702199605,
+          "2022": 0.05629756430590301,
+          "2023": 0.04205944874911262
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03834223397844223,
+          "min_window_ic": 0.0166407988635625
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.034173634024840485,
+          "ci95": 0.050004905267914276,
+          "boot_mean": 0.041923008722315386,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0092"
+    },
+    {
+      "name": "x3_gapdipmag_gapcapmag_volclock",
+      "expr": "(CsRank(TsSum((OPEN / Delay(CLOSE, 1) - 1) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0), 60)) - 0.5) * (CsRank(TsSum((OPEN / Delay(CLOSE, 1) - 1) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) < 0), 60)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Dip-depth x cap-depth x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.032356069237211904,
+        "ic_std": 0.05729783097670876,
+        "icir": 0.5646997222349387,
+        "t_stat": 18.12325438713984,
+        "n_days": 1030,
+        "pos_rate": 0.7252427184466019,
+        "coverage": 0.8133169588459338,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5046699300527608,
+        "against": "cxalpha_0059",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05490320924834071,
+          "ic_std": 0.07616963551932542,
+          "icir": 0.7208017850421631,
+          "t_stat": 15.857639270927589,
+          "n_days": 484,
+          "pos_rate": 0.8119834710743802
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.01148248720742735,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.02185163530883426,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.040206596158174235,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.01858528730835647,
+          "2018": 0.030219690485564516,
+          "2019": 0.027558633080458726,
+          "2020": 0.026699518042638974,
+          "2021": 0.048196361291220464,
+          "2022": 0.058565350046914766,
+          "2023": 0.05124106844976666
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.0387193365426107,
+          "min_window_ic": 0.006661716044433961
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.031637291645749036,
+          "ci95": 0.04737283093176328,
+          "boot_mean": 0.03938031590455816,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0093"
+    },
+    {
+      "name": "x3_nvoldip_hlbest_amtself",
+      "expr": "(CsRank(-TsMean((VOLUME / TsMean(VOLUME, 60)) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0), 60)) - 0.5) * (CsRank(-TsMean((HIGH / LOW - 1) * (RET >= TsMax(RET, 20)), 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Crowd-absorption x best-day x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.036259545672083435,
+        "ic_std": 0.0508276972348645,
+        "icir": 0.7133816333353725,
+        "t_stat": 23.959429546466982,
+        "n_days": 1128,
+        "pos_rate": 0.7774822695035462,
+        "coverage": 0.9189249813871873,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6158249940134741,
+        "against": "cxalpha_0024",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.04387641739454576,
+          "ic_std": 0.07219373625189462,
+          "icir": 0.6077593385865838,
+          "t_stat": 13.370705448904843,
+          "n_days": 484,
+          "pos_rate": 0.7417355371900827
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.009361056366974903,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.026110751691002042,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.038250287745098345,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.0451438624121408,
+          "2018": 0.03351481942705924,
+          "2019": 0.03580865683502366,
+          "2020": 0.03180087731871515,
+          "2021": 0.03824873361012071,
+          "2022": 0.047538377172847375,
+          "2023": 0.04021445761624415
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.037066349448842455,
+          "min_window_ic": 0.024276276582468594
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03219073658168767,
+          "ci95": 0.044149856594754094,
+          "boot_mean": 0.03819031978575153,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0094"
+    },
+    {
+      "name": "x3_retonhivol_idonhivol_amtself",
+      "expr": "(CsRank(-TsSum(RET * (VOLUME > TsMean(VOLUME, 60)), 60)) - 0.5) * (CsRank(-TsSum((CLOSE / OPEN - 1) * (VOLUME > TsMean(VOLUME, 120)), 120)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Ret-on-attn x intraday-on-attn x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.038715968565995594,
+        "ic_std": 0.06492330523365435,
+        "icir": 0.5963339116309557,
+        "t_stat": 20.02829856312548,
+        "n_days": 1128,
+        "pos_rate": 0.7393617021276596,
+        "coverage": 0.9196489060932723,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5466310521927145,
+        "against": "cxalpha_0064",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.04578667871844353,
+          "ic_std": 0.07291898429692467,
+          "icir": 0.627911635905419,
+          "t_stat": 13.814055989919218,
+          "n_days": 484,
+          "pos_rate": 0.7458677685950413
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.017302763072183907,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.02623143394265335,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03971191447001576,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.04325757121698335,
+          "2018": 0.03527278745676976,
+          "2019": 0.04309351346301221,
+          "2020": 0.032206351690494246,
+          "2021": 0.0413763000248991,
+          "2022": 0.0519113954792965,
+          "2023": 0.03966196195759056
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04056104756640031,
+          "min_window_ic": 0.015395940817088505
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.033701311890317436,
+          "ci95": 0.047440557986491196,
+          "boot_mean": 0.04071551692258003,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0095"
+    },
+    {
+      "name": "x3_hlonhivol_retonhivol_volclock",
+      "expr": "(CsRank(-TsMean((HIGH / LOW - 1) * (VOLUME / TsMean(VOLUME, 60) > 1), 60)) - 0.5) * (CsRank(-TsSum(RET * (VOLUME > TsMean(VOLUME, 60)), 60)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Range-on-attn x ret-on-attn x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.05127691367892965,
+        "ic_std": 0.08686927057441916,
+        "icir": 0.5902767841822931,
+        "t_stat": 18.944114716790732,
+        "n_days": 1030,
+        "pos_rate": 0.7252427184466019,
+        "coverage": 0.8133243800317436,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5169839994891554,
+        "against": "cxalpha_0049",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.0681995918013921,
+          "ic_std": 0.10009368568198247,
+          "icir": 0.6813575835150656,
+          "t_stat": 14.989866837331443,
+          "n_days": 484,
+          "pos_rate": 0.8119834710743802
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.03535659456979122,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.038539962211878324,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.05369591542855872,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.018813010628134154,
+          "2018": 0.047648839399381034,
+          "2019": 0.042900619136597394,
+          "2020": 0.0456292624953976,
+          "2021": 0.07657839363676099,
+          "2022": 0.0714470634906129,
+          "2023": 0.06495212011217129
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.05550154457115415,
+          "min_window_ic": 0.008553025577793211
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.046173271173910846,
+          "ci95": 0.06736621409903078,
+          "boot_mean": 0.05608411784223712,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0096"
+    },
+    {
+      "name": "x3_max20_hlbest_volclock",
+      "expr": "(CsRank(-TsMax(RET, 20)) - 0.5) * (CsRank(-TsMean((HIGH / LOW - 1) * (RET >= TsMax(RET, 20)), 60)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Lottery x best-day x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04363722261189018,
+        "ic_std": 0.06695718924932414,
+        "icir": 0.651718256114382,
+        "t_stat": 20.915993543538743,
+        "n_days": 1030,
+        "pos_rate": 0.7553398058252427,
+        "coverage": 0.8133914100971218,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6014225030399003,
+        "against": "cxalpha_0061",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05905522059440188,
+          "ic_std": 0.08918273259871068,
+          "icir": 0.6621822282585637,
+          "t_stat": 14.5680090216884,
+          "n_days": 484,
+          "pos_rate": 0.7706611570247934
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.021775790856729045,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.02921779284686955,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04672849000783811,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.0413461996009267,
+          "2018": 0.038902608632510396,
+          "2019": 0.04374253477000774,
+          "2020": 0.035465167982592305,
+          "2021": 0.056975546138445375,
+          "2022": 0.06570616574733665,
+          "2023": 0.0524042754414671
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.047647939548415466,
+          "min_window_ic": 0.02083138882817653
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03962109319249321,
+          "ci95": 0.05677767083051943,
+          "boot_mean": 0.048079794924671786,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0097"
+    },
+    {
+      "name": "x3_semivol120_aggrmax60_amtself",
+      "expr": "(CsRank(-(TsStd((RET + Abs(RET)) / 2, 120) - TsStd((RET - Abs(RET)) / 2, 120))) - 0.5) * (CsRank(-TsMax(CLOSE / VWAP - 1, 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Semiannual semivol x quarterly aggr x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.031234421530368078,
+        "ic_std": 0.05041186552170714,
+        "icir": 0.6195847189372244,
+        "t_stat": 20.809193463584933,
+        "n_days": 1128,
+        "pos_rate": 0.7437943262411347,
+        "coverage": 0.9192203924610328,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.40739634422401994,
+        "against": "cxalpha_0058",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.037458179296222915,
+          "ic_std": 0.07024755627099961,
+          "icir": 0.5332310657429492,
+          "t_stat": 11.731083446344883,
+          "n_days": 484,
+          "pos_rate": 0.7086776859504132
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.01472430445337581,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.024621823433276287,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03207907418883874,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.028786404720839563,
+          "2018": 0.026128815258027436,
+          "2019": 0.03782263102145519,
+          "2020": 0.030323240196543734,
+          "2021": 0.0321973798758403,
+          "2022": 0.04309220444096124,
+          "2023": 0.03182415415148458
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.032235586454403685,
+          "min_window_ic": 0.014817878221077614
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.027290919439944623,
+          "ci95": 0.03859898552656594,
+          "boot_mean": 0.03277057982358161,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0098"
+    },
+    {
+      "name": "x3_nvolspike_maxfreq_amtself",
+      "expr": "(CsRank(-(TsMean(VOLUME, 5) / TsMean(VOLUME, 60))) - 0.5) * (CsRank(-TsCount(RET > 2 * TsStd(RET, 60), 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Volume spike x lottery x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04747819015592137,
+        "ic_std": 0.05921118505882633,
+        "icir": 0.8018449573125714,
+        "t_stat": 26.93053320155864,
+        "n_days": 1128,
+        "pos_rate": 0.8040780141843972,
+        "coverage": 0.9189721418260426,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.4920710233943793,
+        "against": "cxalpha_0017",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.039696634631424386,
+          "ic_std": 0.062347937504677445,
+          "icir": 0.6366952335583881,
+          "t_stat": 14.007295138284539,
+          "n_days": 484,
+          "pos_rate": 0.7479338842975206
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.017312101153011062,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.028917120543162884,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04543257267462109,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.05310084867426466,
+          "2018": 0.04781591862867599,
+          "2019": 0.05320641310196625,
+          "2020": 0.042928872527502375,
+          "2021": 0.042351514006325815,
+          "2022": 0.04173931497034791,
+          "2023": 0.03765395429250087
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04528907963241231,
+          "min_window_ic": 0.026497870969305556
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03829363131553309,
+          "ci95": 0.051010446369039494,
+          "boot_mean": 0.04489503076812269,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0099"
+    },
+    {
+      "name": "x3_hlburst_aggrmax_volclock",
+      "expr": "(CsRank(-TsCount((HIGH / LOW - 1) > 2 * TsMean(HIGH / LOW - 1, 60), 60)) - 0.5) * (CsRank(-TsMax(CLOSE / VWAP - 1, 20)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Range-burst x peak-aggr x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04400449835953986,
+        "ic_std": 0.051641598190531005,
+        "icir": 0.8521134105336136,
+        "t_stat": 27.347398090925644,
+        "n_days": 1030,
+        "pos_rate": 0.8077669902912621,
+        "coverage": 0.8147181266054299,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.3844426778436263,
+        "against": "cxalpha_0018",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.044798357336360256,
+          "ic_std": 0.06790559718623519,
+          "icir": 0.6597152398718777,
+          "t_stat": 14.513735277181311,
+          "n_days": 484,
+          "pos_rate": 0.7747933884297521
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.020071393920603055,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03429837267704719,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03995161724652934,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.042530108846632546,
+          "2018": 0.03323080187269689,
+          "2019": 0.04554155235418027,
+          "2020": 0.05053375981916938,
+          "2021": 0.047051398520677,
+          "2022": 0.044665096896177016,
+          "2023": 0.044931617776543496
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04460697494270777,
+          "min_window_ic": 0.018203050243073116
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.037245591692963154,
+          "ci95": 0.05029001467525279,
+          "boot_mean": 0.043839794077943015,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0100"
+    },
+    {
+      "name": "x3_nvolburst_semivol_amtself",
+      "expr": "(CsRank(-TsCount(VOLUME / TsMean(VOLUME, 60) > 2, 60)) - 0.5) * (CsRank(-(TsStd((RET + Abs(RET)) / 2, 20) - TsStd((RET - Abs(RET)) / 2, 20))) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Attn-burst x vol-shape x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.047797621588595636,
+        "ic_std": 0.053054582805854546,
+        "icir": 0.9009140975343075,
+        "t_stat": 30.257840738583294,
+        "n_days": 1128,
+        "pos_rate": 0.8235815602836879,
+        "coverage": 0.9178053399022797,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6030999263000207,
+        "against": "cxalpha_0015",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.04494150065378872,
+          "ic_std": 0.06406292161663865,
+          "icir": 0.7015212469191594,
+          "t_stat": 15.433467432221507,
+          "n_days": 484,
+          "pos_rate": 0.7644628099173554
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.025332974313427035,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.031782302592579054,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.0442891477229283,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.0528740094156353,
+          "2018": 0.05436557815371973,
+          "2019": 0.04885237408343799,
+          "2020": 0.0447839438067982,
+          "2021": 0.039946224608015155,
+          "2022": 0.0557015249631623,
+          "2023": 0.03418147634441516
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04837294598227534,
+          "min_window_ic": 0.02608147506107788
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.04102335212368866,
+          "ci95": 0.052110260950553364,
+          "boot_mean": 0.04677451991415783,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0101"
+    },
+    {
+      "name": "x3_gapdipmag_aggrhigh_amtself",
+      "expr": "(CsRank(TsSum((OPEN / Delay(CLOSE, 1) - 1) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0), 60)) - 0.5) * (CsRank(-TsMean((CLOSE / VWAP - 1) * (CLOSE >= TsMax(CLOSE, 20)), 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Dip-depth x aggr-at-highs x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.030487843163201734,
+        "ic_std": 0.04745446418738932,
+        "icir": 0.6424652281987763,
+        "t_stat": 21.577651640839008,
+        "n_days": 1128,
+        "pos_rate": 0.7393617021276596,
+        "coverage": 0.9196240092118462,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5117151596402102,
+        "against": "cxalpha_0043",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.04132649177849377,
+          "ic_std": 0.06620275359124264,
+          "icir": 0.6242412820719964,
+          "t_stat": 13.73330820558392,
+          "n_days": 484,
+          "pos_rate": 0.7458677685950413
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.005638927322173363,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.019591057587369332,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03298578092186698,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.04386096830781321,
+          "2018": 0.024558919996082212,
+          "2019": 0.03491959096983348,
+          "2020": 0.027802531578381508,
+          "2021": 0.02612190975780436,
+          "2022": 0.04849783061372177,
+          "2023": 0.03415515294326578
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.032643989411178916,
+          "min_window_ic": 0.008518217660596497
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.027940067454150112,
+          "ci95": 0.03873343431059544,
+          "boot_mean": 0.03335716542155484,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0102"
+    },
+    {
+      "name": "x3_retonhiHL_hlbest_amtself",
+      "expr": "(CsRank(-TsSum(RET * ((HIGH / LOW - 1) > TsMean(HIGH / LOW - 1, 120)), 120)) - 0.5) * (CsRank(-TsMean((HIGH / LOW - 1) * (RET >= TsMax(RET, 20)), 60)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Ret-on-wide x best-day x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.027019118940957144,
+        "ic_std": 0.046136744478465705,
+        "icir": 0.585631241354021,
+        "t_stat": 19.668841769627225,
+        "n_days": 1128,
+        "pos_rate": 0.726063829787234,
+        "coverage": 0.9192203924610328,
+        "pass": false
+      }
+    },
+    {
+      "name": "x3_aggrmax60_semivol60_volclock",
+      "expr": "(CsRank(-TsMax(CLOSE / VWAP - 1, 60)) - 0.5) * (CsRank(-(TsStd((RET + Abs(RET)) / 2, 60) - TsStd((RET - Abs(RET)) / 2, 60))) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Quarterly aggr x semivol x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04738512125714304,
+        "ic_std": 0.0719438035403981,
+        "icir": 0.6586407574425114,
+        "t_stat": 21.13816162265249,
+        "n_days": 1030,
+        "pos_rate": 0.7485436893203884,
+        "coverage": 0.8133243800317436,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.40221986759224565,
+        "against": "cxalpha_0038",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05563120742818232,
+          "ic_std": 0.08454489169988011,
+          "icir": 0.6580079092852065,
+          "t_stat": 14.476174004274542,
+          "n_days": 484,
+          "pos_rate": 0.8016528925619835
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.019537121161753067,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.032894230822792,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04600125537392522,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.01671074954430674,
+          "2018": 0.04625771065449267,
+          "2019": 0.03794566017016374,
+          "2020": 0.04816499903823405,
+          "2021": 0.06440618367892718,
+          "2022": 0.060526495706590196,
+          "2023": 0.05073591914977444
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.049760272958416965,
+          "min_window_ic": 0.016786920617243437
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.04134445368348216,
+          "ci95": 0.05859853900783074,
+          "boot_mean": 0.0497146663887666,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0103"
+    },
+    {
+      "name": "x3_max20_gapdipmag_volclock",
+      "expr": "(CsRank(-TsMax(RET, 20)) - 0.5) * (CsRank(TsSum((OPEN / Delay(CLOSE, 1) - 1) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0), 60)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5)",
+      "family": "threeway",
+      "rationale": "Lottery x dip-depth x clock.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.043611501410745324,
+        "ic_std": 0.0679819864748524,
+        "icir": 0.6415155495180757,
+        "t_stat": 20.58855182575217,
+        "n_days": 1030,
+        "pos_rate": 0.7728155339805826,
+        "coverage": 0.8132176107133195,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.4426923732560391,
+        "against": "cxalpha_0060",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.057922009979073125,
+          "ic_std": 0.07732805800585689,
+          "icir": 0.7490426046220644,
+          "t_stat": 16.478937301685416,
+          "n_days": 484,
+          "pos_rate": 0.8016528925619835
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.009747579067807759,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.028117373730577655,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04993617593551051,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.045793543380476434,
+          "2018": 0.04573210077032631,
+          "2019": 0.04209942407512243,
+          "2020": 0.03438505055032429,
+          "2021": 0.0517238157824385,
+          "2022": 0.06448271844845191,
+          "2023": 0.05136130150969434
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04722767491105796,
+          "min_window_ic": 0.024933631440357
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.039638023602027436,
+          "ci95": 0.056146483310515416,
+          "boot_mean": 0.047736260869225104,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0104"
+    },
+    {
+      "name": "x3_max20_med_gapvol",
+      "expr": "(CsRank(-TsMax(RET, 20)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Lottery x stretch x overnight risk.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.046610996479503695,
+        "ic_std": 0.08567967559833141,
+        "icir": 0.5440146237016266,
+        "t_stat": 18.63200449146129,
+        "n_days": 1173,
+        "pos_rate": 0.6922421142369991,
+        "coverage": 0.9561024889699633,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5151712249872391,
+        "against": "cxalpha_0065",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05776816325552949,
+          "ic_std": 0.08665336629925077,
+          "icir": 0.6666580390660365,
+          "t_stat": 14.666476859452803,
+          "n_days": 484,
+          "pos_rate": 0.7603305785123967
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.021874551961451192,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.033025769875173715,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.049746495870500056,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.03488802432951257,
+          "2018": 0.04387432826512562,
+          "2019": 0.06180244390043698,
+          "2020": 0.03205195669066804,
+          "2021": 0.05830127756621746,
+          "2022": 0.06323548588869084,
+          "2023": 0.052300840622368144
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.05124840747858902,
+          "min_window_ic": 0.009846685558219251
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.04093620580540045,
+          "ci95": 0.058987769284314026,
+          "boot_mean": 0.049864129779727366,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0105"
+    },
+    {
+      "name": "x3_semivol_med_gapvol",
+      "expr": "(CsRank(-(TsStd((RET + Abs(RET)) / 2, 20) - TsStd((RET - Abs(RET)) / 2, 20))) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Vol-shape x stretch x overnight risk.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04147527738973845,
+        "ic_std": 0.07544085142591021,
+        "icir": 0.549772127511988,
+        "t_stat": 18.829193743699292,
+        "n_days": 1173,
+        "pos_rate": 0.7357203751065644,
+        "coverage": 0.9561024889699633,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5374860151573285,
+        "against": "cxalpha_0066",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05307122039122127,
+          "ic_std": 0.0752008868907096,
+          "icir": 0.7057259905504885,
+          "t_stat": 15.525971792110745,
+          "n_days": 484,
+          "pos_rate": 0.7747933884297521
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.01998530895009298,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.02694556753416498,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04464648398007953,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.060794948888891726,
+          "2018": 0.03362683786205035,
+          "2019": 0.03817932401954078,
+          "2020": 0.030580503924918373,
+          "2021": 0.047627043149726385,
+          "2022": 0.06049515594951197,
+          "2023": 0.04564728483293057
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 0.987012987012987,
+          "median_window_ic": 0.047460632993271724,
+          "min_window_ic": -0.005022091886320977
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03647138975472661,
+          "ci95": 0.0520103816817381,
+          "boot_mean": 0.04459676482187109,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0106"
+    },
+    {
+      "name": "x3_hlbest_med_rev60",
+      "expr": "(CsRank(-TsMean((HIGH / LOW - 1) * (RET >= TsMax(RET, 20)), 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Best-day x stretch x reversal.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04134733956749632,
+        "ic_std": 0.06361418582622823,
+        "icir": 0.6499704276722621,
+        "t_stat": 22.260894101164208,
+        "n_days": 1173,
+        "pos_rate": 0.7578857630008525,
+        "coverage": 0.9608570751430973,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.535668188185606,
+        "against": "cxalpha_0024",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05052684279752607,
+          "ic_std": 0.07588628863462175,
+          "icir": 0.6658230848632398,
+          "t_stat": 14.648107866991277,
+          "n_days": 484,
+          "pos_rate": 0.75
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.02119934693378204,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.028994495194083942,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.041326636305144826,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.03890640663128711,
+          "2018": 0.03452893887336062,
+          "2019": 0.05040225000124008,
+          "2020": 0.029055000959124853,
+          "2021": 0.05337490373176628,
+          "2022": 0.05029143147314701,
+          "2023": 0.050762254121905125
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.0435059995852312,
+          "min_window_ic": 0.02234034498870489
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03685025178865288,
+          "ci95": 0.05075930869062529,
+          "boot_mean": 0.04396571443330812,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0107"
+    },
+    {
+      "name": "x3_nvoldip_med_rev60",
+      "expr": "(CsRank(-TsMean((VOLUME / TsMean(VOLUME, 60)) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0), 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Crowd-absorption x stretch x reversal.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.054847288363124434,
+        "ic_std": 0.0912827123024394,
+        "icir": 0.6008507742561756,
+        "t_stat": 20.18894366110999,
+        "n_days": 1129,
+        "pos_rate": 0.75022143489814,
+        "coverage": 0.9200975287451254,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5440128281996769,
+        "against": "cxalpha_0041",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.058877777562312245,
+          "ic_std": 0.09997018067309588,
+          "icir": 0.5889533975620544,
+          "t_stat": 12.956974746365198,
+          "n_days": 484,
+          "pos_rate": 0.7355371900826446
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.03294011107843325,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.0418676277920868,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.05406433473260169,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.05404349471997062,
+          "2018": 0.060456960361816074,
+          "2019": 0.06041169681482879,
+          "2020": 0.0373321831662207,
+          "2021": 0.061681429981567504,
+          "2022": 0.06379985989131504,
+          "2023": 0.05395569523330945
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.057263774686868364,
+          "min_window_ic": 0.016409705837506307
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.04612691224003061,
+          "ci95": 0.06541342524818275,
+          "boot_mean": 0.05612819027922621,
+          "n_obs": 1613
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0108"
+    },
+    {
+      "name": "x3_gapdipmag_med_rev60",
+      "expr": "(CsRank(TsSum((OPEN / Delay(CLOSE, 1) - 1) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) > 0), 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Dip-depth x stretch x reversal.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04422748940270785,
+        "ic_std": 0.06709682161704454,
+        "icir": 0.6591592319400236,
+        "t_stat": 22.565977192593827,
+        "n_days": 1172,
+        "pos_rate": 0.7559726962457338,
+        "coverage": 0.9595492706889494,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.40616031190348484,
+        "against": "cxalpha_0060",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05303443556831669,
+          "ic_std": 0.07794224268183787,
+          "icir": 0.6804325067319983,
+          "t_stat": 14.969515148103962,
+          "n_days": 484,
+          "pos_rate": 0.7520661157024794
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.02283928100561709,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03566681262182713,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04627797293063009,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.04671709813204859,
+          "2018": 0.04324284702807453,
+          "2019": 0.051493574439749196,
+          "2020": 0.03484575602048663,
+          "2021": 0.04525906315883442,
+          "2022": 0.059267214510629024,
+          "2023": 0.04680165662600434
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 0.987012987012987,
+          "median_window_ic": 0.04645996674600901,
+          "min_window_ic": -0.0008845729809282714
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03938667501379441,
+          "ci95": 0.05404876078499187,
+          "boot_mean": 0.04653623957946473,
+          "n_obs": 1656
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0109"
+    },
+    {
+      "name": "x3_retonhivol_med_rev60",
+      "expr": "(CsRank(-TsSum(RET * (VOLUME > TsMean(VOLUME, 60)), 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Ret-on-attn x stretch x reversal.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.05059379380825809,
+        "ic_std": 0.10524494260868358,
+        "icir": 0.4807242282070823,
+        "t_stat": 16.464366193253568,
+        "n_days": 1173,
+        "pos_rate": 0.6828644501278772,
+        "coverage": 0.9602552409132368,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5343230533576364,
+        "against": "cxalpha_0064",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.06435524667127714,
+          "ic_std": 0.09521505495008159,
+          "icir": 0.6758936042731548,
+          "t_stat": 14.869659294009406,
+          "n_days": 484,
+          "pos_rate": 0.7747933884297521
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.03103910551608949,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03866296985598227,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.05346705901708764,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.024541222369016694,
+          "2018": 0.0530253088971363,
+          "2019": 0.06658661264057245,
+          "2020": 0.03633067465308613,
+          "2021": 0.06780921060197395,
+          "2022": 0.06515864596579506,
+          "2023": 0.0635518473767592
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.053505487280931845,
+          "min_window_ic": 0.018478766460861638
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.04414489273329,
+          "ci95": 0.06573534616359585,
+          "boot_mean": 0.054755569767817744,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0110"
+    },
+    {
+      "name": "x3_hlonhivol_med_rev60",
+      "expr": "(CsRank(-TsMean((HIGH / LOW - 1) * (VOLUME / TsMean(VOLUME, 60) > 1), 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Range-on-attn x stretch x reversal.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04567274088512475,
+        "ic_std": 0.0866723102091828,
+        "icir": 0.5269588496590667,
+        "t_stat": 18.047859792548532,
+        "n_days": 1173,
+        "pos_rate": 0.710997442455243,
+        "coverage": 0.9608570751430973,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5422462013281122,
+        "against": "cxalpha_0050",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05893663507385559,
+          "ic_std": 0.09103419412387223,
+          "icir": 0.6474120591835988,
+          "t_stat": 14.243065302039174,
+          "n_days": 484,
+          "pos_rate": 0.7768595041322314
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.02411393769947047,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03706500500001511,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.0460655164382991,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.023556193801519635,
+          "2018": 0.0455552023481509,
+          "2019": 0.05308130241604975,
+          "2020": 0.03894129887623682,
+          "2021": 0.06328559140290142,
+          "2022": 0.059159226815880026,
+          "2023": 0.05871404333183114
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04939769572769213,
+          "min_window_ic": 0.013550977435968089
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.040364719180647116,
+          "ci95": 0.058988194925281894,
+          "boot_mean": 0.04960898619873036,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0111"
+    },
+    {
+      "name": "x3_idonhivol_med_rev60",
+      "expr": "(CsRank(-TsSum((CLOSE / OPEN - 1) * (VOLUME > TsMean(VOLUME, 120)), 120)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Intraday-on-attn x stretch x reversal.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04835476437965257,
+        "ic_std": 0.08739278502754817,
+        "icir": 0.5533038495616092,
+        "t_stat": 18.583103323502694,
+        "n_days": 1128,
+        "pos_rate": 0.7225177304964538,
+        "coverage": 0.9199572443940123,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.41166181275090075,
+        "against": "cxalpha_0054",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.056583325932306805,
+          "ic_std": 0.07680965422495899,
+          "icir": 0.736669452600143,
+          "t_stat": 16.206727957203146,
+          "n_days": 484,
+          "pos_rate": 0.762396694214876
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.03607373660516447,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03723830292366425,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.049823006717325403,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.04783664680077146,
+          "2018": 0.04909100685622056,
+          "2019": 0.0551545561547799,
+          "2020": 0.032321288385562266,
+          "2021": 0.057154709961353925,
+          "2022": 0.058394264720314226,
+          "2023": 0.05477238714429938
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.05436909289687521,
+          "min_window_ic": 0.010935778534527828
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.04146841771428874,
+          "ci95": 0.059559574818219545,
+          "boot_mean": 0.050780718330005865,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0112"
+    },
+    {
+      "name": "x3_max20_med_rev60",
+      "expr": "(CsRank(-TsMax(RET, 20)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Lottery x stretch x reversal.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.052507457681833465,
+        "ic_std": 0.08238523591291444,
+        "icir": 0.6373406242028199,
+        "t_stat": 21.82833485603262,
+        "n_days": 1173,
+        "pos_rate": 0.7442455242966752,
+        "coverage": 0.9577574134055343,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.4238011902239688,
+        "against": "cxalpha_0047",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05928291680421347,
+          "ic_std": 0.08589953063170275,
+          "icir": 0.6901424998279799,
+          "t_stat": 15.183134996215559,
+          "n_days": 484,
+          "pos_rate": 0.7520661157024794
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.021438993940212616,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03403901845347207,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04997129515718855,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.04587792533261571,
+          "2018": 0.053472425013448024,
+          "2019": 0.056041419143528524,
+          "2020": 0.037815152955080526,
+          "2021": 0.06814269578968771,
+          "2022": 0.06228304717313258,
+          "2023": 0.05628278643529436
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.05522402197272277,
+          "min_window_ic": 0.02548455674286335
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.04589345044489706,
+          "ci95": 0.06259538646668186,
+          "boot_mean": 0.05443173290590846,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0113"
+    },
+    {
+      "name": "x3_semivol_volclock_rev60",
+      "expr": "(CsRank(-(TsStd((RET + Abs(RET)) / 2, 20) - TsStd((RET - Abs(RET)) / 2, 20))) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Vol-shape x clock x reversal.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.03942122714083599,
+        "ic_std": 0.0644790805697444,
+        "icir": 0.6113801064237517,
+        "t_stat": 19.62139657533682,
+        "n_days": 1030,
+        "pos_rate": 0.7543689320388349,
+        "coverage": 0.8133914100971218,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.9999999999915058,
+        "against": "cxalpha_0045",
+        "replace": null,
+        "pass": false
+      }
+    },
+    {
+      "name": "x3_maxfreq_volclock_rev60",
+      "expr": "(CsRank(-TsCount(RET > 2 * TsStd(RET, 60), 60)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Lottery x clock x reversal.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04372832194553058,
+        "ic_std": 0.07033177025271421,
+        "icir": 0.6217435134706144,
+        "t_stat": 19.95399575120401,
+        "n_days": 1030,
+        "pos_rate": 0.7456310679611651,
+        "coverage": 0.813495306698458,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5531356133834254,
+        "against": "cxalpha_0011",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05303245409185617,
+          "ic_std": 0.08865082938167881,
+          "icir": 0.5982172356620525,
+          "t_stat": 13.160779184565156,
+          "n_days": 484,
+          "pos_rate": 0.7789256198347108
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.019337258795024674,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.028889524684306056,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04412151771308648,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.010352735866786627,
+          "2018": 0.04299887105547771,
+          "2019": 0.041707215084546306,
+          "2020": 0.03998542604299508,
+          "2021": 0.058058934090252964,
+          "2022": 0.05699854445002688,
+          "2023": 0.049066363733685454
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 70,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04545073396667252,
+          "min_window_ic": 0.016010604678926302
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03831084852967543,
+          "ci95": 0.05505160711823465,
+          "boot_mean": 0.04643489655418301,
+          "n_obs": 1514
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0114"
+    },
+    {
+      "name": "x3_aggrmax_volclock_rev60",
+      "expr": "(CsRank(-TsMax(CLOSE / VWAP - 1, 20)) - 0.5) * (CsRank(-(TsSum(VOLUME, 20) / TsSum(VOLUME, 250))) - 0.5) * (CsRank(-TsSum(CLOSE / OPEN - 1, 60)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Peak-aggr x clock x reversal.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.05307664337038737,
+        "ic_std": 0.07390227807380512,
+        "icir": 0.7182003688354575,
+        "t_stat": 23.049644745402233,
+        "n_days": 1030,
+        "pos_rate": 0.7757281553398059,
+        "coverage": 0.813495306698458,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.9999999999953599,
+        "against": "cxalpha_0038",
+        "replace": null,
+        "pass": false
+      }
+    },
+    {
+      "name": "x3_nvolburst_med_gapvol",
+      "expr": "(CsRank(-TsCount(VOLUME / TsMean(VOLUME, 60) > 2, 60)) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Attn-burst x stretch x overnight risk.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.033744063429194046,
+        "ic_std": 0.047936130135355394,
+        "icir": 0.7039379969537015,
+        "t_stat": 24.109234107914695,
+        "n_days": 1173,
+        "pos_rate": 0.7800511508951407,
+        "coverage": 0.9561024889699633,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6386450091356435,
+        "against": "cxalpha_0016",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.04750172735718285,
+          "ic_std": 0.06574470696175116,
+          "icir": 0.7225178961527401,
+          "t_stat": 15.895393715360282,
+          "n_days": 484,
+          "pos_rate": 0.7892561983471075
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.021497079838683816,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.017258963905131656,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03380844733409632,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.033478733256204984,
+          "2018": 0.039704436979825,
+          "2019": 0.03471539331441818,
+          "2020": 0.020574800333449886,
+          "2021": 0.04019600458995798,
+          "2022": 0.05816639345148878,
+          "2023": 0.03683706126287693
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03824783533424616,
+          "min_window_ic": 0.007994262240666048
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03196069817940251,
+          "ci95": 0.04323507307291376,
+          "boot_mean": 0.03766849387020791,
+          "n_obs": 1657
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0115"
+    },
+    {
+      "name": "x3_hlmed_gapvol_amtself",
+      "expr": "(CsRank(-TsMed(HIGH / LOW - 1, 60)) - 0.5) * (CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Median range x overnight risk x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.031078515761008656,
+        "ic_std": 0.061225665184868584,
+        "icir": 0.5076060123996734,
+        "t_stat": 17.04830895994695,
+        "n_days": 1128,
+        "pos_rate": 0.6968085106382979,
+        "coverage": 0.9159498040567553,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.6157596189475246,
+        "against": "cxalpha_0087",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.040477237399727396,
+          "ic_std": 0.08238433818647206,
+          "icir": 0.4913219950630613,
+          "t_stat": 10.809083891387349,
+          "n_days": 484,
+          "pos_rate": 0.6900826446280992
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.004127732413227012,
+            "pass": false
+          },
+          "csi500": {
+            "ic_mean": 0.01768163043032164,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03345453739212093,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.040621030197475726,
+          "2018": 0.028660502786331078,
+          "2019": 0.04063038376762014,
+          "2020": 0.023669586567189708,
+          "2021": 0.025227492780264003,
+          "2022": 0.042455529090555416,
+          "2023": 0.03849894570889937
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.031704738863923124,
+          "min_window_ic": 0.007521125391842191
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.026418799441873846,
+          "ci95": 0.0401338699799763,
+          "boot_mean": 0.03340443212172241,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0116"
+    },
+    {
+      "name": "x3_hlbest_gapvol_amtself",
+      "expr": "(CsRank(-TsMean((HIGH / LOW - 1) * (RET >= TsMax(RET, 20)), 60)) - 0.5) * (CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Best-day x overnight risk x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.03268168754320016,
+        "ic_std": 0.05010291612717124,
+        "icir": 0.6522911253358484,
+        "t_stat": 21.907661384832284,
+        "n_days": 1128,
+        "pos_rate": 0.750886524822695,
+        "coverage": 0.9159498040567553,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5382181057171163,
+        "against": "cxalpha_0065",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.04058657849205689,
+          "ic_std": 0.07262847220915859,
+          "icir": 0.5588246214951889,
+          "t_stat": 12.294141672894154,
+          "n_days": 484,
+          "pos_rate": 0.7169421487603306
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.00941299146197029,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.018879864187420648,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.034885877431870195,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.03897446382000514,
+          "2018": 0.02976707246408213,
+          "2019": 0.03994988492905638,
+          "2020": 0.023508304553050793,
+          "2021": 0.033457667155456484,
+          "2022": 0.04484815854649075,
+          "2023": 0.036324998437623046
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.035113983487427565,
+          "min_window_ic": 0.01335839886211467
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.02883379290569235,
+          "ci95": 0.0406929482859416,
+          "boot_mean": 0.03470648853481422,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0117"
+    },
+    {
+      "name": "x3_semivol60_med_amtself",
+      "expr": "(CsRank(-(TsStd((RET + Abs(RET)) / 2, 60) - TsStd((RET - Abs(RET)) / 2, 60))) - 0.5) * (CsRank(-(CLOSE / TsMed(CLOSE, 60) - 1)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Quarterly semivol x stretch x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.04608575068249634,
+        "ic_std": 0.08026293215137799,
+        "icir": 0.5741847381749947,
+        "t_stat": 19.284402819062933,
+        "n_days": 1128,
+        "pos_rate": 0.749113475177305,
+        "coverage": 0.9196489060932723,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.5897302992452643,
+        "against": "cxalpha_0075",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.058525385896411763,
+          "ic_std": 0.0761652607879082,
+          "icir": 0.768399993527011,
+          "t_stat": 16.90479985759424,
+          "n_days": 484,
+          "pos_rate": 0.7933884297520661
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.023224298314729008,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.027880084159220962,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04608470328516604,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.05037066025682032,
+          "2018": 0.038487056376438136,
+          "2019": 0.05002872009159811,
+          "2020": 0.033017545922696984,
+          "2021": 0.06006028135394626,
+          "2022": 0.06639795325578621,
+          "2023": 0.05065281853703733
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.04870350841438964,
+          "min_window_ic": 0.019283771151454757
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.041377600862273656,
+          "ci95": 0.05744401293409891,
+          "boot_mean": 0.0496701254743988,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0118"
+    },
+    {
+      "name": "x3_gapcapmag_gapvol_amtself",
+      "expr": "(CsRank(TsSum((OPEN / Delay(CLOSE, 1) - 1) * ((OPEN / Delay(CLOSE, 1) - 1) < 0) * ((CLOSE / OPEN - 1) < 0), 60)) - 0.5) * (CsRank(-TsStd(OPEN / Delay(CLOSE, 1) - 1, 20)) - 0.5) * (CsRank(-TsRank(Log(AMOUNT), 120)) - 0.5)",
+      "family": "threeway",
+      "rationale": "Cap-depth x overnight risk x state.",
+      "logic_score": 65,
+      "s1": {
+        "ic_mean": 0.031898966162663744,
+        "ic_std": 0.04917807447709255,
+        "icir": 0.6486420320812374,
+        "t_stat": 21.785103992467743,
+        "n_days": 1128,
+        "pos_rate": 0.7464539007092199,
+        "coverage": 0.9157317169511854,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.4930509051864971,
+        "against": "cxalpha_0087",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.033543093487402614,
+          "ic_std": 0.06429505892299385,
+          "icir": 0.521705618585359,
+          "t_stat": 11.477523608877899,
+          "n_days": 484,
+          "pos_rate": 0.7128099173553719
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.009495486056695344,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.017324605593205727,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.02994617396072741,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.041087399988969035,
+          "2018": 0.029925351912906427,
+          "2019": 0.042990479855424944,
+          "2020": 0.02504006338959612,
+          "2021": 0.02373339024676007,
+          "2022": 0.03526951927122207,
+          "2023": 0.03181666770358317
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 1.0,
+          "median_window_ic": 0.03144966550323791,
+          "min_window_ic": 0.007928239172521657
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.026713642704635138,
+          "ci95": 0.03716712366871378,
+          "boot_mean": 0.0320238606829869,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "pass": true
+      },
+      "accepted_name": "cxalpha_0119"
+    }
+  ]
+}

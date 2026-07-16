@@ -141,6 +141,50 @@
       "alpha_set_size": 88,
       "diversity_entropy": 0.7773054428739461,
       "candidates_file": "rounds/composite_round04_candidates.py"
+    },
+    {
+      "round": 5,
+      "date": "2026-07-16",
+      "candidates": 34,
+      "s1_pass": 33,
+      "s2_pass": 31,
+      "s3_pass": 31,
+      "accepted": [
+        "cxalpha_0089",
+        "cxalpha_0090",
+        "cxalpha_0091",
+        "cxalpha_0092",
+        "cxalpha_0093",
+        "cxalpha_0094",
+        "cxalpha_0095",
+        "cxalpha_0096",
+        "cxalpha_0097",
+        "cxalpha_0098",
+        "cxalpha_0099",
+        "cxalpha_0100",
+        "cxalpha_0101",
+        "cxalpha_0102",
+        "cxalpha_0103",
+        "cxalpha_0104",
+        "cxalpha_0105",
+        "cxalpha_0106",
+        "cxalpha_0107",
+        "cxalpha_0108",
+        "cxalpha_0109",
+        "cxalpha_0110",
+        "cxalpha_0111",
+        "cxalpha_0112",
+        "cxalpha_0113",
+        "cxalpha_0114",
+        "cxalpha_0115",
+        "cxalpha_0116",
+        "cxalpha_0117",
+        "cxalpha_0118",
+        "cxalpha_0119"
+      ],
+      "alpha_set_size": 119,
+      "diversity_entropy": 0.7624613069191345,
+      "candidates_file": "rounds/composite_round05_candidates.py"
     }
   ],
   "patterns": {
@@ -164,14 +208,15 @@
       "name": "threeway",
       "description": "factor family: threeway",
       "template": "(CsRank(A)-.5)*(CsRank(B)-.5)*(CsRank(C)-.5)",
-      "occurrence_count": 67,
-      "accept_count": 49,
-      "success_rate": 0.7313432835820896,
+      "occurrence_count": 101,
+      "accept_count": 80,
+      "success_rate": 0.7920792079207921,
       "classification": "success",
       "rounds": [
         1,
         2,
-        4
+        4,
+        5
       ],
       "curated": false,
       "pinned": false
@@ -309,6 +354,21 @@
       "curated": true,
       "pinned": true,
       "evidence": "xR4 S1: all 6 strong pairs (aggrmax60/semivol60/retonhiHL/aggrmin60 x amtself) ICIR -0.31 to -0.72 but IC 0.014-0.026; all 5 remaining four-ways S1 (ICIR -0.35 to -0.76, IC under) + 1 S4 (maxfreq_med_amtself_gapvol OOS -0.030); weak-parent 3-ways failed (min60/gapmed-drift/aggr-asymmetry/retvrcorr x stretch, IC 0.020-0.028)."
+    },
+    "fresh-strong-parent-three-ways-close-the": {
+      "name": "fresh-strong-parent-three-ways-close-the",
+      "description": "Fresh strong-parent three-ways close the campaign; commutativity of rank products is now the binding limit",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "success",
+      "rounds": [
+        5
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "xR5 (31/34): pure threeway exploitation crossed 88->119 (target 100 met). Only 3 rejects — 2 at corr=1.00 (semivol/aggrmax x volclock x rev60 are EXACT duplicates of earlier triples: rank products commute, so parent-set collisions surface at S2). Fresh strong-parent triples are near-exhausted."
     }
   },
   "insights": {

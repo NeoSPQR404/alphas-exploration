@@ -45,3 +45,19 @@ unshortable in A-shares, costs at this turnover are material, signals
 tilt small. And with both holdouts now read, 2024–25 is no longer an
 honest window for anything in this repo — the next true test is live
 data.
+
+---
+
+## Addendum — re-read 2026-07-10 (NOT a pristine test)
+
+**Caveat: the 2024–25 holdout was already spent on this set (first read
+2026-07-09).** This re-read is NOT an independent honest test — the window
+is no longer pristine. It was run at the user's request to cover the ~22
+factors accepted after cR10 that had never been individually holdout-read,
+and to refresh the composite on the full 105-factor set.
+
+Result (105 factors, 2024–25): 100% sign-consistent · median holdout rank
+IC 0.050 · 91% ≥ 0.03 · median holdout/OOS ratio 1.02. EW rank composite:
+holdout IC **0.105**, ICIR 0.66, t 14.4, yearly 2024 0.110 / 2025 0.100.
+Consistent with the first read (median 0.052 → 0.050 as the set grew).
+Treat as a consistency check, not new out-of-sample evidence.

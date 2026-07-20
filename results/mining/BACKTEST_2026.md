@@ -1,4 +1,4 @@
-# The 2026 out-of-sample test — the factor edge REVERSED
+# The 2026 out-of-sample test — the factor edge DEGRADED sharply (not a clean reversal)
 
 Run 2026-07-16 on **genuinely unseen data**: the 2026 window (Jan 5 →
 Jun 24, 10 rebalances) was fetched fresh from tushare and had never
@@ -6,10 +6,30 @@ touched any gate, distill, holdout, or backtest. Unlike the spent
 2024–25 holdout, this is the first real out-of-sample evidence in the
 project. `code/backtest_2026.py` recomputes every factor from its stored
 expression over the 2017–2026 panel and evaluates each set's EW
-oriented-rank composite on 2026 only. Same design as the historical
-backtest (10-day rebalance, t+1 vwap, 15bp costs, full-A tradable_entry).
+oriented-rank composite on 2026 only.
 
-## Verdict: the 2017–2025 behavioral edge did not survive — it inverted.
+> **CORRECTION (2026-07-16, after computing daily IC).** An earlier
+> version of this note titled the finding a "reversal / inversion" based
+> only on the decile backtest. Computing the composite's **daily rank IC**
+> shows it stayed **weakly POSITIVE** in 2026 (behavioral_full +0.065,
+> canonical +0.057, composite +0.025) vs ~0.10 historically. So the signal
+> **degraded ~40–75% but did not cleanly reverse**. The decile inversion
+> below is real on the sparse 10-rebalance grid but is dominated by the
+> noisiest extreme deciles and a tiny sample; the daily IC (115 overlapping
+> days) is the more reliable estimate. Reconciled verdict: **sharp
+> degradation + failure to deliver tradable returns out-of-sample**, not a
+> sign flip. Figures: `results/mining/figs/fig_ic_trajectory.png` (IC),
+> `fig_decile_2026.png`, `fig_equity_2026.png`, `fig_excess_contrast.png`.
+
+## Composite daily rank IC by window (the reliable estimate)
+
+| set | IS 2017–21 | OOS 2022–23 | holdout 2024–25 | **2026** |
+|---|---|---|---|---|
+| behavioral_full | 0.108 | 0.102 | 0.106 | **+0.065** |
+| canonical | 0.105 | 0.107 | 0.100 | **+0.057** |
+| canonical_composite | 0.070 | 0.081 | 0.085 | **+0.025** |
+
+## The tradable backtest (10 non-overlapping rebalances) nonetheless lost / inverted
 
 Decile mean 10-day return (%), D1 = composite's WORST-ranked, D10 = top:
 
@@ -29,30 +49,33 @@ Portfolio results (2026, market EW +3.0%/yr, CSI300 −5.8%/yr):
 
 The composite's long-short lost **−22% cumulatively in six months.**
 
-## This is a regime flip, not noise — and the clean monotonicity proves it.
+## Reconciling the two metrics: degradation + a small-sample inversion
 
-A *dead* signal gives a flat decile curve. What we see is a **cleanly
-reversed monotone** curve (most perfect in canonical/composite): the
-factors still have real cross-sectional predictive power — it pointed the
-**opposite** direction in H1 2026. The market context confirms the
-mechanism: CSI300 (large caps) −5.8% while the equal-weight universe
-+3.0% → a **small-cap / speculative regime** in which the recent-winner,
-high-lottery, high-turnover, low-value names that every one of these
-factors is built to FADE were exactly what led the market. The reversal /
-anti-lottery / low-turnover theses reversed together.
+The daily IC (positive) and the decile backtest (inverted) disagree
+because they measure different things. The daily IC uses all ~115
+overlapping days and is the statistically reliable estimate — it says the
+broad rank ordering kept weak positive power (~half of historical). The
+decile/portfolio numbers use only the **10 non-overlapping rebalance
+dates** and are driven by the **extreme deciles** (D1/D10), which are the
+noisiest cells; on that sparse grid the tradable book lost and the deciles
+inverted. Both are "true," but the honest headline is **sharp degradation
+that failed to deliver tradable returns**, not a clean sign flip.
 
-The inversion **strengthens with signal concentration**: behavioral_full
-(broadest, includes some value/quality) is least inverted; canonical
-(pure price-volume reversal/lottery) more; composite (rank-products that
-concentrate the behavioral signal) most. The purer the behavioral bet,
-the harder the regime flip hurt.
+The market context explains the degradation: CSI300 (large caps) −5.8%
+while the equal-weight universe +3.0% → a **small-cap / speculative
+regime** in which the recent-winner, high-lottery, high-turnover names
+these factors FADE were what led. The effect **strengthens with signal
+concentration**: behavioral_full (broadest, some value/quality) degraded
+least; canonical more; composite (rank-products concentrating the
+behavioral bet) most (IC 0.085 → 0.025, and the worst tradable loss).
 
 ## Honest caveats (cutting both ways)
 
 - **Small sample.** 10 rebalances (~6 months) is very noisy; one adverse
   regime dominates. This does NOT prove the factors are permanently
-  broken — it proves they **did not confirm** out-of-sample, and in fact
-  reversed, in the one fresh window available.
+  broken — it proves they **did not confirm** out-of-sample (IC roughly
+  halved) and **failed to deliver tradable returns** in the one fresh
+  window available.
 - **Fundamentals carried forward** from end-2025 (Q1-2026 reports not
   incorporated) — affects only the handful of value/quality factors, not
   the price/volume majority driving the result.
@@ -67,7 +90,8 @@ the harder the regime flip hurt.
 The honest bottom line for the whole project: **these factors encode a
 real but regime-contingent behavioral signal, not a robust all-weather
 alpha.** They worked when reversal/anti-speculation paid (most of
-2017–2025) and reversed when it didn't (H1 2026). Any live use needs a
+2017–2025) and degraded sharply — losing tradable value — when it didn't
+(H1 2026), though without a clean daily-IC sign flip. Any live use needs a
 regime filter or a market-neutral construction that does not bet the
 whole book on the behavioral direction — and far more than 6 months of
 live data before trusting the direction again.

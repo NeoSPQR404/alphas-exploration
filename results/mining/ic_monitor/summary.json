@@ -1,0 +1,26 @@
+{
+  "behavioral_full": {
+    "baseline_is_ic": 0.10460739907680064,
+    "current_historical_state": "HEALTHY",
+    "current_historical_ic": 0.08732161861214083,
+    "latest_oos_2026_state": "HEALTHY",
+    "latest_oos_2026_ic": 0.07315180933678893,
+    "first_watch_breach": "20230602"
+  },
+  "canonical": {
+    "baseline_is_ic": 0.100165696828176,
+    "current_historical_state": "HEALTHY",
+    "current_historical_ic": 0.07511803591356617,
+    "latest_oos_2026_state": "HEALTHY",
+    "latest_oos_2026_ic": 0.06669408932461307,
+    "first_watch_breach": "20230605"
+  },
+  "canonical_composite": {
+    "baseline_is_ic": 0.06854998746634754,
+    "current_historical_state": "HEALTHY",
+    "current_historical_ic": 0.06638346676572063,
+    "latest_oos_2026_state": "WATCH",
+    "latest_oos_2026_ic": 0.03252776733983011,
+    "first_watch_breach": "20240704"
+  }
+}

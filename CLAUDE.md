@@ -92,10 +92,18 @@ success_rate, classification}` — plus `insights` (exploration ideas).
 - **S1** |IS IC| ≥ 0.03, |ICIR| ≥ 0.30, coverage ≥ 0.60.
 - **S2** |corr| < 0.70 vs the set's residents; replace incumbent if ≥1.3× |IS IC|.
 - **S3** intra-round dedup at 0.70, keep-best by |ICIR|.
-- **S4** (5 tests) OOS same-sign ≥ max(0.03, 0.4×|IS|); ≥2/3 of
+- **S4** (6 tests) OOS same-sign ≥ max(0.03, 0.4×|IS|); ≥2/3 of
   {HS300, CSI500, CSI1000} same-sign ≥0.005; yearly sign-rate ≥0.60;
   rolling 120d/step-20 sign-rate ≥0.70; block bootstrap B=1000, block=10,
-  seed=11, one-sided p ≤ 0.05.
+  seed=11, one-sided p ≤ 0.05; **decile-monotonicity ≥0.60** same sign
+  (Spearman of decile mean-return vs rank, IS+OOS).
+- **Construction (2026-07-20):** `GATE_ON_NEUTRALIZED=True` — S1/S4 score
+  the size+industry **neutralized** signal (residual alpha), so new rounds
+  are judged on residual, not a style tilt; raw values still feed the
+  correlation gates and registry. Neutralization/composite/investable-mask
+  live in `code/mining/construct.py`. Backtest the recommended construction
+  with `python3 code/backtest_composite.py <set> neutral`. Rationale +
+  numbers: `results/mining/NEUTRALIZE_REPORT.md`.
 
 ## Round checklist (never skip a step)
 

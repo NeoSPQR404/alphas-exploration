@@ -28,6 +28,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from mining import alphaseval as ae          # noqa: E402
 from mining import config as cfg             # noqa: E402
+from mining import construct as cs           # noqa: E402
 from mining import pipeline as pl            # noqa: E402
 from mining.data import Panel                # noqa: E402
 from mining.registry import Registry         # noqa: E402
@@ -35,39 +36,9 @@ from mining.registry import Registry         # noqa: E402
 ROOT = Path(__file__).resolve().parents[1]
 Q = 10
 PPY = 250 / cfg.HORIZON
-SIZE_DROP = 0.30          # drop the smallest 30% by circ_mv
-MIN_DAYS = 250            # exclude names listed < 250 trading days
+SIZE_DROP = cfg.FILTER_SIZE_DROP   # drop the smallest 30% by circ_mv
+MIN_DAYS = cfg.FILTER_MIN_DAYS     # exclude names listed < 250 trading days
 WINDOWS = {"full": ("20170101", "20251231"), "y2026": ("20260101", "20261231")}
-
-
-def neutralize(sig, size_log, ind_codes, univ):
-    """Per-date residual of sig on [industry dummies, log size], within the
-    universe mask. Sequential: industry-demean, then regress out size."""
-    S = sig.where(univ)
-    Z = size_log.where(univ)
-    sv = S.to_numpy(); zv = Z.to_numpy(); iv = ind_codes.to_numpy()
-    out = np.full_like(sv, np.nan)
-    for t in range(sv.shape[0]):
-        row, z, ic = sv[t], zv[t], iv[t]
-        ok = ~np.isnan(row) & ~np.isnan(z) & ~np.isnan(ic)
-        if ok.sum() < 50:
-            continue
-        r = row.copy()
-        g = ic[ok].astype(int)
-        # industry demean
-        ng = int(g.max()) + 1
-        gsum = np.bincount(g, weights=r[ok], minlength=ng)
-        gcnt = np.bincount(g, minlength=ng)
-        gmean = np.divide(gsum, gcnt, out=np.zeros_like(gsum), where=gcnt > 0)
-        r[ok] = r[ok] - gmean[g]
-        # regress out size (standardized)
-        zz = z[ok]; zz = (zz - zz.mean())
-        denom = (zz * zz).sum()
-        if denom > 0:
-            beta = (r[ok] * zz).sum() / denom
-            r[ok] = r[ok] - beta * zz
-        out[t] = np.where(ok, r, np.nan)
-    return pd.DataFrame(out, index=sig.index, columns=sig.columns)
 
 
 def backtest(sig, label, univ, window):
@@ -110,29 +81,22 @@ def main(set_name):
     label = panel.label(cfg.HORIZON)
     actives = reg.active()
     print(f"[{set_name}] recompute {len(actives)} factors")
-    rank_sum, n = None, 0
+
+    oriented = []
     for a in actives:
         try:
-            F = pl.compute_factor(a["expression"], panel) * a["direction"]
+            oriented.append(pl.compute_factor(a["expression"], panel) * a["direction"])
         except Exception:
             continue
-        r = ae._masked(F, mask).rank(axis=1, pct=True)
-        rank_sum = r if rank_sum is None else rank_sum.add(r, fill_value=0)
-        n += 1
-    comp = rank_sum / n
+    n = len(oriented)
+    comp = cs.oriented_composite(oriented, mask)
     print(f"  composite done [{time.time()-t0:.0f}s]; building style/status")
 
-    size = panel.wide("CMV").astype(float)
-    size_log = np.log(size.where(size > 0))
-    ind = panel.wide("INDUSTRY")
-    is_st = panel.wide("is_st").astype(float) > 0
-    days = panel.wide("DAYS_ON").astype(float)
-    size_rank = size.rank(axis=1, pct=True)
-    invest = mask & (~is_st.reindex_like(mask).fillna(False)) \
-        & (days >= MIN_DAYS) & (size_rank > SIZE_DROP)
-    invest = invest.fillna(False)
-
-    comp_neu = neutralize(comp, size_log, ind, mask)
+    # 'filtered' variant keeps the size cut (status_only=False) so this eval
+    # still contrasts the micro-cap filter against status-only construction.
+    invest = cs.investable_mask(panel, mask, status_only=False,
+                                min_days=MIN_DAYS, size_drop=SIZE_DROP)
+    comp_neu = cs.neutralize_factor(comp, panel, mask)
     print(f"  neutralized [{time.time()-t0:.0f}s]")
 
     variants = {"raw": (comp, mask), "filtered": (comp, invest),

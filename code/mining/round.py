@@ -25,6 +25,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from mining import alphaseval as ae            # noqa: E402
 from mining import config as cfg               # noqa: E402
+from mining import construct as cs             # noqa: E402
 from mining import pipeline as pl              # noqa: E402
 from mining.data import Panel                  # noqa: E402
 from mining.memory import Memory               # noqa: E402
@@ -56,7 +57,8 @@ def run(candidates_path: str):
     noise_var = ae.noise_variance(panel)
     print(f"=== [{set_name}] Round {round_id}: {len(candidates)} candidates, "
           f"noise_var={noise_var:.5f}, whitelist="
-          f"{'none' if whitelist is None else ','.join(whitelist)} ===")
+          f"{'none' if whitelist is None else ','.join(whitelist)}, "
+          f"gate_neutralized={cfg.GATE_ON_NEUTRALIZED} ===")
 
     results = []
     for cand in candidates:
@@ -70,7 +72,11 @@ def run(candidates_path: str):
             print(f"[{cand['name']}] ERROR {rec['error']}")
             continue
         rec["factor"] = factor
-        rec["s1"] = pl.stage1_quick_ic(factor, panel, mask_all)
+        # Gates score the neutralized (residual-alpha) signal when enabled;
+        # raw values are kept for correlation gates and registry storage.
+        rec["score_factor"] = (cs.neutralize_factor(factor, panel, mask_all)
+                               if cfg.GATE_ON_NEUTRALIZED else factor)
+        rec["s1"] = pl.stage1_quick_ic(rec["score_factor"], panel, mask_all)
         s1 = rec["s1"]
         print(f"[{cand['name']}] S1 ic={_fmt(s1['ic_mean'])} "
               f"icir={_fmt(s1['icir'], 2)} cov={_fmt(s1['coverage'], 2)} "
@@ -99,11 +105,12 @@ def run(candidates_path: str):
     # ---- stage 4
     s3_survivors = [r for r in s2_survivors if r["s3"]["pass"]]
     for r in s3_survivors:
-        r["s4"] = pl.stage4_coverage(r["factor"], panel, r["s1"]["ic_mean"])
+        r["s4"] = pl.stage4_coverage(r["score_factor"], panel, r["s1"]["ic_mean"])
         s4 = r["s4"]
         print(f"[{r['name']}] S4 oos_ic={_fmt(s4['oos']['ic_mean'])} "
               f"uni_pass={sum(u['pass'] for u in s4['universes'].values())}/3 "
               f"year_rate={_fmt(s4['year_sign_rate'], 2)} "
+              f"mono={_fmt(s4['monotonicity'], 2)} "
               f"-> {'ACCEPT' if s4['pass'] else 'reject'}")
 
     # ---- accept + registry update

@@ -149,6 +149,16 @@ def stage4_coverage(factor, panel, is_ic_mean) -> dict:
     yic = ae.yearly_ic(F_all, panel, m_all, cfg.HORIZON)
     year_sign_rate = float(np.mean([np.sign(v) == sign for v in yic.values()]))
 
+    # decile-monotonicity over IS+OOS: the decile mean-return curve must
+    # rise in the factor's direction, not just spike in the tails (added
+    # 2026-07-20). quantile_returns already returns Spearman(mean_q, rank).
+    qr = ae.quantile_returns(F_all, ae.slice_dates(label, cfg.IS_START,
+                                                   cfg.OOS_END), m_all,
+                             step=cfg.HORIZON)
+    mono = qr.get("monotonicity", np.nan)
+    mono_ok = (np.isfinite(mono) and np.sign(mono) == sign
+               and abs(mono) >= cfg.S4_MIN_MONOTONICITY)
+
     # rolling-window + bootstrap tests on the oriented daily IC series
     # over IS+OOS (added 2026-07-09)
     l_all = ae.slice_dates(label, cfg.IS_START, cfg.OOS_END)
@@ -174,9 +184,11 @@ def stage4_coverage(factor, panel, is_ic_mean) -> dict:
         "rolling_pass": bool(roll_ok),
         "bootstrap": boot,
         "bootstrap_pass": bool(boot_ok),
+        "monotonicity": float(mono) if np.isfinite(mono) else None,
+        "monotonicity_pass": bool(mono_ok),
         "pass": bool(oos_ok and n_uni_pass >= cfg.S4_MIN_UNIVERSES_PASS
                      and year_sign_rate >= cfg.S4_MIN_YEAR_SIGN_RATE
-                     and roll_ok and boot_ok),
+                     and roll_ok and boot_ok and mono_ok),
     }
 
 

@@ -33,6 +33,13 @@ S4_MIN_UNIVERSES_PASS = 2    # sub-universes with same-sign full-period IC
 S4_UNIVERSE_MIN_ABS_IC = 0.005
 S4_MIN_YEAR_SIGN_RATE = 0.60  # share of 2017-2023 years with same-sign IC
 
+# stage 4 addition (2026-07-20): decile-monotonicity gate. Guards against
+# factors that "work" only in the extreme deciles (the failure mode behind
+# the 2026 extreme-decile inversion). Requires the decile mean-return curve
+# to be monotone in the factor's own direction: Spearman(decile_mean, rank)
+# same sign as IS IC and |.| >= threshold, on the IS+OOS window.
+S4_MIN_MONOTONICITY = 0.60
+
 # stage 4 additions (2026-07-09): rolling-window + bootstrap tests,
 # both on the oriented daily rank-IC series over IS_START..OOS_END
 S4_ROLL_WINDOW = 120          # rolling window length (trading days)
@@ -45,3 +52,22 @@ S4_BOOT_MAX_P = 0.05          # one-sided p-value: H0 mean oriented IC <= 0
 S4_BOOT_SEED = 11
 
 QUANTILES = 10
+
+# ---------------------------------------------------------------- construction
+# 2026-07-20: size+industry neutralization halved the 2026 long-short loss at
+# zero historical cost (results/mining/NEUTRALIZE_REPORT.md). Adopted as the
+# default construction. When True, the S1/S4 gates score the *neutralized*
+# factor (residual alpha on [SW-L1 industry, log circ_mv]) so future rounds
+# are judged on residual alpha, not a size/industry style tilt. Registry
+# still stores the raw factor; neutralization is a construction-time transform.
+# NOTE: the existing corpus was gated on raw IC — factors accepted before this
+# flag are not directly comparable to ones accepted after.
+GATE_ON_NEUTRALIZED = True
+
+# Investable filter (backtest/eval layer). Status-only by default: drop ST and
+# names listed < FILTER_MIN_DAYS trading days. The micro-cap size cut
+# (FILTER_SIZE_DROP) is opt-in — it was shown to subtract signal out-of-sample
+# (the edge lives partly in small caps) without fixing the regime risk.
+FILTER_STATUS_ONLY = True
+FILTER_MIN_DAYS = 250
+FILTER_SIZE_DROP = 0.30

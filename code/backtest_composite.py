@@ -11,7 +11,12 @@ Design (matches the label construction — no execution fantasy):
 - costs: turnover x (buy + sell) per side, applied per period
 - outputs: <set_dir>/backtest.json
 
-Run: python3 code/backtest_composite.py <set_name>
+Pass `neutral` to use the recommended 2026-07-20 construction: residualize
+the composite on size+industry and select within the status-only investable
+universe (drops ST / < FILTER_MIN_DAYS listed). Writes backtest_neutral.json
+so the raw baseline artifact is preserved for comparison.
+
+Run: python3 code/backtest_composite.py <set_name> [neutral]
 """
 import json
 import sys
@@ -25,6 +30,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from mining import alphaseval as ae          # noqa: E402
 from mining import config as cfg             # noqa: E402
+from mining import construct as cs           # noqa: E402
 from mining.data import Panel                # noqa: E402
 from mining.registry import Registry         # noqa: E402
 
@@ -61,7 +67,7 @@ def stats(period_ret: pd.Series) -> dict:
     }
 
 
-def main(set_name: str):
+def main(set_name: str, neutral: bool = False):
     t0 = time.time()
     panel = Panel()
     reg = Registry(set_name)
@@ -72,19 +78,24 @@ def main(set_name: str):
     mask = panel.universe_mask("all")
     label = panel.label(cfg.HORIZON)
     actives = reg.active()
-    print(f"backtest [{set_name}]: {len(actives)} factors")
+    tag = "neutralized+investable" if neutral else "raw"
+    print(f"backtest [{set_name}] ({tag}): {len(actives)} factors")
 
-    rank_sum = None
-    for i, a in enumerate(actives):
-        F = reg.values(a["name"]) * a["direction"]
-        r = ae._masked(F, mask).rank(axis=1, pct=True)
-        rank_sum = r if rank_sum is None else rank_sum.add(r, fill_value=0)
-        if (i + 1) % 15 == 0:
-            print(f"{i+1}/{len(actives)} [{time.time()-t0:.0f}s]")
-    comp = rank_sum / len(actives)
+    comp = cs.oriented_composite(
+        (reg.values(a["name"]) * a["direction"] for a in actives), mask)
+
+    # Recommended construction (2026-07-20): residualize the composite on
+    # size+industry and select within the status-only investable universe.
+    sel_mask = mask
+    if neutral:
+        comp = cs.neutralize_factor(comp, panel, mask)
+        sel_mask = cs.investable_mask(panel, mask,
+                                      status_only=cfg.FILTER_STATUS_ONLY)
+        print(f"  neutralized + investable mask [{time.time()-t0:.0f}s]")
 
     dates = comp.index[::cfg.HORIZON]
-    L = ae._masked(label, mask)
+    L = ae._masked(label, sel_mask)
+    comp = ae._masked(comp, sel_mask)
 
     rows = []
     prev_long, prev_short = set(), set()
@@ -123,7 +134,7 @@ def main(set_name: str):
     df["csi300"] = bper
 
     out = {"set": set_name, "n_factors": len(actives),
-           "horizon": cfg.HORIZON, "quantiles": Q,
+           "construction": tag, "horizon": cfg.HORIZON, "quantiles": Q,
            "cost_bp_per_side": list(COST_SIDES_BP), "windows": {}}
 
     dec_mat = np.vstack(df["deciles"].values)
@@ -163,7 +174,7 @@ def main(set_name: str):
         }
     out["yearly"] = yearly
 
-    path = set_dir / "backtest.json"
+    path = set_dir / ("backtest_neutral.json" if neutral else "backtest.json")
     path.write_text(json.dumps(out, indent=2, default=float))
     print(json.dumps({k: v for k, v in out["windows"]["full"].items()
                       if k in ("long_only_gross", "long_only_net_15bp",
@@ -172,4 +183,5 @@ def main(set_name: str):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1] if len(sys.argv) > 1 else "main")
+    args = [a for a in sys.argv[1:] if a != "neutral"]
+    main(args[0] if args else "main", neutral="neutral" in sys.argv)

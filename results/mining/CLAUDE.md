@@ -10,7 +10,8 @@ reports. (Root-level result files were consolidated into
 | `sets/behavioral_full/` | 105 | full (OHLCV + turnover/VR/amp + limit boards + moneyflow/northbound/margin + valuation + industry) | `"main"` |
 | `sets/canonical/` | 105 individual | OHLCV/VWAP/AMOUNT/RET only (AST-enforced) | `"canonical"` |
 | `sets/canonical_composite/` | 119 | rank-product compositions of canonical parents | `"canonical_composite"` |
-| `sets/robust_2026/` | 24 | **curated**: robust in BOTH 2017-25 & 2026, cost-efficient, non-overnight (5 mined R13-14 + 19 past valid) | `"robust_2026"` |
+| `sets/robust_2026/` | 25 | **curated**: robust in BOTH 2017-25 & 2026, cost-efficient, non-overnight (5 mined R13-14 + 19 past valid + 1 R1-R2) | `"robust_2026"` |
+| `sets/value_20d/` | 4 | value/fundamental sleeve at the **20-day** horizon (`valpha_`, gates on fwd_ret_20d) | `"value_20d"` |
 
 Per-set files: `alpha_set.json` (+`.csv`), `experience_memory.json`,
 `rounds/round_NN.{md,json}`, `holdout/round_NN.json` +

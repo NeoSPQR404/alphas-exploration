@@ -67,7 +67,8 @@ live copy at the `results/mining/` root). Current sets:
 | behavioral_full | `"main"` | 112 factors, full vocabulary (OHLCV, vwap, turnover, VR, amplitude, limit boards, moneyflow, northbound, margin, valuation, industry). Rounds 13-14 added 12; 5 moved to robust_2026. |
 | canonical | `"canonical"` | 105 individual factors, **only** OPEN/HIGH/LOW/CLOSE/VOLUME/AMOUNT/VWAP/RET (AST-enforced) |
 | canonical_composite | `"canonical_composite"` | 119 rank-product compositions (`cxalpha_` names) of canonical parents |
-| robust_2026 | `"robust_2026"` | 24 curated (`ralpha_`): robust in BOTH 2017-25 & 2026, cost-efficient, **non-overnight**. See `results/mining/sets/robust_2026/CLAUDE.md`. |
+| robust_2026 | `"robust_2026"` | 25 curated (`ralpha_`): robust in BOTH 2017-25 & 2026, cost-efficient, **non-overnight**. See `results/mining/sets/robust_2026/CLAUDE.md`. |
+| value_20d | `"value_20d"` | 4 value/fundamental (`valpha_`) at the **20-day** horizon (gates on fwd_ret_20d; candidates set `cfg.HORIZON=20`). Value is weak at 10d, strong at 20d. See its `CLAUDE.md`. |
 
 ## Experience memory (schema v2)
 

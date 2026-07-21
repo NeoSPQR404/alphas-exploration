@@ -1,0 +1,68 @@
+{
+  "schema": 2,
+  "rounds": [
+    {
+      "round": 1,
+      "date": "2026-07-21",
+      "candidates": 18,
+      "s1_pass": 8,
+      "s2_pass": 8,
+      "s3_pass": 3,
+      "accepted": [
+        "valpha_0001"
+      ],
+      "alpha_set_size": 1,
+      "diversity_entropy": null,
+      "candidates_file": "/Users/NEO_MAO/Desktop/Quant Research/alphas-exploration/rounds/value20d_r1_candidates.py"
+    },
+    {
+      "round": 2,
+      "date": "2026-07-21",
+      "candidates": 13,
+      "s1_pass": 6,
+      "s2_pass": 5,
+      "s3_pass": 5,
+      "accepted": [
+        "valpha_0002",
+        "valpha_0003",
+        "valpha_0004"
+      ],
+      "alpha_set_size": 4,
+      "diversity_entropy": 0.832475831456927,
+      "candidates_file": "/Users/NEO_MAO/Desktop/Quant Research/alphas-exploration/rounds/value20d_r2_candidates.py"
+    }
+  ],
+  "patterns": {
+    "value-is-much-stronger-at-20d-than": {
+      "name": "value-is-much-stronger-at-20d-than",
+      "description": "value is MUCH stronger at 20d than 10d",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "success",
+      "rounds": [
+        2
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "value_20d R1-R2: value yields clear at 20d with IS/OOS IC 0.024-0.078 (vs ~0.03 at 10d) even under size+industry neutralized gating. 4 distinct angles kept: valpha_0001 CsRank(EP)*CsRank(CFP) value-agreement (OOS 0.046 net +0.038), valpha_0002 cheap+growing sales, valpha_0003 cheap+small, valpha_0004 contrarian value (EP - 1m mom). Raw yields S3-collapse into one value signal; distinctness comes from value+growth/size/momentum blends. Diversity 0.83."
+    },
+    "value-x-behavioral-interactions-fail-value-lagged": {
+      "name": "value-x-behavioral-interactions-fail-value-lagged",
+      "description": "value x behavioral interactions fail; value LAGGED in H1 2026",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "forbidden",
+      "rounds": [
+        2
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "Demeaned-rank value x behavioral (value x lowturn/calm/stability) all fail S1 (negative IC) at 20d too. And despite strong 2017-25, all 4 value_20d factors are weak-to-negative in H1 2026 (2026 sIC +0.023..-0.013) = value bad regime in 2026 (matches the 10d value result). NOTE: 2026 at 20d = only ~4 rebalances/85 days, a short window; not disqualifying for a value sleeve (cyclical). Kept all 4."
+    }
+  },
+  "insights": {}
+}

@@ -64,9 +64,10 @@ live copy at the `results/mining/` root). Current sets:
 
 | set | arg | contents |
 |---|---|---|
-| behavioral_full | `"main"` | 105 factors, full vocabulary (OHLCV, vwap, turnover, VR, amplitude, limit boards, moneyflow, northbound, margin, valuation, industry) |
+| behavioral_full | `"main"` | 112 factors, full vocabulary (OHLCV, vwap, turnover, VR, amplitude, limit boards, moneyflow, northbound, margin, valuation, industry). Rounds 13-14 added 12; 5 moved to robust_2026. |
 | canonical | `"canonical"` | 105 individual factors, **only** OPEN/HIGH/LOW/CLOSE/VOLUME/AMOUNT/VWAP/RET (AST-enforced) |
-| canonical_composite | `"canonical_composite"` | rank-product compositions (`cxalpha_` names) of canonical parents; fresh campaign in progress |
+| canonical_composite | `"canonical_composite"` | 119 rank-product compositions (`cxalpha_` names) of canonical parents |
+| robust_2026 | `"robust_2026"` | 24 curated (`ralpha_`): robust in BOTH 2017-25 & 2026, cost-efficient, **non-overnight**. See `results/mining/sets/robust_2026/CLAUDE.md`. |
 
 ## Experience memory (schema v2)
 

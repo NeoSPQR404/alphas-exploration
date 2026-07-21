@@ -22,55 +22,17 @@ import sys
 import time
 from pathlib import Path
 
-import numpy as np
-import pandas as pd
-
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from mining import alphaseval as ae          # noqa: E402
 from mining import config as cfg             # noqa: E402
 from mining import construct as cs           # noqa: E402
-from mining import pipeline as pl            # noqa: E402
 from mining.data import Panel                # noqa: E402
 from mining.registry import Registry         # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
-Q = 10
-PPY = 250 / cfg.HORIZON
 SIZE_DROP = cfg.FILTER_SIZE_DROP   # drop the smallest 30% by circ_mv
 MIN_DAYS = cfg.FILTER_MIN_DAYS     # exclude names listed < 250 trading days
 WINDOWS = {"full": ("20170101", "20251231"), "y2026": ("20260101", "20261231")}
-
-
-def backtest(sig, label, univ, window):
-    """Decile / long-only / long-short on `univ`, sliced to `window`."""
-    s0, e0 = window
-    idx = sig.index
-    grid = idx[(idx >= s0) & (idx <= e0)][::cfg.HORIZON]
-    Suv = sig.where(univ); Luv = ae._masked(label, univ)
-    dec, longx, ls = [], [], []
-    for d in grid:
-        sv, lv = Suv.loc[d], Luv.loc[d]
-        ok = sv.notna() & lv.notna()
-        if ok.sum() < 100:
-            continue
-        rk = sv[ok].rank(pct=True)
-        top = lv[ok][rk > 1 - 1.0 / Q].mean()
-        bot = lv[ok][rk <= 1.0 / Q].mean()
-        uni = lv[ok].mean()
-        grp = np.minimum((rk * Q).astype(int), Q - 1)
-        dec.append(lv[ok].groupby(grp).mean().reindex(range(Q)).values)
-        longx.append(top - uni); ls.append(top - bot)
-    if len(longx) < 3:
-        return None
-    longx, ls = np.array(longx), np.array(ls)
-    ann = lambda a: float((1 + a).prod() ** (PPY / len(a)) - 1)
-    ic = ae.daily_ic(sig.where(univ), label, univ)
-    ic = ic[(ic.index >= s0) & (ic.index <= e0)].dropna()
-    return {"n_rebal": len(longx),
-            "long_excess_ann": ann(longx), "long_excess_cum": float((1 + longx).prod() - 1),
-            "ls_gross_ann": ann(ls), "ls_gross_cum": float((1 + ls).prod() - 1),
-            "ic_mean": float(ic.mean()) if len(ic) else None,
-            "deciles": [float(x) for x in np.nanmean(np.vstack(dec), axis=0)]}
 
 
 def main(set_name):
@@ -79,17 +41,9 @@ def main(set_name):
     reg = Registry(set_name)
     mask = panel.universe_mask("all")                 # tradable_entry
     label = panel.label(cfg.HORIZON)
-    actives = reg.active()
-    print(f"[{set_name}] recompute {len(actives)} factors")
+    print(f"[{set_name}] recompute {len(reg.active())} factors")
 
-    oriented = []
-    for a in actives:
-        try:
-            oriented.append(pl.compute_factor(a["expression"], panel) * a["direction"])
-        except Exception:
-            continue
-    n = len(oriented)
-    comp = cs.oriented_composite(oriented, mask)
+    comp, n = cs.set_composite(reg, panel, mask, "expr")
     print(f"  composite done [{time.time()-t0:.0f}s]; building style/status")
 
     # 'filtered' variant keeps the size cut (status_only=False) so this eval
@@ -107,7 +61,8 @@ def main(set_name):
            "neutralize": "per-date residual on [SW-L1 industry, log circ_mv]",
            "variants": {}}
     for vname, (sig, univ) in variants.items():
-        out["variants"][vname] = {w: backtest(sig, label, univ, win)
+        out["variants"][vname] = {w: ae.window_backtest(sig, label, univ, win,
+                                                         cfg.HORIZON)
                                   for w, win in WINDOWS.items()}
     p = (ROOT / "results" / "mining" / "sets"
          / ("behavioral_full" if set_name == "main" else set_name) / "neutralize_eval.json")

@@ -81,16 +81,14 @@ def main(set_name: str, neutral: bool = False):
     tag = "neutralized+investable" if neutral else "raw"
     print(f"backtest [{set_name}] ({tag}): {len(actives)} factors")
 
-    comp = cs.oriented_composite(
-        (reg.values(a["name"]) * a["direction"] for a in actives), mask)
+    comp, _ = cs.set_composite(reg, panel, mask, "stored")
 
     # Recommended construction (2026-07-20): residualize the composite on
-    # size+industry and select within the status-only investable universe.
+    # size+industry and select within the (config-driven) investable universe.
     sel_mask = mask
     if neutral:
         comp = cs.neutralize_factor(comp, panel, mask)
-        sel_mask = cs.investable_mask(panel, mask,
-                                      status_only=cfg.FILTER_STATUS_ONLY)
+        sel_mask = cs.investable_mask(panel, mask)
         print(f"  neutralized + investable mask [{time.time()-t0:.0f}s]")
 
     dates = comp.index[::cfg.HORIZON]

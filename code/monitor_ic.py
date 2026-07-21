@@ -60,10 +60,9 @@ def classify(trailing_ic, baseline):
     if not np.isfinite(trailing_ic) or baseline <= 0:
         return "n/a", np.nan
     ratio = trailing_ic / baseline
-    for name, lo in BANDS:
+    for name, lo in BANDS:          # last band ("BROKEN", -inf) always matches
         if ratio >= lo:
             return name, float(ratio)
-    return "BROKEN", float(ratio)
 
 
 def neutralized_ic_series(set_name, panel, mask, label, t0):
@@ -150,26 +149,20 @@ def make_graph(rows):
         import matplotlib
         matplotlib.use("Agg")
         import matplotlib.pyplot as plt
-        from matplotlib import font_manager as fm
+        import plotutil
     except Exception as e:
         print(f"  (graph skipped: {e})")
         return
-    for p in ("/System/Library/Fonts/Hiragino Sans GB.ttc",
-              "/System/Library/Fonts/STHeiti Medium.ttc"):
-        if Path(p).exists():
-            fm.fontManager.addfont(p)
-            matplotlib.rcParams["font.family"] = fm.FontProperties(fname=p).get_name()
-            break
-    matplotlib.rcParams["axes.unicode_minus"] = False
-    NAVY, BLUE, AMBER = "#1a2b4a", "#2e5b9e", "#e08a1e"
-    colors = [NAVY, BLUE, AMBER]
+    plotutil.setup_cjk_font()
+    NAVY, AMBER = plotutil.NAVY, plotutil.AMBER
+    colors = [NAVY, plotutil.BLUE, AMBER]
     fig, ax = plt.subplots(figsize=(10, 4.2))
-    for (out, trailing, baseline, label), c in zip(rows, colors):
+    for idx, ((out, trailing, baseline, label), c) in enumerate(zip(rows, colors)):
         t = trailing.dropna()
         x = pd.to_datetime(t.index, format="%Y%m%d")
         ax.plot(x, t.values, color=c, lw=1.6, label=f"{label} (基线 {baseline:.3f})")
         # baseline health lines for the first (production) set only
-        if c == NAVY:
+        if idx == 0:
             ax.axhline(HEALTHY_RATIO * baseline, color="#3a9e5e", lw=0.9, ls="--")
             ax.axhline(WATCH_RATIO * baseline, color=AMBER, lw=0.9, ls="--")
             ax.axhline(0, color="#c0392b", lw=0.9, ls="--")

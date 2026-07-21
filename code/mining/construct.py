@@ -26,6 +26,7 @@ import numpy as np
 import pandas as pd
 
 from . import alphaseval as ae
+from . import config as cfg
 
 
 # ------------------------------------------------------------ style inputs
@@ -95,25 +96,55 @@ def neutralize_factor(factor: pd.DataFrame, panel,
 
 # ------------------------------------------------------------ composite
 
-def oriented_composite(oriented_frames, mask: pd.DataFrame) -> pd.DataFrame:
-    """EW mean of per-date pct ranks of already-oriented factor frames.
+def oriented_composite(oriented_frames, mask: pd.DataFrame,
+                       weights=None) -> pd.DataFrame:
+    """(Weighted) mean of per-date pct ranks of already-oriented factor frames.
 
     ``oriented_frames`` is any iterable of wide frames already multiplied by
-    their stored direction (so higher rank = predicted higher return)."""
-    rank_sum, n = None, 0
-    for F in oriented_frames:
-        r = ae._masked(F, mask).rank(axis=1, pct=True)
+    their stored direction (so higher rank = predicted higher return).
+    ``weights`` (if given) must align 1:1 with the frames; None = equal weight.
+    """
+    pairs = ((F, 1.0) for F in oriented_frames) if weights is None \
+        else zip(oriented_frames, weights)
+    rank_sum, wsum = None, 0.0
+    for F, w in pairs:
+        r = ae._masked(F, mask).rank(axis=1, pct=True) * w
         rank_sum = r if rank_sum is None else rank_sum.add(r, fill_value=0)
-        n += 1
-    if not n:
+        wsum += w
+    if rank_sum is None:
         raise ValueError("oriented_composite: no factors")
-    return rank_sum / n
+    return rank_sum / wsum
+
+
+def set_composite(reg, panel, mask, source="stored"):
+    """Oriented EW-rank composite of a registry's active factors, and the
+    factor count used. ``source='stored'`` reads the float32 registry values
+    (fast, 2017-2025 only); ``source='expr'`` recomputes from expressions over
+    the full panel (slow, but covers 2026). The one place the "build a set's
+    deployable composite" ritual lives — callers neutralize as needed."""
+    actives = reg.active()
+    if source == "stored":
+        frames = (reg.values(a["name"]) * a["direction"] for a in actives)
+        return oriented_composite(frames, mask), len(actives)
+    from . import pipeline as pl          # lazy: avoid an import cycle
+    count = {"n": 0}
+
+    def _oriented():
+        for a in actives:
+            try:
+                F = pl.compute_factor(a["expression"], panel) * a["direction"]
+            except Exception:
+                continue
+            count["n"] += 1
+            yield F
+
+    return oriented_composite(_oriented(), mask), count["n"]
 
 
 # ------------------------------------------------------------ investability
 
-def investable_mask(panel, base_mask: pd.DataFrame, *, status_only=True,
-                    min_days: int = 250, size_drop: float = 0.30) -> pd.DataFrame:
+def investable_mask(panel, base_mask: pd.DataFrame, *, status_only=None,
+                    min_days=None, size_drop=None) -> pd.DataFrame:
     """Restrict ``base_mask`` (tradable_entry) to an investable universe.
 
     Always drops ST names and names listed < ``min_days`` trading days.
@@ -121,7 +152,13 @@ def investable_mask(panel, base_mask: pd.DataFrame, *, status_only=True,
     ``size_drop`` fraction by circulating market cap. The size cut is
     opt-in: the neutralization eval showed it hurts out-of-sample because
     the behavioral edge lives partly in small caps (NEUTRALIZE_REPORT.md).
+
+    Unset args fall back to config (``FILTER_*``) so the thresholds have a
+    single source of truth.
     """
+    status_only = cfg.FILTER_STATUS_ONLY if status_only is None else status_only
+    min_days = cfg.FILTER_MIN_DAYS if min_days is None else min_days
+    size_drop = cfg.FILTER_SIZE_DROP if size_drop is None else size_drop
     is_st = panel.wide("is_st").astype(float) > 0
     days = panel.wide("DAYS_ON").astype(float)
     inv = base_mask & (~is_st.reindex_like(base_mask).fillna(False)) \

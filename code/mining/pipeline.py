@@ -149,19 +149,19 @@ def stage4_coverage(factor, panel, is_ic_mean) -> dict:
     yic = ae.yearly_ic(F_all, panel, m_all, cfg.HORIZON)
     year_sign_rate = float(np.mean([np.sign(v) == sign for v in yic.values()]))
 
-    l_isoos = ae.slice_dates(label, cfg.IS_START, cfg.OOS_END)
+    l_all = ae.slice_dates(label, cfg.IS_START, cfg.OOS_END)
 
     # decile-monotonicity over IS+OOS: the decile mean-return curve must
     # rise in the factor's direction, not just spike in the tails (added
     # 2026-07-20). quantile_returns already returns Spearman(mean_q, rank).
-    qr = ae.quantile_returns(F_all, l_isoos, m_all, step=cfg.HORIZON)
+    qr = ae.quantile_returns(F_all, l_all, m_all, step=cfg.HORIZON)
     mono = qr.get("monotonicity", np.nan)
     mono_ok = (np.isfinite(mono) and np.sign(mono) == sign
                and abs(mono) >= cfg.S4_MIN_MONOTONICITY)
 
     # cost-aware: the factor must earn a positive long-excess after its own
     # trading costs to be tradable (added 2026-07-20). Orient by IC sign.
-    ca = ae.cost_aware(F_all * sign, l_isoos, m_all, cfg.HORIZON,
+    ca = ae.cost_aware(F_all * sign, l_all, m_all, cfg.HORIZON,
                        cost_bps=cfg.COST_BPS)
     net_le = ca.get(f"long_excess_net_{cfg.SCORING_COST_BP}bp_ann", np.nan)
     net_ok = (not cfg.GATE_ON_NET_COST) or (
@@ -169,7 +169,6 @@ def stage4_coverage(factor, panel, is_ic_mean) -> dict:
 
     # rolling-window + bootstrap tests on the oriented daily IC series
     # over IS+OOS (added 2026-07-09)
-    l_all = ae.slice_dates(label, cfg.IS_START, cfg.OOS_END)
     ic_all = ae.daily_ic(F_all, l_all, m_all) * sign
     roll = ae.rolling_ic_consistency(ic_all, cfg.S4_ROLL_WINDOW,
                                      cfg.S4_ROLL_STEP)

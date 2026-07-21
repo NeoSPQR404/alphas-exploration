@@ -180,6 +180,42 @@ def cost_aware(factor, label, mask, horizon=10, q=10, cost_bps=(15, 30),
     return out
 
 
+def window_backtest(sig, label, univ, window, horizon=10, q=10) -> dict | None:
+    """Decile / long-excess-vs-universe / long-short backtest of a signal on
+    ``univ``, sliced to ``window`` (start, end), rebalanced every ``horizon``
+    days. The shared window-sliced backtester used by the neutralization eval
+    and the cross-set meta eval. Returns None if < 3 valid rebalances."""
+    s0, e0 = window
+    idx = sig.index
+    grid = idx[(idx >= s0) & (idx <= e0)][::horizon]
+    Suv, Luv = sig.where(univ), _masked(label, univ)
+    dec, longx, ls = [], [], []
+    for d in grid:
+        sv, lv = Suv.loc[d], Luv.loc[d]
+        ok = sv.notna() & lv.notna()
+        if ok.sum() < 100:
+            continue
+        rk = sv[ok].rank(pct=True)
+        top = lv[ok][rk > 1 - 1.0 / q].mean()
+        bot = lv[ok][rk <= 1.0 / q].mean()
+        uni = lv[ok].mean()
+        grp = np.minimum((rk * q).astype(int), q - 1)
+        dec.append(lv[ok].groupby(grp).mean().reindex(range(q)).values)
+        longx.append(top - uni); ls.append(top - bot)
+    if len(longx) < 3:
+        return None
+    longx, ls = np.array(longx), np.array(ls)
+    ppy = 250 / horizon
+    ann = lambda a: float((1 + a).prod() ** (ppy / len(a)) - 1)
+    ic = daily_ic(sig.where(univ), label, univ)
+    ic = ic[(ic.index >= s0) & (ic.index <= e0)].dropna()
+    return {"n_rebal": len(longx),
+            "long_excess_ann": ann(longx), "long_excess_cum": float((1 + longx).prod() - 1),
+            "ls_gross_ann": ann(ls), "ls_gross_cum": float((1 + ls).prod() - 1),
+            "ic_mean": float(ic.mean()) if len(ic) else None,
+            "deciles": [float(x) for x in np.nanmean(np.vstack(dec), axis=0)]}
+
+
 def decay_profile(factor, panel, mask, horizons=(1, 5, 10, 20)) -> dict:
     return {
         f"ic_{h}d": float(daily_ic(factor, panel.label(h), mask).mean())

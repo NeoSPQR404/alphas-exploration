@@ -320,6 +320,23 @@
       "alpha_set_size": 113,
       "diversity_entropy": 0.771821854662571,
       "candidates_file": "/Users/NEO_MAO/Desktop/Quant Research/alphas-exploration/rounds/round13_candidates.py"
+    },
+    {
+      "round": 14,
+      "date": "2026-07-21",
+      "candidates": 19,
+      "s1_pass": 12,
+      "s2_pass": 7,
+      "s3_pass": 6,
+      "accepted": [
+        "alpha_0152",
+        "alpha_0153",
+        "alpha_0154",
+        "alpha_0155"
+      ],
+      "alpha_set_size": 117,
+      "diversity_entropy": 0.7694031802625538,
+      "candidates_file": "/Users/NEO_MAO/Desktop/Quant Research/alphas-exploration/rounds/round14_candidates.py"
     }
   ],
   "patterns": {
@@ -2223,6 +2240,36 @@
       "curated": true,
       "pinned": true,
       "evidence": "beta_instability -TsStd(RegBeta(RET,BENCH,20),60) strong 2017-25 (OOS 0.076) but decays below bar in 2026 (sIC 0.024) = regime-dependent. rsq_bench term-structure S2-locks vs existing systematic-share."
+    },
+    "activity-stability-liquidity-shape-the-robust-efficient": {
+      "name": "activity-stability-liquidity-shape-the-robust-efficient",
+      "description": "activity-stability / liquidity-shape = the robust+efficient non-overnight meta-vein",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "success",
+      "rounds": [
+        14
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "median/mean RATIO (distribution skew) and CV (dispersion) of volume-like quantities are robust in BOTH periods AND efficient in 2026. R14 added VR median/mean (alpha_0152, 2026 net +8.8%), relative-amount CV 120d (alpha_0153, +5.9%, turn 0.31), range-CV median-denom (alpha_0155 = BEST, 2026 sIC +0.101 net +22.7% turn 0.33). Spiky/erratic activity -> fragile -> underperforms; calm/stable activity outperforms."
+    },
+    "one-representative-per-liquidity-spikiness-concept-median": {
+      "name": "one-representative-per-liquidity-spikiness-concept-median",
+      "description": "one representative per liquidity-spikiness concept (median/mean ratios co-lock)",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "forbidden",
+      "rounds": [
+        14
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "median/mean RATIOS of VOLUME/TURN_F/AMOUNT all ~0.93 correlated -> S2-lock against alpha_0146; only distinct quantities clear (VR-ratio, range-CV). calm-3x thresholds S2-lock vs the 2x reps (alpha_0144). med_amount_ratio_120 fails OOS (0.023<0.03); VR>3 rarity valid but turnover 0.84 = not efficient; volume_trend_ratio fails monotonicity."
     }
   },
   "insights": {

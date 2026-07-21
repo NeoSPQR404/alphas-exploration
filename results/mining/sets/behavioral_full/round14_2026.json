@@ -1,0 +1,46 @@
+[
+  {
+    "name": "alpha_0152",
+    "family": "robust",
+    "is_ic": 0.039676240182347264,
+    "signed_ic_2026": 0.062154656167840695,
+    "net15_2026": 0.08782402613601237,
+    "turn_2026": 0.5198660901926988,
+    "valid": true,
+    "efficient": true,
+    "expr": "TsMed(VR, 60) / TsMean(VR, 60)"
+  },
+  {
+    "name": "alpha_0153",
+    "family": "activity_cv",
+    "is_ic": 0.052793492499401906,
+    "signed_ic_2026": 0.08026968747547344,
+    "net15_2026": 0.05893239992909183,
+    "turn_2026": 0.3069366737703657,
+    "valid": true,
+    "efficient": true,
+    "expr": "-TsStd(AMOUNT / TsMean(AMOUNT, 20), 120)"
+  },
+  {
+    "name": "alpha_0154",
+    "family": "event_freq",
+    "is_ic": 0.034476884214588874,
+    "signed_ic_2026": 0.05348226919899931,
+    "net15_2026": NaN,
+    "turn_2026": 0.836730593897759,
+    "valid": true,
+    "efficient": 0.0,
+    "expr": "-TsCount(VR > 3, 120)"
+  },
+  {
+    "name": "alpha_0155",
+    "family": "activity_cv",
+    "is_ic": 0.03807530674749419,
+    "signed_ic_2026": 0.10123999296330444,
+    "net15_2026": 0.22731656546864532,
+    "turn_2026": 0.33305528335154355,
+    "valid": true,
+    "efficient": true,
+    "expr": "-TsStd(AMP, 120) / TsMed(AMP, 120)"
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "name": "alpha_0144",
+    "family": "event_freq",
+    "is_ic": 0.04716457229658362,
+    "signed_ic_2026": 0.07144959162268619,
+    "net15_2026": 0.15432109661245863,
+    "turn_2026": 0.3749714004261072,
+    "valid": true,
+    "efficient": true
+  },
+  {
+    "name": "alpha_0145",
+    "family": "flow_coupling",
+    "is_ic": 0.026249030769033017,
+    "signed_ic_2026": 0.10625500777969756,
+    "net15_2026": NaN,
+    "turn_2026": NaN,
+    "valid": true,
+    "efficient": 0.0
+  },
+  {
+    "name": "alpha_0146",
+    "family": "robust",
+    "is_ic": 0.04192650256952267,
+    "signed_ic_2026": 0.057298943929304,
+    "net15_2026": 0.08347416995031343,
+    "turn_2026": 0.5502044473533525,
+    "valid": true,
+    "efficient": true
+  },
+  {
+    "name": "alpha_0147",
+    "family": "robust",
+    "is_ic": -0.066500772622363,
+    "signed_ic_2026": 0.061011293334321606,
+    "net15_2026": -0.07778279957644796,
+    "turn_2026": 0.5421316483406896,
+    "valid": true,
+    "efficient": false
+  },
+  {
+    "name": "alpha_0148",
+    "family": "robust",
+    "is_ic": -0.06075843687239129,
+    "signed_ic_2026": 0.05600807916425807,
+    "net15_2026": -0.11023677330969561,
+    "turn_2026": 0.36248466418034425,
+    "valid": true,
+    "efficient": false
+  },
+  {
+    "name": "alpha_0149",
+    "family": "robust",
+    "is_ic": -0.05691276544744349,
+    "signed_ic_2026": 0.051448276429285546,
+    "net15_2026": -0.10063993155747886,
+    "turn_2026": 0.2856641126321673,
+    "valid": true,
+    "efficient": false
+  },
+  {
+    "name": "alpha_0150",
+    "family": "systematic",
+    "is_ic": 0.05147531765700358,
+    "signed_ic_2026": 0.024146303739585998,
+    "net15_2026": -0.11492300148120227,
+    "turn_2026": 0.38123810687984283,
+    "valid": false,
+    "efficient": false
+  },
+  {
+    "name": "alpha_0151",
+    "family": "persistence",
+    "is_ic": 0.05999322718871749,
+    "signed_ic_2026": 0.07324739342712756,
+    "net15_2026": -0.006094033633068041,
+    "turn_2026": 0.44650958221446785,
+    "valid": true,
+    "efficient": false
+  }
+]

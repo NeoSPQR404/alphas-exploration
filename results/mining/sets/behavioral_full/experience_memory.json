@@ -299,6 +299,27 @@
       "alpha_set_size": 105,
       "diversity_entropy": 0.7757308380038734,
       "candidates_file": "rounds/round12_candidates.py"
+    },
+    {
+      "round": 13,
+      "date": "2026-07-21",
+      "candidates": 27,
+      "s1_pass": 15,
+      "s2_pass": 9,
+      "s3_pass": 8,
+      "accepted": [
+        "alpha_0144",
+        "alpha_0145",
+        "alpha_0146",
+        "alpha_0147",
+        "alpha_0148",
+        "alpha_0149",
+        "alpha_0150",
+        "alpha_0151"
+      ],
+      "alpha_set_size": 113,
+      "diversity_entropy": 0.771821854662571,
+      "candidates_file": "/Users/NEO_MAO/Desktop/Quant Research/alphas-exploration/rounds/round13_candidates.py"
     }
   ],
   "patterns": {
@@ -2127,6 +2148,81 @@
       "curated": true,
       "pinned": true,
       "evidence": "R12: amp_term_med corr 1.00 (!) vs hl_term, med_dev_vwap 0.99 vs med_band60, mf_ret_corr250 0.88 vs 120d, idio conditional/tail variants 0.85-0.86 vs residents. The annual (250d) tier also fails S4 (lag_chase250 OOS 0.022). The formulaic OHLCV+flow space against this set is effectively mined out; further growth needs new DATA, replacements, or a different label horizon."
+    },
+    "turnover-spike-rarity-calm-attention-turn-f": {
+      "name": "turnover-spike-rarity-calm-attention-turn-f",
+      "description": "turnover-spike-rarity (calm attention, TURN_F event_freq)",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "success",
+      "rounds": [
+        13
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "New robust event_freq quantity: -TsCount(TURN_F>2*mean,120) clears S2 (0.66), IS 0.047, and is valid+efficient in 2026 (sIC 0.071, net +15%, turn 0.37). Calm-attention names outperform. calm on amount/retshock S2-lock vs existing amp/vr/vol reps."
+    },
+    "median-mean-ratio-of-dollar-volume-robust": {
+      "name": "median-mean-ratio-of-dollar-volume-robust",
+      "description": "median-mean RATIO of dollar volume (robust family extends to AMOUNT)",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "success",
+      "rounds": [
+        13
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "TsMed(AMOUNT,60)/TsMean is robust (IS 0.042) AND valid+efficient in 2026 (sIC 0.057, net +8.3%). RATIO (bounded, low turnover) survives 2026 costs where mean-median GAP does not."
+    },
+    "median-mean-gap-valid-but-cost-inefficient": {
+      "name": "median-mean-gap-valid-but-cost-inefficient",
+      "description": "median-mean GAP: valid but cost-inefficient in 2026",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "forbidden",
+      "rounds": [
+        13
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "Mean-median GAP (amp/absret/amount, 60/120) pass every 2017-25 gate AND stay valid in 2026 (sIC 0.05-0.06) but are NOT cost-efficient in 2026 (net -8 to -11%). Validity != tradability; prefer RATIO over GAP."
+    },
+    "attention-risk-couplings-die-under-neutralized-gating": {
+      "name": "attention-risk-couplings-die-under-neutralized-gating",
+      "description": "attention-risk couplings die under neutralized gating",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "forbidden",
+      "rounds": [
+        13
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "Coupling correlations (TsCorr TURN_F/absRET, amp/vr, vr/ret) neutralize to ~0 IC under GATE_ON_NEUTRALIZED; coup(VR,RET,120)=exact dup of alpha_0113. Coupling vein largely dead post-neutralization except fresh flow pairs."
+    },
+    "beta-instability-systematic-share-decays-oos-in": {
+      "name": "beta-instability-systematic-share-decays-oos-in",
+      "description": "beta-instability / systematic-share decays OOS in 2026",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "forbidden",
+      "rounds": [
+        13
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "beta_instability -TsStd(RegBeta(RET,BENCH,20),60) strong 2017-25 (OOS 0.076) but decays below bar in 2026 (sIC 0.024) = regime-dependent. rsq_bench term-structure S2-locks vs existing systematic-share."
     }
   },
   "insights": {

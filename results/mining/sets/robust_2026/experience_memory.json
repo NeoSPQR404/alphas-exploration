@@ -1,6 +1,71 @@
 {
   "schema": 2,
-  "rounds": [],
-  "patterns": {},
+  "rounds": [
+    {
+      "round": 1,
+      "date": "2026-07-21",
+      "candidates": 18,
+      "s1_pass": 12,
+      "s2_pass": 4,
+      "s3_pass": 4,
+      "accepted": [
+        "ralpha_0025",
+        "ralpha_0026"
+      ],
+      "alpha_set_size": 26,
+      "diversity_entropy": 0.7560608107878557,
+      "candidates_file": "/Users/NEO_MAO/Desktop/Quant Research/alphas-exploration/rounds/robust2026_r1_candidates.py"
+    },
+    {
+      "round": 2,
+      "date": "2026-07-21",
+      "candidates": 15,
+      "s1_pass": 12,
+      "s2_pass": 9,
+      "s3_pass": 7,
+      "accepted": [
+        "ralpha_0027",
+        "ralpha_0028",
+        "ralpha_0029",
+        "ralpha_0030",
+        "ralpha_0031"
+      ],
+      "alpha_set_size": 31,
+      "diversity_entropy": 0.769484771005898,
+      "candidates_file": "/Users/NEO_MAO/Desktop/Quant Research/alphas-exploration/rounds/robust2026_r2_candidates.py"
+    }
+  ],
+  "patterns": {
+    "peak-relative-volume-volume-lottery-is-robust": {
+      "name": "peak-relative-volume-volume-lottery-is-robust",
+      "description": "peak relative volume (volume lottery) is robust+efficient",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "success",
+      "rounds": [
+        2
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "-TsMax(VOLUME/TsMean(VOLUME,20),60): 2026 sIC +0.062 net +6.9% turn 0.48; the one R1-R2 factor robust in both periods AND cost-efficient."
+    },
+    "the-curated-set-is-near-saturated-re": {
+      "name": "the-curated-set-is-near-saturated-re",
+      "description": "the curated set is near-saturated: re-mining adds valid-but-not-efficient factors",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "forbidden",
+      "rounds": [
+        2
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "R1-R2 mined 33 candidates -> only 1/7 accepted factors was valid+efficient in 2026. Low-turnover efficient veins (activity-CV, event-rarity, median/mean) S2-lock immediately vs the residents (one exact 1.00 dup). Remaining minable veins (lottery/MAX/timing/downside semivol) are valid in 2017-25 but HIGH-TURNOVER -> cost-eaten in 2026 (net -5 to -23%). Validity != tradability, again."
+    }
+  },
   "insights": {}
 }

@@ -1,0 +1,526 @@
+{
+  "round": 3,
+  "diversity": 0.755015807523962,
+  "results": [
+    {
+      "name": "ep_indneut",
+      "expr": "CsIndNeutralize(EP, IND)",
+      "family": "value",
+      "rationale": "Industry-neutral earnings yield \u2014 the one value signal that has cleared at 10d.",
+      "logic_score": 0.65,
+      "s1": {
+        "ic_mean": 0.031837712248335565,
+        "ic_std": 0.08868935674118236,
+        "icir": 0.35898007853688624,
+        "t_stat": 12.523209252782882,
+        "n_days": 1217,
+        "pos_rate": 0.6368118323746919,
+        "coverage": 0.9791905162033213,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": -0.25923931295654024,
+        "against": "ralpha_0011",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.02942238388742122,
+          "ic_std": 0.09796133373167067,
+          "icir": 0.30034691001669195,
+          "t_stat": 6.607632020367223,
+          "n_days": 484,
+          "pos_rate": 0.5867768595041323
+        },
+        "oos_pass": false,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.024001466220161465,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03271285366228582,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03454140048457705,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.059740195255109194,
+          "2018": 0.02592299024055852,
+          "2019": 0.0282020481521696,
+          "2020": 0.02931049924694489,
+          "2021": 0.015912964894588596,
+          "2022": 0.015732532062221794,
+          "2023": 0.04311223571262064
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 80,
+          "sign_rate": 0.875,
+          "median_window_ic": 0.0290928982442043,
+          "min_window_ic": -0.01905141510037917
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.020912638746204585,
+          "ci95": 0.04031484586833067,
+          "boot_mean": 0.030367951614216616,
+          "n_obs": 1701
+        },
+        "bootstrap_pass": true,
+        "monotonicity": 0.6727272727272726,
+        "monotonicity_pass": true,
+        "cost_aware": {
+          "long_excess_gross_ann": 0.027712149617940884,
+          "ls_gross_ann": 0.016769052664673323,
+          "turnover_long": 0.18478961389426687,
+          "turnover_short": 0.15838018396176395,
+          "long_excess_net_15bp_ann": 0.013577667438187113,
+          "ls_net_15bp_ann": -0.009051506979949275,
+          "long_excess_net_30bp_ann": -0.0003713457268406106,
+          "ls_net_30bp_ann": -0.03424832890860707
+        },
+        "cost_aware_score": 0.013577667438187113,
+        "cost_aware_pass": true,
+        "pass": false
+      }
+    },
+    {
+      "name": "cfp_indneut",
+      "expr": "CsIndNeutralize(CFP, IND)",
+      "family": "value",
+      "rationale": "Industry-neutral cash-flow yield \u2014 the second value survivor, holds OOS better.",
+      "logic_score": 0.65,
+      "s1": {
+        "ic_mean": 0.028096499787359445,
+        "ic_std": 0.07677329731554793,
+        "icir": 0.36596708451741095,
+        "t_stat": 12.766954639159707,
+        "n_days": 1217,
+        "pos_rate": 0.6310599835661462,
+        "coverage": 0.9744356906370968,
+        "pass": false
+      }
+    },
+    {
+      "name": "sp_indneut",
+      "expr": "CsIndNeutralize(SP, IND)",
+      "family": "value",
+      "rationale": "Industry-neutral sales yield (less-tried value quantity).",
+      "logic_score": 0.55,
+      "s1": {
+        "ic_mean": 0.023145746763361442,
+        "ic_std": 0.10649792155233886,
+        "icir": 0.21733519702528997,
+        "t_stat": 7.581852902354958,
+        "n_days": 1217,
+        "pos_rate": 0.533278553820871,
+        "coverage": 0.9788517749800705,
+        "pass": false
+      }
+    },
+    {
+      "name": "bp_indneut",
+      "expr": "CsIndNeutralize(BP, IND)",
+      "family": "value",
+      "rationale": "Industry-neutral book yield (dead in behavioral_full; retest for this set).",
+      "logic_score": 0.45,
+      "s1": {
+        "ic_mean": 0.03131080209467606,
+        "ic_std": 0.13893540008903257,
+        "icir": 0.22536230560830048,
+        "t_stat": 7.861882816242007,
+        "n_days": 1217,
+        "pos_rate": 0.5357436318816763,
+        "coverage": 0.9950773598772392,
+        "pass": false
+      }
+    },
+    {
+      "name": "value_combo",
+      "expr": "CsIndNeutralize(EP, IND) + CsIndNeutralize(CFP, IND)",
+      "family": "value",
+      "rationale": "Combined industry-neutral EP+CFP value (the two survivors, blended).",
+      "logic_score": 0.6,
+      "s1": {
+        "ic_mean": 0.03304016332232318,
+        "ic_std": 0.08479405898041555,
+        "icir": 0.3896518661756043,
+        "t_stat": 13.59321073119951,
+        "n_days": 1217,
+        "pos_rate": 0.6409202958093673,
+        "coverage": 0.9638193252466347,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": -0.20900863376876844,
+        "against": "ralpha_0011",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": false,
+        "duplicate_of": "quality_value"
+      }
+    },
+    {
+      "name": "value_rank_composite",
+      "expr": "CsRank(EP) + CsRank(CFP) + CsRank(SP)",
+      "family": "value",
+      "rationale": "Cross-sectional value composite rank (EP/CFP/SP).",
+      "logic_score": 0.55,
+      "s1": {
+        "ic_mean": 0.04096779724415776,
+        "ic_std": 0.1114804784415297,
+        "icir": 0.367488530878928,
+        "t_stat": 12.820031097412823,
+        "n_days": 1217,
+        "pos_rate": 0.6261298274445357,
+        "coverage": 0.9634805840233839,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": -0.2483837963058189,
+        "against": "ralpha_0011",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": false,
+        "duplicate_of": "quality_value"
+      }
+    },
+    {
+      "name": "roe_proxy",
+      "expr": "EP / BP",
+      "family": "quality",
+      "rationale": "EP/BP = E/B = ROE proxy (quality) built from available yields.",
+      "logic_score": 0.6,
+      "s1": {
+        "ic_mean": 0.022082560241069336,
+        "ic_std": 0.10310763825383083,
+        "icir": 0.21416997435928453,
+        "t_stat": 7.471432441309892,
+        "n_days": 1217,
+        "pos_rate": 0.6162695152013147,
+        "coverage": 0.9767953883315019,
+        "pass": false
+      }
+    },
+    {
+      "name": "roe_indneut",
+      "expr": "CsIndNeutralize(EP / BP, IND)",
+      "family": "quality",
+      "rationale": "Industry-neutral ROE proxy.",
+      "logic_score": 0.6,
+      "s1": {
+        "ic_mean": 0.020845499938957554,
+        "ic_std": 0.09787328310905516,
+        "icir": 0.21298457839337512,
+        "t_stat": 7.43007927823468,
+        "n_days": 1217,
+        "pos_rate": 0.6195562859490551,
+        "coverage": 0.9767953883315019,
+        "pass": false
+      }
+    },
+    {
+      "name": "asset_turnover",
+      "expr": "SP / BP",
+      "family": "quality",
+      "rationale": "SP/BP = S/B = asset-turnover proxy.",
+      "logic_score": 0.5,
+      "s1": {
+        "ic_mean": 0.0068204415440598146,
+        "ic_std": 0.04811131291879331,
+        "icir": 0.1417637792502562,
+        "t_stat": 4.945504160710293,
+        "n_days": 1217,
+        "pos_rate": 0.5595727198027938,
+        "coverage": 0.9764566471082512,
+        "pass": false
+      }
+    },
+    {
+      "name": "accruals_quality",
+      "expr": "CsIndNeutralize(CFP / EP, IND)",
+      "family": "quality",
+      "rationale": "CFP/EP = cash-flow vs earnings (accruals quality); high = earnings backed by cash.",
+      "logic_score": 0.55,
+      "s1": {
+        "ic_mean": 0.013921072719674863,
+        "ic_std": 0.036136374782341316,
+        "icir": 0.38523711367078367,
+        "t_stat": 13.439199763118909,
+        "n_days": 1217,
+        "pos_rate": 0.6598192276088742,
+        "coverage": 0.9638193252466347,
+        "pass": false
+      }
+    },
+    {
+      "name": "ep_rerate_60",
+      "expr": "Delta(EP, 60)",
+      "family": "value_mom",
+      "rationale": "Earnings-yield re-rating over a quarter (value improving).",
+      "logic_score": 0.55,
+      "s1": {
+        "ic_mean": 0.03951900349072721,
+        "ic_std": 0.06901717308302807,
+        "icir": 0.572596670153175,
+        "t_stat": 19.476705504211257,
+        "n_days": 1157,
+        "pos_rate": 0.7035436473638721,
+        "coverage": 0.9129291420391025,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.2398720460402304,
+        "against": "ralpha_0024",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.008033911865623968,
+          "ic_std": 0.07588943237901626,
+          "icir": 0.10586338062854424,
+          "t_stat": 2.3289943738279733,
+          "n_days": 484,
+          "pos_rate": 0.5330578512396694
+        },
+        "oos_pass": false,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.018843210067966076,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.0318215757149787,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03723514366152021,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.06390007961529977,
+          "2018": 0.03498106224428767,
+          "2019": 0.0516395395626629,
+          "2020": 0.029038747598922922,
+          "2021": 0.02390539483278317,
+          "2022": 0.01445369861088703,
+          "2023": 0.0016141251203609043
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 77,
+          "sign_rate": 0.9090909090909091,
+          "median_window_ic": 0.02790722257880287,
+          "min_window_ic": -0.023709108822596973
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.021050585605012297,
+          "ci95": 0.03759013178342268,
+          "boot_mean": 0.02968502460026283,
+          "n_obs": 1641
+        },
+        "bootstrap_pass": true,
+        "monotonicity": 0.9030303030303028,
+        "monotonicity_pass": true,
+        "cost_aware": {
+          "long_excess_gross_ann": 0.025040847029519364,
+          "ls_gross_ann": 0.08251154533450489,
+          "turnover_long": 0.34339551522227274,
+          "turnover_short": 0.3421147081053447,
+          "long_excess_net_15bp_ann": -0.0010271010447846507,
+          "ls_net_15bp_ann": 0.028319109963092837,
+          "long_excess_net_30bp_ann": -0.02646303391450089,
+          "ls_net_30bp_ann": -0.02328612573634048
+        },
+        "cost_aware_score": -0.0010271010447846507,
+        "cost_aware_pass": true,
+        "pass": false
+      }
+    },
+    {
+      "name": "cfp_rerate_120",
+      "expr": "Delta(CFP, 120)",
+      "family": "value_mom",
+      "rationale": "Cash-flow-yield re-rating, semi-annual.",
+      "logic_score": 0.5,
+      "s1": {
+        "ic_mean": 0.008478058954462667,
+        "ic_std": 0.03311185580255438,
+        "icir": 0.2560430017881582,
+        "t_stat": 8.480397784589224,
+        "n_days": 1097,
+        "pos_rate": 0.5843208751139471,
+        "coverage": 0.8516208109201552,
+        "pass": false
+      }
+    },
+    {
+      "name": "cheap_pb",
+      "expr": "-CsIndNeutralize(PB, IND)",
+      "family": "value",
+      "rationale": "Industry-neutral cheap-book (inverse PB).",
+      "logic_score": 0.45,
+      "s1": {
+        "ic_mean": 0.029285294699041113,
+        "ic_std": 0.13649367820733926,
+        "icir": 0.2145542202661987,
+        "t_stat": 7.484837062302855,
+        "n_days": 1217,
+        "pos_rate": 0.5373870172555464,
+        "coverage": 0.9914065062254174,
+        "pass": false
+      }
+    },
+    {
+      "name": "cheap_ps",
+      "expr": "-CsIndNeutralize(PS, IND)",
+      "family": "value",
+      "rationale": "Industry-neutral cheap-sales (inverse PS).",
+      "logic_score": 0.5,
+      "s1": {
+        "ic_mean": 0.023212779556535997,
+        "ic_std": 0.10372439962932764,
+        "icir": 0.22379285529238852,
+        "t_stat": 7.807131714737659,
+        "n_days": 1217,
+        "pos_rate": 0.552999178307313,
+        "coverage": 0.9966621421372537,
+        "pass": false
+      }
+    },
+    {
+      "name": "size_small",
+      "expr": "-Log(CMV)",
+      "family": "size",
+      "rationale": "Small-size premium (size is slow/weak at 10d; retest under neutralized gating).",
+      "logic_score": 0.45,
+      "s1": {
+        "ic_mean": -0.005521601455662164,
+        "ic_std": 0.049795855718768135,
+        "icir": -0.11088475890135299,
+        "t_stat": -3.868273259969597,
+        "n_days": 1217,
+        "pos_rate": 0.4774034511092851,
+        "coverage": 0.9976944051440787,
+        "pass": false
+      }
+    },
+    {
+      "name": "quality_value",
+      "expr": "CsRank(EP / BP) + CsRank(CFP)",
+      "family": "quality",
+      "rationale": "Quality (ROE) + value (CFP) composite rank.",
+      "logic_score": 0.55,
+      "s1": {
+        "ic_mean": 0.03553816960613014,
+        "ic_std": 0.08911471152063076,
+        "icir": 0.39879127699249495,
+        "t_stat": 13.912043894793317,
+        "n_days": 1217,
+        "pos_rate": 0.6606409202958093,
+        "coverage": 0.9615003243776378,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": 0.23575639448834412,
+        "against": "ralpha_0005",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.016699646773158987,
+          "ic_std": 0.08848407459320681,
+          "icir": 0.18873053540914886,
+          "t_stat": 4.152071779001275,
+          "n_days": 484,
+          "pos_rate": 0.5413223140495868
+        },
+        "oos_pass": false,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.027577115531475255,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03354748178080692,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03047601602266947,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.062402271506531756,
+          "2018": 0.021386656771604985,
+          "2019": 0.03851350136194916,
+          "2020": 0.045886893307936674,
+          "2021": 0.009378729059351493,
+          "2022": 0.006770937045727385,
+          "2023": 0.026628356500590592
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 80,
+          "sign_rate": 0.8375,
+          "median_window_ic": 0.029060485352569443,
+          "min_window_ic": -0.01660613161087354
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.020274093423243947,
+          "ci95": 0.03905094656143889,
+          "boot_mean": 0.029373562629542143,
+          "n_obs": 1701
+        },
+        "bootstrap_pass": true,
+        "monotonicity": 0.9999999999999999,
+        "monotonicity_pass": true,
+        "cost_aware": {
+          "long_excess_gross_ann": 0.03902240491599529,
+          "ls_gross_ann": 0.08509784819603694,
+          "turnover_long": 0.20042197603797887,
+          "turnover_short": 0.19456795613347902,
+          "long_excess_net_15bp_ann": 0.023541856548727313,
+          "ls_net_15bp_ann": 0.0535028304128764,
+          "long_excess_net_30bp_ann": 0.008281250904294213,
+          "ls_net_30bp_ann": 0.022784244385246177
+        },
+        "cost_aware_score": 0.023541856548727313,
+        "cost_aware_pass": true,
+        "pass": false
+      }
+    }
+  ]
+}

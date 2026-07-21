@@ -33,6 +33,33 @@
       "alpha_set_size": 31,
       "diversity_entropy": 0.769484771005898,
       "candidates_file": "/Users/NEO_MAO/Desktop/Quant Research/alphas-exploration/rounds/robust2026_r2_candidates.py"
+    },
+    {
+      "round": 3,
+      "date": "2026-07-21",
+      "candidates": 16,
+      "s1_pass": 5,
+      "s2_pass": 5,
+      "s3_pass": 3,
+      "accepted": [],
+      "alpha_set_size": 25,
+      "diversity_entropy": 0.755015807523962,
+      "candidates_file": "/Users/NEO_MAO/Desktop/Quant Research/alphas-exploration/rounds/robust2026_r3_candidates.py"
+    },
+    {
+      "round": 4,
+      "date": "2026-07-21",
+      "candidates": 13,
+      "s1_pass": 4,
+      "s2_pass": 4,
+      "s3_pass": 3,
+      "accepted": [
+        "ralpha_0032",
+        "ralpha_0033"
+      ],
+      "alpha_set_size": 27,
+      "diversity_entropy": 0.7685186586634674,
+      "candidates_file": "/Users/NEO_MAO/Desktop/Quant Research/alphas-exploration/rounds/robust2026_r4_candidates.py"
     }
   ],
   "patterns": {
@@ -65,6 +92,36 @@
       "curated": true,
       "pinned": true,
       "evidence": "R1-R2 mined 33 candidates -> only 1/7 accepted factors was valid+efficient in 2026. Low-turnover efficient veins (activity-CV, event-rarity, median/mean) S2-lock immediately vs the residents (one exact 1.00 dup). Remaining minable veins (lottery/MAX/timing/downside semivol) are valid in 2017-25 but HIGH-TURNOVER -> cost-eaten in 2026 (net -5 to -23%). Validity != tradability, again."
+    },
+    "value-fundamentals-are-orthogonal-but-too-weak": {
+      "name": "value-fundamentals-are-orthogonal-but-too-weak",
+      "description": "value/fundamentals are orthogonal but too weak at 10d",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "forbidden",
+      "rounds": [
+        3
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "R3: 16 value/quality/size candidates -> 0 accepted. Value passes S2 easily (corr -0.26..0.24 = genuinely orthogonal to the price/volume set, real diversification) BUT is too weak: IS IC ~0.03-0.04 decays to OOS 0.008-0.029, all fail S4. ep_indneut OOS 0.029, quality_value 0.017, ep_rerate 0.008. Under GATE_ON_NEUTRALIZED the size component is also removed. Fundamentals dead at 10d confirmed for this set too."
+    },
+    "value-composites-clear-2017-25-but-2026": {
+      "name": "value-composites-clear-2017-25-but-2026",
+      "description": "value composites clear 2017-25 but 2026 is UNTESTABLE (missing fundamentals)",
+      "template": "",
+      "occurrence_count": 0,
+      "accept_count": 0,
+      "success_rate": null,
+      "classification": "forbidden",
+      "rounds": [
+        4
+      ],
+      "curated": true,
+      "pinned": true,
+      "evidence": "R4: value INTERACTIONS (demeaned-rank value x behavioral) all fail S1 (negative IC); but value COMPOSITES clear: value_quality_both CsRank(EP)*CsRank(CFP) (OOS 0.039 net +0.031) and value_minus_mom contrarian value (OOS 0.054). Both orthogonal (S2 -0.23..-0.30 = real diversification). BUT 2026 EP/CFP coverage is ~0 (2026 fetch = daily+flow only, fundamentals never built) -> 2026 IC/net = NaN, cannot verify. Retired pending a 2026 fundamentals fetch. ACTION: fetch 2026 income/bs/cf + daily_basic to build EP/CFP for 2026, then re-screen."
     }
   },
   "insights": {}

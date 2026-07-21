@@ -1,0 +1,467 @@
+{
+  "round": 4,
+  "diversity": 0.7685186586634674,
+  "results": [
+    {
+      "name": "value_x_lowturn",
+      "expr": "(CsRank(EP) - 0.5) * (CsRank(-TsMean(TURN_F, 20)) - 0.5)",
+      "family": "value_interact",
+      "rationale": "Cheap AND low-attention (value works better in neglected names).",
+      "logic_score": 0.55,
+      "s1": {
+        "ic_mean": -0.013279306547027976,
+        "ic_std": 0.04131632290085526,
+        "icir": -0.3214058177174593,
+        "t_stat": -11.147732715406406,
+        "n_days": 1203,
+        "pos_rate": 0.36076475477971737,
+        "coverage": 0.9634497023146918,
+        "pass": false
+      }
+    },
+    {
+      "name": "value_x_stability",
+      "expr": "(CsRank(CFP) - 0.5) * (CsRank(-TsStd(AMP, 120) / TsMed(AMP, 120)) - 0.5)",
+      "family": "value_interact",
+      "rationale": "Cheap AND stable-range (value among calm names).",
+      "logic_score": 0.55,
+      "s1": {
+        "ic_mean": -0.0043936229619664525,
+        "ic_std": 0.03516255142761222,
+        "icir": -0.12495176782070078,
+        "t_stat": -4.196593993889885,
+        "n_days": 1128,
+        "pos_rate": 0.4432624113475177,
+        "coverage": 0.8982177184402104,
+        "pass": false
+      }
+    },
+    {
+      "name": "value_x_calm",
+      "expr": "(CsRank(EP) - 0.5) * (CsRank(-TsCount(AMP > 2 * TsMean(AMP, 60), 120)) - 0.5)",
+      "family": "value_interact",
+      "rationale": "Cheap AND event-rare (value among boring stocks).",
+      "logic_score": 0.5,
+      "s1": {
+        "ic_mean": -0.023273933634816894,
+        "ic_std": 0.05474040959885597,
+        "icir": -0.42516915392798416,
+        "t_stat": -14.27960843516632,
+        "n_days": 1128,
+        "pos_rate": 0.3475177304964539,
+        "coverage": 0.922995142714191,
+        "pass": false
+      }
+    },
+    {
+      "name": "value_quality_both",
+      "expr": "CsRank(EP) * CsRank(CFP)",
+      "family": "value",
+      "rationale": "Cheap on BOTH earnings and cash-flow yield (agreement).",
+      "logic_score": 0.55,
+      "s1": {
+        "ic_mean": 0.03709339455776239,
+        "ic_std": 0.0850978816430007,
+        "icir": 0.43589092750128783,
+        "t_stat": 15.206284757462766,
+        "n_days": 1217,
+        "pos_rate": 0.6639276910435498,
+        "coverage": 0.9638193252466347,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": -0.2282532129750261,
+        "against": "ralpha_0011",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.03849543869950878,
+          "ic_std": 0.09689121697827609,
+          "icir": 0.39730576103858634,
+          "t_stat": 8.7407267428489,
+          "n_days": 484,
+          "pos_rate": 0.6260330578512396
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.025637768115588367,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03659718295195482,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03888898484547967,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.05798029385816288,
+          "2018": 0.032448779262619167,
+          "2019": 0.03440018784589738,
+          "2020": 0.035467248699922536,
+          "2021": 0.025095591959294176,
+          "2022": 0.020446283118236038,
+          "2023": 0.05654459428078151
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 80,
+          "sign_rate": 0.9125,
+          "median_window_ic": 0.03636541086344135,
+          "min_window_ic": -0.010171683053751001
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.027542093084833755,
+          "ci95": 0.04632512805362902,
+          "boot_mean": 0.03665542393779018,
+          "n_obs": 1701
+        },
+        "bootstrap_pass": true,
+        "monotonicity": 0.9878787878787878,
+        "monotonicity_pass": true,
+        "cost_aware": {
+          "long_excess_gross_ann": 0.04447637249586167,
+          "ls_gross_ann": 0.12115362341862124,
+          "turnover_long": 0.17734397666911722,
+          "turnover_short": 0.35307994853663877,
+          "long_excess_net_15bp_ann": 0.030701586427918537,
+          "ls_net_15bp_ann": 0.07758569750738786,
+          "long_excess_net_30bp_ann": 0.0170998944248002,
+          "ls_net_30bp_ann": 0.03564061383795014
+        },
+        "cost_aware_score": 0.030701586427918537,
+        "cost_aware_pass": true,
+        "pass": true
+      },
+      "accepted_name": "ralpha_0032"
+    },
+    {
+      "name": "triple_value_indneut",
+      "expr": "CsIndNeutralize(EP + CFP + SP, IND)",
+      "family": "value",
+      "rationale": "Industry-neutral triple value composite (EP+CFP+SP).",
+      "logic_score": 0.55,
+      "s1": {
+        "ic_mean": 0.028134023536927944,
+        "ic_std": 0.10541815259499039,
+        "icir": 0.2668802558608384,
+        "t_stat": 9.310258394291631,
+        "n_days": 1217,
+        "pos_rate": 0.562037797863599,
+        "coverage": 0.9634805840233839,
+        "pass": false
+      }
+    },
+    {
+      "name": "value_cheap_book",
+      "expr": "CsRank(CFP) + CsRank(EP) - CsRank(PB)",
+      "family": "value",
+      "rationale": "Value (CFP+EP) tilted to cheap book.",
+      "logic_score": 0.5,
+      "s1": {
+        "ic_mean": 0.04371839153723803,
+        "ic_std": 0.11876458693346369,
+        "icir": 0.3681096584938294,
+        "t_stat": 12.841699461645721,
+        "n_days": 1217,
+        "pos_rate": 0.6253081347576006,
+        "coverage": 0.9575441141617771,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": -0.2806625190145201,
+        "against": "ralpha_0011",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": false,
+        "duplicate_of": "value_quality_both"
+      }
+    },
+    {
+      "name": "value_minus_mom",
+      "expr": "CsRank(EP) - CsRank(TsSum(RET, 120))",
+      "family": "value",
+      "rationale": "Contrarian value: cheap and NOT already run up (value minus 6m momentum).",
+      "logic_score": 0.55,
+      "s1": {
+        "ic_mean": 0.043184151982993156,
+        "ic_std": 0.10899982628734566,
+        "icir": 0.39618551197642254,
+        "t_stat": 13.306172205680438,
+        "n_days": 1128,
+        "pos_rate": 0.6187943262411347,
+        "coverage": 0.9017116605980519,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": -0.30373901020961797,
+        "against": "ralpha_0011",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.05350432863043918,
+          "ic_std": 0.1159815543000388,
+          "icir": 0.4613175685853115,
+          "t_stat": 10.148986508876852,
+          "n_days": 484,
+          "pos_rate": 0.6673553719008265
+        },
+        "oos_pass": true,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.00856292966492385,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.025751509987575687,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.04470014737647883,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.05001417888876877,
+          "2018": 0.03917034235992023,
+          "2019": 0.052488328974762806,
+          "2020": 0.03645166501046335,
+          "2021": 0.04023138126836127,
+          "2022": 0.06542007737315252,
+          "2023": 0.04158857988772583
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 75,
+          "sign_rate": 0.9733333333333334,
+          "median_window_ic": 0.04704596937050584,
+          "min_window_ic": -0.018044427626717378
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.03297611756520119,
+          "ci95": 0.057658470209658245,
+          "boot_mean": 0.045364199576883237,
+          "n_obs": 1612
+        },
+        "bootstrap_pass": true,
+        "monotonicity": 0.6,
+        "monotonicity_pass": true,
+        "cost_aware": {
+          "long_excess_gross_ann": 0.005374966618835186,
+          "ls_gross_ann": 0.1391991703456701,
+          "turnover_long": 0.3131186992222224,
+          "turnover_short": 0.29547784887136097,
+          "long_excess_net_15bp_ann": -0.017967503355738712,
+          "ls_net_15bp_ann": 0.08856356366782947,
+          "long_excess_net_30bp_ann": -0.040790293308850645,
+          "ls_net_30bp_ann": 0.040088551210951895
+        },
+        "cost_aware_score": -0.017967503355738712,
+        "cost_aware_pass": true,
+        "pass": true
+      },
+      "accepted_name": "ralpha_0033"
+    },
+    {
+      "name": "value_z_indneut",
+      "expr": "CsZscore(CsIndNeutralize(EP, IND))",
+      "family": "value",
+      "rationale": "Standardized industry-neutral earnings yield.",
+      "logic_score": 0.5,
+      "s1": {
+        "ic_mean": 0.031837712248335565,
+        "ic_std": 0.08868935674118236,
+        "icir": 0.35898007853688624,
+        "t_stat": 12.523209252782882,
+        "n_days": 1217,
+        "pos_rate": 0.6368118323746919,
+        "coverage": 0.9791905162033213,
+        "pass": true
+      },
+      "s2": {
+        "max_corr": -0.25923931295654024,
+        "against": "ralpha_0011",
+        "replace": null,
+        "pass": true
+      },
+      "s3": {
+        "pass": true
+      },
+      "s4": {
+        "oos": {
+          "ic_mean": 0.02942238388742122,
+          "ic_std": 0.09796133373167067,
+          "icir": 0.30034691001669195,
+          "t_stat": 6.607632020367223,
+          "n_days": 484,
+          "pos_rate": 0.5867768595041323
+        },
+        "oos_pass": false,
+        "universes": {
+          "hs300": {
+            "ic_mean": 0.024001466220161465,
+            "pass": true
+          },
+          "csi500": {
+            "ic_mean": 0.03271285366228582,
+            "pass": true
+          },
+          "csi1000": {
+            "ic_mean": 0.03454140048457705,
+            "pass": true
+          }
+        },
+        "universes_pass": true,
+        "yearly_ic": {
+          "2017": 0.059740195255109194,
+          "2018": 0.02592299024055852,
+          "2019": 0.0282020481521696,
+          "2020": 0.02931049924694489,
+          "2021": 0.015912964894588596,
+          "2022": 0.015732532062221794,
+          "2023": 0.04311223571262064
+        },
+        "year_sign_rate": 1.0,
+        "year_pass": true,
+        "rolling": {
+          "n_windows": 80,
+          "sign_rate": 0.875,
+          "median_window_ic": 0.0290928982442043,
+          "min_window_ic": -0.01905141510037917
+        },
+        "rolling_pass": true,
+        "bootstrap": {
+          "p_value": 0.0,
+          "ci5": 0.020912638746204585,
+          "ci95": 0.04031484586833067,
+          "boot_mean": 0.030367951614216616,
+          "n_obs": 1701
+        },
+        "bootstrap_pass": true,
+        "monotonicity": 0.6727272727272726,
+        "monotonicity_pass": true,
+        "cost_aware": {
+          "long_excess_gross_ann": 0.027712149617940884,
+          "ls_gross_ann": 0.016769052664673323,
+          "turnover_long": 0.18478961389426687,
+          "turnover_short": 0.15838018396176395,
+          "long_excess_net_15bp_ann": 0.013577667438187113,
+          "ls_net_15bp_ann": -0.009051506979949164,
+          "long_excess_net_30bp_ann": -0.0003713457268404996,
+          "ls_net_30bp_ann": -0.03424832890860707
+        },
+        "cost_aware_score": 0.013577667438187113,
+        "cost_aware_pass": true,
+        "pass": false
+      }
+    },
+    {
+      "name": "earnings_yield_stability",
+      "expr": "-TsStd(EP, 120)",
+      "family": "quality",
+      "rationale": "Stable earnings yield = predictable earners (low fundamental risk).",
+      "logic_score": 0.55,
+      "s1": {
+        "ic_mean": 0.006021099537389612,
+        "ic_std": 0.08655382311269576,
+        "icir": 0.06956480165584314,
+        "t_stat": 2.3363833414022936,
+        "n_days": 1128,
+        "pos_rate": 0.575354609929078,
+        "coverage": 0.8854518424889221,
+        "pass": false
+      }
+    },
+    {
+      "name": "cfp_smooth_level",
+      "expr": "TsMean(CFP, 60)",
+      "family": "value",
+      "rationale": "Smoothed cash-flow yield level (noise-reduced value).",
+      "logic_score": 0.5,
+      "s1": {
+        "ic_mean": 0.024634452300694533,
+        "ic_std": 0.08074073166126113,
+        "icir": 0.3051056361991575,
+        "t_stat": 10.449589655058128,
+        "n_days": 1173,
+        "pos_rate": 0.6018755328218244,
+        "coverage": 0.9272197125846554,
+        "pass": false
+      }
+    },
+    {
+      "name": "accruals_level_indneut",
+      "expr": "CsIndNeutralize(CFP - EP, IND)",
+      "family": "quality",
+      "rationale": "Accruals level (cash-flow minus earnings yield); high = cash-backed.",
+      "logic_score": 0.5,
+      "s1": {
+        "ic_mean": 0.010375269893690253,
+        "ic_std": 0.05675484752257144,
+        "icir": 0.18280852379286194,
+        "t_stat": 6.3773717081492896,
+        "n_days": 1217,
+        "pos_rate": 0.5497124075595727,
+        "coverage": 0.9638193252466347,
+        "pass": false
+      }
+    },
+    {
+      "name": "value_rerate_20",
+      "expr": "Delta(CsIndNeutralize(EP, IND), 20)",
+      "family": "value_mom",
+      "rationale": "Short-band industry-neutral value re-rating.",
+      "logic_score": 0.5,
+      "s1": {
+        "ic_mean": 0.012580881002041635,
+        "ic_std": 0.039328229944744296,
+        "icir": 0.31989441222545806,
+        "t_stat": 11.067606998026553,
+        "n_days": 1197,
+        "pos_rate": 0.6232247284878863,
+        "coverage": 0.9538971998190188,
+        "pass": false
+      }
+    },
+    {
+      "name": "value_x_flowdiv",
+      "expr": "(CsRank(EP) - 0.5) * (CsRank(-TsCorr(MF_LG_NET, RET, 20)) - 0.5)",
+      "family": "value_interact",
+      "rationale": "Cheap AND institutional-flow diverging from price.",
+      "logic_score": 0.5,
+      "s1": {
+        "ic_mean": -0.005997266278740875,
+        "ic_std": 0.026511162403613613,
+        "icir": -0.22621664744218895,
+        "t_stat": -7.846163891400706,
+        "n_days": 1203,
+        "pos_rate": 0.3948462177888612,
+        "coverage": 0.9622175460771851,
+        "pass": false
+      }
+    }
+  ]
+}

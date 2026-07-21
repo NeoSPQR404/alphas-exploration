@@ -53,6 +53,26 @@ S4_BOOT_SEED = 11
 
 QUANTILES = 10
 
+# ---------------------------------------------------------------- cost-aware
+# Turnover/cost-aware scoring. Every factor's stored metrics carry its
+# decile-membership turnover and long-excess / long-short returns NET of
+# trading costs at these levels; SCORING_COST_BP is the level used for the
+# gate + the headline cost_aware_score. A-share short legs are untradable, so
+# the tradable score is long-decile excess-vs-universe net of long turnover.
+COST_BPS = (15, 30)          # per-side bp levels for net-of-cost metrics
+SCORING_COST_BP = 15         # cost level for the gate / headline score
+# 2026-07-20: the cost_aware_score (long-excess net of the factor's own
+# turnover) is computed and stored for every factor, but the hard gate is
+# OFF by default. Validation showed a single-factor net>0 @15bp gate rejects
+# ~70% of the existing corpus: individual short-horizon factors are
+# turnover-heavy (median top-decile churn ~0.65) and don't survive costs
+# STANDALONE, yet net strongly positive in the COMPOSITE (averaging cuts
+# turnover). Cost-awareness binds at the composite level (backtest_composite
+# net columns + COST_ANALYSIS.md), not as a per-factor reject. Flip this on
+# only for a set intended to be traded factor-by-factor.
+GATE_ON_NET_COST = False
+S4_MIN_NET_LONG_EXCESS_ANN = 0.0
+
 # ---------------------------------------------------------------- construction
 # 2026-07-20: size+industry neutralization halved the 2026 long-short loss at
 # zero historical cost (results/mining/NEUTRALIZE_REPORT.md). Adopted as the

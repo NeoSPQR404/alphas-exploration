@@ -104,6 +104,12 @@ success_rate, classification}` — plus `insights` (exploration ideas).
   live in `code/mining/construct.py`. Backtest the recommended construction
   with `python3 code/backtest_composite.py <set> neutral`. Rationale +
   numbers: `results/mining/NEUTRALIZE_REPORT.md`.
+- **Cost-aware scoring (2026-07-20):** every factor carries a
+  `cost_aware_score` (long-excess net of its own turnover, 15/30bp) in its
+  stored metrics + S4. Reported, **not** a hard gate (`GATE_ON_NET_COST=False`):
+  single factors are turnover-heavy and mostly fail net>0 standalone, but the
+  composite nets +5%/yr — cost binds at the composite, not per factor.
+  See `results/mining/COST_ANALYSIS.md`.
 
 ## Round checklist (never skip a step)
 

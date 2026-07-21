@@ -125,6 +125,61 @@ def turnover(factor, mask, horizon=10) -> dict:
     return {"rank_ac_1d": float(ac1), f"rank_ac_{horizon}d": float(ach)}
 
 
+def cost_aware(factor, label, mask, horizon=10, q=10, cost_bps=(15, 30),
+               min_names=200) -> dict:
+    """Cost-aware scoring: top-decile long-excess and long-short returns net
+    of trading costs, using the factor's OWN decile-membership turnover.
+
+    `factor` must be oriented (higher value = predicted higher return). On
+    each rebalance the top/bottom decile is formed; turnover is the fraction
+    of decile names replaced vs the previous rebalance; the per-period cost
+    drag is turnover x 2 (round-trip) x cost, subtracted before annualizing.
+
+    A-share short legs are effectively untradable, so `long_excess_net_*` is
+    the headline tradable number; LS-net is reported for completeness.
+    """
+    F = _masked(factor, mask)
+    L = _masked(label, mask)
+    dates = F.index[::horizon]
+    ppy = 250 / horizon
+    longx, ls, to_l, to_s = [], [], [], []
+    prev_top, prev_bot = None, None
+    for d in dates:
+        f = F.loc[d]; l = L.loc[d]
+        ok = f.notna() & l.notna()
+        if ok.sum() < min_names:
+            continue
+        rk = f[ok].rank(pct=True)
+        top = set(rk.index[rk > 1 - 1.0 / q])
+        bot = set(rk.index[rk <= 1.0 / q])
+        uni = l[ok].mean()
+        longx.append(float(l[list(top)].mean()) - uni)
+        ls.append(float(l[list(top)].mean()) - float(l[list(bot)].mean()))
+        to_l.append(1.0 if prev_top is None
+                    else 1 - len(top & prev_top) / max(len(top), 1))
+        to_s.append(1.0 if prev_bot is None
+                    else 1 - len(bot & prev_bot) / max(len(bot), 1))
+        prev_top, prev_bot = top, bot
+    if len(longx) < 8:
+        base = {"long_excess_gross_ann": np.nan, "ls_gross_ann": np.nan,
+                "turnover_long": np.nan, "turnover_short": np.nan}
+        for bp in cost_bps:
+            base[f"long_excess_net_{int(bp)}bp_ann"] = np.nan
+            base[f"ls_net_{int(bp)}bp_ann"] = np.nan
+        return base
+    longx = np.array(longx); ls = np.array(ls)
+    to_l = np.array(to_l); to_s = np.array(to_s)
+    ann = lambda a: float((1 + a).prod() ** (ppy / len(a)) - 1)
+    out = {"long_excess_gross_ann": ann(longx), "ls_gross_ann": ann(ls),
+           "turnover_long": float(to_l.mean()),
+           "turnover_short": float(to_s.mean())}
+    for bp in cost_bps:
+        c = bp / 1e4
+        out[f"long_excess_net_{int(bp)}bp_ann"] = ann(longx - to_l * 2 * c)
+        out[f"ls_net_{int(bp)}bp_ann"] = ann(ls - (to_l + to_s) * 2 * c)
+    return out
+
+
 def decay_profile(factor, panel, mask, horizons=(1, 5, 10, 20)) -> dict:
     return {
         f"ic_{h}d": float(daily_ic(factor, panel.label(h), mask).mean())
@@ -233,6 +288,9 @@ def evaluate_window(factor, panel, mask, horizon, start, end,
         if np.isfinite(out["ic_mean"]) else np.nan
     out.update(quantile_returns(F, label, m, step=horizon))
     out.update(turnover(F, m, horizon))
+    # cost-aware: orient by IC sign so the top decile is the predicted-high leg
+    sgn = np.sign(out["ic_mean"]) if np.isfinite(out["ic_mean"]) else 1.0
+    out.update(cost_aware(F * sgn, label, m, horizon))
     out["coverage"] = coverage(F, m)
     if noise_var is not None:
         out["rre"] = rre(F, m)

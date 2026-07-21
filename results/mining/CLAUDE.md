@@ -24,7 +24,9 @@ Cross-cutting evaluation artifacts (all sets): `NEUTRALIZE_REPORT.md` +
 `sets/*/neutralize_eval.json` (size+industry neutralization), `BACKTEST_2026.md`
 + `analysis_2026.json` (fresh-2026 OOS), `META_COMPOSITE.md` +
 `meta_composite.json` (cross-set blend — negative result), `IC_MONITOR.md` +
-`ic_monitor/<set>.json` (rolling-IC decay monitor), `figs/` (report graphs).
+`ic_monitor/<set>.json` (rolling-IC decay monitor), `COST_ANALYSIS.md`
+(turnover/cost-aware scoring — cost binds at the composite, not per factor),
+`figs/` (report graphs).
 
 **Invariant:** every factor clears |rank IC| ≥ 0.03 in IS (2017–21) AND
 OOS-gate (2022–23). The 2024–25 holdout is spent for behavioral_full and

@@ -111,6 +111,7 @@ def run(candidates_path: str):
               f"uni_pass={sum(u['pass'] for u in s4['universes'].values())}/3 "
               f"year_rate={_fmt(s4['year_sign_rate'], 2)} "
               f"mono={_fmt(s4['monotonicity'], 2)} "
+              f"net_exc={_fmt(s4['cost_aware_score'], 3)} "
               f"-> {'ACCEPT' if s4['pass'] else 'reject'}")
 
     # ---- accept + registry update

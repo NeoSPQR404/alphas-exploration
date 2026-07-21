@@ -139,6 +139,13 @@ commit per round.
 - Panel: `data/base/year=YYYY/base.parquet` (10.6M rows × 89 cols); wide
   cache `data/_wide_cache/`; factor values `data/mining/alpha_values*/`
   (float32, git-ignored, rebuildable from expressions).
+- **Wide-cache staleness gotcha:** `data/_wide_cache/*.parquet` are NOT
+  auto-invalidated when the base gains a new year. Extending to 2026 refreshed
+  only the daily-field caches; fundamentals/valuations/labels
+  (`total_mv`, `n_income_attr_p_ttm`, `pb`, `fwd_ret_{1,5,20}d`, `bench_close`,
+  `EXT_MF_*`) stayed frozen at the prior year-end → EP/CFP silently NaN in the
+  new year. After adding a year, delete any cache whose max index < the new
+  year (they rebuild from base). Fixed 2026-07-21.
 - **`data/` is a symlink to `~/quant_local/alphas-exploration/data`** —
   moved off the iCloud-synced Desktop after "Optimize Mac Storage" evicted
   files mid-run. `TimeoutError [Errno 60]` on a parquet read = eviction;

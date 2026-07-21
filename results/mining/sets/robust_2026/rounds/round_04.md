@@ -18,24 +18,40 @@ candidates.
 Accepted → ralpha_0032 `CsRank(EP)*CsRank(CFP)`, ralpha_0033
 `CsRank(EP)-CsRank(TsSum(RET,120))`.
 
-## 2026 — UNTESTABLE (data gap), factors retired
+## 2026 — tested (after a stale-cache fix): value fails, retired
 
-Both value composites are robust in 2017-25 and orthogonal, but their 2026
-signed-IC and net came back **NaN**: the 2026 panel has **~zero EP/CFP coverage**
-(the 2026 fetch was daily + flow endpoints only; TTM fundamentals were never built
-for 2026). So they cannot be shown robust-in-both, the set's defining criterion.
+First pass returned **NaN** on 2026 — but the data was there. Root cause was a
+**stale wide-frame cache**: when 2026 was added, the daily fields
+(`close_hfq`/`circ_mv`) rebuilt through 2026-07, but the fundamental inputs
+(`total_mv`, `n_income_attr_p_ttm`, `revenue_ttm`, `pb`, …) stayed frozen at
+2025-12-31. EP uses `total_mv` (stale) → NaN in 2026. **No fetch needed** — the
+2026 base already had the fundamentals (98% coverage). Cleared the 13 stale caches
+(fundamentals, valuations, non-10d labels, bench_close); EP/CFP/BP/SP now cover
+2026 (~5170 names/date).
 
-Both were **retired** (preserved in the retired list, re-addable). This is a data
-gap, not a factor failure.
+Re-screened with proper 2026 data:
+
+| factor | 2026 IC | 2026 long-excess net@15bp | turn | verdict |
+|---|---|---|---|---|
+| ralpha_0032 `CsRank(EP)*CsRank(CFP)` | +0.032 | **−11.9%** | 0.17 | weakly valid, NOT efficient |
+| ralpha_0033 `CsRank(EP)−CsRank(TsSum(RET,120))` | +0.021 | −23.4% | 0.34 | neither |
+
+**0/2 valid+efficient.** Value stocks *underperformed* in H1 2026 (negative
+long-excess despite a weakly-positive IC), so value does not clear the set's
+robust-in-both bar. Both stay **retired**. This confirms — now with real 2026
+data — that value is orthogonal but weak at 10d and did not work in 2026.
 
 ## Outcome (value-family campaign, R3+R4)
 
 29 value/quality/size candidates → **2 cleared 2017-25** (value composites EP×CFP
-and contrarian value), **0 confirmed for the set**. Two honest results:
+and contrarian value), **0 robust+efficient in 2026**. Findings:
 1. **Value is genuinely orthogonal** (every value factor passes S2) — it *would*
    diversify the all-behavioral set. But it is **weak at 10d** (only composites
    clear; interactions and levels die).
-2. **2026 can't be tested without fundamentals.** **Action to actually add value:**
-   fetch 2026 income/balancesheet/cashflow + daily_basic, rebuild EP/CFP for 2026,
-   then re-screen ralpha_0032/0033 (and likely mine at a 20d label where value has
-   more punch). robust_2026 stays at **25**.
+2. **Value did not work in 2026** (after the stale-cache fix): weak IC (≤0.032)
+   and *negative* long-excess — value stocks lagged in H1 2026.
+3. **Data-pipeline lesson:** extending the panel to a new year only refreshed the
+   daily-field caches; fundamental/valuation/label caches went stale. Invalidate
+   `data/_wide_cache/` (or any cache ending at the prior year-end) after adding a
+   year. `fwd_ret_20d` is now rebuilt too — value likely has more punch there, so
+   a **20d value sleeve** remains the promising direction. robust_2026 stays **25**.

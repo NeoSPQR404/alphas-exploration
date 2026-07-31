@@ -1,0 +1,61 @@
+{
+  "set": "main",
+  "n_factors": 112,
+  "Q": 10,
+  "rows": [
+    {
+      "buffer": 1.0,
+      "avg_turnover": 0.45310923860155344,
+      "avg_book": 409.1788990825688,
+      "n_rebal": 218,
+      "excess_gross_ann": 0.08108127781174934,
+      "excess_net_15bp_ann": 0.04504126090023264,
+      "excess_net_30bp_ann": 0.010154965624263879
+    },
+    {
+      "buffer": 1.5,
+      "avg_turnover": 0.3597138626004025,
+      "avg_book": 463.9954128440367,
+      "n_rebal": 218,
+      "excess_gross_ann": 0.07829994601192691,
+      "excess_net_15bp_ann": 0.049663811474506714,
+      "excess_net_30bp_ann": 0.021757188876225575
+    },
+    {
+      "buffer": 2.0,
+      "avg_turnover": 0.3026765521768471,
+      "avg_book": 511.77522935779814,
+      "n_rebal": 218,
+      "excess_gross_ann": 0.07623988836009521,
+      "excess_net_15bp_ann": 0.05213942062267085,
+      "excess_net_30bp_ann": 0.02855620396759484
+    },
+    {
+      "buffer": 2.5,
+      "avg_turnover": 0.26377286945939493,
+      "avg_book": 555.8532110091743,
+      "n_rebal": 218,
+      "excess_gross_ann": 0.07626029990767447,
+      "excess_net_15bp_ann": 0.05522735068963569,
+      "excess_net_30bp_ann": 0.03458801647377974
+    },
+    {
+      "buffer": 3.0,
+      "avg_turnover": 0.23381921912644288,
+      "avg_book": 597.2660550458716,
+      "n_rebal": 218,
+      "excess_gross_ann": 0.07601036762708135,
+      "excess_net_15bp_ann": 0.05735055781774823,
+      "excess_net_30bp_ann": 0.03900035384308764
+    },
+    {
+      "buffer": 4.0,
+      "avg_turnover": 0.1909647112092293,
+      "avg_book": 679.2614678899082,
+      "n_rebal": 218,
+      "excess_gross_ann": 0.07506719771220527,
+      "excess_net_15bp_ann": 0.05981674850873908,
+      "excess_net_30bp_ann": 0.044772914685654586
+    }
+  ]
+}

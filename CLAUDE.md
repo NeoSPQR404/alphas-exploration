@@ -2,8 +2,9 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-Alpha-factor mining for the full A-share universe, 2017–2025, on a local
-tushare panel. A round-based Retrieve → Generate → Evaluate → Distill loop
+Alpha-factor mining for the full A-share universe, 2017–2026 (2026 = the
+fresh out-of-sample window), on a local tushare panel. A round-based
+Retrieve → Generate → Evaluate → Distill loop
 produces factors that live in independent **sets**, each with its own
 registry, experience memory, per-round reports, and evaluation artifacts.
 Per-folder `CLAUDE.md` files give finer detail (`code/`, `code/mining/`,
@@ -21,7 +22,9 @@ python3 code/rebuild_memory.py
 # evaluation / analysis (each takes a set name; "main" = behavioral_full)
 python3 code/holdout_eval.py <set>        # 2024–25 honest test (holdout is SPENT — rerun only if asked)
 python3 code/reevaluate_stage4.py <set>   # full 5-test stage-4 re-run, report-only (never retires)
-python3 code/backtest_composite.py <set>  # EW rank-composite backtest, 10d rebalance, 15/30bp costs
+python3 code/backtest_composite.py <set> [neutral] [buffer=2.5]  # EW composite backtest; neutral=recommended construction, buffer=turnover overlay
+python3 code/walkforward.py                # walk-forward validation of factor selection (bias-free OOS IC)
+python3 code/turnover_overlay.py <set>     # hysteresis buffer-band sweep (turnover vs net-of-cost)
 
 # Step-1 data build (rebuilds the base panel from tushare; needs sandbox off)
 python3 code/step1_rebuild_panel.py && python3 code/step1_build_base.py && python3 code/step1_validate_base.py
@@ -112,6 +115,18 @@ success_rate, classification}` — plus `insights` (exploration ideas).
   single factors are turnover-heavy and mostly fail net>0 standalone, but the
   composite nets +5%/yr — cost binds at the composite, not per factor.
   See `results/mining/COST_ANALYSIS.md`.
+- **Turnover buffer overlay (2026-07-21):** `backtest_composite.py <set> neutral
+  buffer=B` adds hysteresis (enter in the decile, HOLD until a name falls out of
+  the wider `rank>1-B/Q` band). **buffer≈2.5 halves turnover at almost no gross
+  cost** (net@30bp +2 to +3.5pp) — the highest-value change after neutralization.
+  See `results/mining/TURNOVER_OVERLAY.md`.
+- **Deployable book:** robust_2026 → neutralized → status-only universe → EW
+  top-decile → buffer 2.5 → 10d = ~+9%/yr excess, IR 1.69, net@15bp +15%,
+  turnover 0.25. 10d beats 20d for behavioral (fast/reversal edge).
+- **Walk-forward validated (2026-07-21):** the selection process generalizes —
+  OOS IC is 88-97% of in-sample (~10% haircut), positive in all 7 test years;
+  bias-free forward IC ≈ 0.06-0.07 (contrast the selection-inflated robust_2026
+  2026 number). `results/mining/WALKFORWARD.md`.
 
 ## Round checklist (never skip a step)
 

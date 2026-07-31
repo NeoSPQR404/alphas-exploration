@@ -7,7 +7,7 @@ reports. (Root-level result files were consolidated into
 
 | set | factors | vocabulary | code arg |
 |---|---|---|---|
-| `sets/behavioral_full/` | 105 | full (OHLCV + turnover/VR/amp + limit boards + moneyflow/northbound/margin + valuation + industry) | `"main"` |
+| `sets/behavioral_full/` | 112 | full (OHLCV + turnover/VR/amp + limit boards + moneyflow/northbound/margin + valuation + industry) | `"main"` |
 | `sets/canonical/` | 105 individual | OHLCV/VWAP/AMOUNT/RET only (AST-enforced) | `"canonical"` |
 | `sets/canonical_composite/` | 119 | rank-product compositions of canonical parents | `"canonical_composite"` |
 | `sets/robust_2026/` | 25 | **curated**: robust in BOTH 2017-25 & 2026, cost-efficient, non-overnight (5 mined R13-14 + 19 past valid + 1 R1-R2) | `"robust_2026"` |
@@ -29,8 +29,13 @@ Cross-cutting evaluation artifacts (all sets): `NEUTRALIZE_REPORT.md` +
 `ic_monitor/<set>.json` (rolling-IC decay monitor), `COST_ANALYSIS.md`
 (turnover/cost-aware scoring — cost binds at the composite, not per factor),
 `VALID_2026.md` + `valid_2026_screen.json` (per-factor 2026 screen: which
-alphas are valid AND efficient — overnight-gap persistence wins), `figs/`
-(report graphs).
+alphas are valid AND efficient — overnight-gap persistence wins),
+`TURNOVER_OVERLAY.md` (hysteresis buffer bands — buffer≈2.5 halves turnover
+free; the deployable book + 10d-vs-20d), `WALKFORWARD.md` + `walkforward.json`
+(selection generalizes, ~10% OOS haircut, 7/7 positive years),
+`BLEND_BEHAVIORAL_VALUE.md` (value doesn't diversify — negative), `sets/*/
+BACKTEST.md` (per-set composite backtests incl. `sets/robust_2026/`), `figs/`
+(report graphs). The comprehensive Chinese PDF is `因子挖掘研究报告.pdf` (repo root).
 
 **Invariant:** every factor clears |rank IC| ≥ 0.03 in IS (2017–21) AND
 OOS-gate (2022–23). The 2024–25 holdout is spent for behavioral_full and

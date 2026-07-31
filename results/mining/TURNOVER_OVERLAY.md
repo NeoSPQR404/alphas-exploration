@@ -54,3 +54,25 @@ The buffer is a **large, almost-free improvement**:
   capacity/impact cost model.
 
 Graph: `figs/fig_turnover_overlay.png`. Data: each set's `turnover_overlay.json`.
+
+## Wired into the deployable backtest + horizon check (2026-07-21)
+
+`backtest_composite.py <set> neutral buffer=2.5` now applies the hysteresis to the
+long/short book and reports full Sharpe/drawdown/yearly stats (variants write
+`backtest_neutral_h{H}_buf{B}.json`). Full-window results:
+
+| config | excess / IR | long-only net@15bp (ann / Sharpe) | net@30bp ann | turnover |
+|---|---|---|---|---|
+| **robust_2026 10d buf2.5** | **+9.3% / 1.69** | **+15.0% / 0.66** | +12.9% | 0.25 |
+| behavioral_full 10d buf2.5 | +7.6% / 1.15 | +13.6% / 0.61 | +11.4% | 0.27 |
+| behavioral_full 20d buf2.5 | +5.4% / 0.76 | +11.5% / 0.57 | +9.8% | 0.40 |
+
+**Best deployable book = robust_2026, neutralized + buffer 2.5** (excess IR 1.69,
+LO net@15bp +15%/yr, turnover 0.25).
+
+**20d behavioral track — tested, 10d wins.** The blend analysis found behavioral's
+cross-sectional ICIR is *cleaner* at 20d (0.94 vs 0.85), but the full portfolio
+backtest shows 10d is the more deployable horizon (excess IR 1.15 vs 0.76, higher
+net-of-cost Sharpe): the behavioral edge is fast/reversal-driven, so the top-decile
+tradable excess is larger at 10d even where the IC looks cleaner at 20d. **10d
+remains the deployment horizon.**

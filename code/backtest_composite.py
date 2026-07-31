@@ -16,7 +16,12 @@ the composite on size+industry and select within the status-only investable
 universe (drops ST / < FILTER_MIN_DAYS listed). Writes backtest_neutral.json
 so the raw baseline artifact is preserved for comparison.
 
-Run: python3 code/backtest_composite.py <set_name> [neutral]
+`buffer=B` (B>1) adds a hysteresis band to the long/short book: enter in the
+decile, HOLD until a name falls out of the wider band (rank>1-B/Q). Cuts turnover
+at almost no gross cost (TURNOVER_OVERLAY.md); B~2.5 recommended. Variants write
+backtest_neutral_h{H}_buf{B}.json so runs don't clobber.
+
+Run: python3 code/backtest_composite.py <set_name> [neutral] [buffer=2.5]
 """
 import json
 import sys
@@ -67,7 +72,7 @@ def stats(period_ret: pd.Series) -> dict:
     }
 
 
-def main(set_name: str, neutral: bool = False):
+def main(set_name: str, neutral: bool = False, buffer: float = 1.0):
     t0 = time.time()
     panel = Panel()
     reg = Registry(set_name)
@@ -79,7 +84,10 @@ def main(set_name: str, neutral: bool = False):
     label = panel.label(cfg.HORIZON)
     actives = reg.active()
     tag = "neutralized+investable" if neutral else "raw"
-    print(f"backtest [{set_name}] ({tag}): {len(actives)} factors")
+    if buffer > 1.0:
+        tag += f"+buffer{buffer:g}"
+    print(f"backtest [{set_name}] ({tag}): {len(actives)} factors, "
+          f"horizon={cfg.HORIZON}")
 
     comp, _ = cs.set_composite(reg, panel, mask, "stored")
 
@@ -105,8 +113,12 @@ def main(set_name: str, neutral: bool = False):
         if ok.sum() < 200:
             continue
         ranks = s[ok].rank(pct=True)
-        longs = set(ranks.index[ranks > 1 - 1.0 / Q])
-        shorts = set(ranks.index[ranks <= 1.0 / Q])
+        # hysteresis: enter in the top/bottom decile, HOLD until a name falls out
+        # of the wider buffer band (buffer=1.0 -> plain decile, backward-compat).
+        longs = set(ranks.index[ranks > 1 - 1.0 / Q]) | \
+            {n for n in prev_long if n in ranks.index and ranks[n] > 1 - buffer / Q}
+        shorts = set(ranks.index[ranks <= 1.0 / Q]) | \
+            {n for n in prev_short if n in ranks.index and ranks[n] <= buffer / Q}
         long_ret = float(l[list(longs)].mean())
         short_ret = float(l[list(shorts)].mean())
         mkt_ret = float(l[ok].mean())
@@ -133,7 +145,7 @@ def main(set_name: str, neutral: bool = False):
 
     out = {"set": set_name, "n_factors": len(actives),
            "construction": tag, "horizon": cfg.HORIZON, "quantiles": Q,
-           "cost_bp_per_side": list(COST_SIDES_BP), "windows": {}}
+           "buffer": buffer, "cost_bp_per_side": list(COST_SIDES_BP), "windows": {}}
 
     dec_mat = np.vstack(df["deciles"].values)
     out["decile_mean_period_ret"] = [float(x) for x in np.nanmean(dec_mat, axis=0)]
@@ -172,7 +184,15 @@ def main(set_name: str, neutral: bool = False):
         }
     out["yearly"] = yearly
 
-    path = set_dir / ("backtest_neutral.json" if neutral else "backtest.json")
+    # base filename preserved; horizon/buffer variants get a suffix so runs
+    # don't clobber each other (e.g. backtest_neutral_h20_buf2.5.json)
+    base = "backtest_neutral" if neutral else "backtest"
+    suffix = ""
+    if cfg.HORIZON != 10:
+        suffix += f"_h{cfg.HORIZON}"
+    if buffer > 1.0:
+        suffix += f"_buf{buffer:g}"
+    path = set_dir / f"{base}{suffix}.json"
     path.write_text(json.dumps(out, indent=2, default=float))
     print(json.dumps({k: v for k, v in out["windows"]["full"].items()
                       if k in ("long_only_gross", "long_only_net_15bp",
@@ -181,5 +201,13 @@ def main(set_name: str, neutral: bool = False):
 
 
 if __name__ == "__main__":
-    args = [a for a in sys.argv[1:] if a != "neutral"]
-    main(args[0] if args else "main", neutral="neutral" in sys.argv)
+    buf = 1.0
+    args = []
+    for a in sys.argv[1:]:
+        if a == "neutral":
+            continue
+        if a.startswith("buffer="):
+            buf = float(a.split("=", 1)[1])
+        else:
+            args.append(a)
+    main(args[0] if args else "main", neutral="neutral" in sys.argv, buffer=buf)
